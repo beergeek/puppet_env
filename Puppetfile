@@ -12,3 +12,9 @@ mod "zack/r10k"
 
 mod "mco_agents",
   :git => "git://github.com/beergeek/mco_agents.git"
+
+mod "profiles",
+  :git => "git://github.com/beergeek/profiles.git"
+
+mod "roles",
+  :git => "git://github.com/beergeek/roles.git"
