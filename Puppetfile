@@ -11,4 +11,4 @@ mod "puppetlabs/inifile"
 mod "zack/r10k"
 
 mod "mco_agents",
-  :git => "git://github.com/beergeek/mco_agents.git",
+  :git => "git://github.com/beergeek/mco_agents.git"
