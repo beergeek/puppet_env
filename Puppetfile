@@ -10,6 +10,7 @@ mod "puppetlabs/git"
 mod "puppetlabs/inifile"
 mod "zack/r10k"
 mod "fiddyspence/sysctl"
+mod "puppetlabs/ntp"
 
 mod "mco_agents",
   :git => "git://github.com/beergeek/mco_agents.git"
