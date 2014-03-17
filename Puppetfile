@@ -9,6 +9,7 @@ mod "puppetlabs/vcsrepo"
 mod "puppetlabs/git"
 mod "puppetlabs/inifile"
 mod "zack/r10k"
+mod "fiddyspence/sysctl"
 
 mod "mco_agents",
   :git => "git://github.com/beergeek/mco_agents.git"
