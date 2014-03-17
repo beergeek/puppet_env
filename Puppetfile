@@ -16,7 +16,7 @@ mod "mco_agents",
   :git => "git://github.com/beergeek/mco_agents.git"
 
 mod "f5_v11",
-  :git => "git://guthub.com/beergeek/f5_v11.git"
+  :git => "git://github.com/beergeek/f5_v11.git"
 
 mod "profiles",
   :git => "git://github.com/beergeek/profiles.git"
