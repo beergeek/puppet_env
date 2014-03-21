@@ -12,6 +12,7 @@ mod "zack/r10k"
 mod "fiddyspence/sysctl"
 mod "puppetlabs/ntp"
 mod "saz/ssh"
+mod "saz/sudo"
 
 mod "mco_agents",
   :git => "git://github.com/beergeek/mco_agents.git"
