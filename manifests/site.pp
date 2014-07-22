@@ -1,8 +1,8 @@
-node /^web{\d+3}.puppetlabs.vm$/ {
+node /^vcac-sdl-web-{\d+4}/ {
   include role::webserver
 }
 
-node /^db{\d+3}.puppetlabs.vm$/ {
+node /^vcac-sdl-db-{\d+4}/ {
   include role::dbserver
 }
 
