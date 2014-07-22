@@ -1,3 +1,7 @@
+Package {
+  allow_virtual => false,
+}
+
 node /^vcac-sdl-web-\d{4}/ {
   include roles::frontend_webserver
 }
