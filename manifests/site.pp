@@ -12,6 +12,5 @@ node /^vcac-sdl-db-\d{4}/ {
 
 node default {
 
-  include profiles::base
 
 }
