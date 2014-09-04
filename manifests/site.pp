@@ -17,4 +17,5 @@ node default {
     ip            => $::ipaddress,
   }
 
+  Host <<| |>>
 }
