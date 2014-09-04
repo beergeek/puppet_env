@@ -21,6 +21,7 @@ mod "gentoo/portage", "2.2.0"
 mod "mhuffnagle/make", "0.0.2"
 mod "puppetlabs/dism", "1.0.0"
 mod "puppetlabs/reboot", "0.1.8"
+mod "puppetlabs/registry", "1.0.3"
 
 mod "profiles",
   :git => "git://github.com/beergeek/profiles.git"
