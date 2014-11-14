@@ -11,11 +11,4 @@ node /^vcac-sdl-db-\d{4}/ {
 }
 
 node default {
-  @@host { $::fqdn:
-    ensure        => present,
-    host_aliases  => [$::hostname],
-    ip            => $::ipaddress,
-  }
-
-  Host <<| |>>
 }
