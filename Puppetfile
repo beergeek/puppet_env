@@ -26,7 +26,7 @@ mod "basti1302/windows_path", "0.1.1"
 mod "simondean/iis", "0.1.3"
 
 mod "profiles",
-  :git => "git://github.com/beergeek/profiles.git"
+  :git => "git://github.com/beergeek/profiles_test.git"
 
 mod "roles",
   :git => "git://github.com/beergeek/roles.git"
