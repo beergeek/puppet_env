@@ -1,0 +1,24 @@
+{
+  "name": "beergeek-roles",
+  "version": "0.1.0",
+  "source": "UNKNOWN",
+  "author": "beergeek",
+  "license": "Apache License, Version 2.0",
+  "summary": "UNKNOWN",
+  "description": "UNKNOWN",
+  "project_page": "UNKNOWN",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "5dbc4832a60a1a3e56cee52f6598bd2e",
+    "README": "53792caf0bad984015040d7b95267bd0",
+    "manifests/init.pp": "6ea434a517b3c2bd3f815187466e33ad",
+    "manifests/web_db_server.pp": "4ea70d06bbc0ceb9076e5cb7ca2532a8",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "tests/init.pp": "4e084a28dd0e16c6029a4531090240b3"
+  }
+}
