@@ -2,15 +2,15 @@
 # Variables
 variables:
   - &hiera_hierarchy
-    - '%{clientcert}'
-    - '%{tier}'
-    - '%{data_centre}'
+    - '%%{}{clientcert}'
+    - '%%{}{tier}'
+    - '%%{}{data_centre}'
     - global
   - &hiera_backends
     yaml:
-      datadir: '/etc/puppetlabs/puppet/environments/%{envrionments}/hieradata'
+      datadir: '/etc/puppetlabs/puppet/environments/%%{}{envrionments}/hieradata'
     json:
-      datadir: '/etc/puppetlabs/puppet/environments/%{envrionments}/hieradata'
+      datadir: '/etc/puppetlabs/puppet/environments/%%{}{envrionments}/hieradata'
   - &manage_r10k true
   - &manage_heira true
   - &sources
@@ -21,14 +21,14 @@ variables:
 
 # COM
 profiles::com::manage_r10k: *manage_r10k
-profiles::com::sources: *sources
+profiles::com::r10k_sources: *r10k_sources
 profiles::com::manage_hiera: *manage_heira
 profiles::com::hiera_hierarchy: *hiera_hierarchy
 profiles::com::hiera_backends: *hiera_backends
 
 # MOM
 profiles::mom::manage_r10k: *manage_r10k
-profiles::mom::sources: *sources
+profiles::mom::r10k_sources: *r10k_sources
 profiles::mom::manage_hiera: *manage_heira
 profiles::mom::hiera_hierarchy: *hiera_hierarchy
 profiles::mom::hiera_backends: *hiera_backends
