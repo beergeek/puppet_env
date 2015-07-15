@@ -1,5 +1,5 @@
-class roles::mom (
+class roles::mom {
 
   include profiles::mom
 
-)
+}
