@@ -18,6 +18,12 @@ class profiles::base {
     host_aliases  => [$::hostname],
     ip            => $::ipaddress,
   }
+  @@host { 'puppet.puppetlabs.vm':
+    ensure        => present,
+    host_aliases  => ['puppet'],
+    ip            => $::ipaddress_eth1,
+  }
+
 
   host { 'localhost':
     ensure       => present,

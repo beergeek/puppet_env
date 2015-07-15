@@ -7,7 +7,7 @@ class profiles::lb_services {
 
   include haproxy
   haproxy::listen { 'puppet00':
-    collect_exported => false,
+    collect_exported => true,
     ipaddress        => $::ipaddress_eth1,
     ports            => '8140',
   }
