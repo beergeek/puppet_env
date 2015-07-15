@@ -1,6 +1,6 @@
 class roles::load_balancer {
 
-  include profiles::base
+  require profiles::base
   include profiles::lb_services
 
 }
