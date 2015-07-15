@@ -5,6 +5,13 @@ class profiles::lb_services {
     require => Class['profiles::fw::pre'],
   }
 
+  @@host { 'puppet.puppetlabs.vm':
+    ensure  => present,
+    aliases => ['puppet'],
+    host_aliases  => ['puppet'],
+    ip            => $::ipaddress_eth1,
+  }
+
   include haproxy
   haproxy::listen { 'puppet00':
     collect_exported => true,
