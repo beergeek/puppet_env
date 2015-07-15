@@ -1,12 +1,12 @@
 class profiles::com {
 
   $manage_r10k    = hiera('profiles::com::manage_r10k', true)
-  $r10K_sources   = hiera_hash('profiles::com::r10K_sources', undef)
+  $r10k_sources   = hiera_hash('profiles::com::r10k_sources', undef)
   $manage_hiera   = hiera('profiles::com::manage_hiera', true)
   $hiera_backends = hiera_hash('profiles::com::hiera_backends', undef)
   $hiera_hierarchy = hiera_array('profiles::com::hiera_hierarchy', undef)
 
-  if $manage_r10k and ! $r10K_sources {
+  if $manage_r10k and ! $r10k_sources {
     fail('The hash `r10k_sources` must exist when managing r10k')
   }
 
@@ -24,7 +24,7 @@ class profiles::com {
 
   if $manage_r10k {
     class { '::r10k':
-      sources => $r10K_sources,
+      sources => $r10k_sources,
       notify  => Exec['r10k_sync'],
     }
 
