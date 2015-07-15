@@ -6,10 +6,9 @@ class profiles::lb_services {
   }
 
   @@host { 'puppet.puppetlabs.vm':
-    ensure  => present,
-    aliases => ['puppet'],
-    host_aliases  => ['puppet'],
-    ip            => $::ipaddress_eth1,
+    ensure       => present,
+    host_aliases => ['puppet'],
+    ip           => $::ipaddress_eth1,
   }
 
   include haproxy
