@@ -6,6 +6,47 @@ class profiles::mom {
   $hiera_backends = hiera_hash('profiles::mom::hiera_backends', undef)
   $hiera_hierarchy = hiera_array('profiles::mom::hiera_hierarchy', undef)
 
+  Firewall {
+    before  => Class['profiles::fw::post'],
+    require => Class['profiles::fw::pre'],
+  }
+
+  firewall { '100 allow puppet access':
+    port   => [8140],
+    proto  => tcp,
+    action => accept,
+  }
+
+  firewall { '100 allow mco access':
+    port   => [61613],
+    proto  => tcp,
+    action => accept,
+  }
+
+  firewall { '100 allow amq access':
+    port   => [61616],
+    proto  => tcp,
+    action => accept,
+  }
+
+  firewall { '100 allow console access':
+    port   => [443],
+    proto  => tcp,
+    action => accept,
+  }
+
+  firewall { '100 allow nc access':
+    port   => [4433],
+    proto  => tcp,
+    action => accept,
+  }
+
+  firewall { '100 allow puppetdb access':
+    port   => [8081],
+    proto  => tcp,
+    action => accept,
+  }
+
   if $manage_r10k and ! $r10k_sources {
     fail('The hash `r10k_sources` must exist when managing r10k')
   }
