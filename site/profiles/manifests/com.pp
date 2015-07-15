@@ -3,11 +3,15 @@ class profiles::com {
   $manage_r10k    = hiera('profiles::com::manage_r10k', true)
   $r10K_sources   = hiera_hash('profiles::com::r10K_sources', undef)
   $manage_hiera   = hiera('profiles::com::manage_hiera', true)
-  $hiera_backends = hiera_hash('profiles::com::hiera_backends',{'yaml' =>  {'data' =>'/etc/puppetlabs/puppet/environment/%{environments/hieradata'}})
-  $hiera_hierarchy = hiera_array('profiles::com::hiera_hierarchy', ['%{clientcert}','%{tier}','%{data_centre}','global'])
+  $hiera_backends = hiera_hash('profiles::com::hiera_backends', undef)
+  $hiera_hierarchy = hiera_array('profiles::com::hiera_hierarchy', undef)
 
   if $manage_r10k and ! $r10K_sources {
     fail('The hash `r10k_sources` must exist when managing r10k')
+  }
+
+  if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
+    fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
   }
 
   @@haproxy::balancermember { "master00-${::fqdn}":

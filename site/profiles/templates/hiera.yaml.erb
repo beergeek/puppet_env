@@ -6,13 +6,17 @@
 <% end -%>
 
 :hierarchy:
-<% @hiera_heirarchy.each do |level| -%>
+<% @hiera_hierarchy.each do |level| -%>
+<% if level.include? "%" -%>
+  - "<%= level %>"
+<% else -%>
   - <%= level %>
+<% end -%>
 <% end -%>
 
 <% @hiera_backends.each do |backend,details| -%>
 :<%= backend %>:
 <% details.each do |key,value| -%>
-  :<%= key %>: <%= value %>
+  :<%= key %>: "<%= value %>"
 <% end -%>
 <% end -%>
