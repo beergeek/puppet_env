@@ -12,6 +12,14 @@ class profiles::lb_services {
   }
 
   include haproxy
+  haproxy::listen { 'stats':
+    ipaddress => $::ipaddress_eth1,
+    ports     => '9090',
+    options   => {
+      'mode'  => 'http',
+      'stats' => ['uri /', 'auth puppet:puppet']
+      },
+  }
   haproxy::listen { 'puppet00':
     collect_exported => true,
     ipaddress        => $::ipaddress_eth1,
