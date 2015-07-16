@@ -4,6 +4,7 @@ variables:
   - &hiera_hierarchy
     - '%%{}{clientcert}'
     - '%%{}{tier}'
+    - '%%{}{pp_role}'
     - '%%{}{data_centre}'
     - global
   - &hiera_backends
@@ -18,7 +19,8 @@ variables:
       remote: 'https://github.com/beergeek/puppet_env.git'
       basedir: '/etc/puppetlabs/puppet/environments'
 
-
+puppet_enterprise::profile::mcollective::agent::activemq_brokers:
+  - 'puppet.puppetlabs.vm'
 # COM
 profiles::com::manage_r10k: *manage_r10k
 profiles::com::r10k_sources: *r10k_sources
