@@ -56,6 +56,8 @@ class profiles::com {
       command     => '/opt/puppet/bin/r10k deploy environment -p',
       refreshonly => true,
     }
+
+    include ::r10k::mcollective
   }
 
   if $manage_hiera {
