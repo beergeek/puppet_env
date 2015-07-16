@@ -28,9 +28,24 @@ class profiles::lb_services {
       'mode'         => 'tcp',
     },
   }
+  haproxy::listen { 'mco00':
+    collect_exported => true,
+    ipaddress        => $::ipaddress_eth1,
+    ports            => '61613',
+    options          => {
+      'mode'         => 'tcp',
+      'balance'      => 'source',
+    },
+  }
 
   firewall { '105 allow puppet access':
     port   => [8140],
+    proto  => tcp,
+    action => accept,
+  }
+
+  firewall { '107 allow mco access':
+    port   => [61613],
     proto  => tcp,
     action => accept,
   }

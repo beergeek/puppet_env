@@ -44,6 +44,13 @@ class profiles::com {
     ports             => '8140',
     options           => 'check',
   }
+  @@haproxy::balancermember { "mco00-${::fqdn}":
+    listening_service => 'mco00',
+    server_names      => $::fqdn,
+    ipaddresses       => $::ipaddress_eth1,
+    ports             => '61613',
+    options           => 'check',
+  }
 
   if $manage_r10k {
     class { '::r10k':
