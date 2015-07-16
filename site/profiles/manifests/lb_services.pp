@@ -34,4 +34,10 @@ class profiles::lb_services {
     proto  => tcp,
     action => accept,
   }
+
+  firewall { '106 allow stats access':
+    port   => [9090],
+    proto  => tcp,
+    action => accept,
+  }
 }
