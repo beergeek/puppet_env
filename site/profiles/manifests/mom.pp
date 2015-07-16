@@ -41,6 +41,12 @@ class profiles::mom {
     action => accept,
   }
 
+  firewall { '100 allow reports access':
+    port   => [4435],
+    proto  => tcp,
+    action => accept,
+  }
+
   firewall { '100 allow puppetdb access':
     port   => [8081],
     proto  => tcp,
