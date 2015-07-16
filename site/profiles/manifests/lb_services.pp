@@ -16,6 +16,9 @@ class profiles::lb_services {
     collect_exported => true,
     ipaddress        => $::ipaddress_eth1,
     ports            => '8140',
+    options          => {
+      'mode'         => 'tcp',
+    },
   }
 
   firewall { '105 allow puppet access':
