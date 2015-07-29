@@ -1,0 +1,16 @@
+site/roles/spec/fixtures/.bundle
+site/roles/spec/fixtures/Gemfile.lock
+site/roles/spec/fixtures/modules
+site/roles/spec/fixtures/manifests
+site/profiles/spec/fixtures/Gemfile.local
+site/profiles/spec/fixtures/.bundle
+site/profiles/spec/fixtures/modules
+site/profiles/spec/fixtures/manifests
+pkg
+.rspec_system
+.vagrant
+vagrant
+.bundle
+vendor
+coverage
+Gemfile.lock

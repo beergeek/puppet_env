@@ -54,9 +54,10 @@ class profiles::com {
 
   if $manage_r10k {
     class { '::r10k':
-      configfile => '/etc/puppetlabs/r10k/r10k.yaml',
-      sources    => $r10k_sources,
-      notify     => Exec['r10k_sync'],
+      configfile              => '/etc/puppetlabs/r10k/r10k.yaml',
+      sources                 => $r10k_sources,
+      include_postrun_command => "/usr/bin/curl -i --cert /etc/puppetlabs/puppet/ssl/certs/${::clientcert}.pem --key /etc/puppetlabs/puppet/ssl/private_keys/${::clientcert}.pem --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem -X DELETE https://localhost:8140/puppet-admin-api/v1/environment-cache",
+      notify                  => Exec['r10k_sync'],
     }
 
     exec { 'r10k_sync':

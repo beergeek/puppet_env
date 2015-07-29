@@ -1,0 +1,34 @@
+fixtures:
+  repositories:
+    puppet_enterprise:
+      repo: "git@github.com:puppetlabs/puppetlabs-puppet_enterprise"
+      ref: origin/3.8.x
+    pe_inifile:
+      repo: "git@github.com:puppetlabs/puppetlabs-pe_inifile.git"
+      ref: origin/3.4.x
+    pe_concat:
+      repo: "git@github.com:puppetlabs/puppetlabs-pe_concat.git"
+      ref: origin/1.1.x
+    firewall:
+      repo: "git@github.com:puppetlabs/puppetlabs-firewall.git"
+      ref:  "1.6.0"
+    stdlib:
+      repo: "git@github.com:puppetlabs/puppetlabs-stdlib.git"
+      ref:  "4.6.0"
+    sysctl:
+      repo: "git@github.com:fiddyspence/puppet-sysctl.git"
+      ref:  "1.1.0"
+    ntp:
+      repo: "git@github.com:puppetlabs/puppetlabs-ntp"
+    ssh:
+      repo: "git@github.com:saz/puppet-ssh.git"
+    concat:
+      repo: "git@github.com:puppetlabs/puppetlabs-concat"
+    r10k:
+      repo: "git@github.com:acidprime/r10k"
+    git:
+      repo: "git@github.com:puppetlabs/puppetlabs-git"
+    ruby:
+      repo: "git@github.com:puppetlabs/puppetlabs-ruby"
+  symlinks:
+    profiles: "#{source_dir}"
