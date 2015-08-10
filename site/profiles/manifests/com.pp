@@ -123,25 +123,6 @@ class profiles::com {
 
   puppet_certificate { "${::fqdn}-peadmin":
     ensure => present,
-    before => [File["/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-private.pem"],File["/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-public.pem"]],
-  }
-
-  file { "/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-private.pem":
-    ensure => file,
-    owner  => "${::fqdn}-peadmin",
-    group  => "${::fqdn}-peadmin",
-    mode   => '0400',
-    source => "${::settings::ssldir}/private_keys/${::fqdn}-peadmin.pem",
-    require => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
-  }
-
-  file { "/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-public.pem":
-    ensure => file,
-    owner  => "${::fqdn}-peadmin",
-    group  => "${::fqdn}-peadmin",
-    mode   => '0644',
-    source => "${::settings::ssldir}/public_keys/${::fqdn}-peadmin.pem",
-    require => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
   }
 
   puppet_enterprise::mcollective::client { "${::fqdn}-peadmin":
