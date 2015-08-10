@@ -12,7 +12,7 @@ class profiles::com {
   }
 
   Pe_ini_setting {
-    path    => $::settins::config,
+    path    => $::settings::config,
     section => 'main',
   }
 
