@@ -2,16 +2,16 @@
 # Variables
 variables:
   - &hiera_hierarchy
-    - '%%{}{clientcert}'
-    - '%%{}{tier}'
-    - '%%{}{pp_role}'
-    - '%%{}{data_centre}'
+    - "%{literal('%')}{clientcert}"
+    - "%{literal('%')}{tier}"
+    - "%{literal('%')}{pp_role}"
+    - "%{literal('%')}{data_centre}"
     - global
   - &hiera_backends
     yaml:
-      datadir: '/etc/puppetlabs/code/environments/%%{}{environment}/hieradata'
+      datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
     json:
-      datadir: '/etc/puppetlabs/code/environments/%%{}{environment}/hieradata'
+      datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
   - &manage_r10k true
   - &manage_heira true
   - &r10k_sources
