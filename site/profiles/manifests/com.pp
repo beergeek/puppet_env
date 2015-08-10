@@ -132,7 +132,7 @@ class profiles::com {
     group  => "${::fqdn}-peadmin",
     mode   => '0400',
     source => "${::settings::ssldir}/private_keys/${::fqdn}-peadmin.pem",
-    before => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
+    require => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
   }
 
   file { "/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-public.pem":
@@ -141,7 +141,7 @@ class profiles::com {
     group  => "${::fqdn}-peadmin",
     mode   => '0644',
     source => "${::settings::ssldir}/public_keys/${::fqdn}-peadmin.pem",
-    before => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
+    require => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
   }
 
   puppet_enterprise::mcollective::client { "${::fqdn}-peadmin":
