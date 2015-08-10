@@ -9,9 +9,9 @@ variables:
     - global
   - &hiera_backends
     yaml:
-      datadir: '/etc/puppetlabs/puppet/environments/%%{}{environment}/hieradata'
+      datadir: '/etc/puppetlabs/code/environments/%%{}{environment}/hieradata'
     json:
-      datadir: '/etc/puppetlabs/puppet/environments/%%{}{environment}/hieradata'
+      datadir: '/etc/puppetlabs/code/environments/%%{}{environment}/hieradata'
   - &manage_r10k true
   - &manage_heira true
   - &r10k_sources
