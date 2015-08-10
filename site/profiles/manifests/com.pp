@@ -11,6 +11,11 @@ class profiles::com {
     require => Class['profiles::fw::pre'],
   }
 
+  Pe_ini_setting {
+    path    => $::settins::config,
+    section => 'main',
+  }
+
   firewall { '100 allow puppet access':
     port   => [8140],
     proto  => tcp,
@@ -27,6 +32,18 @@ class profiles::com {
     port   => [61616],
     proto  => tcp,
     action => accept,
+  }
+
+  pe_ini_setting { 'pe_user':
+    ensure  => present,
+    setting => 'user',
+    value   => 'pe-puppet',
+  }
+
+  pe_ini_setting { 'pe_group':
+    ensure  => present,
+    setting => 'group',
+    value   => 'pe-puppet',
   }
 
   if $manage_r10k and ! $r10k_sources {
