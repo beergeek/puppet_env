@@ -26,4 +26,4 @@ mod "puppetlabs/registry", "1.1.0"
 mod "basti1302/windows_path", "0.1.1"
 mod "simondean/iis", "0.1.3"
 mod "puppetlabs/firewall", "1.7.0"
-
+mod "reidmv/puppet_certificate"
