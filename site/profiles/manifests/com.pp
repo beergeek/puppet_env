@@ -96,7 +96,7 @@ class profiles::com {
       ensure  => file,
       owner   => 'pe-puppet',
       group   => 'pe-puppet',
-      mode    => '0644',
+      mode    => '0600',
       content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
       before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
     }
