@@ -126,7 +126,7 @@ class profiles::com {
   }
 
   puppet_enterprise::mcollective::client { "${::fqdn}-peadmin":
-    activemq_brokers => $::clientcert,
+    activemq_brokers => [$::clientcert],
     logfile          => "${::settings::logdir}/${::fqdn}-peadmin.log",
     create_user      => true,
   }
