@@ -89,7 +89,7 @@ class profiles::com {
     package { 'hiera-eyaml':
       ensure   => present,
       provider => 'puppetserver_gem',
-      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+      before   => File['/etc/puppetlabs/code/hiera.yaml'],
     }
 
     file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
