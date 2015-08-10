@@ -123,10 +123,10 @@ class profiles::com {
 
   puppet_certificate { "${::fqdn}-peadmin":
     ensure => present,
-    before => [File["/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-private.pem"],File["/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-public.pem"]],
+    before => [File["/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-private.pem"],File["/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-public.pem"]],
   }
 
-  file { "/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-private.pem":
+  file { "/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-private.pem":
     ensure => file,
     owner  => "${::fqdn}-peadmin",
     group  => "${::fqdn}-peadmin",
@@ -135,7 +135,7 @@ class profiles::com {
     require => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
   }
 
-  file { "/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-public.pem":
+  file { "/var/lib/${::fqdn}-peadmin/.mcollective.d/${::fqdn}-peadmin-public.pem":
     ensure => file,
     owner  => "${::fqdn}-peadmin",
     group  => "${::fqdn}-peadmin",
