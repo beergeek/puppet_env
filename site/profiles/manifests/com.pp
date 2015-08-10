@@ -123,11 +123,30 @@ class profiles::com {
 
   puppet_certificate { "${::fqdn}-peadmin":
     ensure => present,
+    before => [File["/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-private.pem"],File["/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-public.pem"]],
+  }
+
+  file { "/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-private.pem":
+    ensure => file,
+    owner  => "${::fqdn}-peadmin",
+    group  => "${::fqdn}-peadmin",
+    mode   => '0400',
+    source => "${::settings::ssldir}/private_keys/${::fqdn}-peadmin.pem",
+    before => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
+  }
+
+  file { "/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin-public.pem":
+    ensure => file,
+    owner  => "${::fqdn}-peadmin",
+    group  => "${::fqdn}-peadmin",
+    mode   => '0644',
+    source => "${::settings::ssldir}/public_keys/${::fqdn}-peadmin.pem",
+    before => Puppet_enterprise::Mcollective::Client["${::fqdn}-peadmin"],
   }
 
   puppet_enterprise::mcollective::client { "${::fqdn}-peadmin":
     activemq_brokers => [$::clientcert],
-    logfile          => "/tmp/${::fqdn}-peadmin.log",
+    logfile          => "/var/lib/${::fqdn}-peadmin.log",
     create_user      => true,
   }
 
