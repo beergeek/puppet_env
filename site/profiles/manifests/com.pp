@@ -16,6 +16,8 @@ class profiles::com {
     section => 'main',
   }
 
+  ensure_packages(['ruby'])
+
   firewall { '100 allow puppet access':
     port   => [8140],
     proto  => tcp,
