@@ -17,7 +17,7 @@ variables:
   - &r10k_sources
     base:
       remote: 'https://github.com/beergeek/puppet_env.git'
-      basedir: '/etc/puppetlabs/puppet/environments'
+      basedir: '/etc/puppetlabs/code/environments'
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - 'puppet.puppetlabs.vm'
