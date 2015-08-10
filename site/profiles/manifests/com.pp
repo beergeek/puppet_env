@@ -86,6 +86,30 @@ class profiles::com {
   }
 
   if $manage_hiera {
+    package { 'hiera-eyaml':
+      ensure   => present,
+      provider => 'puppetserver_gem',
+      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+    }
+
+    file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
+      ensure  => file,
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      mode    => '0644',
+      content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
+      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+    }
+
+    file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
+      ensure  => file,
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      mode    => '0644',
+      content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
+      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+    }
+
     file { '/etc/puppetlabs/puppet/hiera.yaml':
       ensure  => file,
       owner   => 'root',
