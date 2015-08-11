@@ -34,7 +34,7 @@ class profiles::base {
   }
 
   if $mco_client_array {
-    $mco_client_array.each do |$cert_title| {
+    $mco_client_array.each |$cert_title| {
       file { $cert_title:
         ensure  => file,
         owner   => 'root',
