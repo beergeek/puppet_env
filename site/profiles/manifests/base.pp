@@ -41,7 +41,7 @@ class profiles::base {
         owner   => 'root',
         group   => 'root',
         mode    => '0440',
-        content => file("${::settings::ssldir}/public_keys/${cert_title}.pem"),
+        content => file("${::settings::ssldir}/public_keys/${cert_title}.pem",'/dev/null'),
         notify  => Service['mcollective'],
       }
     }
