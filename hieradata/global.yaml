@@ -35,6 +35,10 @@ profiles::mom::manage_hiera: *manage_heira
 profiles::mom::hiera_hierarchy: *hiera_hierarchy
 profiles::mom::hiera_backends: *hiera_backends
 
+profiles::base::mco_client_array:
+  - 'com0.puppetlabs.vm-peadmin'
+  - 'com1.puppetlabs.vm-peadmin'
+
 profiles::ntp_client::ntp_servers: ['192.168.62.1']
 profiles::base::sysctl_settings:
   kernel.msgmnb:

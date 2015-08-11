@@ -1,7 +1,8 @@
 class profiles::base {
 
-  $sysctl_settings = hiera('profiles::base::sysctl_settings')
-  $sysctl_defaults = hiera('profiles::base::sysctl_defaults')
+  $sysctl_settings  = hiera('profiles::base::sysctl_settings')
+  $sysctl_defaults  = hiera('profiles::base::sysctl_defaults')
+  $mco_client_array = hiera_array('profiles::base::mco_client_array', undef)
 
   class { 'firewall': }
   class {['profiles::fw::pre','profiles::fw::post']:}
@@ -30,6 +31,19 @@ class profiles::base {
 
   resources { 'host':
     purge => true,
+  }
+
+  if $mco_client_array {
+    $mco_client_array.each do |$cert_title| {
+      file { $cert_title:
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0440',
+        content => file("${::settings::ssldir}/public_keys/${cert_title}.pem"),
+        notify  => Service['mcollective'],
+      }
+    }
   }
 
   # setup NTP client
