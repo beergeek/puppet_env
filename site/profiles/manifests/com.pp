@@ -121,8 +121,9 @@ class profiles::com {
     }
   }
 
-  puppet_certificate { "${::fqdn}-peadmin":
+  @@puppet_certificate { "${::fqdn}-peadmin":
     ensure => present,
+    tag    => 'mco_clients',
   }
 
   puppet_enterprise::mcollective::client { "${::fqdn}-peadmin":

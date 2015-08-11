@@ -107,4 +107,6 @@ class profiles::mom {
     }
   }
 
+  Puppet_certificate <<| tag == 'mco_clients' |>>
+
 }
