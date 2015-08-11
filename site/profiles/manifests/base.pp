@@ -37,6 +37,7 @@ class profiles::base {
     $mco_client_array.each |$cert_title| {
       file { $cert_title:
         ensure  => file,
+        path    => "/etc/puppetlabs/mcollective/ssl/clients/${cert_title}",
         owner   => 'root',
         group   => 'root',
         mode    => '0440',
