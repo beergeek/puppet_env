@@ -12,11 +12,12 @@ class profiles::mom {
   }
 
   augeas { 'ssl_pub_path':
-    context => "${::settings::fileserverconfig}/pe_public",
+    context => "/files/${::settings::fileserverconfig}/pe_public",
     changes => [
       "set path ${::settings::ssldir}/public_keys",
       'set allow com0.puppetlabs.vm,com1.puppetlabs.vm'
     ],
+    notify => Service['pe-puppetserver'],
   }
 
   firewall { '100 allow puppet access':
