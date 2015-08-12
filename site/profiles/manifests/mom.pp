@@ -15,14 +15,14 @@ class profiles::mom {
     path => $::settings::fileserverconfig,
   }
 
-  pe_init_setting { 'ssl_pub_path':
+  pe_ini_setting { 'ssl_pub_path':
     ensure  => present,
     section => 'pe_public',
     setting => 'path',
     value   => "${::settings::ssldir}/public_keys",
   }
 
-  pe_init_setting { 'ssl_pub_allow':
+  pe_ini_setting { 'ssl_pub_allow':
     ensure  => present,
     section => 'pe_public',
     setting => 'allow',
