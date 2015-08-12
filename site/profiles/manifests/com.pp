@@ -16,6 +16,15 @@ class profiles::com {
     section => 'main',
   }
 
+  file { '/etc/puppetlabs/puppet/ssl/public_keys':
+    ensure  => directory,
+    owner   => 'pe-puppet',
+    group   => 'pe-puppet',
+    recurse => true,
+    purge   => false,
+    source  => 'puppet:///pe_public',
+  }
+
   firewall { '100 allow puppet access':
     port   => [8140],
     proto  => tcp,
