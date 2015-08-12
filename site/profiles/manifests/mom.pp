@@ -11,22 +11,12 @@ class profiles::mom {
     require => Class['profiles::fw::pre'],
   }
 
-  Pe_ini_setting {
-    path => $::settings::fileserverconfig,
-  }
-
-  pe_ini_setting { 'ssl_pub_path':
-    ensure  => present,
-    section => 'pe_public',
-    setting => 'path',
-    value   => "${::settings::ssldir}/public_keys",
-  }
-
-  pe_ini_setting { 'ssl_pub_allow':
-    ensure  => present,
-    section => 'pe_public',
-    setting => 'allow',
-    value   => 'com0.puppetlabs.vm,com1.puppetlabs.vm',
+  augeas { 'ssl_pub_path':
+    context => "${::settings::fileserverconfig}/pe_public",
+    changes => [
+      "set path ${::settings::ssldir}/public_keys",
+      'set allow com0.puppetlabs.vm,com1.puppetlabs.vm'
+    ],
   }
 
   firewall { '100 allow puppet access':
