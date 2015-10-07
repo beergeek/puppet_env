@@ -1,4 +1,4 @@
-ass profiles::console (
+class profiles::console (
   $ssl_dir          = $::settings::ssldir,
   $common_certname  = undef,
 ) {
