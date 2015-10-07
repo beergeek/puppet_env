@@ -88,7 +88,7 @@ class profiles::com {
     }
 
     class { 'r10k::postrun_command':
-      command => "/usr/bin/curl -i --cert /etc/puppetlabs/puppet/ssl/certs/${::clientcert}.pem --key /etc/puppetlabs/puppet/ssl/private_keys/${::clientcert}.pem --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem -X DELETE https://localhost:8140/puppet-admin-api/v1/environment-cache",
+      command => "/usr/bin/curl -i --cert /etc/puppetlabs/puppet/ssl/certs/${::clientcert}.pem --key /etc/puppetlabs/puppet/ssl/private_keys/${::clientcert}.pem --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem -X DELETE https://${::clientcert}:8140/puppet-admin-api/v1/environment-cache",
     }
 
     exec { 'r10k_sync':
