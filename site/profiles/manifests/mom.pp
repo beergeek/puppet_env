@@ -69,12 +69,11 @@ class profiles::mom {
       version                 => '2.0.3',
       configfile              => '/etc/puppetlabs/r10k/r10k.yaml',
       sources                 => $r10k_sources,
-      include_postrun_command => "/usr/bin/curl -i --cert /etc/puppetlabs/puppet/ssl/certs/${::clientcert}.pem --key /etc/puppetlabs/puppet/ssl/private_keys/${::clientcert}.pem --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem -X DELETE https://localhost:8140/puppet-admin-api/v1/environment-cache",
       notify                  => Exec['r10k_sync'],
     }
 
     exec { 'r10k_sync':
-      command     => '/opt/puppet/bin/r10k deploy environment -p',
+      command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
       refreshonly => true,
     }
 
