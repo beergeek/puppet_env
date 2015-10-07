@@ -89,7 +89,7 @@ class profiles::com {
     }
 
     exec { 'r10k_sync':
-      command     => '/opt/puppet/bin/r10k deploy environment -p',
+      command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
       refreshonly => true,
     }
 
