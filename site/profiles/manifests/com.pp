@@ -17,18 +17,6 @@ class profiles::com {
     notify  => Service['pe-puppetserver'],
   }
 
-  pe_ini_setting { 'pe_user':
-    ensure  => present,
-    setting => 'user',
-    value   => 'pe-puppet',
-  }
-
-  pe_ini_setting { 'pe_group':
-    ensure  => present,
-    setting => 'group',
-    value   => 'pe-puppet',
-  }
-
   file { '/etc/puppetlabs/puppet/ssl/public_keys':
     ensure  => directory,
     owner   => 'pe-puppet',
