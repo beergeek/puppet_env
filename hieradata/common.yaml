@@ -102,9 +102,9 @@ profiles::mom::node_groups:
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
   'Agent-specified environment':
-    environment         : 'agent-specified'
+    environment: 'agent-specified'
     override_environment: 'true'
-    parent              : 'Production environment'
+    parent: 'Production environment'
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
