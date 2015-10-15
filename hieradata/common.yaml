@@ -59,7 +59,8 @@ profiles::mom::node_groups:
   'Production environment':
     rule: ['and', ['~', 'name', '.*']]
   'PE MCollective':
-    classes: {'puppet_enterprise::profile::mcollective::agent' => {}}
+    classes:
+      'puppet_enterprise::profile::mcollective::agent': {}
     parent: 'PE Infrastructure'
     rule: ['and', ['~', ['fact', 'aio_agent_version'], '.+']]
   'PE Master':
