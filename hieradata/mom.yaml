@@ -2,25 +2,3 @@
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - 'mom.puppetlabs.vm'
 
-profiles::mom::node_groups:
-  'PE Infrastructure':
-    classes:
-      'puppet_enterprise':
-        'certificate_authority_host': "%{trusted.certname}"
-        'console_host': "%{trusted.certname}"
-        'console_port': '443'
-        'database_host': "%{trusted.certname}"
-        'database_port': '5432'
-        'database_ssl': 'true'
-        'mcollective_middleware_hosts':
-          - "%{trusted.certname}"
-        'puppet_master_host': "%{trusted.certname}"
-        'puppetdb_database_name': 'pe-puppetdb'
-        'puppetdb_database_user': 'pe-puppetdb'
-        'puppetdb_host': "%{trusted.certname}"
-        'puppetdb_port': '8081'
-profiles::mom::node_groups_defaults:
-  ensure: present
-  environment: production
-  override_environment: false
-  parent: 'All Nodes'
