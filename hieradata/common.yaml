@@ -6,7 +6,7 @@ variables:
     - "%{literal('%')}{tier}"
     - "%{literal('%')}{pp_role}"
     - "%{literal('%')}{data_centre}"
-    - global
+    - common
   - &hiera_backends
     yaml:
       datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
