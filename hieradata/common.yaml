@@ -69,12 +69,12 @@ profiles::mom::node_groups:
       'pe_repo::platform::el_6_x86_64': {}
       'pe_repo::platform::el_7_x86_64': {}
       'pe_repo::platform::ubuntu_1204_amd64': {}
-      'pe_repo::platform::ubuntu_1404_amd64' {}
-      'pe_repo::platform::windows_x86_64' {}
-      'profiles::base' {}
-      'profiles::mom' {}
+      'pe_repo::platform::ubuntu_1404_amd64': {}
+      'pe_repo::platform::windows_x86_64': {}
+      'profiles::base': {}
+      'profiles::mom': {}
       'puppet_enterprise::profile::master': {}
-      'puppet_enterprise::profile::master::mcollective' {}
+      'puppet_enterprise::profile::master::mcollective': {}
       'puppet_enterprise::profile::mcollective::peadmin': {}
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
