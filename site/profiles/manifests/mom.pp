@@ -1,10 +1,12 @@
 class profiles::mom {
 
-  $manage_r10k    = hiera('profiles::mom::manage_r10k', true)
-  $r10k_sources   = hiera_hash('profiles::mom::r10k_sources', undef)
-  $manage_hiera   = hiera('profiles::mom::manage_hiera', true)
-  $hiera_backends = hiera_hash('profiles::mom::hiera_backends', undef)
-  $hiera_hierarchy = hiera_array('profiles::mom::hiera_hierarchy', undef)
+  $manage_r10k          = hiera('profiles::mom::manage_r10k', true)
+  $r10k_sources         = hiera_hash('profiles::mom::r10k_sources', undef)
+  $manage_hiera         = hiera('profiles::mom::manage_hiera', true)
+  $hiera_backends       = hiera_hash('profiles::mom::hiera_backends', undef)
+  $hiera_hierarchy      = hiera_array('profiles::mom::hiera_hierarchy', undef)
+  $node_groups          = hiera('profiles::mom::node_groups', undef)
+  $node_groups_defaults = hiera('profiles::mom::node_groups_defaults')
 
   Firewall {
     before  => Class['profiles::fw::post'],
@@ -116,5 +118,9 @@ class profiles::mom {
   }
 
   Puppet_certificate <<| tag == 'mco_clients' |>>
+
+  if $node_groups {
+    create_resources('node_group',$node_groups, $node_groups_defaults)
+  }
 
 }
