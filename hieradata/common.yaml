@@ -95,7 +95,7 @@ profiles::mom::node_groups:
   'PE Console':
     classes:
       'pe_console_prune':
-        'prune_upto': '30'
+        'prune_upto': 30
       'puppet_enterprise::license': {}
       'puppet_enterprise::profile::console': {}
     parent: 'PE Infrastructure'
