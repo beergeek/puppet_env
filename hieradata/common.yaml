@@ -20,7 +20,7 @@ variables:
       basedir: '/etc/puppetlabs/code/environments'
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
-  - "%{trusted.certname}"
+  - "%{::servername}"
 # COM
 profiles::com::manage_r10k: *manage_r10k
 profiles::com::r10k_sources: *r10k_sources
