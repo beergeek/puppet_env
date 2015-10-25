@@ -26,7 +26,7 @@ class profiles::base {
   class { 'profiles::sudo': }
 
   # manage logging
-  class { 'profiles::logging': }
+  #class { 'profiles::logging': }
 
   # manage DNS stuff
   class { 'profiles::dns': }
