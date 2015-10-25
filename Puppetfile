@@ -1,7 +1,7 @@
 forge "http://forgeapi.puppetlabs.com"
 
 # Modules from the Puppet Forge
-mod "puppetlabs/stdlib", "4.6.0"
+mod "puppetlabs/stdlib", "4.9.0"
 mod "puppetlabs/apache", "1.5.0"
 mod "puppetlabs/pe_gem", "0.1.1"
 mod "puppetlabs/mysql", "3.4.0"
