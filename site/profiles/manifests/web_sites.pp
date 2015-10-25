@@ -9,6 +9,14 @@ define profiles::web_sites (
 )
 {
 
+  if $repo_provider == 'git' {
+    ensure_packages(['git'])
+
+    Vcsrepo {
+      require => Package['git'],
+    }
+  }
+
   if $database_search {
     $search_results = query_facts("Class['mysql']", $database_search)
   } else {

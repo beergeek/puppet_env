@@ -160,6 +160,14 @@ profiles::mom::node_groups:
       'puppet_enterprise::profile::console': {}
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
+  'Web Servers':
+    classes:
+      'profiles::web_services': {}
+    rule: ['and', ['~', ['fact', 'pp_role'], 'web_server']
+  'DB Servers':
+    classes:
+      'profiles::database_services': {}
+    rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
