@@ -163,11 +163,11 @@ profiles::mom::node_groups:
   'Web Servers':
     classes:
       'profiles::web_services': {}
-    rule: ['and', ['~', ['fact', 'pp_role'], 'web_server']
+    rule: ['and', ['~', ['fact', 'pp_role'], 'web_server']]
   'DB Servers':
     classes:
       'profiles::database_services': {}
-    rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']
+    rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']]
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
