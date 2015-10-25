@@ -173,7 +173,6 @@ profiles::mom::node_groups:
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
-  override_environment: false
   parent: 'All Nodes'
 
 
