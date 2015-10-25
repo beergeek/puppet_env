@@ -20,6 +20,22 @@ class profiles::lb_services {
       'stats' => ['uri /', 'auth puppet:puppet']
       },
   }
+  haproxy::listen { 'http00':
+    collect_exported => true,
+    ipaddress        => $::ipaddress_eth1,
+    ports            => '80',
+    options          => {
+      'mode'         => 'tcp',
+    },
+  }
+  haproxy::listen { 'https00':
+    collect_exported => true,
+    ipaddress        => $::ipaddress_eth1,
+    ports            => '443',
+    options          => {
+      'mode'         => 'tcp',
+    },
+  }
   haproxy::listen { 'puppet00':
     collect_exported => true,
     ipaddress        => $::ipaddress_eth1,
