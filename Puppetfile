@@ -34,7 +34,7 @@ mod "saz/timezone", "3.3.0"
 mod "rodjek/logrotate", "1.1.1"
 mod "saz/rsyslog", "3.5.1"
 
-mode 'node_manager',
+mod 'node_manager',
   :git => 'https://github.com/WhatsARanjit/prosvcs-node_manager.git',
   :commit => '8fac4b6'
 mod 'app_update',
