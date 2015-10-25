@@ -25,7 +25,7 @@
 class profiles::dns {
 
   $name_servers = hiera('profiles::dns::name_servers')
-  $purge        = heira('profiles::dns::purge', false)
+  $purge        = hiera('profiles::dns::purge', false)
 
   validate_array($name_servers)
   validate_bool($purge)
