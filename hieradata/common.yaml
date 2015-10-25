@@ -1,6 +1,7 @@
 ---
 # Variables
 variables:
+  - &enable_firewall true
   - &hiera_hierarchy
     - "%{literal('%')}{clientcert}"
     - "%{literal('%')}{tier}"
@@ -21,6 +22,47 @@ variables:
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
+
+# DNS
+profiles::dns::name_servers:
+  - 10.0.2.3
+profiles::dns::purge: false
+
+# SSH
+profiles::ssh::enable_firewall: *enable_firewall
+profiles::ssh::banner_content: "This system is the property of Puppet Labs. Unauthorised access is not permitted"
+profiles::ssh::allowed_groups:
+  - 'root'
+  - 'vagrant'
+profiles::ssh::options_hash:
+  Port: 22
+  AcceptEnv: 'LANG LC_*'
+  ChallengeResponseAuthentication: no
+  PermitRootLogin: yes
+  PrintMotd: no
+  Subsystem: 'sftp /usr/libexec/openssh/sftp-server'
+  UsePAM: yes
+  X11Forwarding: yes
+
+# SUDO
+profiles::sudo::sudo_hash:
+  vagrant:
+    priority: 10
+    content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
+profiles::sudo::sudo_hash_defaults:
+  priority: 50
+profiles::sudo::sudo_purge: true
+profiles::sudo::sudo_replace_config: true
+
+# LOGGING
+profiles::logging::log_local: true
+profiles::logging::port: 514
+profiles::logging::remote_servers: false
+profiles::logging::remote_type: 'tcp'
+profiles::logging::rotate: 10
+profiles::logging::rotate_every: 'day'
+profiles::logging::size: '200k'
+
 # COM
 profiles::com::manage_r10k: *manage_r10k
 profiles::com::r10k_sources: *r10k_sources
@@ -55,14 +97,31 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::puppetdb': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', "%{::servername}"]]
+    rule:
+      - 'or'
+      -
+        - '='
+        - 'name'
+        - "%{::servername}"
   'Production environment':
-    rule: ['and', ['~', 'name', '.*']]
+    rule:
+      - 'and'
+      -
+        - '~'
+        - 'name'
+        - '.*'
   'PE MCollective':
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
     parent: 'PE Infrastructure'
-    rule: ['and', ['~', ['fact', 'aio_agent_version'], '.+']]
+    rule:
+      - 'and'
+      -
+        - '~'
+        -
+          - 'fact'
+          - 'aio_agent_version'
+        - '.+'
   'PE Master':
     classes:
       'pe_repo': {}
@@ -101,21 +160,25 @@ profiles::mom::node_groups:
       'puppet_enterprise::profile::console': {}
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
-  #'Agent-specified environment':
-  #  environment: 'agent-specified'
-  #  override_environment: 'true'
-  #  parent: 'Production environment'
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
   override_environment: false
   parent: 'All Nodes'
 
+
 profiles::base::mco_client_array:
   - 'com0.puppetlabs.vm-peadmin'
   - 'com1.puppetlabs.vm-peadmin'
 
-profiles::ntp_client::ntp_servers: ['192.168.62.1']
+# TIME_LOCALE
+profiles::time_locale::ntp_servers:
+  - 0.au.pool.ntp.org
+  - 1.au.pool.ntp.org
+  - 2.au.pool.ntp.org
+  - 3.au.pool.ntp.org
+profiles::time_locale::timezone: 'UTC'
+
 profiles::base::sysctl_settings:
   kernel.msgmnb:
     value : '65536'
@@ -158,15 +221,18 @@ profiles::web_services::website_hash:
   'elmo.puppetlabs.vm':
     docroot: '/var/www/elmo'
     repo_source: 'git://github.com/beergeek/elmo.git'
+    database_search: "MySQL::Database['elmo']"
   'kermit.puppetlabs.vm':
     docroot: '/var/www/kermit'
     repo_source: 'git://github.com/beergeek/kermit.git'
+    database_search: "MySQL::Database['kermit']"
   'animal.puppetlabs.vm':
     docroot: '/var/www/animal'
     repo_source: 'git://github.com/beergeek/animal.git'
   'rob.puppetlabs.vm':
     docroot: '/var/www/rob'
     repo_source: 'git://github.com/beergeek/rob.git'
+    database_search: "MySQL::Database['rob']"
 profiles::web_services::website_defaults:
   port: '80'
   priority: '10'

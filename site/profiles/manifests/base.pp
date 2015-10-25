@@ -14,24 +14,22 @@ class profiles::base {
 
   create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
   ensure_packages(['ruby'])
+  ensure_resource('file',['/etc/puppetlabs/facter','/etc/puppetlabs/facter,facts.d'],{ensure => present, owner => 'root', group => 'root', mode => '0755'})
 
-  @@host { $::fqdn:
-    ensure        => present,
-    host_aliases  => [$::hostname],
-    ip            => $::ipaddress_eth1,
-  }
+  # manage time, timezones, and locale
+  class { 'profiles::time_locale': }
 
-  host { 'localhost':
-    ensure       => present,
-    host_aliases => ['localhost.localdomai','localhost6','localhost6.localdomain6'],
-    ip           => '127.0.0.1',
-  }
+  # manage SSH
+  class { 'profiles::ssh': }
 
-  Host <<| |>>
+  # manage SUDO
+  class { 'profiles::sudo': }
 
-  resources { 'host':
-    purge => true,
-  }
+  # manage logging
+  class { 'profiles::logging': }
+
+  # manage DNS stuff
+  class { 'profiles::dns': }
 
   if $mco_client_array {
     $mco_client_array.each |$cert_title| {
@@ -47,20 +45,4 @@ class profiles::base {
     }
   }
 
-  # setup NTP client
-  include profiles::ntp_client
-
-  # setup SSH server and firewall
-  class { 'ssh::server':
-      storeconfigs_enabled => false,
-      options              => {
-        'PermitRootLogin'  => 'yes',
-        'Port'             => [22],
-      },
-  }
-  firewall { '104 allow http ssh access':
-    port   => [22],
-    proto  => tcp,
-    action => accept,
-  }
 }

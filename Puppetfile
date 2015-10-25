@@ -27,9 +27,16 @@ mod "basti1302/windows_path", "0.1.1"
 mod "simondean/iis", "0.1.3"
 mod "puppetlabs/firewall", "1.7.0"
 mod "reidmv/puppet_certificate"
-mod "WhatsARanjit/node_manager"
 mod "chocolatey/chocolatey"
+mod "dalen/puppetdbquery"
+mod "saz/resolv_conf", "3.0.5"
+mod "saz/timezone", "3.3.0"
+mod "rodjek/logrotate", "1.1.1"
+mod "saz/rsyslog", "3.5.1"
 
+mode 'node_manager',
+  :git => 'https://github.com/WhatsARanjit/prosvcs-node_manager.git',
+  :commit => '8fac4b6'
 mod 'app_update',
   :git => 'https://github.com/beergeek/beergeek-app_update.git',
-  :tag => '0.2.0'
+  :tag => '0.2.1'
