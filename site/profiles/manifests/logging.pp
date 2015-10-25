@@ -55,7 +55,7 @@ class profiles::logging {
 
   ::logrotate::rule { 'all_log':
     path         => '/var/log/*/*',
-    rotate       => $rotate,
+    rotate       => 0 + $rotate,
     rotate_every => $rotate_every,
     size         => $size,
     compress     => true,
