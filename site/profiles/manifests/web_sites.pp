@@ -18,7 +18,7 @@ define profiles::web_sites (
   }
 
   if $database_search {
-    $search_results = query_facts("Class['mysql']", $database_search)
+    $search_results = query_resources("Class['mysql']", $database_search)
   } else {
     $search_results = true
   }
