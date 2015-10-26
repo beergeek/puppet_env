@@ -63,11 +63,22 @@ define profiles::web_sites (
         file { $site_name:
           ensure  => directory,
           path    => $_docroot,
-          owner   => 'Administrator',
-          group   => 'Administrators',
-          mode    => '0755',
+          owner   => 'Administrators',
+          group   => 'Administrator',
+          mode    => '0777',
         }
 
+        acl { $_docroot:
+          target                     => $_docroot,
+          purge                      => false,
+          permissions                => [
+           { identity => 'Administrator', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
+           { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
+          ],
+          owner                      => 'Administrators',
+          group                      => 'Administrator',
+          inherit_parent_permissions => true,
+        }
         file { "${site_name}_index":
           ensure  => file,
           path    => "${_docroot}\\index.html",
