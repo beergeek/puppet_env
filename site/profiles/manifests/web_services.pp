@@ -11,6 +11,25 @@ class profiles::web_services {
       require apache::mod::ssl
     }
     'windows': {
+      windowsfeature { 'IIS':
+        feature_name => [
+          'Web-Server',
+          'Web-WebServer',
+          'Web-Asp-Net45',
+          'Web-ISAPI-Ext',
+          'Web-ISAPI-Filter',
+          'NET-Framework-45-ASPNET',
+          'WAS-NET-Environment',
+          'Web-Http-Redirect',
+          'Web-Filtering',
+          'Web-Mgmt-Console',
+          'Web-Mgmt-Tools'
+        ]
+      }
+      windowsfeature { 'Web-WebServer':
+        installmanagementtools => true
+        installsubfeatures => true
+      }
     }
     default: {
       fail("${::kernel} is a non-supported OS Kernel")
@@ -18,7 +37,7 @@ class profiles::web_services {
   }
 
   #create web sites
-  create_resources('profiles::web_sites',$website_hash,$website_defaults)
+  #create_resources('profiles::web_sites',$website_hash,$website_defaults)
 
   @@haproxy::balancermember { "http00-${::fqdn}":
     listening_service => 'http00',
