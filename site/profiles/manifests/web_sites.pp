@@ -9,14 +9,6 @@ define profiles::web_sites (
 )
 {
 
-  if $repo_provider == 'git' {
-    ensure_packages(['git'])
-
-    Vcsrepo {
-      require => Package['git'],
-    }
-  }
-
   if $database_search {
     $search_results = query_resources("Class['mysql::server']", $database_search)
   } else {
@@ -65,7 +57,7 @@ define profiles::web_sites (
           ip_address  => '*',
           host_header => $site_name,
           app_pool    => $site_name,
-          before      => File["${site_name}_index"],
+          before      => File[$site_name],
         }
 
         file { $site_name:
@@ -78,7 +70,7 @@ define profiles::web_sites (
 
         file { "${site_name}_index":
           ensure  => file,
-          path    => "{$_docroot}\\index.html",
+          path    => "${_docroot}\\index.html",
           owner   => 'Administrator',
           group   => 'Administrators',
           mode    => '0644',
