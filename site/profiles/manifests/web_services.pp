@@ -22,10 +22,10 @@ class profiles::web_services {
         feature_name => [
           'Web-Server',
           'Web-WebServer',
-          'Web-Asp-Net45',
+          'Web-Asp-Net',
           'Web-ISAPI-Ext',
           'Web-ISAPI-Filter',
-          'NET-Framework-45-ASPNET',
+          'NET-Framework',
           'WAS-NET-Environment',
           'Web-Http-Redirect',
           'Web-Filtering',
@@ -34,7 +34,6 @@ class profiles::web_services {
         ]
       }
       windowsfeature { 'Web-WebServer':
-        installmanagementtools => true,
         installsubfeatures => true,
       }
     }
@@ -44,7 +43,7 @@ class profiles::web_services {
   }
 
   #create web sites
-  #create_resources('profiles::web_sites',$website_hash,$website_defaults)
+  create_resources('profiles::web_sites',$website_hash,$website_defaults)
 
   @@haproxy::balancermember { "http00-${::fqdn}":
     listening_service => 'http00',

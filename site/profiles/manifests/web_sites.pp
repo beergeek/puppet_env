@@ -24,10 +24,36 @@ define profiles::web_sites (
   }
 
   if $_bypass or size($search_results) > 0 {
-    apache::vhost {$site_name:
+    case $::kernel {
+      'linux': {
+        $_docroot = "/var/www/${docroot}"
+        apache::vhost { $site_name:
+          priority => $priority,
+          port     => $port,
+          docroot  => $_docroot,
+        }
+      }
+      'windows': {
+        $_docroot = "C:\\inetpub\\wwwroot\\${docroot}"
+
+        iis::manage_app_pool { $site_name:
+          enable_32_bit           => true,
+          managed_runtime_version => 'v4.0',
+        }
+         iis::manage_site { $site_name:
+          site_path     => $_docroot,
+          port          => '80',
+          ip_address    => '*',
+          host_header   => $site_name,
+          app_pool      => $site_name,
+        }
+      }
+    }
+
+    apache::vhost { $site_name:
       priority => $priority,
       port     => $port,
-      docroot  => $docroot,
+      docroot  => $_docroot,
     }
 
     if $repo_source {

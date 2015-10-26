@@ -228,18 +228,18 @@ profiles::base::sysctl_defaults:
   permanent: 'yes'
 profiles::web_services::website_hash:
   'elmo.puppetlabs.vm':
-    docroot: '/var/www/elmo'
+    docroot: 'elmo'
     repo_source: 'git://github.com/beergeek/elmo.git'
     database_search: "MySQL::Database['elmo']"
   'kermit.puppetlabs.vm':
-    docroot: '/var/www/kermit'
+    docroot: 'kermit'
     repo_source: 'git://github.com/beergeek/kermit.git'
     database_search: "MySQL::Database['kermit']"
   'animal.puppetlabs.vm':
-    docroot: '/var/www/animal'
+    docroot: 'animal'
     repo_source: 'git://github.com/beergeek/animal.git'
   'rob.puppetlabs.vm':
-    docroot: '/var/www/rob'
+    docroot: 'rob'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "MySQL::Database['rob']"
 profiles::web_services::website_defaults:
