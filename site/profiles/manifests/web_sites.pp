@@ -68,8 +68,17 @@ define profiles::web_sites (
           before      => File["${site_name}_index"],
         }
 
+        file { $site_name:
+          ensure  => directory,
+          path    => $_docroot,
+          owner   => 'Administrator',
+          group   => 'Administrators',
+          mode    => '0755',
+        }
+
         file { "${site_name}_index":
           ensure  => file,
+          path    => "{$_docroot}\\index.html",
           owner   => 'Administrator',
           group   => 'Administrators',
           mode    => '0644',
