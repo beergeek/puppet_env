@@ -34,8 +34,8 @@ class profiles::web_services {
         ]
       }
       windowsfeature { 'Web-WebServer':
-        installmanagementtools => true
-        installsubfeatures => true
+        installmanagementtools => true,
+        installsubfeatures => true,
       }
     }
     default: {
