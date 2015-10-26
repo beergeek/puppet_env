@@ -26,12 +26,30 @@ define profiles::web_sites (
   if $_bypass or size($search_results) > 0 {
     case $::kernel {
       'linux': {
+        if $repo_provider == 'git' {
+          ensure_packages(['git'])
+
+          Vcsrepo {
+            require => Package['git'],
+          }
+        }
+
         $_docroot = "/var/www/${docroot}"
+
         apache::vhost { $site_name:
           priority => $priority,
           port     => $port,
           docroot  => $_docroot,
           before   => Vcsrepo[$site_name],
+        }
+
+        if $repo_source {
+          vcsrepo { $site_name:
+            ensure   => present,
+            path     => $_docroot,
+            provider => $repo_provider,
+            source   => $repo_source,
+          }
         }
       }
       'windows': {
@@ -49,15 +67,14 @@ define profiles::web_sites (
           app_pool    => $site_name,
           before      => Vcsrepo[$site_name],
         }
-      }
-    }
 
-    if $repo_source {
-      vcsrepo { $site_name:
-        ensure   => present,
-        path     => $_docroot,
-        provider => $repo_provider,
-        source   => $repo_source,
+        file { "${site_name}_index":
+          ensure  => file,
+          owner   => 'Administrator',
+          group   => 'Administrators',
+          mode    => '0644',
+          content => "${site_name} - hello",
+        }
       }
     }
 
