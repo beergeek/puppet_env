@@ -31,6 +31,7 @@ define profiles::web_sites (
           priority => $priority,
           port     => $port,
           docroot  => $_docroot,
+          before   => Vcsrepo[$site_name],
         }
       }
       'windows': {
@@ -41,28 +42,22 @@ define profiles::web_sites (
           managed_runtime_version => 'v4.0',
         }
          iis::manage_site { $site_name:
-          site_path     => $_docroot,
-          port          => '80',
-          ip_address    => '*',
-          host_header   => $site_name,
-          app_pool      => $site_name,
+          site_path   => $_docroot,
+          port        => '80',
+          ip_address  => '*',
+          host_header => $site_name,
+          app_pool    => $site_name,
+          before      => Vcsrepo[$site_name],
         }
       }
-    }
-
-    apache::vhost { $site_name:
-      priority => $priority,
-      port     => $port,
-      docroot  => $_docroot,
     }
 
     if $repo_source {
       vcsrepo { $site_name:
         ensure   => present,
-        path     => $docroot,
+        path     => $_docroot,
         provider => $repo_provider,
         source   => $repo_source,
-        require  => Apache::Vhost[$site_name],
       }
     }
 
