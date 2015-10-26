@@ -18,12 +18,12 @@ define profiles::web_sites (
   }
 
   if $database_search {
-    $search_results = query_resources("Class['mysql']", $database_search)
+    $search_results = query_resources("Class['mysql::server']", $database_search)
   } else {
-    $search_results = true
+    $_bypass = true
   }
 
-  if $search_results {
+  if $_bypass or size($search_results) > 0 {
     apache::vhost {$site_name:
       priority => $priority,
       port     => $port,

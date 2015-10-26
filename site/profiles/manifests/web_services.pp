@@ -4,10 +4,17 @@ class profiles::web_services {
   $website_defaults 	= hiera('profiles::web_services::website_defaults')
 
   #build base web server
-  if $::kernel == 'Linux' {
-    require apache
-    require apache::mod::php
-    require apache::mod::ssl
+  case $::kernel {
+    'linux': {
+      require apache
+      require apache::mod::php
+      require apache::mod::ssl
+    }
+    'windows': {
+    }
+    default: {
+      fail("${::kernel} is a non-supported OS Kernel")
+    }
   }
 
   #create web sites
