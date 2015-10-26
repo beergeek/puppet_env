@@ -65,7 +65,7 @@ define profiles::web_sites (
           ip_address  => '*',
           host_header => $site_name,
           app_pool    => $site_name,
-          before      => Vcsrepo[$site_name],
+          before      => File["${site_name}_index"],
         }
 
         file { "${site_name}_index":
