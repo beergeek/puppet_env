@@ -9,6 +9,13 @@ class profiles::web_services {
       require apache
       require apache::mod::php
       require apache::mod::ssl
+
+      # add firewall rules
+      firewall { '100 allow http and https access':
+        port   => [80, 443],
+        proto  => tcp,
+        action => accept,
+      }
     }
     'windows': {
       windowsfeature { 'IIS':
@@ -52,13 +59,6 @@ class profiles::web_services {
     ipaddresses       => $::ipaddress_eth1,
     ports             => '443',
     options           => 'check',
-  }
-
-  # add firewall rules
-  firewall { '100 allow http and https access':
-    port   => [80, 443],
-    proto  => tcp,
-    action => accept,
   }
 
 }

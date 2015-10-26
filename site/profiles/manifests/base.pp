@@ -4,15 +4,15 @@ class profiles::base {
   $sysctl_defaults  = hiera('profiles::base::sysctl_defaults')
   $mco_client_array = hiera_array('profiles::base::mco_client_array', undef)
 
-  class { 'firewall': }
-  class {['profiles::fw::pre','profiles::fw::post']:}
-
   Firewall {
     before  => Class['profiles::fw::post'],
     require => Class['profiles::fw::pre'],
   }
 
   if $::kernel == 'linux' {
+    class { 'firewall': }
+    class {['profiles::fw::pre','profiles::fw::post']:}
+
     create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
     ensure_packages(['ruby'])
     ensure_resource('file',['/etc/puppetlabs/facter','/etc/puppetlabs/facter,facts.d'],{ensure => present, owner => 'root', group => 'root', mode => '0755'})
