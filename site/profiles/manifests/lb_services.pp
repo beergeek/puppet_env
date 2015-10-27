@@ -20,12 +20,12 @@ class profiles::lb_services {
     $listeners.each |$key,$value| {
       haproxy::listen { $key:
         ipaddress => $value['ipaddress'],
-        ports     => $value['port'],
+        ports     => $value['ports'],
         options   => $value['options'],
       }
 
       firewall { $key:
-        port   => [$value['port']],
+        port   => [$value['ports']],
         proto  => 'tcp',
         action => 'accept',
       }
