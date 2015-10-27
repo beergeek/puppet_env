@@ -185,32 +185,32 @@ profiles::lb_services::listeners:
   stats:
     collect_exported: false
     ipaddress: "%{::ipaddress_eth1}"
-    ports: 9090
+    ports: '9090'
     options:
       mode: 'http'
       stats: ['uri /', 'auth puppet:puppet']
   http00:
     collect_exported: true
     ipaddress: "%{::ipaddress_eth1}"
-    ports: 80
+    ports: '80'
     options:
       mode: 'tcp'
   https00:
     collect_exported: true
     ipaddress: "%{::ipaddress_eth1}"
-    ports: 443
+    ports: '443'
     options:
       mode: 'tcp'
   puppet00:
     collect_exported: true
     ipaddress: "%{::ipaddress_eth1}"
-    ports: 8140
+    ports: '8140'
     options:
       mode: 'tcp'
   mco00:
     collect_exported: true
     ipaddress: "%{::ipaddress_eth1}"
-    ports: 61613
+    ports: '61613'
     options:
       mode: 'tcp'
       balance: 'source'
