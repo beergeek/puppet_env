@@ -172,7 +172,8 @@ profiles::mom::node_groups:
     rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']]
   'Load Balancer':
     classes:
-      profiles::lb_services: {}
+      'profiles::base': {}
+      'profiles::lb_services': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'lb']]
 profiles::mom::node_groups_defaults:
   ensure: present
