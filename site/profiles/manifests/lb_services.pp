@@ -25,7 +25,7 @@ class profiles::lb_services {
         options          => $value['options'],
       }
 
-      firewall { $key:
+      firewall { "100 ${key}":
         port   => [$value['ports']],
         proto  => 'tcp',
         action => 'accept',
