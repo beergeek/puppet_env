@@ -19,9 +19,10 @@ class profiles::lb_services {
   if $listeners {
     $listeners.each |$key,$value| {
       haproxy::listen { $key:
-        ipaddress => $value['ipaddress'],
-        ports     => $value['ports'],
-        options   => $value['options'],
+        collect_exported => $value['collect_exported'],
+        ipaddress        => $value['ipaddress'],
+        ports            => $value['ports'],
+        options          => $value['options'],
       }
 
       firewall { $key:
