@@ -218,6 +218,8 @@ profiles::lb_services::listeners:
 profiles::base::mco_client_array:
   - 'com0.puppetlabs.vm-peadmin'
   - 'com1.puppetlabs.vm-peadmin'
+profiles::base::wsus_server: 'http://wsus_server.local'
+profiles::base::wsus_server_port: '8530'
 
 # TIME_LOCALE
 profiles::time_locale::ntp_servers:
