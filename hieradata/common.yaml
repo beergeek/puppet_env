@@ -170,11 +170,48 @@ profiles::mom::node_groups:
       'profiles::base': {}
       'profiles::database_services': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']]
+  'Load Balancer':
+    classes:
+      profiles::lb_sservices: {}
+    rule: ['and', ['~', ['fact', 'pp_role'], 'lb']]
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
   parent: 'All Nodes'
 
+# Load Balancer
+profiles::lb_services::listeners:
+  stats:
+    ipaddress: "%::ipaddress_eth1"
+    ports: 9090
+    options:
+      mode: 'http'
+      stats: ['uri /', 'auth puppet:puppet']
+  http00:
+    collect_exported: true
+    ipaddress: "%::ipaddress_eth1"
+    ports: 80
+    options:
+      mode: 'tcp'
+  https00:
+    collect_exported: true
+    ipaddress: "%::ipaddress_eth1"
+    ports: 443
+    options:
+      mode: 'tcp'
+  puppet00:
+    collect_exported: true
+    ipaddress: "%::ipaddress_eth1"
+    ports: 8140
+    options:
+      mode: 'tcp'
+  mco00:
+    collect_exported: true
+    ipaddress: "%::ipaddress_eth1"
+    ports: 61613
+    options:
+      mode: 'tcp'
+      balance: 'source'
 
 profiles::base::mco_client_array:
   - 'com0.puppetlabs.vm-peadmin'

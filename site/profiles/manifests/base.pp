@@ -15,7 +15,7 @@ class profiles::base {
 
     create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
     ensure_packages(['ruby'])
-    ensure_resource('file',['/etc/puppetlabs/facter','/etc/puppetlabs/facter,facts.d'],{ensure => present, owner => 'root', group => 'root', mode => '0755'})
+    ensure_resource('file',['/etc/puppetlabs/facter','/etc/puppetlabs/facter/facts.d'],{ensure => present, owner => 'root', group => 'root', mode => '0755'})
 
     # manage time, timezones, and locale
     class { 'profiles::time_locale': }
