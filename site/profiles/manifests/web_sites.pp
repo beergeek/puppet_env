@@ -63,9 +63,6 @@ define profiles::web_sites (
         file { $site_name:
           ensure  => directory,
           path    => $_docroot,
-          owner   => 'Administrators',
-          group   => 'Administrator',
-          mode    => '0777',
         }
 
         acl { $_docroot:
