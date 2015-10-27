@@ -21,7 +21,32 @@ class profiles::database_services {
       }
     }
     'windows': {
-      require sqlserver
+
+      #create service
+      sqlserver_instance{'MSSQLSERVER':
+          features                => ['SQL'],
+          source                  => 'E:/',
+          sql_sysadmin_accounts   => ['dbuser'],
+      }
+      sqlserver_features { 'Generic Features':
+        source    => 'E:/',
+        features  => ['ADV_SSMS', 'BC', 'Conn', 'SDK', 'SSMS'],
+      }
+
+      $db_hash.each |$key, $value| {
+        sqlserver::database { $key:
+          instance => 'MSSQLSERVER',
+        }
+        sqlserver::login{ "${key}_login":
+            password => 'Pupp3t1@',
+        }
+
+        sqlserver::user{ "${key}_user":
+            user     => "${key}_user",
+            database => $key,
+            require  => Sqlserver::Login["${key}_login"],
+        }
+      }
     }
     default: {
       fail("${::kernel} is not a support OS kernel")
