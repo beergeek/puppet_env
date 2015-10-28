@@ -10,7 +10,7 @@ class profiles::base {
       $sysctl_settings  = hiera('profiles::base::sysctl_settings')
       $sysctl_defaults  = hiera('profiles::base::sysctl_defaults')
       $mco_client_array = hiera_array('profiles::base::mco_client_array', undef)
-      $enable_firewall  = heira('profiles::base::enable_firewall',true)
+      $enable_firewall  = hiera('profiles::base::enable_firewall',true)
 
       if $enable_firewall {
         class { 'firewall': }

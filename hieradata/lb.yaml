@@ -1,3 +1,6 @@
 ---
 
 profiles::base::enable_firewall: false
+profiles::web_services::enable_firewall: false
+profiles::database_services::enable_firewall: false
+profiles::ssh::enable_firewall: false
