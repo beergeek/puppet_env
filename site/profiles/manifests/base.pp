@@ -10,9 +10,16 @@ class profiles::base {
       $sysctl_settings  = hiera('profiles::base::sysctl_settings')
       $sysctl_defaults  = hiera('profiles::base::sysctl_defaults')
       $mco_client_array = hiera_array('profiles::base::mco_client_array', undef)
+      $enable_firewall  = heira('profiles::base::enable_firewall',true)
 
-      class { 'firewall': }
-      class {['profiles::fw::pre','profiles::fw::post']:}
+      if $enable_firewall {
+        class { 'firewall': }
+        class {['profiles::fw::pre','profiles::fw::post']:}
+      } else {
+        class { 'firewall':
+          ensure => stopped,
+        }
+      }
 
       create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
       ensure_packages(['ruby'])

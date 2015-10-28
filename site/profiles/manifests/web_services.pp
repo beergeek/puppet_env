@@ -2,6 +2,7 @@ class profiles::web_services {
 
   $website_hash 	    = hiera_hash('profiles::web_services::website_hash')
   $website_defaults 	= hiera('profiles::web_services::website_defaults')
+  $enable_firewall    = hiera('profiles::web_services::enable_firewall')
 
   #build base web server
   case $::kernel {
@@ -10,11 +11,13 @@ class profiles::web_services {
       require apache::mod::php
       require apache::mod::ssl
 
-      # add firewall rules
-      firewall { '100 allow http and https access':
-        port   => [80, 443],
-        proto  => tcp,
-        action => accept,
+      if $enable_firewall {
+        # add firewall rules
+        firewall { '100 allow http and https access':
+          port   => [80, 443],
+          proto  => tcp,
+          action => accept,
+        }
       }
     }
     'windows': {

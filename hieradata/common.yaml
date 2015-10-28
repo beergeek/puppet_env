@@ -69,6 +69,7 @@ profiles::com::r10k_sources: *r10k_sources
 profiles::com::manage_hiera: *manage_heira
 profiles::com::hiera_hierarchy: *hiera_hierarchy
 profiles::com::hiera_backends: *hiera_backends
+profiles::com::enable_firewall: *enable_firewall
 
 # MOM
 profiles::mom::manage_r10k: *manage_r10k
@@ -76,6 +77,7 @@ profiles::mom::r10k_sources: *r10k_sources
 profiles::mom::manage_hiera: *manage_heira
 profiles::mom::hiera_hierarchy: *hiera_hierarchy
 profiles::mom::hiera_backends: *hiera_backends
+profiles::mom::enable_firewall: *enable_firewall
 profiles::mom::node_groups:
   'PE Infrastructure':
     classes:
@@ -181,6 +183,7 @@ profiles::mom::node_groups_defaults:
   parent: 'All Nodes'
 
 # Load Balancer
+profiles::lb_services::enable_firewall: *enable_firewall
 profiles::lb_services::listeners:
   stats:
     collect_exported: false
@@ -215,6 +218,8 @@ profiles::lb_services::listeners:
       mode: 'tcp'
       balance: 'source'
 
+# BASE
+profiles::base::enable_firewall: *enable_firewall
 profiles::base::mco_client_array:
   - 'com0.puppetlabs.vm-peadmin'
   - 'com1.puppetlabs.vm-peadmin'
@@ -267,6 +272,9 @@ profiles::base::sysctl_settings:
 profiles::base::sysctl_defaults:
   ensure: present
   permanent: 'yes'
+
+# WEB_SERVICES
+profiles::web_services::enable_firewall: *enable_firewall
 profiles::web_services::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
@@ -288,6 +296,9 @@ profiles::web_services::website_defaults:
   priority: '10'
   docroot: '/var/www/${title}'
   repo_provider: git
+
+# DATABASE_SERVICES
+profiles::database_services::enable_firewall: *enable_firewall
 profiles::database_services::db_hash:
   elmo: {}
   kermit: {}
