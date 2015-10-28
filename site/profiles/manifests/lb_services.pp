@@ -1,7 +1,7 @@
 class profiles::lb_services {
 
-
-  $listeners = hiera('profiles::lb_services::listeners',undef)
+  $listeners        = hiera('profiles::lb_services::listeners',undef)
+  $enable_firewall  = hiera('profiles::lb_services::enable_firewall')
 
   Firewall {
     before  => Class['profiles::fw::post'],
@@ -25,10 +25,12 @@ class profiles::lb_services {
         options          => $value['options'],
       }
 
-      firewall { "100 ${key}":
-        port   => [$value['ports']],
-        proto  => 'tcp',
-        action => 'accept',
+      if $enable_firewall {
+        firewall { "100 ${key}":
+          port   => [$value['ports']],
+          proto  => 'tcp',
+          action => 'accept',
+        }
       }
     }
   }

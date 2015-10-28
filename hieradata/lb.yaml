@@ -1,6 +1,11 @@
 ---
 
-profiles::base::enable_firewall: false
-profiles::web_services::enable_firewall: false
-profiles::database_services::enable_firewall: false
-profiles::ssh::enable_firewall: false
+# Variables
+variables:
+  - &enable_firewall true
+
+profiles::base::enable_firewall: *enable_firewall
+profiles::web_services::enable_firewall: *enable_firewall
+profiles::database_services::enable_firewall: *enable_firewall
+profiles::ssh::enable_firewall: *enable_firewall
+profiles::lb_services::enable_firewall: *enable_firewall
