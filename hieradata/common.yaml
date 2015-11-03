@@ -99,31 +99,13 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::puppetdb': {}
     parent: 'PE Infrastructure'
-    rule:
-      - 'or'
-      -
-        - '='
-        - 'name'
-        - "%{::servername}"
-  'Production environment':
-    rule:
-      - 'and'
-      -
-        - '~'
-        - 'name'
-        - '.*'
+    rule: ['or', ['=', 'name', "%{::servername}"]]
+  'Production environment': {}
   'PE MCollective':
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
     parent: 'PE Infrastructure'
-    rule:
-      - 'and'
-      -
-        - '~'
-        -
-          - 'fact'
-          - 'aio_agent_version'
-        - '.+'
+    rule: 
   'PE Master':
     classes:
       'pe_repo': {}
@@ -138,12 +120,12 @@ profiles::mom::node_groups:
       'puppet_enterprise::profile::master::mcollective': {}
       'puppet_enterprise::profile::mcollective::peadmin': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
+    rule: ['or', ['=', 'name', "%{::servername}"]]
   'PE ActiveMQ Broker':
     classes:
       'puppet_enterprise::profile::amq::broker': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
+    rule: ['or', ['=', 'name', "%{::servername}"]]
   'PE Agent':
     classes:
       'puppet_enterprise::profile::agent': {}
@@ -153,7 +135,17 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::certificate_authority': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
+    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
+  'PE Master':
+    classes:
+      "pe_repo": {}
+      "pe_repo::platform::el_6_x86_64": {}
+      "puppet_enterprise::profile::master": {}
+      "puppet_enterprise::profile::master::mcollective": {}
+      "puppet_enterprise::profile::mcollective::peadmin": {}
+      "profiles::mom": {}
+    parent: 'PE Infrastructure'
+    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
   'PE Console':
     classes:
       'pe_console_prune':
@@ -161,7 +153,7 @@ profiles::mom::node_groups:
       'puppet_enterprise::license': {}
       'puppet_enterprise::profile::console': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.demo']]
+    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
   'Web Servers':
     classes:
       'profiles::base': {}
