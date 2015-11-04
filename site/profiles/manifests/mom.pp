@@ -16,9 +16,9 @@ class profiles::mom {
     require => Class['profiles::fw::pre'],
   }
 
-  Node_group {
-    require => Package['puppetclassify'],
-  }
+  #  Node_group {
+  #  require => Package['puppetclassify'],
+  #}
 
   augeas { 'ssl_pub_path':
     context => "/files/${::settings::fileserverconfig}/pe_public",
