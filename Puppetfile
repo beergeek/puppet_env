@@ -45,4 +45,4 @@ mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
 mod 'app_update',
   :git => 'https://github.com/beergeek/beergeek-app_update.git',
-  :tag => '0.2.1'
+  :branch => 'yum_demo'
