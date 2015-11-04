@@ -107,6 +107,7 @@ profiles::mom::node_groups:
   'MCO yum demo environment':
     classes: {}
     override_environment: true
+    environment: 'mco_yum_demo'
     rule: []
   'PE MCollective':
     classes:
