@@ -32,7 +32,6 @@ define profiles::web_sites (
           priority => $priority,
           port     => $port,
           docroot  => $_docroot,
-          before   => Vcsrepo[$site_name],
         }
 
         if $repo_source {
@@ -41,6 +40,7 @@ define profiles::web_sites (
             path     => $_docroot,
             provider => $repo_provider,
             source   => $repo_source,
+            require  => Apache::Vhost[$site_name],
           }
         }
       }
