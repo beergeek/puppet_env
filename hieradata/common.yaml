@@ -112,15 +112,11 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
     parent: 'PE Infrastructure'
-    rule:
+    rule: ['and', ['~', ['fact', 'aio_agent_version'], '.+']]
   'PE Master':
     classes:
       'pe_repo': {}
       'pe_repo::platform::el_6_x86_64': {}
-      'pe_repo::platform::el_7_x86_64': {}
-      'pe_repo::platform::ubuntu_1204_amd64': {}
-      'pe_repo::platform::ubuntu_1404_amd64': {}
-      'pe_repo::platform::windows_x86_64': {}
       'profiles::base': {}
       'profiles::mom': {}
       'puppet_enterprise::profile::master': {}
@@ -142,18 +138,7 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::certificate_authority': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
-  'PE Master':
-    classes:
-      "pe_repo": {}
-      "pe_repo::platform::el_6_x86_64": {}
-      "puppet_enterprise::profile::master": {}
-      "puppet_enterprise::profile::master::mcollective": {}
-      "puppet_enterprise::profile::mcollective::peadmin": {}
-      "profiles::base": {}
-      "profiles::mom": {}
-    parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
+    rule: ['or', ['=', 'name', "%{::servername}"]]
   'PE Console':
     classes:
       'pe_console_prune':
@@ -161,7 +146,7 @@ profiles::mom::node_groups:
       'puppet_enterprise::license': {}
       'puppet_enterprise::profile::console': {}
     parent: 'PE Infrastructure'
-    rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
+    rule: ['or', ['=', 'name', "%{::servername}"]]
   'Repo Servers':
     classes:
       'profiles::base': {}
