@@ -13,4 +13,4 @@ profiles::web_services::website_defaults:
   priority: '10'
 
 # REPO_SERVER
-profiles::repo_server::repo_url: "http://%{::fqdn}/repo"
+profiles::repo_server::repo_url: "http://repo.puppetlabs.vm"

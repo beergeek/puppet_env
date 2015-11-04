@@ -1,6 +1,6 @@
 class profiles::web_services {
 
-  $website_hash 	    = hiera_hash('profiles::web_services::website_hash')
+  $website_hash 	    = hiera('profiles::web_services::website_hash')
   $website_defaults 	= hiera('profiles::web_services::website_defaults')
   $enable_firewall    = hiera('profiles::web_services::enable_firewall')
 
