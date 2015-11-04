@@ -1,5 +1,8 @@
 ---
 
+variables:
+  - &enable_firewall true
+
 # WEB_SERVICES
 profiles::web_services::enable_firewall: *enable_firewall
 profiles::web_services::website_hash:
