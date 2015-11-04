@@ -105,7 +105,7 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
     parent: 'PE Infrastructure'
-    rule: 
+    rule:
   'PE Master':
     classes:
       'pe_repo': {}
@@ -143,6 +143,7 @@ profiles::mom::node_groups:
       "puppet_enterprise::profile::master": {}
       "puppet_enterprise::profile::master::mcollective": {}
       "puppet_enterprise::profile::mcollective::peadmin": {}
+      "profiles::base": {}
       "profiles::mom": {}
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
