@@ -100,7 +100,14 @@ profiles::mom::node_groups:
       'puppet_enterprise::profile::puppetdb': {}
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', "%{::servername}"]]
-  'Production environment': {}
+  'Production environment':
+    classes: {}
+    override_environment: true
+    rule: []
+  'MCO yum demo environment':
+    classes: {}
+    override_environment: true
+    rule: []
   'PE MCollective':
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
@@ -155,6 +162,11 @@ profiles::mom::node_groups:
       'puppet_enterprise::profile::console': {}
     parent: 'PE Infrastructure'
     rule: ['or', ['=', 'name', 'master.inf.puppetlabs.vm']]
+  'Repo Servers':
+    classes:
+      'profiles::base': {}
+      'profiles::repo_server': {}
+    rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
   'Web Servers':
     classes:
       'profiles::base': {}
