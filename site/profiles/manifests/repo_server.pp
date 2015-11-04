@@ -6,7 +6,7 @@ class profiles::repo_server {
 
   @@yumrepo { 'demo_repo':
     ensure   => present,
-    enable   => '1',
+    enabled  => '1',
     descr    => 'Demo env repo',
     baseurl  => $repo_url,
     gpgcheck => '0',
