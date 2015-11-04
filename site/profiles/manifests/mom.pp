@@ -7,8 +7,11 @@ class profiles::mom {
   $hiera_hierarchy      = hiera_array('profiles::mom::hiera_hierarchy', undef)
   $node_groups          = hiera('profiles::mom::node_groups', undef)
   $node_groups_defaults = hiera('profiles::mom::node_groups_defaults')
+  $enable_firewall      = hiera('profiles::mom::enable_firewall',true)
 
   Firewall {
+    proto  => tcp,
+    action => accept,
     before  => Class['profiles::fw::post'],
     require => Class['profiles::fw::pre'],
   }
@@ -22,40 +25,30 @@ class profiles::mom {
     notify => Service['pe-puppetserver'],
   }
 
-  firewall { '100 allow puppet access':
-    port   => [8140],
-    proto  => tcp,
-    action => accept,
-  }
+  if $enable_firewall {
+    firewall { '100 allow puppet access':
+      port   => [8140],
+    }
 
-  firewall { '100 allow mco access':
-    port   => [61613],
-    proto  => tcp,
-    action => accept,
-  }
+    firewall { '100 allow mco access':
+      port   => [61613],
+    }
 
-  firewall { '100 allow amq access':
-    port   => [61616],
-    proto  => tcp,
-    action => accept,
-  }
+    firewall { '100 allow amq access':
+      port   => [61616],
+    }
 
-  firewall { '100 allow console access':
-    port   => [443],
-    proto  => tcp,
-    action => accept,
-  }
+    firewall { '100 allow console access':
+      port   => [443],
+    }
 
-  firewall { '100 allow nc access':
-    port   => [4433],
-    proto  => tcp,
-    action => accept,
-  }
+    firewall { '100 allow nc access':
+      port   => [4433],
+    }
 
-  firewall { '100 allow puppetdb access':
-    port   => [8081],
-    proto  => tcp,
-    action => accept,
+    firewall { '100 allow puppetdb access':
+      port   => [8081],
+    }
   }
 
   if $manage_r10k and ! $r10k_sources {
