@@ -16,6 +16,10 @@ class profiles::mom {
     require => Class['profiles::fw::pre'],
   }
 
+  Node_group {
+    require => Package['puppetclassify'],
+  }
+
   augeas { 'ssl_pub_path':
     context => "/files/${::settings::fileserverconfig}/pe_public",
     changes => [
@@ -111,6 +115,11 @@ class profiles::mom {
   }
 
   Puppet_certificate <<| tag == 'mco_clients' |>>
+
+  package { 'puppetclassify':
+    ensure   => present,
+    provider => 'puppetserver_gem',
+  }
 
   if $node_groups {
     create_resources('node_group',$node_groups, $node_groups_defaults)
