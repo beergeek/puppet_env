@@ -1,5 +1,6 @@
 define profiles::web_sites (
   $docroot,
+  $create_host      = false,
   $priority         = '10',
   $site_name        = $title,
   $port             = '80',
@@ -87,9 +88,11 @@ define profiles::web_sites (
       }
     }
 
-    host {$site_name:
-      ensure => present,
-      ip     => $::ipaddress,
+    if $create_host {
+      @@host {$site_name:
+        ensure => present,
+        ip     => $::ipaddress_eth1,
+      }
     }
   }
 }

@@ -269,7 +269,6 @@ profiles::web_services::enable_firewall: *enable_firewall
 profiles::web_services::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
-    repo_source: 'git://github.com/beergeek/elmo.git'
     database_search: "Mysql_database['elmo']"
   'kermit.puppetlabs.vm':
     docroot: 'kermit'
