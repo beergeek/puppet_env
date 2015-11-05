@@ -44,7 +44,7 @@ define profiles::web_sites (
             source   => $repo_source,
             require  => Apache::Vhost[$site_name],
           }
-        } elif $site_package {
+        } elsif $site_package {
           package { $site_package:
             ensure => present,
           }
