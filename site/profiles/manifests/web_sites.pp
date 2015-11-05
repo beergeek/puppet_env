@@ -5,6 +5,7 @@ define profiles::web_sites (
   $site_name        = $title,
   $port             = '80',
   $repo_source      = undef,
+  $site_package     = undef,
   $repo_provider    = git,
   $database_search  = false,
 )
@@ -42,6 +43,10 @@ define profiles::web_sites (
             provider => $repo_provider,
             source   => $repo_source,
             require  => Apache::Vhost[$site_name],
+          }
+        } elif $site_package {
+          package { $site_package:
+            ensure => present,
           }
         }
       }

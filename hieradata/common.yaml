@@ -270,6 +270,7 @@ profiles::web_services::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
     database_search: "Mysql_database['elmo']"
+    site_package: 'website_test'
   'kermit.puppetlabs.vm':
     docroot: 'kermit'
     repo_source: 'git://github.com/beergeek/kermit.git'
