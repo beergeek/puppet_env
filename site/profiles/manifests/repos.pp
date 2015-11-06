@@ -9,6 +9,6 @@ class profiles::repos {
 
   Yumrepo <<| |>>
 
-  Yumrepo['custom_packages'] -> Package <| tag == 'custom' |>
+  Yumrepo<| tag == 'custom_packages'|> -> Package <| tag == 'custom' |>
 
 }
