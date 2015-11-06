@@ -47,6 +47,7 @@ define profiles::web_sites (
         } elsif $site_package {
           package { $site_package:
             ensure => present,
+            tag    => 'custom',
           }
         }
       }

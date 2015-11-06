@@ -9,6 +9,9 @@ profiles::web_services::website_hash:
   'repo.puppetlabs.vm':
     docroot: 'repo'
     create_host: true
+  'custom.puppetlabs.vm':
+    docroot: 'custom'
+    create_host: true
 profiles::web_services::website_defaults:
   port: '80'
   priority: '10'

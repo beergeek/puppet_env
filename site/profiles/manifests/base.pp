@@ -30,6 +30,9 @@ class profiles::base {
         mode   => '0755',
       }
 
+      # repo management
+      class { 'profiles::repos': }
+
       # manage time, timezones, and locale
       class { 'profiles::time_locale': }
 

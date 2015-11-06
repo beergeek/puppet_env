@@ -10,6 +10,7 @@ class profiles::repo_server {
     descr    => 'Demo env repo',
     baseurl  => $repo_url,
     gpgcheck => '0',
+    tag      => 'custom_packages',
   }
 
 }
