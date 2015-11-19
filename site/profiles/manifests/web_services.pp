@@ -3,6 +3,7 @@ class profiles::web_services {
   $website_hash 	    = hiera('profiles::web_services::website_hash')
   $website_defaults 	= hiera('profiles::web_services::website_defaults')
   $enable_firewall    = hiera('profiles::web_services::enable_firewall')
+  $lb                 = hiera('profiles::web_services::lb', true)
 
   #build base web server
   case $::kernel {
@@ -48,19 +49,21 @@ class profiles::web_services {
   #create web sites
   create_resources('profiles::web_sites',$website_hash,$website_defaults)
 
-  @@haproxy::balancermember { "http00-${::fqdn}":
-    listening_service => 'http00',
-    server_names      => $::fqdn,
-    ipaddresses       => $::ipaddress_eth1,
-    ports             => '80',
-    options           => 'check',
-  }
-  @@haproxy::balancermember { "https00-${::fqdn}":
-    listening_service => 'https00',
-    server_names      => $::fqdn,
-    ipaddresses       => $::ipaddress_eth1,
-    ports             => '443',
-    options           => 'check',
+  if $lb {
+    @@haproxy::balancermember { "http00-${::fqdn}":
+      listening_service => 'http00',
+      server_names      => $::fqdn,
+      ipaddresses       => $::ipaddress_eth1,
+      ports             => '80',
+      options           => 'check',
+    }
+    @@haproxy::balancermember { "https00-${::fqdn}":
+      listening_service => 'https00',
+      server_names      => $::fqdn,
+      ipaddresses       => $::ipaddress_eth1,
+      ports             => '443',
+      options           => 'check',
+    }
   }
 
 }
