@@ -8,6 +8,14 @@ class profiles::monitor_server {
   include apache
   ensure_packages('nagios')
 
+  file { '/etc/httpd/conf.d':
+    ensure  => directory,
+    owner   => 'nagios',
+    group   => 'nagios',
+    mode    => '0755',
+    require => Package['nagios'],
+  }
+
   file { '/etc/httpd/conf.d/nagios.conf':
     ensure  => file,
     owner   => 'root',
