@@ -44,6 +44,19 @@ class profiles::ssh {
     }
   }
 
+  @@nagios_service { "${::fqdn}_ssh":
+    ensure              => present,
+    use                 => 'generic-service',
+    host_name           => $::fqdn,
+    service_description => "SSH",
+    owner               => 'nagios',
+    group               => 'nagios',
+    mode                => '0400',
+    check_command       => 'check_ssh',
+    target              => "/etc/nagios/conf.d/${::fqdn}.cfg",
+    notify              => Service['nagios'],
+  }
+
   file { ['/etc/issue','/etc/issue.net']:
     ensure  => file,
     owner   => 'root',

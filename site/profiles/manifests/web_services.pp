@@ -20,6 +20,24 @@ class profiles::web_services {
           action => accept,
         }
       }
+
+      package { 'nagios-plugins-http':
+        ensure => present,
+      }
+
+      @@nagios_service { "${::fqdn}_http":
+        ensure              => present,
+        use                 => 'generic-service',
+        host_name           => $::fqdn,
+        service_description => "HTTP",
+        owner               => 'nagios',
+        group               => 'nagios',
+        mode                => '0400',
+        check_command       => 'check_http',
+        target              => "/etc/nagios/conf.d/${::fqdn}.cfg",
+        notify              => Service['nagios'],
+      }
+
     }
     'windows': {
       windowsfeature { 'IIS':

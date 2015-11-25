@@ -21,7 +21,7 @@ class profiles::monitoring {
     mode               => '0400',
     max_check_attempts => '4',
     check_command      => 'check-host-alive',
-    target             => '/etc/nagios/conf.d/nagios_host.cfg',
+    target             => "/etc/nagios/conf.d/${::fqdn}.cfg",
     notify             => Service['nagios'],
   }
 }
