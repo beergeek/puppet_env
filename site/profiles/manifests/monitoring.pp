@@ -12,14 +12,16 @@ class profiles::monitoring {
   }
 
   @@nagios_host { $::fqdn:
-    ensure  => present,
-    alias   => $::hostname,
-    address => $::ipaddress_eth1,
-    use     => "generic-host",
-    owner   => 'nagios',
-    group   => 'nagios',
-    mode    => '0400',
+    ensure             => present,
+    alias              => $::hostname,
+    address            => $::ipaddress_eth1,
+    use                => "generic-host",
+    owner              => 'nagios',
+    group              => 'nagios',
+    mode               => '0400',
     max_check_attempts => '4',
-    target  => '/etc/nagios/conf.d/nagios_host.cfg',
+    check_command      => 'check-host-alive',
+    target             => '/etc/nagios/conf.d/nagios_host.cfg',
+    notify             => Service['nagios'],
   }
 }
