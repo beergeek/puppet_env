@@ -38,6 +38,7 @@ mod "saz/rsyslog", "3.5.1"
 mod "saz/ssh", "2.8.1"
 mod "saz/sudo", "3.1.0"
 mod "saz/timezone", "3.3.0"
+mod "stahnma/epel"
 mod "zack/r10k"
 
 mod 'node_manager',

@@ -21,6 +21,8 @@ class profiles::base {
         }
       }
 
+      include epel
+
       create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
       ensure_packages(['ruby'])
       file { ['/etc/puppetlabs/facter','/etc/puppetlabs/facter/facts.d']:
