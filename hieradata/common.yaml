@@ -168,6 +168,10 @@ profiles::mom::node_groups:
       'profiles::base': {}
       'profiles::lb_services': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'lb']]
+  'Monitoring Servers':
+    classes:
+      'profiles::monitoring_server': {}
+    rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
 profiles::mom::node_groups_defaults:
   ensure: present
   environment: production
