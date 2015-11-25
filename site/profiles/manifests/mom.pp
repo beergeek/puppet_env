@@ -61,11 +61,11 @@ class profiles::mom {
     ensure              => present,
     use                 => 'generic-service',
     host_name           => $::fqdn,
-    service_description => "HTTP",
+    service_description => "Puppet Master",
     owner               => 'nagios',
     group               => 'nagios',
     mode                => '0400',
-    check_command       => 'check_http! -p 8140 -S',
+    check_command       => 'check_http! -p 8140 -S -u /production/node/test',
     target              => "/etc/nagios/conf.d/${::fqdn}.cfg",
     notify              => Service['nagios'],
   }
