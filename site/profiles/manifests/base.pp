@@ -23,6 +23,18 @@ class profiles::base {
 
       include epel
 
+      @@nagios_host { $::fqdn:
+        ensure             => present,
+        alias              => $::hostname,
+        address            => $::ipaddress_eth1,
+        use                => "generic-host",
+        owner              => 'nagios',
+        group              => 'nagios',
+        mode               => '0400',
+        max_check_attempts => '4',
+        target             => '/etc/nagios/conf.d/nagios_host.cfg',
+      }
+
       create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
       ensure_packages(['ruby'])
       file { ['/etc/puppetlabs/facter','/etc/puppetlabs/facter/facts.d']:
@@ -34,6 +46,9 @@ class profiles::base {
 
       # repo management
       class { 'profiles::repos': }
+
+      # monitoring
+      class { 'profiles::monitoring': }
 
       # manage time, timezones, and locale
       class { 'profiles::time_locale': }
