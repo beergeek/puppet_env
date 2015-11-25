@@ -1,4 +1,4 @@
-class monitor_server {
+class profiles::monitor_server {
 
   if $::osfamily != 'redhat' {
     fail("This class is only for EL family")
