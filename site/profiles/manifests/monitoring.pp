@@ -5,11 +5,6 @@ class profiles::monitoring {
     ensure => present,
   }
 
-  firewall { '000 accept all icmp':
-    proto  => 'icmp',
-    action => 'accept',
-  }
-
   firewall { '101 accept NRPE':
     proto  => 'tcp',
     port   => '5666',
