@@ -21,9 +21,7 @@ class profiles::web_services {
         }
       }
 
-      package { 'nagios-plugins-http':
-        ensure => present,
-      }
+      ensure_packages ('nagios-plugins-http')
 
       @@nagios_service { "${::fqdn}_http":
         ensure              => present,
