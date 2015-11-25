@@ -19,6 +19,7 @@ class profiles::monitor_server {
 
   service { 'nagios':
     ensure    => running,
+    enable    => true,
     subscribe => File['/etc/httpd/conf.d/nagios.conf'],
   }
 

@@ -65,7 +65,7 @@ class profiles::mom {
     owner               => 'nagios',
     group               => 'nagios',
     mode                => '0400',
-    check_command       => 'check_http -p 8140',
+    check_command       => 'check_http! -p 8140 -S',
     target              => "/etc/nagios/conf.d/${::fqdn}.cfg",
     notify              => Service['nagios'],
   }
