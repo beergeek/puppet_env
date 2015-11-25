@@ -6,7 +6,9 @@ class profiles::monitor_server {
 
   require epel
   include apache
-  ensure_packages('nagios')
+  package { ['nagios','nagios-plugins','nagios-plugins-all']:
+    ensure => present,
+  }
 
   file { '/etc/nagios/conf.d':
     ensure  => directory,

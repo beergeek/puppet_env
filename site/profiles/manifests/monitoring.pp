@@ -1,7 +1,7 @@
 class profiles::monitoring {
 
   require epel
-  package { ['nagios-common','nagios-plugins','nrpe']:
+  package { ['nagios-common','nrpe']:
     ensure => present,
   }
 
