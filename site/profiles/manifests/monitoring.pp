@@ -5,6 +5,11 @@ class profiles::monitoring {
     ensure => present,
   }
 
+  service { 'nrpe':
+    ensure => running,
+    enable => true,
+  }
+
   firewall { '101 accept NRPE':
     proto  => 'tcp',
     port   => '5666',
