@@ -44,10 +44,6 @@ class profiles::ssh {
     }
   }
 
-  package { 'nagios-plugins-ssh':
-    ensure => present,
-  }
-
   @@nagios_service { "${::fqdn}_ssh":
     ensure              => present,
     use                 => 'generic-service',
