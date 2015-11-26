@@ -55,19 +55,15 @@ class profiles::mom {
     }
   }
 
-  ensure_packages ('nagios-plugins-http')
-
   @@nagios_service { "${::fqdn}_puppet":
     ensure              => present,
     use                 => 'generic-service',
     host_name           => $::fqdn,
     service_description => "Puppet Master",
-    owner               => 'nagios',
-    group               => 'nagios',
-    mode                => '0400',
     check_command       => 'check_http! -p 8140 -S -u /production/node/test',
-    target              => "/etc/nagios/conf.d/${::fqdn}.cfg",
+    target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
     notify              => Service['nagios'],
+    require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
   }
 
   if $manage_r10k and ! $r10k_sources {

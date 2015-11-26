@@ -53,12 +53,10 @@ class profiles::ssh {
     use                 => 'generic-service',
     host_name           => $::fqdn,
     service_description => "SSH",
-    owner               => 'nagios',
-    group               => 'nagios',
-    mode                => '0400',
     check_command       => 'check_ssh',
-    target              => "/etc/nagios/conf.d/${::fqdn}.cfg",
+    target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
     notify              => Service['nagios'],
+    require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
   }
 
   file { ['/etc/issue','/etc/issue.net']:
