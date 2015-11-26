@@ -34,6 +34,7 @@ class profiles::monitor_server {
     subscribe => File['/etc/httpd/conf.d/nagios.conf'],
   }
 
+  File <<| tag == 'Monitoring' |>>
   Nagios_host <<||>>
   Nagios_service <<||>>
 
