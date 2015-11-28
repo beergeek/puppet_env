@@ -38,7 +38,7 @@ class profiles::puppet_users {
 
     pe_ini_setting { "${user_key}_user":
       ensure  => present,
-      path    => "/home/${user_key}/.puppetlabs/etc/puppet",
+      path    => "/home/${user_key}/.puppetlabs/etc/puppet/puppet.conf",
       section => 'agent',
       setting => 'user',
       value   => $user_key,
@@ -46,7 +46,7 @@ class profiles::puppet_users {
 
     pe_ini_setting { "${user_key}_server":
       ensure  => present,
-      path    => "/home/${user_key}/.puppetlabs/etc/puppet",
+      path    => "/home/${user_key}/.puppetlabs/etc/puppet/puppet.conf",
       section => 'agent',
       setting => 'server',
       value   => $::settings::server,
