@@ -2,4 +2,4 @@
 
 profiles::puppet_users::user_hash:
   brett:
-    manager_user: true
+    manage_user: true
