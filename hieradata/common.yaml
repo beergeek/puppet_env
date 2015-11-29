@@ -113,7 +113,7 @@ profiles::mom::node_groups:
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
     parent: 'PE Infrastructure'
-    rule: ['and', ['~', ['fact', 'aio_agent_version'], '.+']]
+    rule: ["and",["~",["fact","id"],"root|Administrator"],["~",["fact","aio_agent_version"],".+"]]
   'PE Master':
     classes:
       'app_update':
