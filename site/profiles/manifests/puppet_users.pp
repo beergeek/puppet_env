@@ -40,7 +40,7 @@ class profiles::puppet_users {
       ensure  => present,
       path    => "/home/${user_key}/.puppetlabs/etc/puppet/puppet.conf",
       section => 'agent',
-      setting => 'user',
+      setting => 'certname',
       value   => "${user_key}_${::fqdn}",
     }
 
