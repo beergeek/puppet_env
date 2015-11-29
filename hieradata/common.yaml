@@ -162,6 +162,7 @@ profiles::mom::node_groups:
         'agent': true
       'profiles::base': {}
       'profiles::web_services': {}
+      'profiles::puppet_users': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'web_server']]
   'DB Servers':
     classes:
