@@ -36,6 +36,14 @@ class profiles::puppet_users {
       mode   => '0644',
     }
 
+    pe_ini_setting { "${user_key}_certificate":
+      ensure  => present,
+      path    => "/home/${user_key}/.puppetlabs/etc/puppet/puppet.conf",
+      section => 'agent',
+      setting => 'user',
+      value   => "${user_key}_${::fqdn}",
+    }
+
     pe_ini_setting { "${user_key}_user":
       ensure  => present,
       path    => "/home/${user_key}/.puppetlabs/etc/puppet/puppet.conf",
