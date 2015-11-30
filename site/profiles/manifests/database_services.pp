@@ -11,8 +11,15 @@ class profiles::database_services {
         php_enable => true,
       }
 
-      # create databases
-      create_resources('mysql::db',$db_hash,$db_defaults)
+      # create databases (old)
+      # create_resources('mysql::db',$db_hash,$db_defaults)
+      # create databases (new)
+      $db_hash.each |String $database_name, Hash $database_hash| {
+        mysql::db {  $database_name:
+          * => $database_hash,;
+          default:
+            * => $db_defaults,;
+      }
 
       if $enable_firewall {
         # firewall rules

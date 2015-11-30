@@ -133,7 +133,16 @@ class profiles::mom {
   }
 
   if $node_groups {
-    create_resources('node_group',$node_groups, $node_groups_defaults)
+    # new school
+    $node_groups. each |String $node_name, Hash $node_hash| {
+      node_group { $node_name:
+        * => $node_hash,;
+        default:
+          * => $node_groups_defaults,;
+      }
+    }
+    # old school
+    # create_resources('node_group',$node_groups, $node_groups_defaults)
   }
 
 }

@@ -4,7 +4,16 @@ class profiles::repos {
   $repo_default_hash  = hiera('profiles::repos::repo_default_hash', undef)
 
   if $repo_hash and $repo_default_hash {
-    create_resources('yumrepo', $repo_hash, $repo_default_hash)
+    # old school
+    # create_resources('yumrepo', $repo_hash, $repo_default_hash)
+    # new school
+    $repo_hash.each |String $repo_name, Hash $repo_values_hash| {
+      yumrepo { $repo_name:
+        * => $repo_values_hash,;
+        default:
+          * => $repo_default_hash,;
+      }
+    }
   }
 
   Yumrepo <<| |>>

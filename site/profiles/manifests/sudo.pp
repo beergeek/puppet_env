@@ -38,5 +38,14 @@ class profiles::sudo {
     config_file_replace => $sudo_replace_config,
   }
 
-  create_resources('sudo::conf', $sudo_hash, $sudo_hash_defaults)
+  # old school
+  # create_resources('sudo::conf', $sudo_hash, $sudo_hash_defaults)
+  # new school
+  $sudo_hash.each |String $sudo_name,Hash $sudo_hash_value| {
+    sudo::conf { $sudo_name:
+      * => $sudo_hash_value,;
+      default:
+        * => $sudo_hash_defaults,;
+    }
+  }
 }

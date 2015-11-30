@@ -59,7 +59,16 @@ class profiles::web_services {
   }
 
   #create web sites
-  create_resources('profiles::web_sites',$website_hash,$website_defaults)
+  # old school
+  # create_resources('profiles::web_sites',$website_hash,$website_defaults)
+  # new school
+  $website_hash.each |String $site_name, Hash $site_hash| {
+    profiles::web_sites { $site_name:
+      * => $site_hash,;
+      default:
+        * => $website_defaults,;
+    }
+  }
 
   if $lb {
     @@haproxy::balancermember { "http00-${::fqdn}":
