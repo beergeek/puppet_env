@@ -26,7 +26,7 @@ class profiles::base {
       # old way
       create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
       # new way
-      $systcl_settings.each do |String $sysctl_name, Hash $sysctl_hash| {
+      $sysctl_settings.each |String $sysctl_name, Hash $sysctl_hash| {
         systcl { $sysctl_name:
           * => $sysctl_hash,;
           default:
