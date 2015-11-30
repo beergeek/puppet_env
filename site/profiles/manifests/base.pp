@@ -24,7 +24,7 @@ class profiles::base {
       include epel
 
       # old way
-      create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
+      # create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
       # new way
       $sysctl_settings.each |String $sysctl_name, Hash $sysctl_hash| {
         sysctl { $sysctl_name:
