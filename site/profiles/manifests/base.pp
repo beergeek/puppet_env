@@ -23,7 +23,17 @@ class profiles::base {
 
       include epel
 
+      # old way
       create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
+      # new way
+      $systcl_settings.each do |String $sysctl_name, Hash $sysctl_hash| {
+        systcl { $sysctl_name:
+          * => $sysctl_hash,;
+          default:
+            * => $sysctl_defaults,;
+        }
+      }
+
       ensure_packages(['ruby'])
       file { ['/etc/puppetlabs/facter','/etc/puppetlabs/facter/facts.d']:
         ensure => directory,
