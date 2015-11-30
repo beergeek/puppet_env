@@ -20,6 +20,11 @@ class profiles::mom {
   #  require => Package['puppetclassify'],
   #}
 
+  class { 'app_update':
+    application => true,
+    agent       => false,
+  }
+
   augeas { 'ssl_pub_path':
     context => "/files/${::settings::fileserverconfig}/pe_public",
     changes => [

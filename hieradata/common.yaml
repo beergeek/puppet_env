@@ -116,9 +116,6 @@ profiles::mom::node_groups:
     rule: ["and",["~",["fact","id"],"root|Administrator"],["~",["fact","aio_agent_version"],".+"]]
   'PE Master':
     classes:
-      'app_update':
-        'agent': false
-        'application': true
       'pe_repo': {}
       'pe_repo::platform::el_6_x86_64': {}
       'profiles::base': {}
@@ -158,8 +155,6 @@ profiles::mom::node_groups:
     rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
   'Web Servers':
     classes:
-      'app_update':
-        'agent': true
       'profiles::base': {}
       'profiles::web_services': {}
       'profiles::puppet_users': {}
