@@ -1,16 +1,16 @@
 class profiles::repo_server {
 
-  $repo_url = hiera('profiles::repo_server::repo_url')
+  $repo_data      = hiera_hash('profiles::repo_server::repo_data')
+  $repo_defaults  = hiera('profiles::repo_server::repo_defaults')
 
   include profiles::web_services
 
-  @@yumrepo { 'demo_repo':
-    ensure   => present,
-    enabled  => '1',
-    descr    => 'Demo env repo',
-    baseurl  => $repo_url,
-    gpgcheck => '0',
-    tag      => 'custom_packages',
+  $repo_data.each |String $repo_name, Hash $repo_hash| {
+    @@yumrepo { $repo_name:
+      * => $repo_hash,;
+      defaults:
+        * => $repo_defaults,;
+    }
   }
 
 }

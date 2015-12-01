@@ -18,4 +18,16 @@ profiles::web_services::website_defaults:
 profiles::web_services::lb: false
 
 # REPO_SERVER
-profiles::repo_server::repo_url: "http://repo.puppetlabs.vm"
+profiles::repo_server::repo_data:
+  'repo.puppetlabs.vm':
+    baseurl: 'http://repo.puppetlabs.vm'
+    descr: 'Demo env repo'
+    tag: 'custom_packages'
+  'custom.puppetlabs.vm':
+    baseurl: 'http://custom.puppetlabs.vm'
+    descr: 'Custom app code repo'
+    enabled: 0
+profiles::repo_server::repo_defaults:
+  ensure: present
+  enabled: 1
+  gpgcheck: 0

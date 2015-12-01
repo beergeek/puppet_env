@@ -1,13 +1,14 @@
 define profiles::web_sites (
   $docroot,
   $create_host      = false,
-  $priority         = '10',
-  $site_name        = $title,
-  $port             = '80',
-  $repo_source      = undef,
-  $site_package     = undef,
-  $repo_provider    = git,
   $database_search  = false,
+  $manage_docroot   = true,
+  $port             = '80',
+  $priority         = '10',
+  $repo_provider    = git,
+  $repo_source      = undef,
+  $site_name        = $title,
+  $site_package     = undef,
 )
 {
 
@@ -31,9 +32,10 @@ define profiles::web_sites (
         $_docroot = "/var/www/${docroot}"
 
         apache::vhost { $site_name:
-          priority => $priority,
-          port     => $port,
-          docroot  => $_docroot,
+          docroot        => $_docroot,
+          manage_docroot => $manage_docroot,
+          port           => $port,
+          priority       => $priority,
         }
 
         if $repo_source {
