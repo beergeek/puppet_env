@@ -20,7 +20,7 @@ class profiles::repo_server {
   }
 
   file { '/var/www/repo':
-    ensure => link
+    ensure => link,
     target => '/vagrant/repo/repo',
   }
 
