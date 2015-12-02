@@ -14,10 +14,8 @@ class profiles::base {
 
       if $enable_firewall {
         class { 'firewall':
-          stage => 'setup',
         }
         class {['profiles::fw::pre','profiles::fw::post']:
-          stage => 'setup',
         }
       } else {
         class { 'firewall':

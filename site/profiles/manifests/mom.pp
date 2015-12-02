@@ -1,5 +1,7 @@
 class profiles::mom {
 
+  require profiles::base
+
   $manage_r10k          = hiera('profiles::mom::manage_r10k', true)
   $r10k_sources         = hiera_hash('profiles::mom::r10k_sources', undef)
   $manage_hiera         = hiera('profiles::mom::manage_hiera', true)
