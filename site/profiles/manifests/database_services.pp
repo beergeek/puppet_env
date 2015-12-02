@@ -19,6 +19,7 @@ class profiles::database_services {
           * => $database_hash,;
           default:
             * => $db_defaults,;
+        }
       }
 
       if $enable_firewall {

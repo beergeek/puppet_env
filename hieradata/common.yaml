@@ -104,11 +104,6 @@ profiles::mom::node_groups:
     classes: {}
     override_environment: true
     rule: []
-  'MCO yum demo environment':
-    classes: {}
-    override_environment: true
-    environment: 'mco_yum_demo'
-    rule: []
   'PE MCollective':
     classes:
       'puppet_enterprise::profile::mcollective::agent': {}
