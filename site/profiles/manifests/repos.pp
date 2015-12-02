@@ -2,6 +2,7 @@ class profiles::repos {
 
   $repo_hash          = hiera_hash('profiles::repos::repo_hash', undef)
   $repo_default_hash  = hiera('profiles::repos::repo_default_hash', undef)
+  $collect_repos      = hiera('profiles::repos::collect_repos', true)
 
   if $repo_hash and $repo_default_hash {
     # old school
@@ -16,8 +17,9 @@ class profiles::repos {
     }
   }
 
-  Yumrepo <<| |>>
+  if $collect_repos {
+    Yumrepo <<| |>>
 
-  Yumrepo<| tag == 'custom_packages'|> -> Package <| tag == 'custom' |>
-
+    Yumrepo<| tag == 'custom_packages'|> -> Package <| tag == 'custom' |>
+  }
 }

@@ -31,3 +31,6 @@ profiles::repo_server::repo_defaults:
   ensure: present
   enabled: 1
   gpgcheck: 0
+
+# REPOS
+profiles::repos::collect_repos: false
