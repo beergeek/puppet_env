@@ -24,15 +24,17 @@
 #
 class profiles::dns {
 
-  $name_servers = hiera('profiles::dns::name_servers')
   $purge        = hiera('profiles::dns::purge', false)
+  if $::kernel == 'Linux' {
+    $name_servers = hiera('profiles::dns::name_servers')
 
-  validate_array($name_servers)
-  validate_bool($purge)
+    validate_array($name_servers)
+    validate_bool($purge)
 
-  class { '::resolv_conf':
-    domainname  => $::domain,
-    nameservers => $name_servers,
+    class { '::resolv_conf':
+      domainname  => $::domain,
+      nameservers => $name_servers,
+    }
   }
 
   @@host { $::fqdn:

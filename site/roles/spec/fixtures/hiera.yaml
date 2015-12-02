@@ -1,9 +1,0 @@
----
-:backends:
-  - yaml
-:hierarchy:
-  - "nodes/%{::trusted.certname}"
-  - global
-
-:yaml:
-   :datadir: '../../hieradata'
