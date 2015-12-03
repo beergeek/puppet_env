@@ -1,0 +1,5 @@
+---
+
+profiles::puppet_users::user_hash:
+  brett:
+    manage_user: true
