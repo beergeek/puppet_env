@@ -6,7 +6,13 @@ class profiles::database_services {
 
   case $::kernel {
     'linux': {
-      require mysql::server
+      class { 'mysql::server':
+        override_options => {
+          'mysqld' => {
+            'bind-address' => '0.0.0.0',
+          }
+        }
+      }
       class {'mysql::bindings':
         php_enable => true,
       }
@@ -29,6 +35,17 @@ class profiles::database_services {
           proto  => tcp,
           action => accept,
         }
+      }
+
+      @@nagios_service { "${::fqdn}_mysql":
+        ensure              => present,
+        use                 => 'generic-service',
+        host_name           => $::fqdn,
+        service_description => "MySQL",
+        check_command       => 'check_mysql',
+        target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
+        notify              => Service['nagios'],
+        require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
       }
     }
     'windows': {
