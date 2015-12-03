@@ -23,7 +23,7 @@ class profiles::base {
         }
       }
 
-      include epel
+      contain epel
 
       # old way
       # create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
