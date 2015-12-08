@@ -144,7 +144,7 @@ class profiles::mom {
 
   if $node_groups {
     # new school
-    $node_groups. each |String $node_name, Hash $node_hash| {
+    $node_groups.each |String $node_name, Hash $node_hash| {
       node_group { $node_name:
         * => $node_hash,;
         default:
