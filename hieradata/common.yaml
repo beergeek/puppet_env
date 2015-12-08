@@ -113,6 +113,7 @@ profiles::mom::node_groups:
     classes:
       'pe_repo': {}
       'pe_repo::platform::el_6_x86_64': {}
+      'pe_repo::platform::windows_x86_64': {}
       'profiles::base': {}
       'profiles::mom': {}
       'puppet_enterprise::profile::master': {}
