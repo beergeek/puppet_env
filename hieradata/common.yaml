@@ -145,13 +145,11 @@ profiles::mom::node_groups:
     rule: ['or', ['=', 'name', "%{::servername}"]]
   'Repo Servers':
     classes:
-      'profiles::base': {}
-      'profiles::repo_server': {}
+      'roles::repo_server': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
   'Web Servers':
     classes:
       'roles::web_server': {}
-      'profiles::puppet_users': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'web_server']]
   'DB Servers':
     classes:
@@ -159,12 +157,11 @@ profiles::mom::node_groups:
     rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']]
   'Load Balancer':
     classes:
-      'profiles::base': {}
-      'profiles::lb_services': {}
+      'roles::load_balancer': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'lb']]
   'Monitoring Servers':
     classes:
-      'profiles::monitor_server': {}
+      'roles::monitor_server': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
 profiles::mom::node_groups_defaults:
   ensure: present
