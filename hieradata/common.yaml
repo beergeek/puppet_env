@@ -114,7 +114,7 @@ profiles::mom::node_groups:
       'pe_repo': {}
       'pe_repo::platform::el_6_x86_64': {}
       'pe_repo::platform::windows_x86_64': {}
-      'roles::mom': {}
+      'roles::mom_server': {}
       'puppet_enterprise::profile::master': {}
       'puppet_enterprise::profile::master::mcollective': {}
       'puppet_enterprise::profile::mcollective::peadmin': {}
