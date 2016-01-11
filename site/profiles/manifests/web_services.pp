@@ -35,23 +35,57 @@ class profiles::web_services {
 
     }
     'windows': {
-      windowsfeature { 'IIS':
-        feature_name => [
-          'Web-Server',
-          'Web-WebServer',
-          'Web-Asp-Net',
-          'Web-ISAPI-Ext',
-          'Web-ISAPI-Filter',
-          'NET-Framework',
-          'WAS-NET-Environment',
-          'Web-Http-Redirect',
-          'Web-Filtering',
-          'Web-Mgmt-Console',
-          'Web-Mgmt-Tools'
-        ]
+      case $::kernelmajversion {
+        '6.1': {
+          windowsfeature { 'IIS':
+            feature_name => [
+              'Web-Server',
+              'Web-WebServer',
+              'Web-Asp-Net',
+              'Web-ISAPI-Ext',
+              'Web-ISAPI-Filter',
+              'NET-Framework',
+              'WAS-NET-Environment',
+              'Web-Http-Redirect',
+              'Web-Filtering',
+              'Web-Mgmt-Console',
+              'Web-Mgmt-Tools'
+            ]
+          }
+        }
+        '6.3': {
+          windowsfeature { 'IIS':
+            feature_name => [
+              'Web-Server',
+              'Web-WebServer',
+              'Web-Common-Http',
+              'Web-Asp',
+              'Web-Asp-Net45',
+              'Web-ISAPI-Ext',
+              'Web-ISAPI-Filter',
+              'Web-Http-Redirect',
+              'Web-Health',
+              'Web-Http-Logging',
+              'Web-Filtering',
+              'Web-Mgmt-Console',
+              'Web-Mgmt-Tools'
+              ],
+          }
+        }
+        default: {
+          fail("You must be running a 19th centery version of Windows")
+        }
       }
-      windowsfeature { 'Web-WebServer':
-        installsubfeatures => true,
+
+      # disable default website
+      iis::manage_site { 'Default Web Site':
+        ensure    => absent,
+        site_path => 'C:\inetpub\wwwroot',
+        app_pool  => 'Default Web Site',
+      }
+
+      iis::manage_app_pool { 'Default Web Site':
+        ensure => absent,
       }
     }
     default: {

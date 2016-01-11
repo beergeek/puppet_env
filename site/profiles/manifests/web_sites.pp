@@ -78,17 +78,17 @@ define profiles::web_sites (
           target                     => $_docroot,
           purge                      => false,
           permissions                => [
-           { identity => 'Administrator', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
+           { identity => $::id, rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
            { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
           ],
-          owner                      => 'Administrators',
-          group                      => 'Administrator',
+          owner                      => $::id,
+          group                      => 'Administrators',
           inherit_parent_permissions => true,
         }
         file { "${site_name}_index":
           ensure  => file,
           path    => "${_docroot}\\index.html",
-          owner   => 'Administrator',
+          owner   => $::id,
           group   => 'Administrators',
           mode    => '0644',
           content => "${site_name} - hello",
@@ -100,6 +100,7 @@ define profiles::web_sites (
       @@host {$site_name:
         ensure => present,
         ip     => $::ipaddress_eth1,
+        tag    => 'websites',
       }
     }
   }
