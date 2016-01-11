@@ -36,7 +36,7 @@ mod "reidmv/puppet_certificate"
 mod "rodjek/logrotate", "1.1.1"
 mod "saz/resolv_conf", "3.0.5"
 mod "saz/rsyslog", "3.5.1"
-mod "saz/ssh", "2.8.1"
+#mod "saz/ssh", "2.8.1" waiting on release
 mod "saz/sudo", "3.1.0"
 mod "saz/timezone", "3.3.0"
 mod "stahnma/epel"
@@ -47,3 +47,5 @@ mod 'node_manager',
 mod 'app_update',
   :git => 'https://github.com/beergeek/beergeek-app_update.git',
   :branch => 'yum_demo'
+mod 'ssh',
+  :git => 'https://github.com/beergeek/puppet-ssh.git'
