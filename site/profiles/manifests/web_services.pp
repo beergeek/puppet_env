@@ -22,17 +22,6 @@ class profiles::web_services {
         }
       }
 
-      @@nagios_service { "${::fqdn}_http":
-        ensure              => present,
-        use                 => 'generic-service',
-        host_name           => $::fqdn,
-        service_description => "HTTP",
-        check_command       => 'check_http',
-        target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
-        notify              => Service['nagios'],
-        require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
-      }
-
     }
     'windows': {
       case $::kernelmajversion {
@@ -105,6 +94,19 @@ class profiles::web_services {
     }
   }
 
+  # Export monitoring configuration
+  @@nagios_service { "${::fqdn}_http":
+    ensure              => present,
+    use                 => 'generic-service',
+    host_name           => $::fqdn,
+    service_description => "HTTP",
+    check_command       => 'check_http',
+    target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
+    notify              => Service['nagios'],
+    require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
+  }
+
+  # Exported load balancer configuration if required
   if $lb {
     @@haproxy::balancermember { "http00-${::fqdn}":
       listening_service => 'http00',
