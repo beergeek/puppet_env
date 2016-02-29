@@ -78,6 +78,10 @@ class profiles::base {
           }
         }
       }
+
+      exec { 'update mco facts':
+        command => '/opt/puppetlabs/puppet/bin/refresh-mcollective-metadata >>/var/log/puppetlabs/mcollective-metadata-cron.log 2>&1',
+      }
     }
     'windows': {
 
