@@ -24,17 +24,17 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
 # DNS
-profiles::dns::name_servers:
+profile::dns::name_servers:
   - 10.0.2.3
-profiles::dns::purge: false
+profile::dns::purge: false
 
 # SSH
-profiles::ssh::enable_firewall: *enable_firewall
-profiles::ssh::banner_content: "This system is the property of Puppet Labs. Unauthorised access is not permitted"
-profiles::ssh::allowed_groups:
+profile::ssh::enable_firewall: *enable_firewall
+profile::ssh::banner_content: "This system is the property of Puppet Labs. Unauthorised access is not permitted"
+profile::ssh::allowed_groups:
   - 'root'
   - 'vagrant'
-profiles::ssh::options_hash:
+profile::ssh::options_hash:
   Port: 22
   AcceptEnv: 'LANG LC_*'
   ChallengeResponseAuthentication: no
@@ -45,40 +45,40 @@ profiles::ssh::options_hash:
   X11Forwarding: yes
 
 # SUDO
-profiles::sudo::sudo_hash:
+profile::sudo::sudo_hash:
   vagrant:
     priority: 10
     content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
-profiles::sudo::sudo_hash_defaults:
+profile::sudo::sudo_hash_defaults:
   priority: 50
-profiles::sudo::sudo_purge: true
-profiles::sudo::sudo_replace_config: true
+profile::sudo::sudo_purge: true
+profile::sudo::sudo_replace_config: true
 
 # LOGGING
-profiles::logging::log_local: true
-profiles::logging::port: 514
-profiles::logging::remote_servers: false
-profiles::logging::remote_type: 'tcp'
-profiles::logging::rotate: 10
-profiles::logging::rotate_every: 'day'
-profiles::logging::size: '200k'
+profile::logging::log_local: true
+profile::logging::port: 514
+profile::logging::remote_servers: false
+profile::logging::remote_type: 'tcp'
+profile::logging::rotate: 10
+profile::logging::rotate_every: 'day'
+profile::logging::size: '200k'
 
 # COM
-profiles::com::manage_r10k: *manage_r10k
-profiles::com::r10k_sources: *r10k_sources
-profiles::com::manage_hiera: *manage_heira
-profiles::com::hiera_hierarchy: *hiera_hierarchy
-profiles::com::hiera_backends: *hiera_backends
-profiles::com::enable_firewall: *enable_firewall
+profile::com::manage_r10k: *manage_r10k
+profile::com::r10k_sources: *r10k_sources
+profile::com::manage_hiera: *manage_heira
+profile::com::hiera_hierarchy: *hiera_hierarchy
+profile::com::hiera_backends: *hiera_backends
+profile::com::enable_firewall: *enable_firewall
 
 # MOM
-profiles::mom::manage_r10k: *manage_r10k
-profiles::mom::r10k_sources: *r10k_sources
-profiles::mom::manage_hiera: *manage_heira
-profiles::mom::hiera_hierarchy: *hiera_hierarchy
-profiles::mom::hiera_backends: *hiera_backends
-profiles::mom::enable_firewall: *enable_firewall
-profiles::mom::node_groups:
+profile::mom::manage_r10k: *manage_r10k
+profile::mom::r10k_sources: *r10k_sources
+profile::mom::manage_hiera: *manage_heira
+profile::mom::hiera_hierarchy: *hiera_hierarchy
+profile::mom::hiera_backends: *hiera_backends
+profile::mom::enable_firewall: *enable_firewall
+profile::mom::node_groups:
   'PE Infrastructure':
     classes:
       'puppet_enterprise':
@@ -114,7 +114,7 @@ profiles::mom::node_groups:
       'pe_repo': {}
       'pe_repo::platform::el_6_x86_64': {}
       'pe_repo::platform::windows_x86_64': {}
-      'roles::mom_server': {}
+      'role::mom_server': {}
       'puppet_enterprise::profile::master': {}
       'puppet_enterprise::profile::master::mcollective': {}
       'puppet_enterprise::profile::mcollective::peadmin': {}
@@ -145,33 +145,33 @@ profiles::mom::node_groups:
     rule: ['or', ['=', 'name', "%{::servername}"]]
   'Repo Servers':
     classes:
-      'roles::repo_server': {}
+      'role::repo_server': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
   'Web Servers':
     classes:
-      'roles::web_server': {}
+      'role::web_server': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'web_server']]
   'DB Servers':
     classes:
-      'roles::db_server': {}
+      'role::db_server': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'db_server']]
   'Load Balancer':
     classes:
-      'roles::load_balancer': {}
+      'role::load_balancer': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'lb']]
   'Monitoring Servers':
     classes:
-      'roles::monitor_server': {}
+      'role::monitor_server': {}
     rule: ['and', ['~', ['fact', 'pp_role'], 'repo_server']]
-profiles::mom::node_groups_defaults:
+profile::mom::node_groups_defaults:
   ensure: present
   environment: production
   parent: 'All Nodes'
 
 
 # Load Balancer
-profiles::lb_services::enable_firewall: *enable_firewall
-profiles::lb_services::listeners:
+profile::lb_services::enable_firewall: *enable_firewall
+profile::lb_services::listeners:
   stats:
     collect_exported: false
     ipaddress: "%{::ipaddress_eth1}"
@@ -206,22 +206,22 @@ profiles::lb_services::listeners:
       balance: 'source'
 
 # BASE
-profiles::base::enable_firewall: *enable_firewall
-profiles::base::mco_client_array:
+profile::base::enable_firewall: *enable_firewall
+profile::base::mco_client_array:
   - 'com0.puppetlabs.vm-peadmin'
   - 'com1.puppetlabs.vm-peadmin'
-profiles::base::wsus_server: 'http://wsus_server.local'
-profiles::base::wsus_server_port: '8530'
+profile::base::wsus_server: 'http://wsus_server.local'
+profile::base::wsus_server_port: '8530'
 
 # TIME_LOCALE
-profiles::time_locale::ntp_servers:
+profile::time_locale::ntp_servers:
   - 0.au.pool.ntp.org
   - 1.au.pool.ntp.org
   - 2.au.pool.ntp.org
   - 3.au.pool.ntp.org
-profiles::time_locale::timezone: 'UTC'
+profile::time_locale::timezone: 'UTC'
 
-profiles::base::sysctl_settings:
+profile::base::sysctl_settings:
   kernel.msgmnb:
     value : '65536'
   kernel.msgmax:
@@ -256,13 +256,13 @@ profiles::base::sysctl_settings:
     value : '262144'
   net.core.wmem_max:
     value : '1048576'
-profiles::base::sysctl_defaults:
+profile::base::sysctl_defaults:
   ensure: present
   permanent: 'yes'
 
 # WEB_SERVICES
-profiles::web_services::enable_firewall: *enable_firewall
-profiles::web_services::website_hash:
+profile::web_services::enable_firewall: *enable_firewall
+profile::web_services::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
     database_search: "Mysql_database['elmo']"
@@ -278,17 +278,17 @@ profiles::web_services::website_hash:
     docroot: 'rob'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "Mysql_database['rob']"
-profiles::web_services::website_defaults:
+profile::web_services::website_defaults:
   port: '80'
   priority: '10'
   docroot: '/var/www/${title}'
   repo_provider: git
 
 # DATABASE_SERVICES
-profiles::database_services::enable_firewall: *enable_firewall
-profiles::database_services::db_hash:
+profile::database_services::enable_firewall: *enable_firewall
+profile::database_services::db_hash:
   elmo: {}
   kermit: {}
-profiles::database_services::db_defaults:
+profile::database_services::db_defaults:
   user: 'vmware'
   password: 'secret'
