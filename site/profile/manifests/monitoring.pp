@@ -1,19 +1,21 @@
 class profile::monitoring {
 
-  require epel
-  package { ['nagios-common','nrpe']:
-    ensure => present,
-  }
+  if $::kernel == 'Linux' {
+    require epel
+    package { ['nagios-common','nrpe']:
+      ensure => present,
+    }
 
-  service { 'nrpe':
-    ensure => running,
-    enable => true,
-  }
+    service { 'nrpe':
+      ensure => running,
+      enable => true,
+    }
 
-  firewall { '101 accept NRPE':
-    proto  => 'tcp',
-    port   => '5666',
-    action => 'accept',
+    firewall { '101 accept NRPE':
+      proto  => 'tcp',
+      port   => '5666',
+      action => 'accept',
+    }
   }
 
   @@file { ["/etc/nagios/conf.d/${::fqdn}_host.cfg","/etc/nagios/conf.d/${::fqdn}_service.cfg"]:

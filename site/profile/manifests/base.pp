@@ -89,6 +89,9 @@ class profile::base {
       $wsus_server      = hiera('profile::base::wsus_server')
       $wsus_server_port = hiera('profile::base::wsus_server_port')
 
+      # monitoring
+      class { 'profile::monitoring': }
+
       file { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         ensure => directory,
       }
