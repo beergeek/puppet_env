@@ -3,7 +3,7 @@ class profile::repos {
   $repo_hash          = hiera_hash('profile::repos::repo_hash', undef)
   $repo_default_hash  = hiera('profile::repos::repo_default_hash', undef)
   $collect_repos      = hiera('profile::repos::collect_repos', true)
-  $noop_scope = hiera('profile::base::noop_scope', false)
+  $noop_scope         = hiera('profile::repos::noop_scope', false)
 
   if $::brownfields and $noop_scope {
     noop()

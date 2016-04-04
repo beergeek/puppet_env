@@ -45,7 +45,7 @@ class profile::logging {
   $rotate         = hiera('profile::logging::rotate')
   $rotate_every   = hiera('profile::logging::rotate_every')
   $size           = hiera('profile::logging::size')
-  $noop_scope = hiera('profile::base::noop_scope', false)
+  $noop_scope     = hiera('profile::logging::noop_scope', false)
 
   if $::brownfields and $noop_scope {
     noop()

@@ -32,7 +32,7 @@ class profile::sudo {
   $sudo_hash_defaults   = hiera('profile::sudo::sudo_hash_defaults')
   $sudo_purge           = hiera('profile::sudo::sudo_purge')
   $sudo_replace_config  = hiera('profile::sudo::sudo_replace_config')
-  $noop_scope = hiera('profile::base::noop_scope', false)
+  $noop_scope           = hiera('profile::sudo::noop_scope', false)
 
   if $::brownfields and $noop_scope {
     noop()
