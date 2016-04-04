@@ -21,6 +21,13 @@ variables:
       basedir: '/etc/puppetlabs/code/environments'
 
 profile::base::noop_scope: true
+profile::dns::noop_scope: true
+profile::fw::noop_scope: true
+profile::logging::noop_scope: true
+profile::monitoring::noop_scope: true
+profile::repos::noop_scope: true
+profile::ssh::noop_scope: true
+profile::sudo::noop_scope: true
 profile::time_locale::noop_scope: true
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
