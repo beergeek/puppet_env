@@ -21,6 +21,7 @@ variables:
       basedir: '/etc/puppetlabs/code/environments'
 
 profile::base::noop_scope: true
+profile::time_locale::noop_scope: true
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
