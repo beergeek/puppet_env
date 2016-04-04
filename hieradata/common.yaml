@@ -20,6 +20,8 @@ variables:
       remote: 'https://github.com/beergeek/puppet_env.git'
       basedir: '/etc/puppetlabs/code/environments'
 
+profile::base::noop_scope: true
+
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
