@@ -108,7 +108,7 @@ profile::mom::node_groups:
     classes:
       "puppet_enterprise::profile::mcollective::agent": {}
     parent: "PE Infrastructure"
-    rule: ["and",["~",["fact","id"],"root|Administrator|vagrant"],["~",["fact","aio_agent_version"],".+"]]
+    rule: ["and",["~",["fact","id"],"root|Administrator|vagrant|WINWEB"],["~",["fact","aio_agent_version"],".+"]]
   "PE Master":
     classes:
       "pe_repo": {}
