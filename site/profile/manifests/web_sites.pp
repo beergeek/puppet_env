@@ -78,17 +78,17 @@ define profile::web_sites (
           target                     => $_docroot,
           purge                      => false,
           permissions                => [
-           { identity => $::id, rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
+           { identity => 'vagrant', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
            { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
           ],
-          owner                      => $::id,
+          owner                      => 'vagrant',
           group                      => 'Administrators',
           inherit_parent_permissions => true,
         }
         file { "${site_name}_index":
           ensure  => file,
           path    => "${_docroot}\\index.html",
-          owner   => $::id,
+          owner   => 'vagrant',
           group   => 'Administrators',
           mode    => '0644',
           content => "${site_name} - hello",
