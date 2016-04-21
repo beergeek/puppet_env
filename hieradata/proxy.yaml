@@ -1,3 +1,3 @@
 ---
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
-  - 'mom.puppetlabs.vm'
+  - 'mom.puppet.vm'

@@ -1,4 +1,4 @@
 ---
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
-  - 'aio0.puppetlabs.vm'
+  - 'aio0.puppet.vm'
