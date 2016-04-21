@@ -99,10 +99,10 @@ class profile::base {
       acl { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         purge                      => false,
         permissions                => [
-         { identity => $::id, rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
+         { identity => 'vagrant', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
          { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
         ],
-        owner                      => $::id,
+        owner                      => 'vagrant',
         group                      => 'Administrators',
         inherit_parent_permissions => true,
       }
