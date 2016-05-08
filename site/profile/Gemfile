@@ -9,4 +9,5 @@ group :test do
   gem "metadata-json-lint"
   gem "simplecov"
   gem "simplecov-console"
+  gem "onceover"
 end

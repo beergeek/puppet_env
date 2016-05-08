@@ -1,13 +1,13 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 group :test do
-  gem 'puppet', '>= 4.1.0'
-  gem 'rspec-puppet', :git => 'http://10.20.1.125:7990/scm/poop/rspec-puppet.git', :branch => 'more_coverage'
-  gem 'puppetlabs_spec_helper', '>= 0.8.2'
-  gem 'puppet-lint', '>= 1.0.0'
+  gem "rake"
+  gem "puppet", ENV['PUPPET_VERSION'] || '~> 4.4.0'
+  gem "rspec"
+  gem "rspec-puppet", :git => 'https://github.com/rodjek/rspec-puppet.git'
+  gem "puppetlabs_spec_helper"
   gem "metadata-json-lint"
-  gem 'facter', '>= 1.7.0'
-  gem 'r10k'
-  gem 'simplecov', :require => false, :group => :test
-  gem 'simplecov-console'
+  gem "simplecov"
+  gem "simplecov-console"
+  gem "onceover"
 end
