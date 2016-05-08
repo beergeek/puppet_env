@@ -50,5 +50,5 @@ mod 'app_update',
   :branch => 'yum_demo'
 mod 'ssh',
   :git => 'https://github.com/beergeek/puppet-ssh.git'
-mod 'noop',
+mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
