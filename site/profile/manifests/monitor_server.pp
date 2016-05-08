@@ -11,10 +11,13 @@ class profile::monitor_server {
   }
 
   file { '/etc/nagios/conf.d':
-    ensure  => directory,
+    ensure  => absent,
     owner   => 'nagios',
     group   => 'nagios',
     mode    => '0755',
+    purge   => true,
+    force   => false,
+    recurse => true,
     require => Package['nagios'],
   }
 
