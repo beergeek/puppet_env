@@ -9,6 +9,7 @@ profile::web_services::website_hash:
   'repo.puppetlabs.vm':
     docroot: 'repo'
     create_host: true
+    manage_docroot: false
   'custom.puppetlabs.vm':
     docroot: 'custom'
     create_host: true
