@@ -18,7 +18,7 @@ define profile::web_sites (
     $_bypass = true
   }
 
-  if $_bypass or size($search_results) > 0 {
+  if $_bypass or !(empty($search_results)) {
     case $::kernel {
       'linux': {
         if $repo_provider == 'git' {
