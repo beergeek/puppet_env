@@ -1,56 +1,16 @@
 class profile::web_services {
 
-  $website_hash 	    = hiera('profile::web_services::website_hash')
-  $website_defaults 	= hiera('profile::web_services::website_defaults')
-  $enable_firewall    = hiera('profile::web_services::enable_firewall')
-  $lb                 = hiera('profile::web_services::lb', true)
+  $lb = hiera('profile::web_services::lb', true)
 
-  #build base web server
   case $::kernel {
     'linux': {
-      require apache
-      require apache::mod::php
-      require apache::mod::ssl
-      include app_update
-
-      if $enable_firewall {
-        # add firewall rules
-        firewall { '100 allow http and https access':
-          port   => [80, 443],
-          proto  => tcp,
-          action => accept,
-        }
-      }
-
+      include profile::web_services::apache
     }
     'windows': {
-      include iis
-
-      # disable default website
-      iis::manage_site { 'Default Web Site':
-        ensure    => absent,
-        site_path => 'C:\inetpub\wwwroot',
-        app_pool  => 'Default Web Site',
-      }
-
-      iis::manage_app_pool { 'Default Web Site':
-        ensure => absent,
-      }
+      include profile::web_services::iis
     }
     default: {
       fail("${::kernel} is a non-supported OS Kernel")
-    }
-  }
-
-  #create web sites
-  # old school
-  # create_resources('profile::web_sites',$website_hash,$website_defaults)
-  # new school
-  $website_hash.each |String $site_name, Hash $site_hash| {
-    profile::web_sites { $site_name:
-      * => $site_hash,;
-      default:
-        * => $website_defaults,;
     }
   }
 

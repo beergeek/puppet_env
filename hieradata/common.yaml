@@ -272,7 +272,7 @@ profile::base::sysctl_defaults:
 
 # WEB_SERVICES
 profile::web_services::enable_firewall: *enable_firewall
-profile::web_services::website_hash:
+profile::web_services::apache::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
     database_search: "Mysql_database['elmo']"
@@ -288,11 +288,27 @@ profile::web_services::website_hash:
     docroot: 'rob'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "Mysql_database['rob']"
-profile::web_services::website_defaults:
+profile::web_services::apache::website_defaults:
   port: '80'
   priority: '10'
   docroot: '/var/www/${title}'
   repo_provider: git
+profile::web_services::iis::website_hash:
+  'elmo.puppetlabs.vm':
+    docroot: 'elmo'
+    database_search: "Mysql_database['elmo']"
+    site_package: 'website_test'
+  'kermit.puppetlabs.vm':
+    docroot: 'kermit'
+    repo_source: 'git://github.com/beergeek/kermit.git'
+    database_search: "Mysql_database['kermit']"
+  'animal.puppetlabs.vm':
+    docroot: 'animal'
+    repo_source: 'git://github.com/beergeek/animal.git'
+  'rob.puppetlabs.vm':
+    docroot: 'rob'
+    repo_source: 'git://github.com/beergeek/rob.git'
+    database_search: "Mysql_database['rob']"
 
 # DATABASE_SERVICES
 profile::database_services::enable_firewall: *enable_firewall
