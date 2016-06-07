@@ -26,7 +26,7 @@ class profile::web_services::apache {
     }
   }
 
-  $website_hash.each do |String site_name, Hash website| {
+  $website_hash.each do |String $site_name, Hash $website| {
     $_docroot = "/var/www/${website['docroot']}"
 
     apache::vhost { $site_name:
