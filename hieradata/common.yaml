@@ -271,7 +271,7 @@ profile::base::sysctl_defaults:
   permanent: 'yes'
 
 # WEB_SERVICES
-profile::web_services::enable_firewall: *enable_firewall
+profile::web_services::apache::enable_firewall: *enable_firewall
 profile::web_services::apache::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
@@ -293,6 +293,7 @@ profile::web_services::apache::website_defaults:
   priority: '10'
   docroot: '/var/www/${title}'
   repo_provider: git
+profile::web_services::iis::enable_firewall: *enable_firewall
 profile::web_services::iis::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
