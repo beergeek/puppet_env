@@ -311,11 +311,11 @@ profile::web_services::iis::website_hash:
     database_search: "Mysql_database['rob']"
 
 # DATABASE_SERVICES
-profile::database_services::apache::enable_firewall: *enable_firewall
-profile::database_services::apache::db_hash:
+profile::database_services::mysql::enable_firewall: *enable_firewall
+profile::database_services::mysql::db_hash:
   elmo: {}
   kermit: {}
-profile::database_services::apache::db_defaults:
+profile::database_services::mysql::db_defaults:
   user: 'vmware'
   password: 'secret'
 profile::database_services::sqlerver::db_hash:
