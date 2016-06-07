@@ -280,14 +280,17 @@ profile::web_services::apache::website_hash:
   'kermit.puppetlabs.vm':
     docroot: 'kermit'
     repo_source: 'git://github.com/beergeek/kermit.git'
+    repo_provider: git
     database_search: "Mysql_database['kermit']"
   'animal.puppetlabs.vm':
     docroot: 'animal'
     repo_source: 'git://github.com/beergeek/animal.git'
+    repo_provider: git
   'rob.puppetlabs.vm':
     docroot: 'rob'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "Mysql_database['rob']"
+    repo_provider: git
 profile::web_services::apache::website_defaults:
   port: '80'
   priority: '10'
