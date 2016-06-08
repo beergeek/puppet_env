@@ -28,3 +28,4 @@ class profile::lb_services::haproxy {
       }
     }
   }
+}
