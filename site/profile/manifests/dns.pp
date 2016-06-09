@@ -25,6 +25,11 @@
 class profile::dns {
 
   $purge        = hiera('profile::dns::purge', false)
+  $noop_scope = hiera('profile::dns::noop_scope', false)
+
+  if $::brownfields and $noop_scope {
+    noop()
+  }
   if $::kernel == 'Linux' {
     $name_servers = hiera('profile::dns::name_servers')
 

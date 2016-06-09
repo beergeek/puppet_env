@@ -20,6 +20,16 @@ variables:
       remote: 'https://github.com/beergeek/puppet_env.git'
       basedir: '/etc/puppetlabs/code/environments'
 
+profile::base::noop_scope: true
+profile::dns::noop_scope: true
+profile::fw::noop_scope: true
+profile::logging::noop_scope: true
+profile::monitoring::noop_scope: true
+profile::repos::noop_scope: true
+profile::ssh::noop_scope: true
+profile::sudo::noop_scope: true
+profile::time_locale::noop_scope: true
+
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
 
@@ -261,8 +271,33 @@ profile::base::sysctl_defaults:
   permanent: 'yes'
 
 # WEB_SERVICES
-profile::web_services::enable_firewall: *enable_firewall
-profile::web_services::website_hash:
+profile::web_services::apache::enable_firewall: *enable_firewall
+profile::web_services::apache::website_hash:
+  'elmo.puppetlabs.vm':
+    docroot: 'elmo'
+    database_search: "Mysql_database['elmo']"
+    site_package: 'website_test'
+  'kermit.puppetlabs.vm':
+    docroot: 'kermit'
+    repo_source: 'git://github.com/beergeek/kermit.git'
+    repo_provider: git
+    database_search: "Mysql_database['kermit']"
+  'animal.puppetlabs.vm':
+    docroot: 'animal'
+    repo_source: 'git://github.com/beergeek/animal.git'
+    repo_provider: git
+  'rob.puppetlabs.vm':
+    docroot: 'rob'
+    repo_source: 'git://github.com/beergeek/rob.git'
+    database_search: "Mysql_database['rob']"
+    repo_provider: git
+profile::web_services::apache::website_defaults:
+  port: '80'
+  priority: '10'
+  docroot: '/var/www/${title}'
+  repo_provider: git
+profile::web_services::iis::enable_firewall: *enable_firewall
+profile::web_services::iis::website_hash:
   'elmo.puppetlabs.vm':
     docroot: 'elmo'
     database_search: "Mysql_database['elmo']"
@@ -278,17 +313,17 @@ profile::web_services::website_hash:
     docroot: 'rob'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "Mysql_database['rob']"
-profile::web_services::website_defaults:
-  port: '80'
-  priority: '10'
-  docroot: '/var/www/${title}'
-  repo_provider: git
 
 # DATABASE_SERVICES
-profile::database_services::enable_firewall: *enable_firewall
-profile::database_services::db_hash:
+profile::database_services::mysql::enable_firewall: *enable_firewall
+profile::database_services::mysql::db_hash:
   elmo: {}
   kermit: {}
-profile::database_services::db_defaults:
+profile::database_services::mysql::db_defaults:
   user: 'vmware'
   password: 'secret'
+profile::database_services::sqlerver::db_hash:
+  elmo:
+    password: 'jdfknvkjdfnk'
+  kermit:
+    password: 'jdfknvkjdfnk))##'

@@ -1,5 +1,11 @@
 class profile::base {
 
+  $noop_scope = hiera('profile::base::noop_scope', false)
+
+  if $::brownfields and $noop_scope {
+    noop()
+  }
+
   case $::kernel {
     'linux': {
       $sysctl_settings  = hiera('profile::base::sysctl_settings')
@@ -42,7 +48,7 @@ class profile::base {
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => '0755',
+        mode   => '0777',
       }
 
       # repo management

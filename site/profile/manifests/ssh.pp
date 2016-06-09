@@ -32,6 +32,11 @@ class profile::ssh {
   $banner_content   = hiera('profile::ssh::banner_content')
   $enable_firewall  = hiera('profile::ssh::enable_firewall')
   $options_hash     = hiera_hash('profile::ssh::options_hash')
+  $noop_scope       = hiera('profile::ssh::noop_scope', false)
+
+  if $::brownfields and $noop_scope {
+    noop()
+  }
 
   validate_bool($enable_firewall)
 

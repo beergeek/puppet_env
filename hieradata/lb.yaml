@@ -8,4 +8,4 @@ profile::base::enable_firewall: *enable_firewall
 profile::web_services::enable_firewall: *enable_firewall
 profile::database_services::enable_firewall: *enable_firewall
 profile::ssh::enable_firewall: *enable_firewall
-profile::lb_services::enable_firewall: *enable_firewall
+profile::lb_services::haproxy::enable_firewall: *enable_firewall

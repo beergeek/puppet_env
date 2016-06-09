@@ -4,8 +4,8 @@ variables:
   - &enable_firewall true
 
 # WEB_SERVICES
-profile::web_services::enable_firewall: *enable_firewall
-profile::web_services::website_hash:
+profile::web_services::apache::enable_firewall: *enable_firewall
+profile::web_services::apache::website_hash:
   'repo.puppetlabs.vm':
     docroot: 'repo'
     create_host: true
@@ -13,7 +13,7 @@ profile::web_services::website_hash:
   'custom.puppetlabs.vm':
     docroot: 'custom'
     create_host: true
-profile::web_services::website_defaults:
+profile::web_services::apache::website_defaults:
   port: '80'
   priority: '10'
 profile::web_services::lb: false

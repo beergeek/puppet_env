@@ -1,5 +1,10 @@
 class profile::monitoring {
 
+  $noop_scope = hiera('profile::monitoring::noop_scope', false)
+
+  if $::brownfields and $noop_scope {
+    noop()
+  }
   if $::kernel == 'Linux' {
     require epel
     package { ['nagios-common','nrpe']:
