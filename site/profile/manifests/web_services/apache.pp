@@ -3,6 +3,7 @@ class profile::web_services::apache {
   $website_hash 	    = hiera('profile::web_services::apache::website_hash')
   $website_defaults 	= hiera('profile::web_services::apache::website_defaults')
   $enable_firewall    = hiera('profile::web_services::apache::enable_firewall')
+  $repo_provider      = hiera('profile::web_services::apache::repo_provider', undef)
 
   include ::apache
   include ::apache::mod::php
