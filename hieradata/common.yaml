@@ -20,15 +20,15 @@ variables:
       remote: 'https://github.com/beergeek/puppet_env.git'
       basedir: '/etc/puppetlabs/code/environments'
 
-profile::base::noop_scope: true
-profile::dns::noop_scope: true
-profile::fw::noop_scope: true
-profile::logging::noop_scope: true
-profile::monitoring::noop_scope: true
-profile::repos::noop_scope: true
-profile::ssh::noop_scope: true
-profile::sudo::noop_scope: true
-profile::time_locale::noop_scope: true
+profile::base::noop_scope: false
+profile::dns::noop_scope: false
+profile::fw::noop_scope: false
+profile::logging::noop_scope: false
+profile::monitoring::noop_scope: false
+profile::repos::noop_scope: false
+profile::ssh::noop_scope: false
+profile::sudo::noop_scope: false
+profile::time_locale::noop_scope: false
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
