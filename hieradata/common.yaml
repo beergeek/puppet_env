@@ -119,7 +119,7 @@ profile::mom::node_groups:
       "puppet_enterprise::profile::master":
         "code_manager_auto_configure": true
         "r10k_remote": "https://github.com/beergeek/puppet_env.git"
-        "use_application_services": false
+        "app_management": false
         "file_sync_enabled": "automatic"
       "puppet_enterprise::profile::master::mcollective": {}
       "puppet_enterprise::profile::mcollective::peadmin": {}
