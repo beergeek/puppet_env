@@ -270,6 +270,11 @@ profile::time_locale::ntp_servers:
   - 2.au.pool.ntp.org
   - 3.au.pool.ntp.org
 profile::time_locale::timezone: 'UTC'
+profile::time_locale::locale_rhel: 'en_AU.utf8'
+profile::time_locale::locale_deb: 'en_AU.UTF-8'
+profile::time_locale::lang_pack:
+  - language-pack-ja-base
+  - language-pack-ja
 
 profile::base::sysctl_settings:
   kernel.msgmnb:
