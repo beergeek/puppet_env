@@ -27,25 +27,37 @@ class profile::dns {
   $purge        = hiera('profile::dns::purge', false)
   $noop_scope = hiera('profile::dns::noop_scope', false)
 
+  validate_bool($purge)
+  validate_bool($noop_scope)
+
   if $::brownfields and $noop_scope {
     noop()
   }
-  if $::kernel == 'Linux' {
-    $name_servers = hiera('profile::dns::name_servers')
 
-    validate_array($name_servers)
-    validate_bool($purge)
+  case $::kernel {
+    'Linux': {
+      $ip = $::ipaddress_eth1
+      $name_servers = hiera('profile::dns::name_servers')
 
-    class { '::resolv_conf':
-      domainname  => $::domain,
-      nameservers => $name_servers,
+      validate_array($name_servers)
+
+      class { '::resolv_conf':
+        domainname  => $::domain,
+        nameservers => $name_servers,
+      }
+    }
+    'windows': {
+      $ip = $::ipaddress
+    }
+    default: {
+      fail("You need an operating system")
     }
   }
 
   @@host { $::fqdn:
     ensure        => present,
     host_aliases  => [$::hostname],
-    ip            => $::ipaddress_eth1,
+    ip            => $ip,
   }
 
   host { 'localhost':
