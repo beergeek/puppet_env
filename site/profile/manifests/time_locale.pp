@@ -24,7 +24,7 @@ class profile::time_locale {
 
   $ntp_servers  = hiera('profile::time_locale::ntp_servers')
   $timezone     = hiera('profile::time_locale::timezone')
-  $noop_scope   = hiera('profile::time_locale::noop_scope', true)
+  $noop_scope   = hiera('profile::time_locale::noop_scope', false)
 
   if (!$::fully_enabled) and $noop_scope {
     noop()
