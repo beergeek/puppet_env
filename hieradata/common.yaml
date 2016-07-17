@@ -116,7 +116,11 @@ profile::mom::node_groups:
       "pe_repo::platform::el_6_x86_64": {}
       "pe_repo::platform::windows_x86_64": {}
       "role::mom_server": {}
-      "puppet_enterprise::profile::master": {}
+      "puppet_enterprise::profile::master":
+        "code_manager_auto_configure": true
+        "r10k_remote": "https://github.com/beergeek/puppet_env.git"
+        "use_application_services": false
+        "file_sync_enabled": "automatic"
       "puppet_enterprise::profile::master::mcollective": {}
       "puppet_enterprise::profile::mcollective::peadmin": {}
     parent: "PE Infrastructure"
