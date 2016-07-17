@@ -2,8 +2,6 @@ class profile::mom {
 
   require profile::base
 
-  $manage_r10k          = hiera('profile::mom::manage_r10k', true)
-  $r10k_sources         = hiera_hash('profile::mom::r10k_sources', undef)
   $manage_hiera         = hiera('profile::mom::manage_hiera', true)
   $hiera_backends       = hiera_hash('profile::mom::hiera_backends', undef)
   $hiera_hierarchy      = hiera_array('profile::mom::hiera_hierarchy', undef)
@@ -37,9 +35,26 @@ class profile::mom {
     notify => Service['pe-puppetserver'],
   }
 
+  augeas { 'iis_file_path':
+    context => "/files/${::settings::fileserverconfig}/iis_files",
+    changes => [
+      "set path /opt/iis_files",
+      'set allow *'
+    ],
+    notify => Service['pe-puppetserver'],
+  }
+
   if $enable_firewall {
     firewall { '100 allow puppet access':
       port   => [8140],
+    }
+
+    firewall { '100 allow pcp access':
+      port   => [8142],
+    }
+
+    firewall { '100 allow pcp client access':
+      port   => [8143],
     }
 
     firewall { '100 allow mco access':
@@ -74,28 +89,8 @@ class profile::mom {
     require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
   }
 
-  if $manage_r10k and ! $r10k_sources {
-    fail('The hash `r10k_sources` must exist when managing r10k')
-  }
-
   if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
     fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
-  }
-
-  if $manage_r10k {
-    class { '::r10k':
-      version                 => '2.0.3',
-      configfile              => '/etc/puppetlabs/r10k/r10k.yaml',
-      sources                 => $r10k_sources,
-      notify                  => Exec['r10k_sync'],
-    }
-
-    exec { 'r10k_sync':
-      command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
-      refreshonly => true,
-    }
-
-    include ::r10k::mcollective
   }
 
   if $manage_hiera {
