@@ -24,7 +24,12 @@ class profile::time_locale {
 
   $ntp_servers  = hiera('profile::time_locale::ntp_servers')
   $timezone     = hiera('profile::time_locale::timezone')
-  $noop_scope   = hiera('profile::time_locale::noop_scope', true)
+  $locale_rhel  = hiera('profile::time_locale::locale_rhel')
+  $locale_deb   = hiera('profile::time_locale::locale_deb')
+  $lang_pack    = hiera('profile::time_locale::lang_pack')
+  $noop_scope   = hiera('profile::time_locale::noop_scope', false)
+
+  validate_bool($noop_scope)
 
   if (!$::fully_enabled) and $noop_scope {
     noop()
@@ -32,12 +37,31 @@ class profile::time_locale {
 
   validate_array($ntp_servers)
 
-  # manage the default locale
-  file_line { 'locale':
-    ensure => present,
-    path   => '/etc/sysconfig/i18n',
-    line   => "LANG=${locale}",
-    match  => 'LANG=',
+  if $os['family'] == 'redhat' {
+    file { '/etc/sysconfig/i18n':
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+    }
+
+    # manage the default locale
+    file_line { 'locale':
+      ensure => present,
+      path   => '/etc/sysconfig/i18n',
+      line   => "LANG=${locale_rhel}",
+      match  => 'LANG=',
+    }
+  } elsif $os['family'] == 'debian' {
+    package { $lang_pack: }
+
+    class { 'locales':
+      locales        => any2array($locale_deb),
+      default_locale => $locale_deb,
+      require        => Package[$lang_pack],
+    }
+  } else {
+    fail("This is for Linux only")
   }
 
   # manage timezone
