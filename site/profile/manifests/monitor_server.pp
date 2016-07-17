@@ -1,13 +1,27 @@
 class profile::monitor_server {
 
+  $enable_firewall = hiera('profile::monitor_server::enable_firewall',true)
+
   if $::osfamily != 'redhat' {
     fail("This class is only for EL family")
   }
 
+  if $enable_firewall {
+    # add firewall rules
+    firewall { '100 allow http and https access':
+      port   => [80, 443],
+      proto  => tcp,
+      action => accept,
+    }
+  }
+
   require profile::base
-  include apache
+  require ::apache
+  require ::apache::mod::php
+  include epel
   package { ['nagios','nagios-plugins','nagios-plugins-all']:
-    ensure => present,
+    ensure  => present,
+    require => Class['epel'],
   }
 
   file { '/etc/nagios/conf.d':
