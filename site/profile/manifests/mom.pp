@@ -17,10 +17,6 @@ class profile::mom {
     require => Class['profile::fw::pre'],
   }
 
-  #  Node_group {
-  #  require => Package['puppetclassify'],
-  #}
-
   class { 'app_update':
     application => true,
     agent       => false,

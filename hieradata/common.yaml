@@ -13,12 +13,7 @@ variables:
       datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
     json:
       datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
-  - &manage_r10k true
   - &manage_heira true
-  - &r10k_sources
-    base:
-      remote: 'https://github.com/beergeek/puppet_env.git'
-      basedir: '/etc/puppetlabs/code/environments'
 
 profile::base::noop_scope: false
 profile::dns::noop_scope: false
@@ -74,16 +69,12 @@ profile::logging::rotate_every: 'day'
 profile::logging::size: '200k'
 
 # COM
-profile::com::manage_r10k: *manage_r10k
-profile::com::r10k_sources: *r10k_sources
 profile::com::manage_hiera: *manage_heira
 profile::com::hiera_hierarchy: *hiera_hierarchy
 profile::com::hiera_backends: *hiera_backends
 profile::com::enable_firewall: *enable_firewall
 
 # MOM
-profile::mom::manage_r10k: *manage_r10k
-profile::mom::r10k_sources: *r10k_sources
 profile::mom::manage_hiera: *manage_heira
 profile::mom::hiera_hierarchy: *hiera_hierarchy
 profile::mom::hiera_backends: *hiera_backends

@@ -1,7 +1,5 @@
 class profile::com {
 
-  $manage_r10k    = hiera('profile::com::manage_r10k', true)
-  $r10k_sources   = hiera_hash('profile::com::r10k_sources', undef)
   $manage_hiera   = hiera('profile::com::manage_hiera', true)
   $hiera_backends = hiera_hash('profile::com::hiera_backends', undef)
   $hiera_hierarchy = hiera_array('profile::com::hiera_hierarchy', undef)
@@ -56,10 +54,6 @@ class profile::com {
     value   => 'pe-puppet',
   }
 
-  if $manage_r10k and ! $r10k_sources {
-    fail('The hash `r10k_sources` must exist when managing r10k')
-  }
-
   if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
     fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
   }
@@ -77,22 +71,6 @@ class profile::com {
     ipaddresses       => $::ipaddress_eth1,
     ports             => '61613',
     options           => 'check',
-  }
-
-  if $manage_r10k {
-    class { '::r10k':
-      version                 => '2.0.3',
-      configfile              => '/etc/puppetlabs/r10k/r10k.yaml',
-      sources                 => $r10k_sources,
-      notify                  => Exec['r10k_sync'],
-    }
-
-    exec { 'r10k_sync':
-      command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
-      refreshonly => true,
-    }
-
-    include ::r10k::mcollective
   }
 
   if $manage_hiera {
