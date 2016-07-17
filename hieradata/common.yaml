@@ -88,7 +88,7 @@ profile::mom::node_groups:
         "console_port": "443"
         "database_host": "%{::servername}"
         "database_port": "5432"
-        "database_ssl": "true"
+        "database_ssl": true
         "mcollective_middleware_hosts":
           - "%{trusted.certname}"
         "puppet_master_host": "%{::servername}"
