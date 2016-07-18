@@ -43,7 +43,7 @@ class profile::ssh {
   if $enable_firewall {
     # include firewall rule
     firewall { '100 allow ssh access':
-      port   => '22',
+      dport  => '22',
       proto  => 'tcp',
       action => 'accept',
     }

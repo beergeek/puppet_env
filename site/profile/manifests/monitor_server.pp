@@ -9,7 +9,7 @@ class profile::monitor_server {
   if $enable_firewall {
     # add firewall rules
     firewall { '100 allow http and https access':
-      port   => [80, 443],
+      dport  => [80, 443],
       proto  => tcp,
       action => accept,
     }

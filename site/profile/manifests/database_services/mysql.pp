@@ -29,7 +29,7 @@ class profile::database_services::mysql {
   if $enable_firewall {
     # firewall rules
     firewall { '101 allow mysql access':
-      port   => [3306],
+      dport  => [3306],
       proto  => tcp,
       action => accept,
     }

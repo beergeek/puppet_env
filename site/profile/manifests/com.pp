@@ -25,19 +25,19 @@ class profile::com {
   }
 
   firewall { '100 allow puppet access':
-    port   => [8140],
+    dport  => [8140],
     proto  => tcp,
     action => accept,
   }
 
   firewall { '100 allow mco access':
-    port   => [61613],
+    dport  => [61613],
     proto  => tcp,
     action => accept,
   }
 
   firewall { '100 allow amq access':
-    port   => [61616],
+    dport  => [61616],
     proto  => tcp,
     action => accept,
   }

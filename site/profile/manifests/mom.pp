@@ -42,35 +42,35 @@ class profile::mom {
 
   if $enable_firewall {
     firewall { '100 allow puppet access':
-      port   => [8140],
+      dport   => [8140],
     }
 
     firewall { '100 allow pcp access':
-      port   => [8142],
+      dport   => [8142],
     }
 
     firewall { '100 allow pcp client access':
-      port   => [8143],
+      dport   => [8143],
     }
 
     firewall { '100 allow mco access':
-      port   => [61613],
+      dport   => [61613],
     }
 
     firewall { '100 allow amq access':
-      port   => [61616],
+      dport   => [61616],
     }
 
     firewall { '100 allow console access':
-      port   => [443],
+      dport   => [443],
     }
 
     firewall { '100 allow nc access':
-      port   => [4433],
+      dport   => [4433],
     }
 
     firewall { '100 allow puppetdb access':
-      port   => [8081],
+      dport   => [8081],
     }
   }
 

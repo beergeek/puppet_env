@@ -18,7 +18,7 @@ class profile::monitoring {
 
     firewall { '101 accept NRPE':
       proto  => 'tcp',
-      port   => '5666',
+      dport  => '5666',
       action => 'accept',
     }
   }

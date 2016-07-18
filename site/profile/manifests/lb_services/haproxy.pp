@@ -23,7 +23,7 @@ class profile::lb_services::haproxy {
 
       if $enable_firewall {
         firewall { "100 ${listener}":
-          port   => [$listener_values['ports']],
+          dport  => [$listener_values['ports']],
           proto  => 'tcp',
           action => 'accept',
         }
@@ -39,7 +39,7 @@ class profile::lb_services::haproxy {
 
       if $enable_firewall {
         firewall { "100 ${frontend}":
-          port   => [$frontend_values['ports']],
+          dport  => [$frontend_values['ports']],
           proto  => 'tcp',
           action => 'accept',
         }

@@ -11,15 +11,6 @@ class profile::web_services::apache {
   include ::apache::mod::ssl
   include app_update
 
-  if $enable_firewall {
-    # add firewall rules
-    firewall { '100 allow http and https access':
-      port   => [80, 443],
-      proto  => tcp,
-      action => accept,
-    }
-  }
-
   if $repo_provider == 'git' {
     ensure_packages(['git'])
 
@@ -47,6 +38,14 @@ class profile::web_services::apache {
         host { $site_name:
           ensure => present,
           ip     => $::networking['interfaces'][$port]['ip'],
+        }
+        if $enable_firewall and !defined(Firewall["${::fqdn} HTTP ${website['port']}"]) {
+          # add firewall rules
+          firewall { "${::fqdn} HTTP ${website['port']}":
+            dport   => $website['port'],
+            proto  => tcp,
+            action => accept,
+          }
         }
 
         # Export monitoring configuration
