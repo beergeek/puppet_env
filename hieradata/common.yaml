@@ -175,8 +175,8 @@ profile::mom::node_groups_defaults:
 
 
 # Load Balancer
-profile::lb_services::enable_firewall: *enable_firewall
-profile::lb_services::listeners:
+profile::lb_services::haproxy::enable_firewall: *enable_firewall
+profile::lb_services::haproxy::listeners:
   stats:
     collect_exported: false
     ipaddress: "%{::ipaddress_eth1}"
