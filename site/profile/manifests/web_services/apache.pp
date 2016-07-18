@@ -22,28 +22,28 @@ class profile::web_services::apache {
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
-        $search_results = query_resources("Class['mysql::server']", $website['database_search'])
+        $search_results = query_resources("Class[mysql::server]", $website[database_search])
       } else {
         $_bypass = true
       }
       if $_bypass or !(empty($search_results)) {
         $_docroot = "/var/www/${website['docroot']}"
 
-        if $::os['family'] == 'RedHat' and $::os['release']['major'] == '7' {
+        if $::os['family'] == 'RedHat' and $::os[release][major] == '7' {
           $port = 'enp0s8'
-          $check_port = $networking['interfaces']['enp0s8']['ip']
+          $check_port = $networking[interfaces][enp0s8][ip]
         } else {
           $port = 'eth1'
-          $check_port = $networking['interfaces']['eth1']['ip']
+          $check_port = $networking[interfaces][eth1][ip]
         }
 
         host { $site_name:
           ensure => present,
-          ip     => $::networking['interfaces'][$port]['ip'],
+          ip     => $::networking[interfaces][$port][ip],
         }
-        if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website['port']}"]) {
+        if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website[port]}"]) {
           # add firewall rules
-          firewall { "100 ${::fqdn} HTTP ${website['port']}":
+          firewall { "100 ${::fqdn} HTTP ${website[port]}":
             dport   => $website['port'],
             proto  => tcp,
             action => accept,
@@ -56,7 +56,7 @@ class profile::web_services::apache {
           use                 => 'generic-service',
           host_name           => $::fqdn,
           service_description => "${::fqdn}_http_${site_name}",
-          check_command       => "check_http!${site_name} -I ${check_port} -p ${website['port']} -u http://${site_name}",
+          check_command       => "check_http!${site_name} -I ${check_port} -p ${website[port]} -u http://${site_name}",
           target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
           notify              => Service['nagios'],
           require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
@@ -64,21 +64,21 @@ class profile::web_services::apache {
 
         apache::vhost { $site_name:
           docroot        => $_docroot,
-          manage_docroot => $website['manage_docroot'],
-          port           => $website['port'],
-          priority       => $website['priority'],
+          manage_docroot => $website[manage_docroot],
+          port           => $website[port],
+          priority       => $website[priority],
         }
 
-        if $website['repo_source'] {
+        if $website[repo_source] {
           vcsrepo { $site_name:
             ensure   => present,
             path     => $_docroot,
-            provider => $website['repo_provider'],
-            source   => $website['repo_source'],
+            provider => $website[repo_provider],
+            source   => $website[repo_source],
             require  => Apache::Vhost[$site_name],
           }
-        } elsif $website['site_package'] {
-          package { $website['site_package']:
+        } elsif $website[site_package] {
+          package { $website[site_package]:
             ensure => present,
             tag    => 'custom',
           }
@@ -89,7 +89,7 @@ class profile::web_services::apache {
             listening_service => $site_name,
             server_names      => $::fqdn,
             ipaddresses       => $::ipaddress_eth1,
-            ports             => $website['port'],
+            ports             => $website[port],
             options           => 'check',
           }
         }
