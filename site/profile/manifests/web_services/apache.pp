@@ -36,14 +36,15 @@ class profile::web_services::apache {
           $port = 'eth1'
           $check_port = $networking[interfaces][eth1][ip]
         }
+        $website_port = $website[port]
 
         @@host { $site_name:
           ensure => present,
           ip     => $::networking[interfaces][$port][ip],
         }
-        if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website[port]}"]) {
+        if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website_port}"]) {
           # add firewall rules
-          firewall { "100 ${::fqdn} HTTP ${website[port]}":
+          firewall { "100 ${::fqdn} HTTP ${website_port}":
             dport   => $website['port'],
             proto  => tcp,
             action => accept,
@@ -56,7 +57,7 @@ class profile::web_services::apache {
           use                 => 'generic-service',
           host_name           => $::fqdn,
           service_description => "${::fqdn}_http_${site_name}",
-          check_command       => "check_http!${site_name} -I ${check_port} -p ${website[port]} -u http://${site_name}",
+          check_command       => "check_http!${site_name} -I ${check_port} -p ${website_port} -u http://${site_name}",
           target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
           notify              => Service['nagios'],
           require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
