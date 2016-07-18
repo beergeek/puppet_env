@@ -54,7 +54,7 @@ class profile::web_services::apache {
           use                 => 'generic-service',
           host_name           => $::fqdn,
           service_description => "${::fqdn}_http_${site_name}",
-          check_command       => "check_http!${site_name} -I ${networking['interfaces']['Ethernet 2']['ip']} -p ${website['port']} -u http://${site_name}",
+          check_command       => "check_http!${site_name} -I ${networking['interfaces'][${port}]['ip']} -p ${website['port']} -u http://${site_name}",
           target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
           notify              => Service['nagios'],
           require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
