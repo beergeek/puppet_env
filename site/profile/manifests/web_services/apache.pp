@@ -31,8 +31,10 @@ class profile::web_services::apache {
 
         if $::os['family'] == 'RedHat' and $::os['release']['major'] == '7' {
           $port = 'enp0s8'
+          $check_port = $networking['interfaces']['enp0s8']['ip']
         } else {
           $port = 'eth1'
+          $check_port = $networking['interfaces']['eth1']['ip']
         }
 
         host { $site_name:
@@ -54,7 +56,7 @@ class profile::web_services::apache {
           use                 => 'generic-service',
           host_name           => $::fqdn,
           service_description => "${::fqdn}_http_${site_name}",
-          check_command       => "check_http!${site_name} -I ${networking['interfaces'][${port}]['ip']} -p ${website['port']} -u http://${site_name}",
+          check_command       => "check_http!${site_name} -I ${check_port} -p ${website['port']} -u http://${site_name}",
           target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
           notify              => Service['nagios'],
           require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
