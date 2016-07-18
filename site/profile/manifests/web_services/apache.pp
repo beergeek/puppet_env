@@ -41,7 +41,7 @@ class profile::web_services::apache {
           ensure => present,
           ip     => $::networking['interfaces'][$port]['ip'],
         }
-        if $enable_firewall and !defined(Firewall["${::fqdn} HTTP ${website['port']}"]) {
+        if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website['port']}"]) {
           # add firewall rules
           firewall { "100 ${::fqdn} HTTP ${website['port']}":
             dport   => $website['port'],
