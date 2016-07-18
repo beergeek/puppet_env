@@ -6,15 +6,6 @@ class profile::monitor_server {
     fail("This class is only for EL family")
   }
 
-  if $enable_firewall {
-    # add firewall rules
-    firewall { '100 allow http and https access':
-      dport  => [80, 443],
-      proto  => tcp,
-      action => accept,
-    }
-  }
-
   require profile::base
   require ::apache
   require ::apache::mod::php

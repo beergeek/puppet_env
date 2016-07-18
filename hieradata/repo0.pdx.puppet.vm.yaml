@@ -10,9 +10,11 @@ profile::web_services::apache::website_hash:
     docroot: 'repo'
     create_host: true
     manage_docroot: false
+    port: '80'
   'custom.puppetlabs.vm':
     docroot: 'custom'
     create_host: true
+    port: '80'
 profile::web_services::apache::website_defaults:
   port: '80'
   priority: '10'
