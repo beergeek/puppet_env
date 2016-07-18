@@ -11,10 +11,6 @@ class profile::repo_server {
       default:
         * => $repo_defaults,;
     }
-    @@host { $repo_name:
-      ensure => present,
-      ip     => $::networking[interfaces][eth1][ip],
-    }
   }
 
   # The following is purely for this Vagrant env
