@@ -38,7 +38,7 @@ class profile::web_services::apache {
         }
         $website_port = $website[port]
 
-        @@host { $site_name:
+        host { $site_name:
           ensure => present,
           ip     => $::networking[interfaces][$port][ip],
         }
