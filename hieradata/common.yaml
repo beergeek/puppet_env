@@ -326,20 +326,24 @@ profile::web_services::apache::website_hash:
     docroot: 'elmo'
     database_search: "Mysql_database['elmo']"
     site_package: 'website_test'
+    port: '80'
   'kermit.puppetlabs.vm':
     docroot: 'kermit'
     repo_source: 'git://github.com/beergeek/kermit.git'
     repo_provider: git
     database_search: "Mysql_database['kermit']"
+    port: '80'
   'animal.puppetlabs.vm':
     docroot: 'animal'
     repo_source: 'git://github.com/beergeek/animal.git'
     repo_provider: git
+    port: '80'
   'rob.puppetlabs.vm':
     docroot: 'rob'
     repo_source: 'git://github.com/beergeek/rob.git'
     database_search: "Mysql_database['rob']"
     repo_provider: git
+    port: '80'
 profile::web_services::apache::website_defaults:
   port: '80'
   priority: '10'
