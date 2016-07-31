@@ -33,6 +33,7 @@ mod "puppetlabs/vcsrepo", "1.3.2"
 mod "puppetlabs/wsus_client", "1.0.2"
 mod "reidmv/puppet_certificate"
 mod "rodjek/logrotate", "1.1.1"
+mod "saz/locales", "2.2.2"
 mod "saz/resolv_conf", "3.0.5"
 mod "saz/rsyslog", "3.5.1"
 #mod "saz/ssh", "2.8.1" waiting on release
