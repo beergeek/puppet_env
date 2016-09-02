@@ -72,11 +72,11 @@ class profile::web_services::iis {
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
-        $search_results = puppetdb_query({type = "Sqlserver::Database" and title = "${website['database_search']}"})
+        $search_results = puppetdb_query("resources[count()] {type = \"Sqlserver::Database\" and title = \"${website['database_search']}\"}")[0]['count'] 
       } else {
         $_bypass = true
       }
-      if $_bypass or !(empty($search_results)) {
+      if $_bypass or ($search_results != 0) {
         $_docroot = "${base_docroot}\\${website['docroot']}"
 
         if $export_host {

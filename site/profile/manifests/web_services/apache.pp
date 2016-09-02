@@ -23,11 +23,11 @@ class profile::web_services::apache {
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
-        $search_results = puppetdb_query({type = "Mysql::Server::Database" and title = "${website['database_search']}"})
+        $search_results = puppetdb_query("resources[count()] {type = \"Mysql_database\" and title = \"${website['database_search']}\"}")[0]['count'] 
       } else {
         $_bypass = true
       }
-      if $_bypass or !(empty($search_results)) {
+      if $_bypass or ($search_results != 0) {
         $_docroot = "/var/www/${website['docroot']}"
 
         if $::os['family'] == 'RedHat' and $::os[release][major] == '7' {
