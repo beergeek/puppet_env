@@ -380,3 +380,5 @@ profile::database_services::sqlerver::db_hash:
     password: 'jdfknvkjdfnk'
   kermit:
     password: 'jdfknvkjdfnk))##'
+
+test::test: 'test'

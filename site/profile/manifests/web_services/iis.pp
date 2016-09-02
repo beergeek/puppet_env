@@ -4,6 +4,7 @@ class profile::web_services::iis {
   $website_hash = hiera('profile::web_services::iis::website_hash',undef)
   $base_docroot = hiera('profile::web_services::iis::base_docroot')
   $lb           = hiera('profile::web_services::iis::lb',true)
+  $export_host  = hiera('profile::web_services::iis::export_host', false)
 
   # Get correct Features for IIS depending on Windows Version
   case $::kernelmajversion {
@@ -79,9 +80,16 @@ class profile::web_services::iis {
       if $_bypass or !(empty($search_results)) {
         $_docroot = "${base_docroot}\\${website['docroot']}"
 
-        host { $site_name:
-          ensure => present,
-          ip     => $::networking['interfaces']['Ethernet 2']['ip'],
+        if $export_host {
+          @@host { $site_name:
+            ensure => present,
+            ip     => $::networking['interfaces']['Ethernet 2']['ip'],
+          }
+        } else {
+          host { $site_name:
+            ensure => present,
+            ip     => $::networking['interfaces']['Ethernet 2']['ip'],
+          }
         }
 
         if !defined(Windows_firewall::Exception["HTTP - ${website['port']}"]) {

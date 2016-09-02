@@ -5,6 +5,7 @@ class profile::web_services::apache {
   $enable_firewall    = hiera('profile::web_services::apache::enable_firewall')
   $repo_provider      = hiera('profile::web_services::apache::repo_provider', undef)
   $lb                 = hiera('profile::web_services::apache::lb',true)
+  $export_host        = hiera('profile::web_services::apache::export_host',false)
 
   include ::apache
   include ::apache::mod::php
@@ -39,9 +40,16 @@ class profile::web_services::apache {
         }
         $website_port = $website[port]
 
-        host { $site_name:
-          ensure => present,
-          ip     => $::networking[interfaces][$port][ip],
+        if $export_host {
+          @@host { $site_name:
+            ensure => present,
+            ip     => $::networking[interfaces][$port][ip],
+          }
+        } else {
+          host { $site_name:
+            ensure => present,
+            ip     => $::networking[interfaces][$port][ip],
+          }
         }
         if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website_port}"]) {
           # add firewall rules

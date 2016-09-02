@@ -19,6 +19,7 @@ profile::web_services::apache::website_defaults:
   port: '80'
   priority: '10'
 profile::web_services::lb: false
+profile::web_services::apache::export_host: true
 
 # REPO_SERVER
 profile::repo_server::repo_data:
