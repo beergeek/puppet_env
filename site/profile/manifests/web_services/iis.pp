@@ -73,7 +73,6 @@ class profile::web_services::iis {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
         $search_results = puppetdb_query({type = "Sqlserver::Database" and title = "${website['database_search']}"})
-        #$search_results = query_resources(false, $website['database_search'])
       } else {
         $_bypass = true
       }

@@ -24,7 +24,6 @@ class profile::web_services::apache {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
         $search_results = puppetdb_query({type = "Mysql::Server::Database" and title = "${website['database_search']}"})
-        #$search_results = query_resources("Class[mysql::server]", $website[database_search])
       } else {
         $_bypass = true
       }
