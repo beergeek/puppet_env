@@ -77,7 +77,7 @@ class profile::com {
     package { 'hiera-eyaml':
       ensure   => present,
       provider => 'puppetserver_gem',
-      before   => File['/etc/puppetlabs/code/hiera.yaml'],
+      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
     }
 
     file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
@@ -86,7 +86,7 @@ class profile::com {
       group   => 'pe-puppet',
       mode    => '0600',
       content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
-      before   => File['/etc/puppetlabs/code/hiera.yaml'],
+      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
     }
 
     file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
@@ -95,7 +95,7 @@ class profile::com {
       group   => 'pe-puppet',
       mode    => '0644',
       content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
-      before   => File['/etc/puppetlabs/code/hiera.yaml'],
+      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
     }
 
     file { '/etc/puppetlabs/puppet/hiera.yaml':
