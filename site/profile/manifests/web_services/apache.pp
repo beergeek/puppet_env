@@ -3,7 +3,6 @@ class profile::web_services::apache {
   $website_hash 	    = hiera('profile::web_services::apache::website_hash',undef)
   $website_defaults 	= hiera('profile::web_services::apache::website_defaults')
   $enable_firewall    = hiera('profile::web_services::apache::enable_firewall')
-  $repo_provider      = hiera('profile::web_services::apache::repo_provider', undef)
   $lb                 = hiera('profile::web_services::apache::lb',true)
   $export_host        = hiera('profile::web_services::apache::export_host',false)
 
@@ -12,14 +11,6 @@ class profile::web_services::apache {
   include ::apache::mod::ssl
   include app_update
 
-  if $repo_provider == 'git' {
-    ensure_packages(['git'])
-
-    Vcsrepo {
-      require => Package['git'],
-    }
-  }
-
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
@@ -27,6 +18,11 @@ class profile::web_services::apache {
       } else {
         $_bypass = true
       }
+
+      if $website['repo_provider'] == 'git' {
+        ensure_packages(['git'])
+      }
+
       if $_bypass or ($search_results != 0) {
         $_docroot = "/var/www/${website['docroot']}"
 
