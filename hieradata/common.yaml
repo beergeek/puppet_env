@@ -91,11 +91,13 @@ profile::mom::node_groups:
         "database_ssl": true
         "mcollective_middleware_hosts":
           - "%{trusted.certname}"
+        "pcp_broker_host": "%{::servername}"
         "puppet_master_host": "%{::servername}"
         "puppetdb_database_name": "pe-puppetdb"
         "puppetdb_database_user": "pe-puppetdb"
         "puppetdb_host": "%{::servername}"
         "puppetdb_port": "8081"
+        "use_application_services": false
   "PE PuppetDB":
     classes:
       "puppet_enterprise::profile::puppetdb": {}
