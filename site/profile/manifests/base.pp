@@ -31,6 +31,7 @@ class profile::base {
 
       contain epel
       include make_noop
+      notify { $::environment: }
 
       # old way
       # create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
