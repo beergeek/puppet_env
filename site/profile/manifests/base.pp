@@ -96,6 +96,9 @@ class profile::base {
       $wsus_server      = hiera('profile::base::wsus_server')
       $wsus_server_port = hiera('profile::base::wsus_server_port')
 
+      include chocolatey
+      Class['chocolatey'] -> Package<||>
+
       reboot { 'now':
         when => pending,
       }
