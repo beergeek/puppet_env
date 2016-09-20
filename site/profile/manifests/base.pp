@@ -96,6 +96,23 @@ class profile::base {
       $wsus_server      = hiera('profile::base::wsus_server')
       $wsus_server_port = hiera('profile::base::wsus_server_port')
 
+      reboot { 'now':
+        when => pending,
+      }
+
+      package { 'dotnet4.5.2':
+        ensure          => present,
+        provider        => 'chocolatey',
+        notify          => Reboot['now'],
+      }
+
+      package { 'powershell':
+        ensure          => present,
+        provider        => 'chocolatey',
+        install_options => ['-pre'],
+        notify          => Reboot['now'],
+      }
+
       # monitoring
       class { 'profile::monitoring': }
 
