@@ -11,7 +11,7 @@ class profile::web_services::iis {
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
-        $search_results = puppetdb_query("resources[count()] {type = \"Sqlserver::Database\" and title = \"${website['database_search']}\"}")[0]['count'] 
+        $search_results = puppetdb_query("resources[count()] {type = \"Sqlserver::Database\" and title = \"${website['database_search']}\"}")[0]['count']
       } else {
         $_bypass = true
       }
@@ -43,7 +43,7 @@ class profile::web_services::iis {
               action       => 'Allow',
               enabled      => 'yes',
               protocol     => 'TCP',
-              local_port   => $binding['port'],
+              local_port   => "${binding['port']}",
               remote_port  => 'any',
               display_name => 'HTTP - inbound',
               description  => 'Inbound rule for Interstroodle',
