@@ -259,19 +259,31 @@ profile::web_services::iis::enable_firewall: *enable_firewall
 profile::web_services::iis::base_docroot: "C:\\inetpub\\wwwroot"
 profile::web_services::iis::website_hash:
   'elmo.puppet.vm':
-    docroot: 'elmo'
-    port: '80'
+    website_path: 'C:\inetpub\elmo'
+    binding_hash:
+      protocol: 'HTTP'
+      port: 80
+      hostname: 'elmo.puppet.vm'
     database_search: "elmo"
   'kermit.puppet.vm':
-    docroot: 'kermit'
-    port: '80'
+    website_path: 'C:\inetpub\kermit'
+    binding_hash:
+      protocol: 'HTTP'
+      port: 80
+      hostname: 'kermit.puppet.vm'
     database_search: "kermit"
   'animal.puppet.vm':
-    docroot: 'animal'
-    port: '80'
+    website_path: 'C:\inetpub\animal'
+    binding_hash:
+      protocol: 'HTTP'
+      port: 80
+      hostname: 'animal.puppet.vm'
   'rob.puppet.vm':
-    docroot: 'rob'
-    port: '80'
+    website_path: 'C:\inetpub\rob'
+    binding_hash:
+      protocol: 'HTTP'
+      port: 80
+      hostname: 'rob.puppet.vm'
 
 # DATABASE_SERVICES
 profile::database_services::mysql::enable_firewall: *enable_firewall
