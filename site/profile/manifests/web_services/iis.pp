@@ -35,7 +35,7 @@ class profile::web_services::iis {
           website_path => $website['website_path'],
         }
 
-        website['binding_hash'].each |Hash $binding| {
+        $website['binding_hash'].each |Hash $binding| {
           if !defined(Windows_firewall::Exception["HTTP - ${binding['port']}"]) {
             windows_firewall::exception { "HTTP - ${binding['port']}":
               ensure       => present,
