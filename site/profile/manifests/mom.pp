@@ -5,8 +5,6 @@ class profile::mom {
   $manage_hiera         = hiera('profile::mom::manage_hiera', true)
   $hiera_backends       = hiera_hash('profile::mom::hiera_backends', undef)
   $hiera_hierarchy      = hiera_array('profile::mom::hiera_hierarchy', undef)
-  $node_groups          = hiera('profile::mom::node_groups', undef)
-  $node_groups_defaults = hiera('profile::mom::node_groups_defaults')
   $enable_firewall      = hiera('profile::mom::enable_firewall',true)
   $manage_eyaml         = hiera('profile::mom::manage_eyaml', false)
 
@@ -132,18 +130,4 @@ class profile::mom {
     ensure   => present,
     provider => 'puppetserver_gem',
   }
-
-  if $node_groups {
-    # new school
-    $node_groups.each |String $node_name, Hash $node_hash| {
-      node_group { $node_name:
-        * => $node_hash,;
-        default:
-          * => $node_groups_defaults,;
-      }
-    }
-    # old school
-    # create_resources('node_group',$node_groups, $node_groups_defaults)
-  }
-
 }
