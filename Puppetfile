@@ -7,7 +7,6 @@ mod "chocolatey/chocolatey"
 mod "croddy/make", "0.0.5"
 mod "fiddyspence/sysctl", "1.1.0"
 mod "puppet/download_file"
-mod "puppet/iis"
 mod "puppet/windowsfeature"
 mod "puppet/windows_firewall"
 mod "puppetlabs/acl", "1.1.2"
@@ -51,3 +50,5 @@ mod 'ssh',
   :git => 'https://github.com/beergeek/puppet-ssh.git'
 mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
+mod 'iis',
+  :git => 'https://github.com/beergeek/iis.git'
