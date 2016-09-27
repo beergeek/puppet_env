@@ -7,4 +7,3 @@ profile::web_services::iis::website_hash:
     website_path: 'C:\inetpub\elmo'
     binding_hash: [
       {protocol: 'HTTP',port: 80,hostname: 'elmo.puppet.vm'}]
-    database_search: "elmo"
