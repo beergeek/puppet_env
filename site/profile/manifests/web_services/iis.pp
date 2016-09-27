@@ -31,7 +31,7 @@ class profile::web_services::iis {
 
         iis::website { $site_name:
           ensure       => 'Present',
-          binding_info => $website['binding_hash'],
+          binding_hash => $website['binding_hash'],
           website_path => $website['website_path'],
         }
 
