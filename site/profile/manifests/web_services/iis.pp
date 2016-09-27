@@ -30,9 +30,10 @@ class profile::web_services::iis {
         }
 
         iis::website { $site_name:
-          ensure       => 'Present',
-          binding_hash => $website['binding_hash'],
-          website_path => $website['website_path'],
+          *            => $website,
+          #ensure       => 'Present',
+          #binding_hash => $website['binding_hash'],
+          #website_path => $website['website_path'],
         }
 
         $website['binding_hash'].each |Hash $binding| {
