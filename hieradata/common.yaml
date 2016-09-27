@@ -79,102 +79,6 @@ profile::mom::manage_hiera: *manage_heira
 profile::mom::hiera_hierarchy: *hiera_hierarchy
 profile::mom::hiera_backends: *hiera_backends
 profile::mom::enable_firewall: *enable_firewall
-profile::mom::node_groups:
-  "PE Infrastructure":
-    classes:
-      "puppet_enterprise":
-        "certificate_authority_host": "%{::servername}"
-        "console_host": "%{::servername}"
-        "console_port": "443"
-        "database_host": "%{::servername}"
-        "database_port": "5432"
-        "database_ssl": true
-        "mcollective_middleware_hosts":
-          - "%{trusted.certname}"
-        "pcp_broker_host": "%{::servername}"
-        "puppet_master_host": "%{::servername}"
-        "puppetdb_database_name": "pe-puppetdb"
-        "puppetdb_database_user": "pe-puppetdb"
-        "puppetdb_host": "%{::servername}"
-        "puppetdb_port": "8081"
-        "use_application_services": false
-  "PE PuppetDB":
-    classes:
-      "puppet_enterprise::profile::puppetdb": {}
-    parent: "PE Infrastructure"
-    rule: ["or", ["=", "name", "%{::servername}"]]
-  "Production environment":
-    classes: {}
-    override_environment: true
-    rule: []
-  "PE MCollective":
-    classes:
-      "puppet_enterprise::profile::mcollective::agent": {}
-    parent: "PE Infrastructure"
-    rule: ["and",["~",["fact","id"],"root|Administrator|vagrant|WINWEB"],["~",["fact","aio_agent_version"],".+"]]
-  "PE Master":
-    classes:
-      "pe_repo": {}
-      "pe_repo::platform::el_6_x86_64": {}
-      "pe_repo::platform::windows_x86_64": {}
-      "role::mom_server": {}
-      "puppet_enterprise::profile::master":
-        "code_manager_auto_configure": true
-        "r10k_remote": "https://github.com/beergeek/puppet_env.git"
-        "app_management": false
-        "file_sync_enabled": "automatic"
-      "puppet_enterprise::profile::master::mcollective": {}
-      "puppet_enterprise::profile::mcollective::peadmin": {}
-    parent: "PE Infrastructure"
-    rule: ["or", ["=", "name", "%{::servername}"]]
-  "PE ActiveMQ Broker":
-    classes:
-      "puppet_enterprise::profile::amq::broker": {}
-    parent: "PE Infrastructure"
-    rule: ["or", ["=", "name", "%{::servername}"]]
-  "PE Agent":
-    classes:
-      "puppet_enterprise::profile::agent": {}
-    parent: "PE Infrastructure"
-    rule: ["and", ["~", ["fact", "aio_agent_version"], ".+"]]
-  "PE Certificate Authority":
-    classes:
-      "puppet_enterprise::profile::certificate_authority": {}
-    parent: "PE Infrastructure"
-    rule: ["or", ["=", "name", "%{::servername}"]]
-  "PE Console":
-    classes:
-      "pe_console_prune":
-        "prune_upto": 30
-      "puppet_enterprise::license": {}
-      "puppet_enterprise::profile::console": {}
-    parent: "PE Infrastructure"
-    rule: ["or", ["=", "name", "%{::servername}"]]
-  "Repo Servers":
-    classes:
-      "role::repo_server": {}
-    rule: ["or",["=",["trusted","extensions","pp_role"],"repo_server"]]
-  "Web Servers":
-    classes:
-      "role::web_server": {}
-    rule: ["or",["=",["trusted","extensions","pp_role"],"web_server"]]
-  "DB Servers":
-    classes:
-      "role::db_server": {}
-    rule: ["or",["=",["trusted","extensions","pp_role"],"db_server"]]
-  "Load Balancer":
-    classes:
-      "role::load_balancer": {}
-    rule: ["or",["=",["trusted","extensions","pp_role"],"load_balancer"]]
-  "Monitoring Servers":
-    classes:
-      "role::monitor_server": {}
-    rule: ["or",["=",["trusted","extensions","pp_role"],"repo_server"]]
-profile::mom::node_groups_defaults:
-  ensure: present
-  environment: production
-  parent: 'All Nodes'
-
 
 # Load Balancer
 profile::lb_services::haproxy::enable_firewall: *enable_firewall
@@ -355,19 +259,23 @@ profile::web_services::iis::enable_firewall: *enable_firewall
 profile::web_services::iis::base_docroot: "C:\\inetpub\\wwwroot"
 profile::web_services::iis::website_hash:
   'elmo.puppet.vm':
-    docroot: 'elmo'
-    port: '80'
+    website_path: 'C:\inetpub\elmo'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'elmo.puppet.vm'}]
     database_search: "elmo"
   'kermit.puppet.vm':
-    docroot: 'kermit'
-    port: '80'
+    website_path: 'C:\inetpub\kermit'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'kermit.puppet.vm'}]
     database_search: "kermit"
   'animal.puppet.vm':
-    docroot: 'animal'
-    port: '80'
+    website_path: 'C:\inetpub\animal'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'animal.puppet.vm'}]
   'rob.puppet.vm':
-    docroot: 'rob'
-    port: '80'
+    website_path: 'C:\inetpub\rob'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'rob.puppet.vm'}]
 
 # DATABASE_SERVICES
 profile::database_services::mysql::enable_firewall: *enable_firewall

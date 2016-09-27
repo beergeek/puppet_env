@@ -7,13 +7,12 @@ mod "chocolatey/chocolatey"
 mod "croddy/make", "0.0.5"
 mod "fiddyspence/sysctl", "1.1.0"
 mod "puppet/download_file"
-mod "puppet/iis"
 mod "puppet/windowsfeature"
 mod "puppet/windows_firewall"
 mod "puppetlabs/acl", "1.1.2"
 mod "puppetlabs/apache", "1.10.0"
 mod "puppetlabs/concat", "2.2.0"
-mod "puppetlabs/dsc", "1.0.1"
+mod "puppetlabs/dsc", "1.1.0"
 mod "puppetlabs/firewall", "1.8.1"
 mod "puppetlabs/gcc", "0.3.0"
 mod "puppetlabs/git", "0.4.0"
@@ -51,3 +50,5 @@ mod 'ssh',
   :git => 'https://github.com/beergeek/puppet-ssh.git'
 mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
+mod 'iis',
+  :git => 'https://github.com/beergeek/iis.git'
