@@ -100,7 +100,8 @@ class profile::base {
       Class['chocolatey'] -> Package<||>
 
       reboot { 'now':
-        when => pending,
+        apply => 'immediately',
+        when  => pending,
       }
 
       package { 'dotnet4.5.2':
