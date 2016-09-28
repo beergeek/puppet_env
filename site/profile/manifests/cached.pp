@@ -8,7 +8,7 @@ class profile::cached (
     $ensure = 'absent'
   }
 
-  case $::os['kernel'] {
+  case $::kernel {
     'windows': { $path = 'C:\ProgramData\PuppetLabs\puppet\puppet.conf' }
     'linux': { $path = '/etc/puppetlabs/puppet/puppet.conf' }
     default: { fail("You are not using an operating system!") }
