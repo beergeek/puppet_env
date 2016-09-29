@@ -40,6 +40,7 @@ mod "saz/sudo", "3.1.0"
 mod "saz/timezone", "3.3.0"
 mod "stahnma/epel"
 mod "trlinkin/noop", "0.0.2"
+mod "puppetlabs/sqlserver"
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
