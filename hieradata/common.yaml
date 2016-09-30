@@ -285,7 +285,7 @@ profile::database_services::mysql::db_hash:
 profile::database_services::mysql::db_defaults:
   user: 'vmware'
   password: 'secret'
-profile::database_services::sqlserver:sql_source: 'C:\\vagrant\\SQLServer\\'
+profile::database_services::sqlserver::sql_source: 'C:\\vagrant\\SQLServer\\'
 profile::database_services::sqlserver::db_hash:
   elmo:
     password: 'jdfknvkjdfnk'
