@@ -6,9 +6,9 @@ class profile::database_services::sqlserver {
   $sql_user    = hiera('profile::database_services::sql_user')
   $db_hash     = hiera_hash('profile::database_services::sqlserver::db_hash')
 
-  package { 'dotnet3.5':
-    ensure   => present,
-    provider => 'chocolatey',
+  dsc_xwindowsfeature { 'Net-Framework-Core':
+    dsc_ensure => 'Present',
+    dsc_name   => 'Net-Framework-Core',
   }
 
   sqlserver_instance{'MSSQLSERVER':
@@ -17,7 +17,7 @@ class profile::database_services::sqlserver {
     security_mode         => 'SQL',
     sa_pwd                => $sql_passwd,
     sql_sysadmin_accounts => [$sql_user],
-    require               => Package['dotnet3.5'],
+    require               => Dsc_xwindowsfeature['Net-Framework-Core'],
   }
 
   sqlserver_features { 'Generic Features':
