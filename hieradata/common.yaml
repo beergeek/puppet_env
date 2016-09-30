@@ -288,6 +288,7 @@ profile::database_services::mysql::db_defaults:
 profile::database_services::sqlserver::sql_source: 'C:\\vagrant\\SQLServer\\'
 profile::database_services::sql_passwd: 'kndis%#11SS'
 profile::database_services::sql_version: 'MSSQL12'
+profile::database_services::sql_user: 'vagrant'
 profile::database_services::sqlserver::db_hash:
   elmo:
     password: 'jdfknvkjdfnk'

@@ -3,6 +3,7 @@ class profile::database_services::sqlserver {
   $sql_source  = hiera('profile::database_services::sqlserver::sql_source')
   $sql_passwd  = hiera('profile::database_services::sql_passwd')
   $sql_version = hiera('profile::database_services::sql_version','MSSQL12')
+  $sql_user    = hiera('profile::database_services::sql_user')
   $db_hash     = hiera_hash('profile::database_services::sqlserver::db_hash')
 
   sqlserver_instance{'MSSQLSERVER':
@@ -10,7 +11,7 @@ class profile::database_services::sqlserver {
     source                => $sql_source,
     security_mode         => 'SQL',
     sa_pwd                => $sql_passwd,
-    sql_sysadmin_accounts => ['dbuser'],
+    sql_sysadmin_accounts => [$sql_user],
   }
 
   sqlserver_features { 'Generic Features':
