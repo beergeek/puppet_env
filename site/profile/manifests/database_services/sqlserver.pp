@@ -6,12 +6,18 @@ class profile::database_services::sqlserver {
   $sql_user    = hiera('profile::database_services::sql_user')
   $db_hash     = hiera_hash('profile::database_services::sqlserver::db_hash')
 
+  package { 'dotnet3.5':
+    ensure   => present,
+    provider => 'chocolatey',
+  }
+
   sqlserver_instance{'MSSQLSERVER':
     features              => ['SQL'],
     source                => $sql_source,
     security_mode         => 'SQL',
     sa_pwd                => $sql_passwd,
     sql_sysadmin_accounts => [$sql_user],
+    require               => Package['dotnet3.5'],
   }
 
   sqlserver_features { 'Generic Features':
