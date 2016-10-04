@@ -4,11 +4,14 @@ class profile::database_services::sqlserver {
   $sql_passwd  = hiera('profile::database_services::sql_passwd')
   $sql_version = hiera('profile::database_services::sql_version','MSSQL12')
   $sql_user    = hiera('profile::database_services::sql_user')
+  $dotnet_src  = hiera('profile::database_services::dotnet_src','C:\vagrant\sxs')
   $db_hash     = hiera_hash('profile::database_services::sqlserver::db_hash')
 
   dsc_xwindowsfeature { 'Net-Framework-Core':
     dsc_ensure => 'Present',
     dsc_name   => 'Net-Framework-Core',
+    dsc_source => $dotnet_src,
+    require    => Service['wuauserv'],
   }
 
   sqlserver_instance{'MSSQLSERVER':
@@ -34,14 +37,14 @@ class profile::database_services::sqlserver {
     sqlserver::database { $key:
       instance => 'MSSQLSERVER',
     }
-    sqlserver::login{ "${key}_login":
+    sqlserver::login{ $key:
       password => $value['password'],
     }
 
-    sqlserver::user{ "${key}_user":
-      user     => "${key}_user",
+    sqlserver::user{ $key:
+      user     => $key,
       database => $key,
-      require  => Sqlserver::Login["${key}_login"],
+      require  => Sqlserver::Login[$key],
     }
   }
 
