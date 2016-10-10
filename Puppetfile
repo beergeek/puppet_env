@@ -3,7 +3,7 @@ forge "http://forgeapi.puppetlabs.com"
 # Modules from the Puppet Forge
 mod "badgerious/windows_env"
 mod "basti1302/windows_path", "0.1.1"
-mod "chocolatey/chocolatey"
+mod "puppetlabs/chocolatey"
 mod "croddy/make", "0.0.5"
 mod "fiddyspence/sysctl", "1.1.0"
 mod "puppet/download_file"

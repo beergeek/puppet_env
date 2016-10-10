@@ -7,11 +7,17 @@ class profile::database_services::sqlserver {
   $dotnet_src  = hiera('profile::database_services::dotnet_src','C:\vagrant\sxs')
   $db_hash     = hiera_hash('profile::database_services::sqlserver::db_hash')
 
+  reboot { 'right_now':
+    apply => 'immediately',
+    when  => 'pending',
+  }
+
   dsc_xwindowsfeature { 'Net-Framework-Core':
     dsc_ensure => 'Present',
     dsc_name   => 'Net-Framework-Core',
     dsc_source => $dotnet_src,
     require    => Service['wuauserv'],
+    notify     => Reboot['right_now'],
   }
 
   sqlserver_instance{'MSSQLSERVER':
@@ -20,7 +26,7 @@ class profile::database_services::sqlserver {
     security_mode         => 'SQL',
     sa_pwd                => $sql_passwd,
     sql_sysadmin_accounts => [$sql_user],
-    require               => Dsc_xwindowsfeature['Net-Framework-Core'],
+    require               => Reboot['right_now'],
   }
 
   sqlserver_features { 'Generic Features':
