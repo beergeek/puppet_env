@@ -99,7 +99,12 @@ class profile::base {
       include chocolatey
       Class['chocolatey'] -> Package<||>
 
-      reboot { 'now':
+      reboot { 'after_dotnet':
+        apply => 'immediately',
+        when  => pending,
+      }
+
+      reboot { 'after_powershell':
         apply => 'immediately',
         when  => pending,
       }
@@ -107,14 +112,14 @@ class profile::base {
       package { 'dotnet4.5.2':
         ensure          => present,
         provider        => 'chocolatey',
-        notify          => Reboot['now'],
+        notify          => Reboot['after_dotnet'],
       }
 
       package { 'powershell':
         ensure          => present,
         provider        => 'chocolatey',
         install_options => ['-pre'],
-        notify          => Reboot['now'],
+        notify          => Reboot['after_powershell'],
       }
 
       # monitoring
