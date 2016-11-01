@@ -24,7 +24,7 @@ mod "puppetlabs/ntp", "4.2.0"
 mod "puppetlabs/pe_gem", "0.1.1"
 mod "puppetlabs/powershell", "2.0.2"
 mod "puppetlabs/puppetserver_gem","0.1.0"
-mof "puppetlabs/puppet_agent",
+mod "puppetlabs/puppet_agent"
 mod "puppetlabs/reboot", "1.2.1"
 mod "puppetlabs/registry", "1.1.3"
 mod "puppetlabs/ruby", "0.4.0"
