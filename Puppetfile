@@ -54,4 +54,5 @@ mod 'ssh',
 mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
 mod 'iis',
-  :git => 'https://github.com/beergeek/iis.git'
+  :git => 'https://github.com/beergeek/iis.git',
+  :tag => '0.1.6'
