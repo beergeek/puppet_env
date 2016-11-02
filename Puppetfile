@@ -56,3 +56,5 @@ mod 'make_noop',
 mod 'iis',
   :git => 'https://github.com/beergeek/iis.git',
   :tag => '0.1.6'
+mod 'facecount',
+  :git => 'https://github.com/beergeek/facecount.git'
