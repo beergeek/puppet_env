@@ -8,6 +8,11 @@ class profile::web_services::iis {
 
   require ::iis
 
+  # remove default site
+  ::iis::website { 'Default Web Site':
+    ensure => 'Absent',
+  }
+
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
