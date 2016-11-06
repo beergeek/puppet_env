@@ -43,6 +43,7 @@ mod "saz/timezone", "3.3.0"
 mod "stahnma/epel"
 mod "trlinkin/noop", "0.0.2"
 mod "puppetlabs/sqlserver"
+mod "beergeek/iis", "0.1.7"
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
@@ -53,8 +54,5 @@ mod 'ssh',
   :git => 'https://github.com/beergeek/puppet-ssh.git'
 mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
-mod 'iis',
-  :git => 'https://github.com/beergeek/iis.git',
-  :tag => '0.1.6'
 mod 'facecount',
   :git => 'https://github.com/beergeek/facecount.git'
