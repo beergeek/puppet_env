@@ -12,14 +12,14 @@ class profile::lb_services::haproxy {
 
   include ::haproxy
 
-  if has_key($::os['interfaces'],'enp0s8') {
-    $ip_value = $::os['interfaces']['enp0s8']
-  } elsif has_key($::os['interfaces'],'eth1') {
-    $ip_value = $::os['interfaces']['eth1']
-  } elsif has_key($::os['interfaces'],'enp0s3') {
-    $ip_value = $::os['interfaces']['enp0s3']
-  } elsif has_key($::os['interfaces'],'eth0') {
-    $ip_value = $::os['interfaces']['eth0']
+  if has_key($::networking['interfaces'],'enp0s8') {
+    $ip_value = $::networking['interfaces']['enp0s8']['ip']
+  } elsif has_key($::networking['interfaces'],'eth1') {
+    $ip_value = $::networking['interfaces']['eth1']['ip']
+  } elsif has_key($::networking['interfaces'],'enp0s3') {
+    $ip_value = $::networking['interfaces']['enp0s3']['ip']
+  } elsif has_key($::networking['interfaces'],'eth0') {
+    $ip_value = $::networking['interfaces']['eth0']['ip']
   } else {
     fail("Buggered if I know your IP Address")
   }
