@@ -5,6 +5,17 @@ class profile::com {
   $hiera_backends  = hiera_hash('profile::com::hiera_backends', undef)
   $hiera_hierarchy = hiera_array('profile::com::hiera_hierarchy', undef)
   $manage_eyaml    = hiera('profile::com::manage_eyaml', false)
+  if has_key($::networking['interfaces'],'enp0s8') {
+    $ip = $::networking['interfaces']['enp0s8']['ip']
+  } elsif has_key($::networking['interfaces'],'eth1') {
+    $ip = $::networking['interfaces']['eth1']['ip']
+  } elsif has_key($::networking['interfaces'],'enp0s3') {
+    $ip = $::networking['interfaces']['enp0s3']['ip']
+  } elsif has_key($::networking['interfaces'],'eth0') {
+    $ip = $::networking['interfaces']['eth0']['ip']
+  } else {
+    fail("Buggered if I know your IP Address")
+  }
 
   if $enable_firewall {
     Firewall {
@@ -38,14 +49,14 @@ class profile::com {
   @@haproxy::balancermember { "master00-${::fqdn}":
     listening_service => 'puppet00',
     server_names      => $::fqdn,
-    ipaddresses       => $::ipaddress_eth1,
+    ipaddresses       => $ip,
     ports             => '8140',
     options           => 'check',
   }
   @@haproxy::balancermember { "mco00-${::fqdn}":
     listening_service => 'mco00',
     server_names      => $::fqdn,
-    ipaddresses       => $::ipaddress_eth1,
+    ipaddresses       => $ip,
     ports             => '61613',
     options           => 'check',
   }
