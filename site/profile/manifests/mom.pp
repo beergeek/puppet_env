@@ -1,7 +1,5 @@
 class profile::mom {
 
-  require profile::base
-
   $manage_hiera         = hiera('profile::mom::manage_hiera', true)
   $hiera_backends       = hiera_hash('profile::mom::hiera_backends', undef)
   $hiera_hierarchy      = hiera_array('profile::mom::hiera_hierarchy', undef)
@@ -74,13 +72,13 @@ class profile::mom {
   }
 
   if $manage_hiera {
-    package { 'hiera-eyaml':
-      ensure   => present,
-      provider => 'puppetserver_gem',
-      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
-    }
-
     if $manage_eyaml {
+      package { 'hiera-eyaml':
+        ensure   => present,
+        provider => 'puppetserver_gem',
+        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+      }
+
       file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
         ensure  => file,
         owner   => 'pe-puppet',
