@@ -36,8 +36,18 @@ class profile::dns {
 
   case $::kernel {
     'Linux': {
-      $ip = $::ipaddress_eth1
       $name_servers = hiera('profile::dns::name_servers')
+      if has_key($::networking['interfaces'],'enp0s8') {
+        $ip = $::networking['interfaces']['enp0s8']['ip']
+      } elsif has_key($::networking['interfaces'],'eth1') {
+        $ip = $::networking['interfaces']['eth1']['ip']
+      } elsif has_key($::networking['interfaces'],'enp0s3') {
+        $ip = $::networking['interfaces']['enp0s3']['ip']
+      } elsif has_key($::networking['interfaces'],'eth0') {
+        $ip = $::networking['interfaces']['eth0']['ip']
+      } else {
+        fail("Buggered if I know your IP Address")
+      }
 
       validate_array($name_servers)
 
