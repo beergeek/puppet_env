@@ -12,11 +12,23 @@ class profile::lb_services::haproxy {
 
   include ::haproxy
 
+  if has_key($::os['interfaces'],'enp0s8') {
+    $ip_value = $::os['interfaces']['enp0s8']
+  } elsif has_key($::os['interfaces'],'eth1') {
+    $ip_value = $::os['interfaces']['eth1']
+  } elsif has_key($::os['interfaces'],'enp0s3') {
+    $ip_value = $::os['interfaces']['enp0s3']
+  } elsif has_key($::os['interfaces'],'eth0') {
+    $ip_value = $::os['interfaces']['eth0']
+  } else {
+    fail("Buggered if I know your IP Address")
+  }
+
   if $listeners {
     $listeners.each |String $listener,Hash $listener_values| {
       haproxy::listen { $listener:
         collect_exported => $listener_values['collect_exported'],
-        ipaddress        => pick($::os['interfaces']['eth1'],$::os['interfaces']['enp0s8'],$::os['interfaces']['eth0'],$::os['interfaces']['enp0s3']),
+        ipaddress        => $ip_value, 
         ports            => $listener_values['ports'],
         options          => $listener_values['options'],
       }
