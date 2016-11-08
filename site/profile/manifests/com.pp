@@ -15,15 +15,6 @@ class profile::com {
     notify  => Service['pe-puppetserver'],
   }
 
-  file { '/etc/puppetlabs/puppet/ssl/public_keys':
-    ensure  => directory,
-    owner   => 'pe-puppet',
-    group   => 'pe-puppet',
-    recurse => true,
-    purge   => false,
-    source  => 'puppet:///pe_public',
-  }
-
   firewall { '100 allow puppet access':
     dport  => [8140],
     proto  => tcp,
