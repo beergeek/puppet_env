@@ -20,24 +20,6 @@ class profile::mom {
     agent       => false,
   }
 
-  augeas { 'ssl_pub_path':
-    context => "/files/${::settings::fileserverconfig}/pe_public",
-    changes => [
-      "set path ${::settings::ssldir}/public_keys",
-      'set allow com0.puppetlabs.vm,com1.puppetlabs.vm'
-    ],
-    notify => Service['pe-puppetserver'],
-  }
-
-  augeas { 'iis_file_path':
-    context => "/files/${::settings::fileserverconfig}/iis_files",
-    changes => [
-      "set path /opt/iis_files",
-      'set allow *'
-    ],
-    notify => Service['pe-puppetserver'],
-  }
-
   if $enable_firewall {
     firewall { '100 allow puppet access':
       dport   => [8140],
@@ -69,6 +51,10 @@ class profile::mom {
 
     firewall { '100 allow puppetdb access':
       dport   => [8081],
+    }
+
+    firewall { '100 allow postgresql access':
+      dport   => [5432],
     }
   }
 
