@@ -4,6 +4,7 @@ class profile::com {
   $manage_hiera    = hiera('profile::com::manage_hiera', true)
   $hiera_backends  = hiera_hash('profile::com::hiera_backends', undef)
   $hiera_hierarchy = hiera_array('profile::com::hiera_hierarchy', undef)
+  $manage_eyaml    = hiera('profile::com::manage_eyaml', false)
 
   if $enable_firewall {
     Firewall {
@@ -49,29 +50,35 @@ class profile::com {
     options           => 'check',
   }
 
+  if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
+    fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
+  }
+
   if $manage_hiera {
-    package { 'hiera-eyaml':
-      ensure   => present,
-      provider => 'puppetserver_gem',
-      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
-    }
+    if $manage_eyaml {
+      package { 'hiera-eyaml':
+        ensure   => present,
+        provider => 'puppetserver_gem',
+        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+      }
 
-    file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
-      ensure  => file,
-      owner   => 'pe-puppet',
-      group   => 'pe-puppet',
-      mode    => '0600',
-      content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
-      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
-    }
+      file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
+        ensure  => file,
+        owner   => 'pe-puppet',
+        group   => 'pe-puppet',
+        mode    => '0600',
+        content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
+        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+      }
 
-    file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
-      ensure  => file,
-      owner   => 'pe-puppet',
-      group   => 'pe-puppet',
-      mode    => '0644',
-      content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
-      before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+      file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
+        ensure  => file,
+        owner   => 'pe-puppet',
+        group   => 'pe-puppet',
+        mode    => '0644',
+        content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
+        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
+      }
     }
 
     file { '/etc/puppetlabs/puppet/hiera.yaml':
