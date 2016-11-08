@@ -23,6 +23,10 @@ class profile::mom {
       dport   => [8140],
     }
 
+    firewall { '100 allow code manager access':
+      dport   => [8170],
+    }
+
     firewall { '100 allow pcp access':
       dport   => [8142],
     }

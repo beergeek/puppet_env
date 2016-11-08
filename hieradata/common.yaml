@@ -14,6 +14,7 @@ variables:
     json:
       datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
   - &manage_heira true
+  - &manage_eyaml false
 
 profile::base::noop_scope: false
 profile::dns::noop_scope: false
@@ -31,6 +32,8 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
 # DNS
 profile::dns::name_servers:
   - 10.0.2.3
+  - 10.240.0.10
+  - 10.240.1.10
 profile::dns::purge: false
 
 # SSH
@@ -39,6 +42,8 @@ profile::ssh::banner_content: "This system is the property of Puppet Labs. Unaut
 profile::ssh::allowed_groups:
   - 'root'
   - 'vagrant'
+  - 'centos'
+  - 'ubuntu'
 profile::ssh::options_hash:
   Port: 22
   AcceptEnv: 'LANG LC_*'
@@ -48,9 +53,17 @@ profile::ssh::options_hash:
   Subsystem: 'sftp /usr/libexec/openssh/sftp-server'
   UsePAM: yes
   X11Forwarding: yes
+  RSAAuthentication: yes
+  PubkeyAuthentication: yes
 
 # SUDO
 profile::sudo::sudo_hash:
+  ubuntu:
+    priority: 10
+    content: 'ubuntu ALL=(ALL) NOPASSWD: ALL'
+  centos:
+    priority: 10
+    content: '%centos ALL=(ALL) NOPASSWD: ALL'
   vagrant:
     priority: 10
     content: '%vagrant ALL=(ALL) NOPASSWD: ALL'

@@ -46,19 +46,21 @@ class profile::com {
     fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
   }
 
-  @@haproxy::balancermember { "master00-${::fqdn}":
-    listening_service => 'puppet00',
-    server_names      => $::fqdn,
-    ipaddresses       => $ip,
-    ports             => '8140',
-    options           => 'check',
-  }
-  @@haproxy::balancermember { "mco00-${::fqdn}":
-    listening_service => 'mco00',
-    server_names      => $::fqdn,
-    ipaddresses       => $ip,
-    ports             => '61613',
-    options           => 'check',
+  if $::trusted['extensions']['pp_role'] != 'replica' {
+    @@haproxy::balancermember { "master00-${::fqdn}":
+      listening_service => 'puppet00',
+      server_names      => $::fqdn,
+      ipaddresses       => $ip,
+      ports             => '8140',
+      options           => 'check',
+    }
+    @@haproxy::balancermember { "mco00-${::fqdn}":
+      listening_service => 'mco00',
+      server_names      => $::fqdn,
+      ipaddresses       => $ip,
+      ports             => '61613',
+      options           => 'check',
+    }
   }
 
   if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
@@ -92,13 +94,16 @@ class profile::com {
       }
     }
 
-    file { '/etc/puppetlabs/puppet/hiera.yaml':
-      ensure  => file,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template('profile/hiera.yaml.erb'),
-      notify  => Service['pe-puppetserver'],
+    if defined(Service['pe-puppetserver']) {
+
+      file { '/etc/puppetlabs/puppet/hiera.yaml':
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
+        content => template('profile/hiera.yaml.erb'),
+        notify  => Service['pe-puppetserver'],
+      }
     }
   }
 

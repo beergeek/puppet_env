@@ -26,12 +26,16 @@ class profile::web_services::apache {
       if $_bypass or ($search_results != 0) {
         $_docroot = "/var/www/${website['docroot']}"
 
-        if $::os['family'] == 'RedHat' and $::os[release][major] == '7' {
-          $port = 'enp0s8'
-          $check_port = $networking[interfaces][enp0s8][ip]
+        if has_key($::networking['interfaces'], 'eth1') {
+          $check_port = $networking['interfaces']['bindings']['eth1']['address']
+        } elsif has_key($::networking['interfaces'], 'eth0') {
+          $check_port = $networking['interfaces']['bindings']['eth0']['address']
+        } elsif has_key($::networking['interfaces'], 'enp0s8') {
+          $check_port = $networking['interfaces']['bindings']['enp0s8']['ip']
+        } elsif has_key($::networking['interfaces'], 'enp0s3') {
+          $check_port = $networking['interfaces']['bindings']['enp0s3']['ip']
         } else {
-          $port = 'eth1'
-          $check_port = $networking[interfaces][eth1][ip]
+          fail('No IP found')
         }
         $website_port = $website[port]
 
