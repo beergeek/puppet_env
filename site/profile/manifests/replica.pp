@@ -10,6 +10,14 @@ class profile::replica () inherits profile::com {
       require => Class['profile::fw::pre'],
     }
 
+    firewall { '100 allow puppetdb access':
+      dport  => [8081],
+    }
+
+    firewall { '100 allow classifier access':
+      dport  => [4433],
+    }
+
     firewall { '100 allow postgresql access':
       dport  => [5432],
     }
