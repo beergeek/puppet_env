@@ -1,48 +1,33 @@
 class profile::com {
 
-  $manage_hiera   = hiera('profile::com::manage_hiera', true)
-  $hiera_backends = hiera_hash('profile::com::hiera_backends', undef)
+  $enable_firewall = hiera('profile::com::enable_firewall',true)
+  $manage_hiera    = hiera('profile::com::manage_hiera', true)
+  $hiera_backends  = hiera_hash('profile::com::hiera_backends', undef)
   $hiera_hierarchy = hiera_array('profile::com::hiera_hierarchy', undef)
 
-  Firewall {
-    before  => Class['profile::fw::post'],
-    require => Class['profile::fw::pre'],
-  }
+  if $enable_firewall {
+    Firewall {
+      before  => Class['profile::fw::post'],
+      require => Class['profile::fw::pre'],
+    }
 
-  Pe_ini_setting {
-    path    => $::settings::config,
-    section => 'main',
-    notify  => Service['pe-puppetserver'],
-  }
+    firewall { '100 allow puppet access':
+      dport  => [8140],
+      proto  => tcp,
+      action => accept,
+    }
 
-  firewall { '100 allow puppet access':
-    dport  => [8140],
-    proto  => tcp,
-    action => accept,
-  }
+    firewall { '100 allow mco access':
+      dport  => [61613],
+      proto  => tcp,
+      action => accept,
+    }
 
-  firewall { '100 allow mco access':
-    dport  => [61613],
-    proto  => tcp,
-    action => accept,
-  }
-
-  firewall { '100 allow amq access':
-    dport  => [61616],
-    proto  => tcp,
-    action => accept,
-  }
-
-  pe_ini_setting { 'pe_user':
-    ensure  => present,
-    setting => 'user',
-    value   => 'pe-puppet',
-  }
-
-  pe_ini_setting { 'pe_group':
-    ensure  => present,
-    setting => 'group',
-    value   => 'pe-puppet',
+    firewall { '100 allow amq access':
+      dport  => [61616],
+      proto  => tcp,
+      action => accept,
+    }
   }
 
   if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
