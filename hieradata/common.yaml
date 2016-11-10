@@ -14,6 +14,7 @@ variables:
     json:
       datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
   - &manage_heira true
+  - &manage_eyaml false
 
 profile::base::noop_scope: false
 profile::dns::noop_scope: false
@@ -31,6 +32,8 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
 # DNS
 profile::dns::name_servers:
   - 10.0.2.3
+  - 10.240.0.10
+  - 10.240.1.10
 profile::dns::purge: false
 
 # SSH

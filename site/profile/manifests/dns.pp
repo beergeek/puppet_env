@@ -36,7 +36,7 @@ class profile::dns {
 
   case $::kernel {
     'Linux': {
-      $name_servers = hiera('profile::dns::name_servers')
+      $name_servers = hiera('profile::dns::name_servers',undef)
       if has_key($::networking['interfaces'],'enp0s8') {
         $ip = $::networking['interfaces']['enp0s8']['ip']
       } elsif has_key($::networking['interfaces'],'eth1') {
@@ -51,9 +51,11 @@ class profile::dns {
 
       validate_array($name_servers)
 
-      class { '::resolv_conf':
-        domainname  => $::domain,
-        nameservers => $name_servers,
+      if $name_servers {
+        class { '::resolv_conf':
+          domainname  => $::domain,
+          nameservers => $name_servers,
+        }
       }
     }
     'windows': {
