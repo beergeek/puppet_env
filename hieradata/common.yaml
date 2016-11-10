@@ -42,6 +42,8 @@ profile::ssh::banner_content: "This system is the property of Puppet Labs. Unaut
 profile::ssh::allowed_groups:
   - 'root'
   - 'vagrant'
+  - 'centos'
+  - 'ubuntu'
 profile::ssh::options_hash:
   Port: 22
   AcceptEnv: 'LANG LC_*'
@@ -51,6 +53,8 @@ profile::ssh::options_hash:
   Subsystem: 'sftp /usr/libexec/openssh/sftp-server'
   UsePAM: yes
   X11Forwarding: yes
+  RSAAuthentication: yes
+  PubkeyAuthentication: yes
 
 # SUDO
 profile::sudo::sudo_hash:
