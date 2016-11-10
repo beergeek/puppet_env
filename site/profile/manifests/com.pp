@@ -92,13 +92,16 @@ class profile::com {
       }
     }
 
-    file { '/etc/puppetlabs/puppet/hiera.yaml':
-      ensure  => file,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template('profile/hiera.yaml.erb'),
-      notify  => Service['pe-puppetserver'],
+    if defined(Service['pe-puppetserver']) {
+
+      file { '/etc/puppetlabs/puppet/hiera.yaml':
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
+        content => template('profile/hiera.yaml.erb'),
+        notify  => Service['pe-puppetserver'],
+      }
     }
   }
 
