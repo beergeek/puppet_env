@@ -28,7 +28,7 @@ class profile::lb_services::haproxy {
     $listeners.each |String $listener,Hash $listener_values| {
       haproxy::listen { $listener:
         collect_exported => $listener_values['collect_exported'],
-        ipaddress        => $ip_value, 
+        ipaddress        => $check_port, 
         ports            => $listener_values['ports'],
         options          => $listener_values['options'],
       }
