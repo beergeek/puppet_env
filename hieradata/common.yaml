@@ -60,10 +60,10 @@ profile::ssh::options_hash:
 profile::sudo::sudo_hash:
   ubuntu:
     priority: 10
-    content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
+    content: 'ubuntu ALL=(ALL) NOPASSWD: ALL'
   centos:
     priority: 10
-    content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
+    content: '%centos ALL=(ALL) NOPASSWD: ALL'
   vagrant:
     priority: 10
     content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
