@@ -42,12 +42,12 @@ class profile::web_services::apache {
         if $export_host {
           @@host { $site_name:
             ensure => present,
-            ip     => $::networking[interfaces][$port][ip],
+            ip     => $check_port,
           }
         } else {
           host { $site_name:
             ensure => present,
-            ip     => $::networking[interfaces][$port][ip],
+            ip     => $check_port,
           }
         }
         if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website_port}"]) {
