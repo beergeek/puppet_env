@@ -12,16 +12,16 @@ class profile::lb_services::haproxy {
 
   include ::haproxy
 
-  if has_key($::networking['interfaces'],'enp0s8') {
-    $ip_value = $::networking['interfaces']['enp0s8']['ip']
-  } elsif has_key($::networking['interfaces'],'eth1') {
-    $ip_value = $::networking['interfaces']['eth1']['ip']
-  } elsif has_key($::networking['interfaces'],'enp0s3') {
-    $ip_value = $::networking['interfaces']['enp0s3']['ip']
-  } elsif has_key($::networking['interfaces'],'eth0') {
-    $ip_value = $::networking['interfaces']['eth0']['ip']
+  if has_key($::networking['interfaces'], 'eth1') {
+    $check_port = $networking['interfaces']['binding']['eth1']['address']
+  } elsif has_key($::networking['interfaces'], 'eth0') {
+    $check_port = $networking['interfaces']['binding']['eth0']['address']
+  } elsif has_key($::networking['interfaces'], 'enp0s8') {
+    $check_port = $networking['interfaces']['binding']['enp0s8']['ip']
+  } elsif has_key($::networking['interfaces'], 'enp0s3') {
+    $check_port = $networking['interfaces']['binding']['enp0s3']['ip']
   } else {
-    fail("Buggered if I know your IP Address")
+    fail('No IP found')
   }
 
   if $listeners {
