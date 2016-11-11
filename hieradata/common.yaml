@@ -309,3 +309,6 @@ profile::database_services::sqlserver::db_hash:
     password: 'jdfknvkjdfnk))##'
 
 test::test: 'test'
+profile::puppet_users::user_hash:
+  brett:
+    manage_user: true
