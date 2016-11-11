@@ -25,6 +25,10 @@ class profile::replica () inherits profile::com {
     firewall { '100 allow postgresql access':
       dport  => [5432],
     }
+
+    firewall { '100 allow console access':
+      dport   => [443],
+    }
   }
 
 }
