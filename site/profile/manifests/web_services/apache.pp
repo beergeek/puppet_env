@@ -27,13 +27,13 @@ class profile::web_services::apache {
         $_docroot = "/var/www/${website['docroot']}"
 
         if has_key($::networking['interfaces'], 'eth1') {
-          $check_port = $networking['interfaces']['binding']['eth1']['address']
+          $check_port = $networking['interfaces']['bindings']['eth1']['address']
         } elsif has_key($::networking['interfaces'], 'eth0') {
-          $check_port = $networking['interfaces']['binding']['eth0']['address']
+          $check_port = $networking['interfaces']['bindings']['eth0']['address']
         } elsif has_key($::networking['interfaces'], 'enp0s8') {
-          $check_port = $networking['interfaces']['binding']['enp0s8']['ip']
+          $check_port = $networking['interfaces']['bindings']['enp0s8']['ip']
         } elsif has_key($::networking['interfaces'], 'enp0s3') {
-          $check_port = $networking['interfaces']['binding']['enp0s3']['ip']
+          $check_port = $networking['interfaces']['bindings']['enp0s3']['ip']
         } else {
           fail('No IP found')
         }
