@@ -58,7 +58,5 @@ mod 'facecount',
   :git => 'https://github.com/beergeek/facecount.git'
 mod 'prosvs-adviser',
   :git => 'https://github.com/puppetlabs/prosvcs-adviser.git'
-mod 'puppet-profile-parser',
-  :git => 'https://github.com/adrienthebo/puppet-profile-parser.git'
 mod 'module_audit',
   :git => 'https://github.com/puppetlabs/prosvc-module_audit.git'
