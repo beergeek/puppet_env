@@ -19,6 +19,10 @@ class profile::mom {
   }
 
   if $enable_firewall {
+    firewall { '100 allow jmx access':
+      dport   => [9010],
+    }
+
     firewall { '100 allow puppet access':
       dport   => [8140],
     }
