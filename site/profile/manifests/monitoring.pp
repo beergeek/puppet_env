@@ -6,14 +6,28 @@ class profile::monitoring {
     noop()
   }
   if $::kernel == 'Linux' {
-    require epel
-    package { ['nagios-common','nrpe']:
-      ensure => present,
-    }
+    case $::os['family'] {
+      'redhat':{
+        require epel
+        package { ['nagios-common','nrpe']:
+          ensure => present,
+        }
 
-    service { 'nrpe':
-      ensure => running,
-      enable => true,
+        service { 'nrpe':
+          ensure => running,
+          enable => true,
+        }
+      }
+      'debain': {
+        package { 'nagios-nrpe-server':
+          ensure => present,
+        }
+
+        service { 'nagios-nrpe-server':
+          ensure => running,
+          enable => true,
+        }
+      }
     }
 
     firewall { '101 accept NRPE':
