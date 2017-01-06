@@ -56,7 +56,3 @@ mod 'make_noop',
   :git => 'https://github.com/beergeek/make_noop.git'
 mod 'facecount',
   :git => 'https://github.com/beergeek/facecount.git'
-mod 'prosvs-adviser',
-  :git => 'https://github.com/puppetlabs/prosvcs-adviser.git'
-mod 'module_audit',
-  :git => 'https://github.com/puppetlabs/prosvc-module_audit.git'
