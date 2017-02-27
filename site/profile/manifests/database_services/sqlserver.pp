@@ -21,7 +21,6 @@ class profile::database_services::sqlserver {
     dsc_ensure => 'Present',
     dsc_name   => 'Net-Framework-Core',
     dsc_source => $dotnet_src,
-    require    => Service['wuauserv'],
     require    => [Service['wuauserv'],Reboot['pre']],
     notify     => Reboot['right_now'],
   }
