@@ -3,7 +3,9 @@ class profile::base {
   $noop_scope = hiera('profile::base::noop_scope', false)
 
   if $::brownfields and $noop_scope {
-    noop()
+    noop(true)
+  } else {
+    noop(false)
   }
 
   case $::kernel {
@@ -19,12 +21,11 @@ class profile::base {
       }
 
       if $enable_firewall {
-        class { 'firewall':
-        }
-        class {['profile::fw::pre','profile::fw::post']:
-        }
+        include ::firewall
+        include profile::fw::pre
+        include profile::fw::post
       } else {
-        class { 'firewall':
+        class { '::firewall':
           ensure => stopped,
         }
       }
@@ -52,25 +53,25 @@ class profile::base {
       }
 
       # repo management
-      class { 'profile::repos': }
+      include profile::repos
 
       # monitoring
-      class { 'profile::monitoring': }
+      include profile::monitoring
 
       # manage time, timezones, and locale
-      class { 'profile::time_locale': }
+      include profile::time_locale
 
       # manage SSH
-      class { 'profile::ssh': }
+      include profile::ssh
 
       # manage SUDO
-      class { 'profile::sudo': }
+      include profile::sudo
 
       # manage logging
-      #class { 'profile::logging': }
+      #include profile::logging
 
       # manage DNS stuff
-      class { 'profile::dns': }
+      include profile::dns
 
       if $mco_client_array {
         $mco_client_array.each |$cert_title| {
@@ -123,7 +124,7 @@ class profile::base {
       }
 
       # monitoring
-      class { 'profile::monitoring': }
+      include profile::monitoring
 
       file { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         ensure => directory,
