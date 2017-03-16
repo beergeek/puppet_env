@@ -4,7 +4,7 @@ class profile::database_services::sqlserver {
   $sql_passwd  = hiera('profile::database_services::sql_passwd')
   $sql_version = hiera('profile::database_services::sql_version','MSSQL12')
   $sql_user    = hiera('profile::database_services::sql_user')
-  $dotnet_src  = hiera('profile::database_services::dotnet_src','C:\vagrant\sxs')
+  $dotnet_src  = hiera('profile::database_services::dotnet_src','C:\vagrant\sxs\')
   $db_hash     = hiera_hash('profile::database_services::sqlserver::db_hash')
 
   reboot { 'pre':
