@@ -1,10 +1,10 @@
-class profile::com {
-
-  $enable_firewall = hiera('profile::com::enable_firewall',true)
-  $manage_hiera    = hiera('profile::com::manage_hiera', true)
-  $hiera_backends  = hiera_hash('profile::com::hiera_backends', undef)
-  $hiera_hierarchy = hiera_array('profile::com::hiera_hierarchy', undef)
-  $manage_eyaml    = hiera('profile::com::manage_eyaml', false)
+class profile::com (
+  Boolean $enable_firewall          => true,
+  Boolean $manage_hiera             => true,
+  Optional[Hash] $hiera_backends    => undef,
+  Optional[Array] $hiera_hierarchy  => undef,
+  Boolean $manage_eyaml             => false,
+) {
   if has_key($::networking['interfaces'],'enp0s8') {
     $ip = $::networking['interfaces']['enp0s8']['ip']
   } elsif has_key($::networking['interfaces'],'eth1') {

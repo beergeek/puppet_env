@@ -1,6 +1,12 @@
-class profile::base {
-
-  $noop_scope = hiera('profile::base::noop_scope', false)
+class profile::base (
+  Hash $sysctl_settings,
+  Hash $sysctl_defaults,
+  String $wsus_server,
+  String $wsus_server_port,
+  Boolean $noop_scope               => false,
+  Boolean $enable_firewall          => true,
+  Optional[Hash] $mco_client_array  => undef,
+) {
 
   if $::brownfields and $noop_scope {
     noop(true)
@@ -10,10 +16,6 @@ class profile::base {
 
   case $::kernel {
     'linux': {
-      $sysctl_settings  = hiera('profile::base::sysctl_settings')
-      $sysctl_defaults  = hiera('profile::base::sysctl_defaults')
-      $mco_client_array = hiera_array('profile::base::mco_client_array', undef)
-      $enable_firewall  = hiera('profile::base::enable_firewall',true)
 
       Firewall {
         before  => Class['profile::fw::post'],
@@ -93,9 +95,6 @@ class profile::base {
       }
     }
     'windows': {
-
-      $wsus_server      = hiera('profile::base::wsus_server')
-      $wsus_server_port = hiera('profile::base::wsus_server_port')
 
       include chocolatey
       Class['chocolatey'] -> Package<||>

@@ -1,9 +1,8 @@
-class profile::web_services::iis {
-
-  # Lookup website information and load balancer
-  $website_hash = hiera('profile::web_services::iis::website_hash',undef)
-  $lb           = hiera('profile::web_services::iis::lb',true)
-  $export_host  = hiera('profile::web_services::iis::export_host', false)
+class profile::web_services::iis (
+  Optional[Hash] $website_hash => undef,
+  Boolean $lb                  => true,
+  Boolean $export_host         => false,
+) {
 
 
   require ::iis

@@ -1,8 +1,8 @@
-class profile::database_services::mysql {
-
-  $db_hash     = hiera_hash('profile::database_services::mysql::db_hash')
-  $db_defaults = hiera('profile::database_services::mysql::db_defaults')
-  $enable_firewall = hiera('profile::database_services::mysql::enable_firewall')
+class profile::database_services::mysql (
+  Hash $db_hash,
+  Hash $db_defaults,
+  Boolean $enable_firewall => true,
+) {
 
   class { '::mysql::server':
     override_options => {

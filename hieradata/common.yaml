@@ -71,13 +71,15 @@ profile::sudo::sudo_purge: true
 profile::sudo::sudo_replace_config: true
 
 # LOGGING
-profile::logging::log_local: true
-profile::logging::port: 514
-profile::logging::remote_servers: false
-profile::logging::remote_type: 'tcp'
-profile::logging::rotate: 10
-profile::logging::rotate_every: 'day'
-profile::logging::size: '200k'
+profile::logging::rsyslog_data:
+  log_local: true
+  port: 514
+  remote_servers: false
+  remote_type: 'tcp'
+profile::logging::logrotate_client_data:
+  rotate: 10
+  rotate_every: 'day'
+  size: '200k'
 
 # COM
 profile::com::manage_hiera: *manage_heira

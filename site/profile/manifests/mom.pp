@@ -1,10 +1,10 @@
-class profile::mom {
-
-  $manage_hiera         = hiera('profile::mom::manage_hiera', true)
-  $hiera_backends       = hiera_hash('profile::mom::hiera_backends', undef)
-  $hiera_hierarchy      = hiera_array('profile::mom::hiera_hierarchy', undef)
-  $enable_firewall      = hiera('profile::mom::enable_firewall',true)
-  $manage_eyaml         = hiera('profile::mom::manage_eyaml', false)
+class profile::mom (
+  Boolean $manage_hiera             => true,
+  Optional[Hash] $hiera_backends    => undef,
+  Optional[Array] $hiera_hierarchy  => undef,
+  Boolean $enable_firewall          => true,
+  Boolean $manage_eyaml             => false,
+) {
 
   Firewall {
     proto  => tcp,

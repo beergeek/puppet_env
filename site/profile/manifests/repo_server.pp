@@ -1,7 +1,7 @@
-class profile::repo_server {
-
-  $repo_data      = hiera_hash('profile::repo_server::repo_data')
-  $repo_defaults  = hiera('profile::repo_server::repo_defaults')
+class profile::repo_server (
+  Hash $repo_data,
+  Hash $repo_defaults,
+) {
 
   include profile::web_services
 

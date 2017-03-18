@@ -1,9 +1,9 @@
-class profile::lb_services::haproxy {
-
-  $listeners        = hiera('profile::lb_services::haproxy::listeners',undef)
-  $enable_firewall  = hiera('profile::lb_services::haproxy::enable_firewall')
-  $frontends        = hiera('profile::lb_services::haproxy::frontends',undef)
-  $backends         = hiera('profile::lb_services::haproxy::backends',undef)
+class profile::lb_services::haproxy (
+  Optional[Hash] $listeners => undef,
+  Boolean $enable_firewall  => true,
+  Optional[Hash] $frontends => undef,
+  Optional[Hash] $backends  => undef,
+) {
 
   Firewall {
     before  => Class['profile::fw::post'],

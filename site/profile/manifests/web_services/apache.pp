@@ -1,10 +1,10 @@
-class profile::web_services::apache {
-
-  $website_hash 	    = hiera('profile::web_services::apache::website_hash',undef)
-  $website_defaults 	= hiera('profile::web_services::apache::website_defaults')
-  $enable_firewall    = hiera('profile::web_services::apache::enable_firewall')
-  $lb                 = hiera('profile::web_services::apache::lb',true)
-  $export_host        = hiera('profile::web_services::apache::export_host',false)
+class profile::web_services::apache (
+  Hash $website_defaults,
+  Boolean $enable_firewall     => true,
+  Optional[Hash] $website_hash => undef,
+  Boolean $lb                  => true,
+  Boolean $export_host         => false,
+) {
 
   include ::apache
   include ::apache::mod::php

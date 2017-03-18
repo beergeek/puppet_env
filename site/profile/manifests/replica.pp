@@ -1,6 +1,6 @@
-class profile::replica () inherits profile::com {
-
-  $enable_firewall = hiera('profile::replica::enable_firewall',true)
+class profile::replica (
+  Boolean $enable_firewall => true,
+) inherits profile::com {
 
   if $enable_firewall {
     Firewall {

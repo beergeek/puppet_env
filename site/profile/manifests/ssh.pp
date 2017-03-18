@@ -1,38 +1,10 @@
-# == Class: profile::ssh
-#
-# Class to call other profile to manage all the ssh requirements
-#
-# === Variables
-#
-# All variables from Hiera with no defaults
-#
-# [*allowed_groups*]
-#   List of groups allowed.
-#
-# [*banner_content*]
-#   Content of banner file.
-#
-# [*enable_firewall*]
-#   Boolean to determine if firewall settings are required.
-#
-# [*options_hash*]
-#   Hash of options for sshd_config.
-#
-# === Authors
-#
-# Brett Gray <brett.gray@puppetlabs.com>
-#
-# === Copyright
-#
-# Copyright 2014 Puppet Labs, unless otherwise noted.
-#
-class profile::ssh {
-
-  $allowed_groups   = hiera_array('profile::ssh::allowed_groups')
-  $banner_content   = hiera('profile::ssh::banner_content')
-  $enable_firewall  = hiera('profile::ssh::enable_firewall')
-  $options_hash     = hiera_hash('profile::ssh::options_hash')
-  $noop_scope       = hiera('profile::ssh::noop_scope', false)
+class profile::ssh (
+  Array $allowed_groups,
+  String $banner_content,
+  Boolean $enable_firewall,
+  Hash $options_hash,
+  Boolean $noop_scope => false,
+) {
 
   if $::brownfields and $noop_scope {
     noop()

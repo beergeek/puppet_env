@@ -1,6 +1,6 @@
-class profile::monitoring {
-
-  $noop_scope = hiera('profile::monitoring::noop_scope', false)
+class profile::monitoring (
+  Boolean $noop_scope => false,
+) {
 
   if $::brownfields and $noop_scope {
     noop()

@@ -1,31 +1,7 @@
-# == Class: profile::dns
-#
-# Class to manage all the dns requirements
-#
-#
-# === Variables
-#
-# All variables from Hiera with no defaults
-#
-# [*name_servers*]
-#   Array of name servers for /etc/resolv.conf.
-#
-# [*purge*]
-#   Boolean value to determine if unmanaged host entries are purged.
-#   Default: false
-#
-# === Authors
-#
-# Brett Gray <brett.gray@puppetlabs.com>
-#
-# === Copyright
-#
-# Copyright 2015 Puppet Labs, unless otherwise noted.
-#
-class profile::dns {
-
-  $purge        = hiera('profile::dns::purge', false)
-  $noop_scope = hiera('profile::dns::noop_scope', false)
+class profile::dns (
+  Boolean $purge      => false,
+  Boolean $noop_scope => false,
+) {
 
   validate_bool($purge)
   validate_bool($noop_scope)
