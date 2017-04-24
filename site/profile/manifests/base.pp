@@ -5,7 +5,7 @@ class profile::base (
   String $wsus_server_port,
   Boolean $noop_scope               = false,
   Boolean $enable_firewall          = true,
-  Optional[Hash] $mco_client_array  = undef,
+  Optional[Array] $mco_client_array  = undef,
 ) {
 
   if $::brownfields and $noop_scope {
