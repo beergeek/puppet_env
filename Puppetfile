@@ -41,7 +41,7 @@ mod "saz/rsyslog", "3.5.1"
 mod "saz/sudo", "3.1.0"
 mod "saz/timezone", "3.3.0"
 mod "stahnma/epel"
-mod "trlinkin/noop", "0.0.2"
+mod "trlinkin/noop", "0.1.0"
 mod "puppetlabs/sqlserver"
 mod "beergeek/iis", "0.1.9"
 
