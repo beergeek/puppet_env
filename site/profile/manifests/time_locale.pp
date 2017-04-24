@@ -3,7 +3,7 @@ class profile::time_locale (
   String $timezone,
   String $locale_rhel,
   String $locale_deb,
-  String $lang_pack,
+  Array $lang_pack,
   Boolean $noop_scope = false,
 ) {
 
