@@ -7,8 +7,6 @@ class profile::time_locale (
   Boolean $noop_scope = false,
 ) {
 
-  validate_bool($noop_scope)
-
   if (!$::fully_enabled) and $noop_scope {
     noop()
   }
