@@ -3,9 +3,9 @@ class profile::base (
   Hash $sysctl_defaults,
   String $wsus_server,
   String $wsus_server_port,
-  Boolean $noop_scope               => false,
-  Boolean $enable_firewall          => true,
-  Optional[Hash] $mco_client_array  => undef,
+  Boolean $noop_scope               = false,
+  Boolean $enable_firewall          = true,
+  Optional[Hash] $mco_client_array  = undef,
 ) {
 
   if $::brownfields and $noop_scope {
