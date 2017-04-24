@@ -4,7 +4,7 @@ class profile::time_locale (
   String $locale_rhel,
   String $locale_deb,
   String $lang_pack,
-  Boolean $noop_scope => false,
+  Boolean $noop_scope = false,
 ) {
 
   validate_bool($noop_scope)

@@ -1,9 +1,9 @@
 class profile::com (
-  Boolean $enable_firewall          => true,
-  Boolean $manage_hiera             => true,
-  Optional[Hash] $hiera_backends    => undef,
-  Optional[Array] $hiera_hierarchy  => undef,
-  Boolean $manage_eyaml             => false,
+  Boolean $enable_firewall          = true,
+  Boolean $manage_hiera             = true,
+  Optional[Hash] $hiera_backends    = undef,
+  Optional[Array] $hiera_hierarchy  = undef,
+  Boolean $manage_eyaml             = false,
 ) {
   if has_key($::networking['interfaces'],'enp0s8') {
     $ip = $::networking['interfaces']['enp0s8']['ip']

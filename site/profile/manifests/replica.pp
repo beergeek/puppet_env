@@ -1,5 +1,5 @@
 class profile::replica (
-  Boolean $enable_firewall => true,
+  Boolean $enable_firewall = true,
 ) inherits profile::com {
 
   if $enable_firewall {

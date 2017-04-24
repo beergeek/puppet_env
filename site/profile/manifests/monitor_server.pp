@@ -1,5 +1,5 @@
 class profile::monitor_server (
-  Boolean $enable_firewall => true,
+  Boolean $enable_firewall = true,
 ) {
 
   if $::osfamily != 'redhat' {

@@ -1,5 +1,5 @@
 class profile::monitoring (
-  Boolean $noop_scope => false,
+  Boolean $noop_scope = false,
 ) {
 
   if $::brownfields and $noop_scope {

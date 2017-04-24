@@ -1,8 +1,8 @@
 class profile::repos (
-  Optional[Hash] $repo_hash          => undef,
-  Optional[Hash] $repo_default_hash  => undef,
-  Boolean $collect_repos             => true,
-  Boolean $noop_scope                => false,
+  Optional[Hash] $repo_hash          = undef,
+  Optional[Hash] $repo_default_hash  = undef,
+  Boolean $collect_repos             = true,
+  Boolean $noop_scope                = false,
 ) {
 
   if $::brownfields and $noop_scope {

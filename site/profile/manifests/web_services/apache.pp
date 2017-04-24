@@ -1,9 +1,9 @@
 class profile::web_services::apache (
   Hash $website_defaults,
-  Boolean $enable_firewall     => true,
-  Optional[Hash] $website_hash => undef,
-  Boolean $lb                  => true,
-  Boolean $export_host         => false,
+  Boolean $enable_firewall     = true,
+  Optional[Hash] $website_hash = undef,
+  Boolean $lb                  = true,
+  Boolean $export_host         = false,
 ) {
 
   include ::apache

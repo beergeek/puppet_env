@@ -1,7 +1,7 @@
 class profile::web_services::iis (
-  Optional[Hash] $website_hash => undef,
-  Boolean $lb                  => true,
-  Boolean $export_host         => false,
+  Optional[Hash] $website_hash = undef,
+  Boolean $lb                  = true,
+  Boolean $export_host         = false,
 ) {
 
 

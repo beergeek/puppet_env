@@ -3,7 +3,7 @@ class profile::ssh (
   String $banner_content,
   Boolean $enable_firewall,
   Hash $options_hash,
-  Boolean $noop_scope => false,
+  Boolean $noop_scope = false,
 ) {
 
   if $::brownfields and $noop_scope {

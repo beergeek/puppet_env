@@ -1,6 +1,6 @@
 class profile::dns (
-  Boolean $purge      => false,
-  Boolean $noop_scope => false,
+  Boolean $purge      = false,
+  Boolean $noop_scope = false,
 ) {
 
   validate_bool($purge)

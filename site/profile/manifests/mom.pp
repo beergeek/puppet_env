@@ -1,9 +1,9 @@
 class profile::mom (
-  Boolean $manage_hiera             => true,
-  Optional[Hash] $hiera_backends    => undef,
-  Optional[Array] $hiera_hierarchy  => undef,
-  Boolean $enable_firewall          => true,
-  Boolean $manage_eyaml             => false,
+  Boolean $manage_hiera             = true,
+  Optional[Hash] $hiera_backends    = undef,
+  Optional[Array] $hiera_hierarchy  = undef,
+  Boolean $enable_firewall          = true,
+  Boolean $manage_eyaml             = false,
 ) {
 
   Firewall {

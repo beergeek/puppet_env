@@ -1,7 +1,7 @@
 class profile::database_services::mysql (
   Hash $db_hash,
   Hash $db_defaults,
-  Boolean $enable_firewall => true,
+  Boolean $enable_firewall = true,
 ) {
 
   class { '::mysql::server':

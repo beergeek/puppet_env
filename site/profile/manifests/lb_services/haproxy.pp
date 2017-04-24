@@ -1,8 +1,8 @@
 class profile::lb_services::haproxy (
-  Optional[Hash] $listeners => undef,
-  Boolean $enable_firewall  => true,
-  Optional[Hash] $frontends => undef,
-  Optional[Hash] $backends  => undef,
+  Optional[Hash] $listeners = undef,
+  Boolean $enable_firewall  = true,
+  Optional[Hash] $frontends = undef,
+  Optional[Hash] $backends  = undef,
 ) {
 
   Firewall {
