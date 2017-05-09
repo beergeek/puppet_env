@@ -6,7 +6,9 @@ class profile::web_services::apache (
   Boolean $export_host         = false,
 ) {
 
-  include ::apache
+  class { '::apache':
+    default_mods => false,
+  }
   if $::os['family'] == 'debian' {
     include ::apache::mod::prefork
   }
