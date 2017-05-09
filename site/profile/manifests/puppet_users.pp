@@ -1,9 +1,9 @@
-class profile::puppet_users {
+class profile::puppet_users (
+  $user_hash,
+) {
 
   # just skip over if not Linux
   if $::kernel == 'Linux' {
-
-    $user_hash = hiera_hash('profile::puppet_users::user_hash')
 
     $user_hash.each |$user_key, $user_values| {
       if $user_values['manage_user'] == true {

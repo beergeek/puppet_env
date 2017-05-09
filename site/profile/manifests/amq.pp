@@ -1,6 +1,7 @@
-class profile::amq {
+class profile::amq (
+  $enable_firewall = true,
+) {
 
-  $enable_firewall = hiera('profile::com::enable_firewall',true)
   if has_key($::networking['interfaces'],'enp0s8') {
     $ip = $::networking['interfaces']['enp0s8']['ip']
   } elsif has_key($::networking['interfaces'],'eth1') {

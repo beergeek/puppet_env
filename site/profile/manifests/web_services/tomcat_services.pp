@@ -1,6 +1,6 @@
-class profile::tomcat_services {
-
-  $tomcat_servers = hiera('profile::tomcat_services::tomcat_servers')
+class profile::tomcat_services (
+  $tomcat_servers,
+) {
 
   class { 'tomcat': }
 
@@ -10,11 +10,3 @@ class profile::tomcat_services {
     }
   }
 }
-
-profile::tomcat_services::tomcat_servers:
-  'one':
-    catalina_base: '/opt/catalina/one'
-    port: '8080'
-  'two':
-    catalina_base: '/opt/catalina/two'
-    port: '8081'
