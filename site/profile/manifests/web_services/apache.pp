@@ -8,9 +8,7 @@ class profile::web_services::apache (
 
   class { '::apache':
     default_mods => false,
-  }
-  if $::os['family'] == 'debian' {
-    include ::apache::mod::prefork
+    mpm_module   => 'prefork',
   }
   include ::apache::mod::php
   include ::apache::mod::ssl
