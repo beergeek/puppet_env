@@ -7,6 +7,9 @@ class profile::web_services::apache (
 ) {
 
   include ::apache
+  if $::os['family'] == 'debian' {
+    include ::apache::mod::prefrok
+  }
   include ::apache::mod::php
   include ::apache::mod::ssl
   include app_update
