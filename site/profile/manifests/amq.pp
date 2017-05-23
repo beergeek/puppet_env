@@ -1,5 +1,5 @@
 class profile::amq (
-  Boolean enable_firewall = true
+  Boolean $enable_firewall = true
 ) {
 
   if has_key($facts['networking']['interfaces'],'enp0s8') {
