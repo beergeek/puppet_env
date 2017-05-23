@@ -3,6 +3,7 @@ class profile::repo_server (
   Hash $repo_defaults,
 ) {
 
+  include ::apache::mod::authn_file
   $repo_data.each |String $repo_name, Hash $repo_hash| {
     @@yumrepo { $repo_name:
       * => $repo_hash;
