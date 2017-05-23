@@ -1,0 +1,39 @@
+# Classes to be tested
+classes:
+  - role::amq_broker
+  - role::com_server
+  - role::db_server
+  - role::load_balancer
+  - role::mom_server
+  - role::monitor_server
+  - role::replica
+  - role::web_server
+
+# Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
+# depending on weather you are running 'spec' or 'acceptance' tests
+nodes:
+  - CentOS-6.6-64
+  - CentOS-7.0-64
+
+# You can group classes here to save typing
+#class_groups:
+
+shared_examples:
+  - test_linux
+
+# You can group nodes here to save typing
+# We have created a 'non_windows_nodes' group because we can't
+# give you Windows vagrant boxes to test with because licensing,
+# we can give you fact sets though so go crazy with spec testing!
+#node_groups:
+
+test_matrix:
+  - all_nodes:
+      classes: 'all_classes'
+      tests: 'spec'
+
+functions:
+  puppetdb_query:
+    type: rvalue
+    returns:
+      - 'count': '1'

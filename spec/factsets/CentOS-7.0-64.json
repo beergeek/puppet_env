@@ -1,0 +1,482 @@
+{
+  "name": "agent0",
+  "values": {
+    "aio_agent_build": "1.8.1",
+    "aio_agent_version": "1.8.1",
+    "apache_version": "2.4.6",
+    "architecture": "x86_64",
+    "augeas": {
+      "version": "1.4.0"
+    },
+    "augeasversion": "1.4.0",
+    "bios_release_date": "04/01/2014",
+    "bios_vendor": "SeaBIOS",
+    "bios_version": "1.9.1-5.el7",
+    "blockdevice_vda_size": 34359738368,
+    "blockdevice_vda_vendor": "0x1af4",
+    "blockdevices": "vda",
+    "chassistype": "Other",
+    "dhcp_servers": {
+      "eth0": "192.168.0.1",
+      "system": "192.168.0.1"
+    },
+    "disks": {
+      "vda": {
+        "size": "32.00 GiB",
+        "size_bytes": 34359738368,
+        "vendor": "0x1af4"
+      }
+    },
+    "dmi": {
+      "bios": {
+        "release_date": "04/01/2014",
+        "vendor": "SeaBIOS",
+        "version": "1.9.1-5.el7"
+      },
+      "chassis": {
+        "type": "Other"
+      },
+      "manufacturer": "Fedora Project",
+      "product": {
+        "name": "OpenStack Nova",
+        "serial_number": "eeda805d-c7e4-4eea-8f2e-da428547637a",
+        "uuid": "D5B9F0EC-4BF4-3A44-BB08-45BF5DDF52B5"
+      }
+    },
+    "domain": "puppet.vm",
+    "ec2_metadata": {
+      "ami-id": "ami-00000007",
+      "ami-launch-index": "0",
+      "ami-manifest-path": "FIXME",
+      "block-device-mapping": {
+        "ami": "vda",
+        "root": "/dev/vda"
+      },
+      "hostname": "agent0",
+      "instance-action": "none",
+      "instance-id": "i-0012c249",
+      "instance-type": "d1.small",
+      "local-hostname": "agent0",
+      "local-ipv4": "192.168.0.13",
+      "placement": {
+        "availability-zone": "opdx1"
+      },
+      "public-hostname": "agent0",
+      "public-ipv4": "10.32.170.207",
+      "public-keys": {
+        "0": {
+          "openssh-key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpiJZtBrBCeDKIsQWBspE56sjkGpZFTAr3j3hj7+HoYzaBLdYd1SHqwLv3MPftyWZyBHFjcDWrsqh4H+jVsRqjiGH8LFHwPeyH7NNm7OtDLJo+allX0+K8wTmSXzXpWDZk0Z7cEKfiEyAJQUFyWLBLfD9ikryFDX/urjHyXPrWrH1IaRWpOHABT+9Qq74Lbm1pPqWDmLUhVHARzsDZyiS1fD/oDWmZnX1KW6Pys+OjrOgO0eZfMhSzWnSyy8XuGO7VARvZGvjJ60ndFbIQMEypR+FyY98LXOfSLvmqS6lEjMjWH0zF5E9iMhimDFEJiK+GUXJu8TdNPHZrdi9zkABh Generated-by-Nova"
+        }
+      },
+      "reservation-id": "r-fm3ldwzf",
+      "security-groups": "sg0"
+    },
+    "ec2_userdata": "#!/bin/bash\n#\necho \"192.168.0.8 lb.localdomain lb\" >> /etc/hosts\nmkdir -p /etc/puppetlabs/puppet\ncat <<EOF> /etc/puppetlabs/puppet/csr_attributes.yaml\n---\n  extension_requests:\n    pp_role: web_server\nEOF\ncurl -sk https://mom.localdomain:8140/packages/current/install.bash | /bin/bash",
+    "env_temp_variable": "\\tmp",
+    "facterversion": "3.5.0",
+    "filesystems": "xfs",
+    "fqdn": "agent0.localdomain",
+    "gemhome": "/opt/puppetlabs/puppet/lib/ruby/gems/2.1.0",
+    "gid": "root",
+    "git_exec_path": "/usr/libexec/git-core",
+    "git_html_path": "/usr/share/doc/git-1.8.3.1",
+    "git_version": "1.8.3.1",
+    "hardwareisa": "x86_64",
+    "hardwaremodel": "x86_64",
+    "hostname": "agent0",
+    "id": "root",
+    "identity": {
+      "gid": 0,
+      "group": "root",
+      "privileged": true,
+      "uid": 0,
+      "user": "root"
+    },
+    "interfaces": "eth0,lo",
+    "ip6tables_version": "1.4.21",
+    "ipaddress": "192.168.0.13",
+    "ipaddress6": "fe80::f816:3eff:fec9:47f",
+    "ipaddress6_eth0": "fe80::f816:3eff:fec9:47f",
+    "ipaddress6_lo": "::1",
+    "ipaddress_eth0": "192.168.0.13",
+    "ipaddress_lo": "127.0.0.1",
+    "iptables_version": "1.4.21",
+    "is_pe": false,
+    "is_virtual": true,
+    "kernel": "Linux",
+    "kernelmajversion": "3.10",
+    "kernelrelease": "3.10.0-327.el7.x86_64",
+    "kernelversion": "3.10.0",
+    "load_averages": {
+      "15m": 0.07,
+      "1m": 0.36,
+      "5m": 0.09
+    },
+    "macaddress": "fa:16:3e:c9:04:7f",
+    "macaddress_eth0": "fa:16:3e:c9:04:7f",
+    "manufacturer": "Fedora Project",
+    "mco_client_config": "/etc/puppetlabs/mcollective/client.cfg",
+    "mco_client_settings": {
+      "libdir": "/opt/puppetlabs/mcollective/plugins:/usr/share/mcollective/plugins:/usr/libexec/mcollective"
+    },
+    "mco_confdir": "/etc/mcollective/etc",
+    "mco_server_config": "/etc/puppetlabs/mcollective/server.cfg",
+    "mco_server_settings": {
+      "plugin.yaml": "/etc/puppetlabs/mcollective/facts.yaml",
+      "libdir": "/opt/puppet/libexec/mcollective:/opt/puppetlabs/mcollective/plugins"
+    },
+    "memory": {
+      "system": {
+        "available": "647.76 MiB",
+        "available_bytes": 679227392,
+        "capacity": "34.76%",
+        "total": "992.95 MiB",
+        "total_bytes": 1041182720,
+        "used": "345.19 MiB",
+        "used_bytes": 361955328
+      }
+    },
+    "memoryfree": "647.76 MiB",
+    "memoryfree_mb": 647.76171875,
+    "memorysize": "992.95 MiB",
+    "memorysize_mb": 992.94921875,
+    "mountpoints": {
+      "/": {
+        "available": "30.73 GiB",
+        "available_bytes": 32998805504,
+        "capacity": "3.92%",
+        "device": "/dev/vda1",
+        "filesystem": "xfs",
+        "options": [
+          "rw",
+          "seclabel",
+          "relatime",
+          "attr2",
+          "inode64",
+          "noquota"
+        ],
+        "size": "31.99 GiB",
+        "size_bytes": 34345459712,
+        "used": "1.25 GiB",
+        "used_bytes": 1346654208
+      },
+      "/dev/shm": {
+        "available": "496.47 MiB",
+        "available_bytes": 520589312,
+        "capacity": "0%",
+        "device": "tmpfs",
+        "filesystem": "tmpfs",
+        "options": [
+          "rw",
+          "seclabel",
+          "nosuid",
+          "nodev"
+        ],
+        "size": "496.47 MiB",
+        "size_bytes": 520589312,
+        "used": "0 bytes",
+        "used_bytes": 0
+      },
+      "/run": {
+        "available": "440.33 MiB",
+        "available_bytes": 461717504,
+        "capacity": "11.31%",
+        "device": "tmpfs",
+        "filesystem": "tmpfs",
+        "options": [
+          "rw",
+          "seclabel",
+          "nosuid",
+          "nodev",
+          "mode=755"
+        ],
+        "size": "496.47 MiB",
+        "size_bytes": 520589312,
+        "used": "56.14 MiB",
+        "used_bytes": 58871808
+      },
+      "/run/user/1000": {
+        "available": "99.30 MiB",
+        "available_bytes": 104120320,
+        "capacity": "0%",
+        "device": "tmpfs",
+        "filesystem": "tmpfs",
+        "options": [
+          "rw",
+          "seclabel",
+          "nosuid",
+          "nodev",
+          "relatime",
+          "size=101680k",
+          "mode=700",
+          "uid=1000",
+          "gid=1000"
+        ],
+        "size": "99.30 MiB",
+        "size_bytes": 104120320,
+        "used": "0 bytes",
+        "used_bytes": 0
+      },
+      "/sys/fs/cgroup": {
+        "available": "496.47 MiB",
+        "available_bytes": 520589312,
+        "capacity": "0%",
+        "device": "tmpfs",
+        "filesystem": "tmpfs",
+        "options": [
+          "ro",
+          "seclabel",
+          "nosuid",
+          "nodev",
+          "noexec",
+          "mode=755"
+        ],
+        "size": "496.47 MiB",
+        "size_bytes": 520589312,
+        "used": "0 bytes",
+        "used_bytes": 0
+      }
+    },
+    "mtu_eth0": 1500,
+    "mtu_lo": 65536,
+    "mysql_server_id": 268821631359,
+    "netmask": "255.255.255.0",
+    "netmask6": "ffff:ffff:ffff:ffff::",
+    "netmask6_eth0": "ffff:ffff:ffff:ffff::",
+    "netmask6_lo": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+    "netmask_eth0": "255.255.255.0",
+    "netmask_lo": "255.0.0.0",
+    "network": "192.168.0.0",
+    "network6": "fe80::",
+    "network6_eth0": "fe80::",
+    "network6_lo": "::1",
+    "network_eth0": "192.168.0.0",
+    "network_lo": "127.0.0.0",
+    "networking": {
+      "dhcp": "192.168.0.1",
+      "domain": "localdomain",
+      "fqdn": "agent0.localdomain",
+      "hostname": "agent0",
+      "interfaces": {
+        "eth0": {
+          "bindings": [
+            {
+              "address": "192.168.0.13",
+              "netmask": "255.255.255.0",
+              "network": "192.168.0.0"
+            }
+          ],
+          "bindings6": [
+            {
+              "address": "fe80::f816:3eff:fec9:47f",
+              "netmask": "ffff:ffff:ffff:ffff::",
+              "network": "fe80::"
+            }
+          ],
+          "dhcp": "192.168.0.1",
+          "ip": "192.168.0.13",
+          "ip6": "fe80::f816:3eff:fec9:47f",
+          "mac": "fa:16:3e:c9:04:7f",
+          "mtu": 1500,
+          "netmask": "255.255.255.0",
+          "netmask6": "ffff:ffff:ffff:ffff::",
+          "network": "192.168.0.0",
+          "network6": "fe80::"
+        },
+        "lo": {
+          "bindings": [
+            {
+              "address": "127.0.0.1",
+              "netmask": "255.0.0.0",
+              "network": "127.0.0.0"
+            }
+          ],
+          "bindings6": [
+            {
+              "address": "::1",
+              "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+              "network": "::1"
+            }
+          ],
+          "ip": "127.0.0.1",
+          "ip6": "::1",
+          "mtu": 65536,
+          "netmask": "255.0.0.0",
+          "netmask6": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+          "network": "127.0.0.0",
+          "network6": "::1"
+        }
+      },
+      "ip": "192.168.0.13",
+      "ip6": "fe80::f816:3eff:fec9:47f",
+      "mac": "fa:16:3e:c9:04:7f",
+      "mtu": 1500,
+      "netmask": "255.255.255.0",
+      "netmask6": "ffff:ffff:ffff:ffff::",
+      "network": "192.168.0.0",
+      "network6": "fe80::",
+      "primary": "eth0"
+    },
+    "node_count": "Available on Puppet Master/MoM only",
+    "operatingsystem": "CentOS",
+    "operatingsystemmajrelease": "7",
+    "operatingsystemrelease": "7.2.1511",
+    "os": {
+      "architecture": "x86_64",
+      "family": "RedHat",
+      "hardware": "x86_64",
+      "name": "CentOS",
+      "release": {
+        "full": "7.2.1511",
+        "major": "7",
+        "minor": "2"
+      },
+      "selinux": {
+        "config_mode": "enforcing",
+        "config_policy": "targeted",
+        "current_mode": "enforcing",
+        "enabled": true,
+        "enforced": true,
+        "policy_version": "28"
+      }
+    },
+    "osfamily": "RedHat",
+    "package_provider": "yum",
+    "partitions": {
+      "/dev/vda1": {
+        "filesystem": "xfs",
+        "mount": "/",
+        "size": "32.00 GiB",
+        "size_bytes": 34355945984,
+        "uuid": "fc1bfc5d-a5d1-4c3c-afda-167500654723"
+      }
+    },
+    "path": "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin:/root/bin",
+    "pe_concat_basedir": "/opt/puppetlabs/puppet/cache/pe_concat",
+    "pe_razor_server_version": "package pe-razor-server is not installed",
+    "physicalprocessorcount": 1,
+    "platform_symlink_writable": true,
+    "platform_tag": "el-7-x86_64",
+    "processor0": "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz",
+    "processorcount": 1,
+    "processors": {
+      "count": 1,
+      "isa": "x86_64",
+      "models": [
+        "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz"
+      ],
+      "physicalcount": 1
+    },
+    "productname": "OpenStack Nova",
+    "puppet_agent_pid": 30328,
+    "puppet_client_datadir": "/opt/puppetlabs/puppet/cache/client_data",
+    "puppet_confdir": "/etc/puppetlabs/puppet",
+    "puppet_config": "/etc/puppetlabs/puppet/puppet.conf",
+    "puppet_files_dir_present": false,
+    "puppet_master_server": "lb.localdomain",
+    "puppet_ssldir": "/etc/puppetlabs/puppet/ssl",
+    "puppet_sslpaths": {
+      "privatedir": {
+        "path": "/etc/puppetlabs/puppet/ssl/private",
+        "path_exists": true
+      },
+      "privatekeydir": {
+        "path": "/etc/puppetlabs/puppet/ssl/private_keys",
+        "path_exists": true
+      },
+      "publickeydir": {
+        "path": "/etc/puppetlabs/puppet/ssl/public_keys",
+        "path_exists": true
+      },
+      "certdir": {
+        "path": "/etc/puppetlabs/puppet/ssl/certs",
+        "path_exists": true
+      },
+      "requestdir": {
+        "path": "/etc/puppetlabs/puppet/ssl/certificate_requests",
+        "path_exists": true
+      },
+      "hostcrl": {
+        "path": "/etc/puppetlabs/puppet/ssl/crl.pem",
+        "path_exists": true
+      }
+    },
+    "puppet_stringify_facts": false,
+    "puppet_vardir": "/opt/puppetlabs/puppet/cache",
+    "puppetversion": "4.8.1",
+    "root_home": "/root",
+    "rsyslog_version": "7.4.7",
+    "ruby": {
+      "platform": "x86_64-linux",
+      "sitedir": "/opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0",
+      "version": "2.1.9"
+    },
+    "rubyplatform": "x86_64-linux",
+    "rubysitedir": "/opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0",
+    "rubyversion": "2.1.9",
+    "selinux": true,
+    "selinux_config_mode": "enforcing",
+    "selinux_config_policy": "targeted",
+    "selinux_current_mode": "enforcing",
+    "selinux_enforced": true,
+    "selinux_policyversion": "28",
+    "serialnumber": "eeda805d-c7e4-4eea-8f2e-da428547637a",
+    "service_provider": "systemd",
+    "ssh": {
+      "ecdsa": {
+        "fingerprints": {
+          "sha1": "SSHFP 3 1 7167653d9fdc99807d98dcd4b7b9544455ac66ed",
+          "sha256": "SSHFP 3 2 1a60735633e3bf37551ac069b73a8a4d0faf7a19d61a69e99b89dace1d7e64ea"
+        },
+        "key": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJW19uvbMXn0g5RECDOh9DsTDat2ovnDe2f4FTTYeoD6x6zbqtUJmPsNnJqgTUhZW/ceo2/uQSuG6PoKk8X7bd0="
+      },
+      "ed25519": {
+        "fingerprints": {
+          "sha1": "SSHFP 4 1 2939a88d95f056b47f8eebae346f1de666941fdd",
+          "sha256": "SSHFP 4 2 b7e59bf4e76de837bcb83dbf9c12b71692afdd375d542ca897c5f20029592053"
+        },
+        "key": "AAAAC3NzaC1lZDI1NTE5AAAAIKQdg1uQFoezIRCVsB+kK2gGgoQT4m7mrLD1Lh7oYb42"
+      },
+      "rsa": {
+        "fingerprints": {
+          "sha1": "SSHFP 1 1 57a9a209d3b5bc0d5bbba2e484f9bbdb79efc545",
+          "sha256": "SSHFP 1 2 54417189ef4422801a208dfc7cee1009230ac96ab9fd0b2fff2bdf5250bda426"
+        },
+        "key": "AAAAB3NzaC1yc2EAAAADAQABAAABAQDO6yoYQJIUJTKgBaUP5nDveHoLf2FUyPKqPAisawyBH4HqYA200ifD4+eFkR8A4UFMtfRDqyExo/NG7l6rqjCJYpTgw0rptIw3eaIrHzlrumq9RwLTfFqgyIyvdpz3DqTW99sQu/yc7941mGP72X8zsgpPZw7im0aDHQlQFYfDidyAwdPZ8A3+sZTD6jnlse/iOR8FugDNq7kdlWVhW+Kxtk0RjECVrOA2+m09X/XCV5uYMjSDXo3JhFrZYhXevhJKRMGGTP9mK+kjb0kLd8CIENI+wwkiKPEsHEdTscTR6IMCizDadLLl1NhcOBrlgZTessTZwtgTzYaUoec9+8HD"
+      }
+    },
+    "ssh_client_version_full": "6.6.1p1,",
+    "ssh_client_version_major": "6.6",
+    "ssh_client_version_release": "6.6.1",
+    "ssh_server_version_full": "6.6.1p1,",
+    "ssh_server_version_major": "6.6",
+    "ssh_server_version_release": "6.6.1",
+    "sshecdsakey": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJW19uvbMXn0g5RECDOh9DsTDat2ovnDe2f4FTTYeoD6x6zbqtUJmPsNnJqgTUhZW/ceo2/uQSuG6PoKk8X7bd0=",
+    "sshed25519key": "AAAAC3NzaC1lZDI1NTE5AAAAIKQdg1uQFoezIRCVsB+kK2gGgoQT4m7mrLD1Lh7oYb42",
+    "sshfp_ecdsa": "SSHFP 3 1 7167653d9fdc99807d98dcd4b7b9544455ac66ed\nSSHFP 3 2 1a60735633e3bf37551ac069b73a8a4d0faf7a19d61a69e99b89dace1d7e64ea",
+    "sshfp_ed25519": "SSHFP 4 1 2939a88d95f056b47f8eebae346f1de666941fdd\nSSHFP 4 2 b7e59bf4e76de837bcb83dbf9c12b71692afdd375d542ca897c5f20029592053",
+    "sshfp_rsa": "SSHFP 1 1 57a9a209d3b5bc0d5bbba2e484f9bbdb79efc545\nSSHFP 1 2 54417189ef4422801a208dfc7cee1009230ac96ab9fd0b2fff2bdf5250bda426",
+    "sshrsakey": "AAAAB3NzaC1yc2EAAAADAQABAAABAQDO6yoYQJIUJTKgBaUP5nDveHoLf2FUyPKqPAisawyBH4HqYA200ifD4+eFkR8A4UFMtfRDqyExo/NG7l6rqjCJYpTgw0rptIw3eaIrHzlrumq9RwLTfFqgyIyvdpz3DqTW99sQu/yc7941mGP72X8zsgpPZw7im0aDHQlQFYfDidyAwdPZ8A3+sZTD6jnlse/iOR8FugDNq7kdlWVhW+Kxtk0RjECVrOA2+m09X/XCV5uYMjSDXo3JhFrZYhXevhJKRMGGTP9mK+kjb0kLd8CIENI+wwkiKPEsHEdTscTR6IMCizDadLLl1NhcOBrlgZTessTZwtgTzYaUoec9+8HD",
+    "staging_http_get": "curl",
+    "sudoversion": "1.8.6p7",
+    "system_uptime": {
+      "days": 31,
+      "hours": 751,
+      "seconds": 2706304,
+      "uptime": "31 days"
+    },
+    "tier": "ha",
+    "timezone": "UTC",
+    "uptime": "31 days",
+    "uptime_days": 31,
+    "uptime_hours": 751,
+    "uptime_seconds": 2706304,
+    "uuid": "D5B9F0EC-4BF4-3A44-BB08-45BF5DDF52B5",
+    "virtual": "kvm",
+    "clientcert": "agent0",
+    "clientversion": "4.8.1",
+    "clientnoop": false
+  },
+  "timestamp": "2017-01-21T10:48:51.263510273+00:00",
+  "expiration": "2017-01-21T11:18:51.264349588+00:00"
+}
