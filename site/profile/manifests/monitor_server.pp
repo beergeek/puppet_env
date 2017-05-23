@@ -6,10 +6,6 @@ class profile::monitor_server (
     fail("This class is only for EL family")
   }
 
-  require profile::base
-  require ::apache
-  require ::apache::mod::php
-  include epel
   package { ['nagios','nagios-plugins','nagios-plugins-all']:
     ensure  => present,
     require => Class['epel'],
