@@ -1,4 +1,4 @@
-class profile::amq ( 
+class profile::amq (
   Boolean enable_firewall = true
 ) {
 
