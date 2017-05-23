@@ -68,7 +68,7 @@ class profile::web_services::apache (
           host_name           => $facts['fqdn'],
           service_description => "${facts['fqdn']}_http_${site_name}",
           check_command       => "check_http!${site_name} -I ${ip} -p ${website_port} -u http://${site_name}",
-          target              => "/etc/nagios/conf.d/$facts['fqdn']}_service.cfg",
+          target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
           notify              => Service['nagios'],
           require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
         }
