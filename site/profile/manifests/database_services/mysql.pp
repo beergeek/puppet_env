@@ -15,14 +15,11 @@ class profile::database_services::mysql (
     php_enable => true,
   }
 
-  # create databases (old)
-  # create_resources('mysql::db',$db_hash,$db_defaults)
-  # create databases (new)
   $db_hash.each |String $database_name, Hash $database_hash| {
     mysql::db {  $database_name:
-      * => $database_hash,;
-    default:
-      * => $db_defaults,;
+      * => $database_hash;
+      default:
+        * => $db_defaults;
     }
   }
 
@@ -35,14 +32,14 @@ class profile::database_services::mysql (
     }
   }
 
-  @@nagios_service { "${::fqdn}_mysql":
+  @@nagios_service { "${facts['fqdn']}_mysql":
     ensure              => present,
     use                 => 'generic-service',
-    host_name           => $::fqdn,
+    host_name           => $facts['fqdn'],
     service_description => "MySQL",
     check_command       => 'check_tcp!3306',
-    target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
+    target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
     notify              => Service['nagios'],
-    require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
+    require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
   }
 }

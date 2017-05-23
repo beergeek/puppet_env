@@ -2,11 +2,14 @@ class profile::monitoring (
   Boolean $noop_scope = false,
 ) {
 
-  if $::brownfields and $noop_scope {
-    noop()
+  if $facts['brownfields'] and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
   }
-  if $::kernel == 'Linux' {
-    case $::os['family'] {
+
+  if $facts['kernel'] == 'Linux' {
+    case $facts['os']['family'] {
       'redhat':{
         require epel
         package { ['nagios-common','nrpe']:
@@ -37,7 +40,7 @@ class profile::monitoring (
     }
   }
 
-  @@file { ["/etc/nagios/conf.d/${::fqdn}_host.cfg","/etc/nagios/conf.d/${::fqdn}_service.cfg"]:
+  @@file { ["/etc/nagios/conf.d/${facts['fqdn']}_host.cfg","/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"]:
     ensure => file,
     owner  => 'nagios',
     group  => 'nagios',
@@ -45,15 +48,15 @@ class profile::monitoring (
     tag    => 'Monitoring',
   }
 
-  @@nagios_host { $::fqdn:
+  @@nagios_host { $facts['fqdn']:
     ensure             => present,
-    alias              => $::hostname,
-    address            => $::ipaddress_eth1,
+    alias              => $facts['hostname'],
+    address            => $facts['ipaddress_eth1'],
     use                => "generic-host",
     max_check_attempts => '4',
     check_command      => 'check-host-alive',
-    target             => "/etc/nagios/conf.d/${::fqdn}_host.cfg",
+    target             => "/etc/nagios/conf.d/${facts['fqdn']}_host.cfg",
     notify             => Service['nagios'],
-    require            => File["/etc/nagios/conf.d/${::fqdn}_host.cfg"],
+    require            => File["/etc/nagios/conf.d/${facts['fqdn']}_host.cfg"],
   }
 }

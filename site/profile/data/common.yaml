@@ -36,7 +36,7 @@ profile::dns::purge: false
 
 # SSH
 profile::ssh::enable_firewall: *enable_firewall
-profile::ssh::banner_content: "This system is the property of Puppet Labs. Unauthorised access is not permitted"
+profile::ssh::banner_content: "This system is the property of Puppet. Unauthorised access is not permitted"
 profile::ssh::allowed_groups:
   - 'root'
   - 'vagrant'
@@ -58,7 +58,7 @@ profile::ssh::options_hash:
 profile::sudo::sudo_hash:
   ubuntu:
     priority: 10
-    content: 'ubuntu ALL=(ALL) NOPASSWD: ALL'
+    content: '%ubuntu ALL=(ALL) NOPASSWD: ALL'
   centos:
     priority: 10
     content: '%centos ALL=(ALL) NOPASSWD: ALL'
@@ -180,9 +180,6 @@ profile::lb_services::haproxy::backends:
 
 # BASE
 profile::base::enable_firewall: *enable_firewall
-profile::base::mco_client_array:
-  - 'com0.puppetlabs.vm-peadmin'
-  - 'com1.puppetlabs.vm-peadmin'
 profile::base::wsus_server: 'http://wsus_server.local'
 profile::base::wsus_server_port: '8530'
 
@@ -312,4 +309,8 @@ profile::puppet_users::user_hash:
   brett:
     manage_user: true
 
-
+profile::mom::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'
+  before: "Class['profile::fw::post']"
+  require: "Class['profile::fw::pre']"

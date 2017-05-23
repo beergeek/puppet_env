@@ -5,16 +5,16 @@ class profile::base (
   String $wsus_server_port,
   Boolean $noop_scope               = false,
   Boolean $enable_firewall          = true,
-  Optional[Array] $mco_client_array  = undef,
+  Optional[Hash] $mco_client_array  = undef,
 ) {
 
-  if $::brownfields and $noop_scope {
+  if $facts['brownfields'] and $noop_scope {
     noop(true)
   } else {
     noop(false)
   }
 
-  case $::kernel {
+  case $facts['kernel'] {
     'linux': {
 
       Firewall {
@@ -40,9 +40,9 @@ class profile::base (
       # new way
       $sysctl_settings.each |String $sysctl_name, Hash $sysctl_hash| {
         sysctl { $sysctl_name:
-          * => $sysctl_hash,;
+          * => $sysctl_hash;
           default:
-            * => $sysctl_defaults,;
+            * => $sysctl_defaults;
         }
       }
 
@@ -51,7 +51,7 @@ class profile::base (
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => '0777',
+        mode   => '0755',
       }
 
       # repo management
@@ -76,23 +76,19 @@ class profile::base (
       include profile::dns
 
       if $mco_client_array {
-        $mco_client_array.each |$cert_title| {
+        $mco_client_array.each |String $cert_title, Hash $cert_data| {
           file { $cert_title:
             ensure  => file,
             path    => "/etc/puppetlabs/mcollective/ssl/clients/${cert_title}-public.pem",
             owner   => 'root',
             group   => 'root',
             mode    => '0440',
-            content => file("${::settings::ssldir}/public_keys/${cert_title}.pem",'/dev/null'),
+            content => pick($cert_data['cert'],' '),
             notify  => Service['mcollective'],
           }
         }
       }
 
-      exec { 'update mco facts':
-        command => '/opt/puppetlabs/puppet/bin/refresh-mcollective-metadata >>/var/log/puppetlabs/mcollective-metadata-cron.log 2>&1',
-        unless  => '/usr/bin/test -e /etc/puppetlabs/mcollective/facts.yaml',
-      }
     }
     'windows': {
 
@@ -132,8 +128,8 @@ class profile::base (
       acl { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         purge                      => false,
         permissions                => [
-         { identity => 'vagrant', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
-         { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
+          { identity => 'vagrant', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
+          { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
         ],
         owner                      => 'vagrant',
         group                      => 'Administrators',

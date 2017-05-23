@@ -6,11 +6,11 @@ class profile::ssh (
   Boolean $noop_scope = false,
 ) {
 
-  if $::brownfields and $noop_scope {
-    noop()
+  if $facts['brownfields'] and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
   }
-
-  validate_bool($enable_firewall)
 
   if $enable_firewall {
     # include firewall rule
@@ -21,15 +21,15 @@ class profile::ssh (
     }
   }
 
-  @@nagios_service { "${::fqdn}_ssh":
+  @@nagios_service { "${facts['fqdn']}_ssh":
     ensure              => present,
     use                 => 'generic-service',
-    host_name           => $::fqdn,
+    host_name           => $facts['fqdn'],
     service_description => "SSH",
     check_command       => 'check_ssh',
-    target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
+    target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
     notify              => Service['nagios'],
-    require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
+    require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
   }
 
   file { ['/etc/issue','/etc/issue.net']:

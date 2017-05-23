@@ -7,9 +7,9 @@ class profile::repo_server (
 
   $repo_data.each |String $repo_name, Hash $repo_hash| {
     @@yumrepo { $repo_name:
-      * => $repo_hash,;
+      * => $repo_hash;
       default:
-        * => $repo_defaults,;
+        * => $repo_defaults;
     }
   }
 

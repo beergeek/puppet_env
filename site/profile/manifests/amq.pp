@@ -1,15 +1,15 @@
-class profile::amq (
-  $enable_firewall = true,
+class profile::amq ( 
+  Boolean enable_firewall = true
 ) {
 
-  if has_key($::networking['interfaces'],'enp0s8') {
-    $ip = $::networking['interfaces']['enp0s8']['ip']
-  } elsif has_key($::networking['interfaces'],'eth1') {
-    $ip = $::networking['interfaces']['eth1']['ip']
-  } elsif has_key($::networking['interfaces'],'enp0s3') {
-    $ip = $::networking['interfaces']['enp0s3']['ip']
-  } elsif has_key($::networking['interfaces'],'eth0') {
-    $ip = $::networking['interfaces']['eth0']['ip']
+  if has_key($facts['networking']['interfaces'],'enp0s8') {
+    $ip = $facts['networking']['interfaces']['enp0s8']['ip']
+  } elsif has_key($facts['networking']['interfaces'],'eth1') {
+    $ip = $facts['networking']['interfaces']['eth1']['ip']
+  } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
+    $ip = $facts['networking']['interfaces']['enp0s3']['ip']
+  } elsif has_key($facts['networking']['interfaces'],'eth0') {
+    $ip = $facts['networking']['interfaces']['eth0']['ip']
   } else {
     fail("Buggered if I know your IP Address")
   }
@@ -33,9 +33,9 @@ class profile::amq (
     }
   }
 
-  @@haproxy::balancermember { "mco00-${::fqdn}":
+  @@haproxy::balancermember { "mco00-${facts['fqdn']}":
     listening_service => 'mco00',
-    server_names      => $::fqdn,
+    server_names      => $facts['fqdn'],
     ipaddresses       => $ip,
     ports             => '61613',
     options           => 'check',

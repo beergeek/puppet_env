@@ -6,8 +6,10 @@ class profile::sudo (
   Boolean $noop_scope = false,
 ) {
 
-  if $::brownfields and $noop_scope {
-    noop()
+  if $facts['brownfields'] and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
   }
 
   class { '::sudo':
@@ -15,14 +17,11 @@ class profile::sudo (
     config_file_replace => $sudo_replace_config,
   }
 
-  # old school
-  # create_resources('sudo::conf', $sudo_hash, $sudo_hash_defaults)
-  # new school
   $sudo_hash.each |String $sudo_name,Hash $sudo_hash_value| {
     sudo::conf { $sudo_name:
-      * => $sudo_hash_value,;
+      * => $sudo_hash_value;
       default:
-        * => $sudo_hash_defaults,;
+        * => $sudo_hash_defaults;
     }
   }
 }

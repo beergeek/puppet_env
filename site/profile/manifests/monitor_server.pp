@@ -2,7 +2,7 @@ class profile::monitor_server (
   Boolean $enable_firewall = true,
 ) {
 
-  if $::osfamily != 'redhat' {
+  if $facts['os']['family'] != 'redhat' {
     fail("This class is only for EL family")
   }
 

@@ -24,12 +24,12 @@ class profile::web_services::iis (
         if $export_host {
           @@host { $site_name:
             ensure => present,
-            ip     => $::networking['interfaces']['Ethernet 2']['ip'],
+            ip     => $facts['networking']['interfaces']['Ethernet 2']['ip'],
           }
         } else {
           host { $site_name:
             ensure => present,
-            ip     => $::networking['interfaces']['Ethernet 2']['ip'],
+            ip     => $facts['networking']['interfaces']['Ethernet 2']['ip'],
           }
         }
 
@@ -54,25 +54,25 @@ class profile::web_services::iis (
 
           # Exported load balancer configuration if required
           if $lb {
-            @@haproxy::balancermember { "${site_name}-${::fqdn}":
+            @@haproxy::balancermember { "${site_name}-${facts['fqdn']}":
               listening_service => $site_name,
-              server_names      => $::fqdn,
-              ipaddresses       => $::networking['interfaces']['Ethernet 2']['ip'],
+              server_names      => $facts['fqdn'],
+              ipaddresses       => $facts['networking']['interfaces']['Ethernet 2']['ip'],
               ports             => $binding['port'],
               options           => 'check',
             }
           }
 
           # Export monitoring configuration
-          @@nagios_service { "${::fqdn}_http_${site_name}":
+          @@nagios_service { "${facts['fqdn']}_http_${site_name}":
             ensure              => present,
             use                 => 'generic-service',
-            host_name           => $::fqdn,
-            service_description => "${::fqdn}_http_${site_name}",
+            host_name           => $facts['fqdn'],
+            service_description => "${facts['fqdn']}_http_${site_name}",
             check_command       => "check_http!${site_name} -I ${networking['interfaces']['Ethernet 2']['ip']} -p ${binding['port']} -u http://${site_name}",
-            target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
+            target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
             notify              => Service['nagios'],
-            require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
+            require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
           }
         }
       }

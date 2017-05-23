@@ -1,50 +1,47 @@
 class profile::dns (
-  Boolean $purge      = false,
-  Boolean $noop_scope = false,
+  Optional[Array] $name_servers = undef,
+  Boolean $purge                = false,
+  Boolean $noop_scope           = false,
 ) {
 
-  validate_bool($purge)
-  validate_bool($noop_scope)
-
-  if $::brownfields and $noop_scope {
-    noop()
+  if $facts['brownfields'] and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
   }
 
-  case $::kernel {
+  case $facts['kernel'] {
     'Linux': {
-      $name_servers = hiera('profile::dns::name_servers',undef)
-      if has_key($::networking['interfaces'],'enp0s8') {
-        $ip = $::networking['interfaces']['enp0s8']['ip']
-      } elsif has_key($::networking['interfaces'],'eth1') {
-        $ip = $::networking['interfaces']['eth1']['ip']
-      } elsif has_key($::networking['interfaces'],'enp0s3') {
-        $ip = $::networking['interfaces']['enp0s3']['ip']
-      } elsif has_key($::networking['interfaces'],'eth0') {
-        $ip = $::networking['interfaces']['eth0']['ip']
+      if has_key($facts['networking']['interfaces'],'enp0s8') {
+        $ip = $facts['networking']['interfaces']['enp0s8']['ip']
+      } elsif has_key($facts['networking']['interfaces'],'eth1') {
+        $ip = $facts['networking']['interfaces']['eth1']['ip']
+      } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
+        $ip = $facts['networking']['interfaces']['enp0s3']['ip']
+      } elsif has_key($facts['networking']['interfaces'],'eth0') {
+        $ip = $facts['networking']['interfaces']['eth0']['ip']
       } else {
         fail("Buggered if I know your IP Address")
       }
 
-      validate_array($name_servers)
-
       if $name_servers {
         class { '::resolv_conf':
-          domainname  => $::domain,
+          domainname  => $facts['domain'],
           nameservers => $name_servers,
         }
       }
     }
     'windows': {
-      $ip = $::ipaddress
+      $ip = $facts['networking']['ip']
     }
     default: {
       fail("You need an operating system")
     }
   }
 
-  @@host { $::fqdn:
+  @@host { $facts['fqdn']:
     ensure        => present,
-    host_aliases  => [$::hostname],
+    host_aliases  => [$facts['hostname']],
     ip            => $ip,
   }
 

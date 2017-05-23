@@ -7,11 +7,11 @@ class profile::time_locale (
   Boolean $noop_scope = false,
 ) {
 
-  if (!$::fully_enabled) and $noop_scope {
-    noop()
+  if ($facts['brownfields']) and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
   }
-
-  validate_array($ntp_servers)
 
   if $os['family'] == 'redhat' {
     file { '/etc/sysconfig/i18n':

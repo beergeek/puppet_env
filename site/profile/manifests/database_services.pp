@@ -1,6 +1,6 @@
 class profile::database_services {
 
-  case $::kernel {
+  case $facts['kernel'] {
     'linux': {
       include profile::database_services::mysql
     }
@@ -8,7 +8,7 @@ class profile::database_services {
       include profile::database_services::sqlserver
     }
     default: {
-      fail("${::kernel} is not a support OS kernel")
+      fail("${facts['kernel']} is not a support OS kernel")
     }
   }
 }

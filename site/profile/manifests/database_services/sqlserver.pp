@@ -45,7 +45,7 @@ class profile::database_services::sqlserver (
     admin_pass => $sql_passwd,
   }
 
-  $db_hash.each |$key, $value| {
+  $db_hash.each |String $key, Hash $value| {
     sqlserver::database { $key:
       instance => 'MSSQLSERVER',
     }

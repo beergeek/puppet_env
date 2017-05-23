@@ -12,12 +12,11 @@ class profile::web_services::apache (
   }
   include ::apache::mod::php
   include ::apache::mod::ssl
-  include app_update
 
   if $website_hash {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
-        $search_results = puppetdb_query("resources[count()] {type = \"Mysql_database\" and title = \"${website['database_search']}\"}")[0]['count'] 
+        $search_results = puppetdb_query("resources[count()] {type = \"Mysql_database\" and title = \"${website['database_search']}\"}")[0]['count']
       } else {
         $_bypass = true
       }
@@ -29,33 +28,33 @@ class profile::web_services::apache (
       if $_bypass or ($search_results != 0) {
         $_docroot = "/var/www/${website['docroot']}"
 
-        if has_key($::networking['interfaces'], 'eth1') {
-          $check_port = $networking['interfaces']['eth1']['bindings'][0]['address']
-        } elsif has_key($::networking['interfaces'], 'eth0') {
-          $check_port = $networking['interfaces']['eth0']['bindings'][0]['address']
-        } elsif has_key($::networking['interfaces'], 'enp0s8') {
-          $check_port = $networking['interfaces']['enp0s8']['ip']
-        } elsif has_key($::networking['interfaces'], 'enp0s3') {
-          $check_port = $networking['interfaces']['enp0s3']['ip']
+        if has_key($facts['networking']['interfaces'],'enp0s8') {
+          $ip = $facts['networking']['interfaces']['enp0s8']['ip']
+        } elsif has_key($facts['networking']['interfaces'],'eth1') {
+          $ip = $facts['networking']['interfaces']['eth1']['ip']
+        } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
+          $ip = $facts['networking']['interfaces']['enp0s3']['ip']
+        } elsif has_key($facts['networking']['interfaces'],'eth0') {
+          $ip = $facts['networking']['interfaces']['eth0']['ip']
         } else {
-          fail('No IP found')
+          fail("Buggered if I know your IP Address")
         }
         $website_port = $website[port]
 
         if $export_host {
           @@host { $site_name:
             ensure => present,
-            ip     => $check_port,
+            ip     => $ip,
           }
         } else {
           host { $site_name:
             ensure => present,
-            ip     => $check_port,
+            ip     => $ip,
           }
         }
-        if $enable_firewall and !defined(Firewall["100 ${::fqdn} HTTP ${website_port}"]) {
+        if $enable_firewall and !defined(Firewall["100 ${facts['fqdn']} HTTP ${website_port}"]) {
           # add firewall rules
-          firewall { "100 ${::fqdn} HTTP ${website_port}":
+          firewall { "100 ${facts['fqdn']} HTTP ${website_port}":
             dport   => $website['port'],
             proto  => tcp,
             action => accept,
@@ -63,15 +62,15 @@ class profile::web_services::apache (
         }
 
         # Export monitoring configuration
-        @@nagios_service { "${::fqdn}_http_${site_name}":
+        @@nagios_service { "${facts['fqdn']}_http_${site_name}":
           ensure              => present,
           use                 => 'generic-service',
-          host_name           => $::fqdn,
-          service_description => "${::fqdn}_http_${site_name}",
-          check_command       => "check_http!${site_name} -I ${check_port} -p ${website_port} -u http://${site_name}",
-          target              => "/etc/nagios/conf.d/${::fqdn}_service.cfg",
+          host_name           => $facts['fqdn'],
+          service_description => "${facts['fqdn']}_http_${site_name}",
+          check_command       => "check_http!${site_name} -I ${ip} -p ${website_port} -u http://${site_name}",
+          target              => "/etc/nagios/conf.d/$facts['fqdn']}_service.cfg",
           notify              => Service['nagios'],
-          require             => File["/etc/nagios/conf.d/${::fqdn}_service.cfg"],
+          require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
         }
 
         apache::vhost { $site_name:
@@ -97,10 +96,10 @@ class profile::web_services::apache (
         }
         # Exported load balancer configuration if required
         if $lb {
-          @@haproxy::balancermember { "${site_name}-${::fqdn}":
+          @@haproxy::balancermember { "${site_name}-${facts['fqdn']}":
             listening_service => $site_name,
-            server_names      => $::fqdn,
-            ipaddresses       => $::ipaddress_eth1,
+            server_names      => $facts['fqdn'],
+            ipaddresses       => $facts['ipaddress_eth1'],
             ports             => $website[port],
             options           => 'check',
           }

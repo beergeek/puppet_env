@@ -1,4 +1,4 @@
-class profile::tomcat_services (
+class profile::web_services::tomcat_services (
   $tomcat_servers,
 ) {
 

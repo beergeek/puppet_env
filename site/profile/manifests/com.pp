@@ -1,18 +1,15 @@
 class profile::com (
-  Boolean $enable_firewall          = true,
-  Boolean $manage_hiera             = true,
-  Optional[Hash] $hiera_backends    = undef,
-  Optional[Array] $hiera_hierarchy  = undef,
-  Boolean $manage_eyaml             = false,
+  $enable_firewall = true
 ) {
-  if has_key($::networking['interfaces'],'enp0s8') {
-    $ip = $::networking['interfaces']['enp0s8']['ip']
-  } elsif has_key($::networking['interfaces'],'eth1') {
-    $ip = $::networking['interfaces']['eth1']['ip']
-  } elsif has_key($::networking['interfaces'],'enp0s3') {
-    $ip = $::networking['interfaces']['enp0s3']['ip']
-  } elsif has_key($::networking['interfaces'],'eth0') {
-    $ip = $::networking['interfaces']['eth0']['ip']
+
+  if has_key($facts['networking']['interfaces'],'enp0s8') {
+    $ip = $facts['networking']['interfaces']['enp0s8']['ip']
+  } elsif has_key($facts['networking']['interfaces'],'eth1') {
+    $ip = $facts['networking']['interfaces']['eth1']['ip']
+  } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
+    $ip = $facts['networking']['interfaces']['enp0s3']['ip']
+  } elsif has_key($facts['networking']['interfaces'],'eth0') {
+    $ip = $facts['networking']['interfaces']['eth0']['ip']
   } else {
     fail("Buggered if I know your IP Address")
   }
@@ -42,79 +39,31 @@ class profile::com (
     }
   }
 
-  if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
-    fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
-  }
-
-  if $::trusted['extensions']['pp_role'] != 'replica' {
-    @@haproxy::balancermember { "master00-${::fqdn}":
+  if $trusted['extensions']['pp_role'] != 'replica' {
+    @@haproxy::balancermember { "master00-${facts['fqdn']}":
       listening_service => 'puppet00',
-      server_names      => $::fqdn,
+      server_names      => $facts['fqdn'],
       ipaddresses       => $ip,
       ports             => '8140',
       options           => 'check',
     }
-    @@haproxy::balancermember { "mco00-${::fqdn}":
+    @@haproxy::balancermember { "mco00-${facts['fqdn']}":
       listening_service => 'mco00',
-      server_names      => $::fqdn,
+      server_names      => $facts['fqdn'],
       ipaddresses       => $ip,
       ports             => '61613',
       options           => 'check',
     }
   }
 
-  if $manage_hiera and (! $hiera_backends or ! $hiera_hierarchy) {
-    fail('The hash `hiera_backends` and array `hiera_hierarchy` must exist when managing hiera')
-  }
-
-  if $manage_hiera {
-    if $manage_eyaml {
-      package { 'hiera-eyaml':
-        ensure   => present,
-        provider => 'puppetserver_gem',
-        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
-      }
-
-      file { '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem':
-        ensure  => file,
-        owner   => 'pe-puppet',
-        group   => 'pe-puppet',
-        mode    => '0600',
-        content => file('/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem'),
-        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
-      }
-
-      file { '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem':
-        ensure  => file,
-        owner   => 'pe-puppet',
-        group   => 'pe-puppet',
-        mode    => '0644',
-        content => file('/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem'),
-        before   => File['/etc/puppetlabs/puppet/hiera.yaml'],
-      }
-    }
-
-    if defined(Service['pe-puppetserver']) {
-
-      file { '/etc/puppetlabs/puppet/hiera.yaml':
-        ensure  => file,
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0644',
-        content => template('profile/hiera.yaml.erb'),
-        notify  => Service['pe-puppetserver'],
-      }
-    }
-  }
-
-  @@puppet_certificate { "${::fqdn}-peadmin":
+  @@puppet_certificate { "${facts['fqdn']}-peadmin":
     ensure => present,
     tag    => 'mco_clients',
   }
 
-  puppet_enterprise::mcollective::client { "${::fqdn}-peadmin":
+  puppet_enterprise::mcollective::client { "${facts['fqdn']}-peadmin":
     activemq_brokers => [$::clientcert],
-    logfile          => "/var/lib/${::fqdn}-peadmin/${::fqdn}-peadmin.log",
+    logfile          => "/var/lib/${::fqdn}-peadmin/${facts['fqdn']}-peadmin.log",
     create_user      => true,
   }
 

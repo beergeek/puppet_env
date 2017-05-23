@@ -3,8 +3,10 @@ class profile::logging (
   Hash $logrotate_rule_data,
 ) {
 
-  if $::brownfields and $noop_scope {
-    noop()
+  if $facts['brownfields'] and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
   }
 
   class { '::rsyslog::client':

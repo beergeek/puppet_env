@@ -1,6 +1,6 @@
 class profile::web_services {
 
-  case $::kernel {
+  case $facts['kernel'] {
     'linux': {
       include profile::web_services::apache
     }
@@ -8,7 +8,7 @@ class profile::web_services {
       include profile::web_services::iis
     }
     default: {
-      fail("${::kernel} is not a support OS kernel")
+      fail("${facts['kernel']} is not a support OS kernel")
     }
   }
 }
