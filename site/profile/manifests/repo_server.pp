@@ -3,8 +3,6 @@ class profile::repo_server (
   Hash $repo_defaults,
 ) {
 
-  include profile::web_services
-
   $repo_data.each |String $repo_name, Hash $repo_hash| {
     @@yumrepo { $repo_name:
       * => $repo_hash;
