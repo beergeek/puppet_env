@@ -43,9 +43,9 @@ mod "saz/timezone", "3.5.0"
 mod "stahnma/epel","1.2.2"
 mod "trlinkin/noop", "0.1.0"
 mod "beergeek/iis", "0.1.9"
-mod 'beergeek/enable_noop','0.1.0',
+mod 'beergeek/enable_noop','0.1.0'
 mod 'beergeek/disable_noop','0.1.0'
-mod 'facecount','0.1.0'
+mod 'beergeek/facecount','0.1.0'
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
