@@ -336,9 +336,3 @@ profile::database_services::sqlserver::db_hash:
 profile::puppet_users::user_hash:
   brett:
     manage_user: true
-
-profile::mom::firewall_rule_defaults:
-  proto: 'tcp'
-  action: 'accept'
-  before: "Class['profile::fw::post']"
-  require: "Class['profile::fw::pre']"
