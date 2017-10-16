@@ -92,6 +92,28 @@ profile::mom::manage_hiera: *manage_heira
 profile::mom::hiera_hierarchy: *hiera_hierarchy
 profile::mom::hiera_backends: *hiera_backends
 profile::mom::enable_firewall: *enable_firewall
+profile::mom::firewall_rules:
+  '010 Puppet Port 8140':
+    dport: '8140'
+  '010 Puppet Code Manager 8170':
+    dport: '8170'
+  '010 PuppetDB 8081':
+    dport: '8081'
+  '010 Puppet Console 443':
+    dport: '443'
+  '010 Puppet Classifier 4433':
+    dport: '4433'
+  '010 PE AMQ 61616':
+    dport: '61616'
+  '010 PE MCO 61613':
+    dport: '61613'
+  '010 PE Orchestrator 8142':
+    dport: '8142'
+  '010 PE Orchestrator 8143':
+    dport: '8143'
+profile::mom::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'
 
 # Load Balancer
 profile::lb_services::haproxy::enable_firewall: *enable_firewall
