@@ -1,5 +1,7 @@
 class profile::com (
-  $enable_firewall = true
+  Hash[Hash] $firewall_hash,
+  Hash $firewall_defaults,
+  Boolean $enable_firewall = true,
 ) {
 
   if has_key($facts['networking']['interfaces'],'enp0s8') {
@@ -15,27 +17,12 @@ class profile::com (
   }
 
   if $enable_firewall {
-    Firewall {
-      before  => Class['profile::fw::post'],
-      require => Class['profile::fw::pre'],
-    }
-
-    firewall { '100 allow puppet access':
-      dport  => [8140],
-      proto  => tcp,
-      action => accept,
-    }
-
-    firewall { '100 allow mco access':
-      dport  => [61613],
-      proto  => tcp,
-      action => accept,
-    }
-
-    firewall { '100 allow amq access':
-      dport  => [61616],
-      proto  => tcp,
-      action => accept,
+    $firewall_hash.ech |String $firewall_rule, Hash $firewall_data|{
+      firewall { $firewall_rule:
+        * => $firewall_data,;
+        default:
+          * => $firewall_defaults,
+      }
     }
   }
 
@@ -55,16 +42,4 @@ class profile::com (
       options           => 'check',
     }
   }
-
-  @@puppet_certificate { "${facts['fqdn']}-peadmin":
-    ensure => present,
-    tag    => 'mco_clients',
-  }
-
-  puppet_enterprise::mcollective::client { "${facts['fqdn']}-peadmin":
-    activemq_brokers => [$::clientcert],
-    logfile          => "/var/lib/${::fqdn}-peadmin/${facts['fqdn']}-peadmin.log",
-    create_user      => true,
-  }
-
 }

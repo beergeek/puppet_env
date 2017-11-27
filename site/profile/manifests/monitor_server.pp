@@ -1,6 +1,13 @@
 class profile::monitor_server (
   Boolean $enable_firewall = true,
+  Boolean $noop_scope      = false,
 ) {
+
+  if $facts['brownfields'] and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
+  }
 
   if $facts['os']['family'] != 'redhat' {
     fail("This class is only for EL family")

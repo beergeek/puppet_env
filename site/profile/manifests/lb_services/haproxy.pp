@@ -3,7 +3,14 @@ class profile::lb_services::haproxy (
   Boolean $enable_firewall  = true,
   Optional[Hash] $frontends = undef,
   Optional[Hash] $backends  = undef,
+  Boolean $noop_scope       = false,
 ) {
+
+  if ($facts['brownfields']) and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
+  }
 
   Firewall {
     before  => Class['profile::fw::post'],

@@ -1,7 +1,7 @@
 class profile::mom (
   Hash $firewall_rule_defaults,
-  Optional[Hash] $firewall_rules = {},
-  Boolean $enable_firewall = true,
+  Optional[Hash] $firewall_rules  = {},
+  Boolean $enable_firewall        = true,
 ) {
 
   if $enable_firewall {
@@ -27,8 +27,4 @@ class profile::mom (
     require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
   }
 
-  package { 'puppetclassify':
-    ensure   => present,
-    provider => 'puppetserver_gem',
-  }
 }

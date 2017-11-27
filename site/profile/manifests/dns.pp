@@ -1,7 +1,7 @@
 class profile::dns (
-  Optional[Array] $name_servers = undef,
-  Boolean $purge                = false,
-  Boolean $noop_scope           = false,
+  Optional[Array[String]] $name_servers = undef,
+  Boolean $purge                        = false,
+  Boolean $noop_scope                   = false,
 ) {
 
   if $facts['brownfields'] and $noop_scope {
@@ -55,7 +55,7 @@ class profile::dns (
 
   if $purge {
     resources { 'host':
-      purge => true,
+      purge => $purge,
     }
   }
 }

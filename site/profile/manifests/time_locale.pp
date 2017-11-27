@@ -1,9 +1,9 @@
 class profile::time_locale (
-  Array $ntp_servers,
+  Array[String] $ntp_servers,
   String $timezone,
   String $locale_rhel,
   String $locale_deb,
-  Array $lang_pack,
+  Array[String] $lang_pack,
   Boolean $noop_scope = false,
 ) {
 

@@ -3,9 +3,16 @@ class profile::database_services::sqlserver (
   String $sql_passwd,
   String $sql_user,
   Hash $db_hash,
-  String $sql_version = 'MSSQL14'
+  String $sql_version = 'MSSQL14',
   String $dotnet_src  = "C:\\vagrant\\sxs\\",
+  Boolean $noop_scope = false,
 ) {
+
+  if ($facts['brownfields']) and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
+  }
 
   reboot { 'pre':
     apply    => 'immediately',

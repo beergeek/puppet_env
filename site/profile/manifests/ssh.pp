@@ -1,9 +1,9 @@
 class profile::ssh (
-  Array $allowed_groups,
+  Boolean $enable_firewall  = true,
+  Boolean $noop_scope       = false,
+  Array[String] $allowed_groups,
   String $banner_content,
-  Boolean $enable_firewall,
   Hash $options_hash,
-  Boolean $noop_scope = false,
 ) {
 
   if $facts['brownfields'] and $noop_scope {

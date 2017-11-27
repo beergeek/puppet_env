@@ -2,7 +2,14 @@ class profile::database_services::mysql (
   Hash $db_hash,
   Hash $db_defaults,
   Boolean $enable_firewall = true,
+  Boolean $noop_scope      = false,
 ) {
+
+  if ($facts['brownfields']) and $noop_scope {
+    noop(true)
+  } else {
+    noop(false)
+  }
 
   class { '::mysql::server':
     override_options => {

@@ -2,6 +2,11 @@
 # Variables
 variables:
   - &enable_firewall true
+  - &firewall_defaults
+      before: "Class['profile::fw::post']"
+      require: "Class['profile::fw::pre']"
+      proto: 'tcp'
+      action: 'accept'
   - &hiera_hierarchy
     - "%{literal('%')}{clientcert}"
     - "%{literal('%')}{tier}"
@@ -9,22 +14,30 @@ variables:
     - "%{literal('%')}{data_centre}"
     - common
   - &hiera_backends
-    yaml:
-      datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
-    json:
-      datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
+      yaml:
+        datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
+      json:
+        datadir: "/etc/puppetlabs/code/environments/%{literal('%')}{environment}/hieradata"
   - &manage_heira true
   - &manage_eyaml false
 
+profile::amq::noop_scope: false
 profile::base::noop_scope: false
 profile::dns::noop_scope: false
 profile::fw::noop_scope: false
 profile::logging::noop_scope: false
+profile::monitor_server::noop_scope: false
 profile::monitoring::noop_scope: false
 profile::repos::noop_scope: false
 profile::ssh::noop_scope: false
 profile::sudo::noop_scope: false
 profile::time_locale::noop_scope: false
+profile::web_services::apache::noop_scope: false
+profile::web_services::iis::noop_scope: false
+profile::database_services::mysql::noop_scope: false
+profile::database_services::sqlserver::noop_scope: false
+profile::lb_services::haproxy::noop_scope: false
+
 
 puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   - "%{::servername}"
@@ -32,7 +45,7 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
 # DNS
 profile::dns::name_servers:
   - 10.0.2.3
-profile::dns::purge: false
+profile::dns::purge: true
 
 # SSH
 profile::ssh::enable_firewall: *enable_firewall
@@ -86,6 +99,20 @@ profile::com::manage_hiera: *manage_heira
 profile::com::hiera_hierarchy: *hiera_hierarchy
 profile::com::hiera_backends: *hiera_backends
 profile::com::enable_firewall: *enable_firewall
+profile::com::firewall_defaults: *firewall_defaults
+profile::com::firewall_hash:
+  '100 allow puppet access':
+    dport:
+      - 8140
+  '100 allow pcp access':
+    dport:
+      - 8142
+  '100 allow mco access':
+    dport:
+      - 61613
+  '100 allow amq access':
+    dport:
+      - 61616
 
 # MOM
 profile::mom::manage_hiera: *manage_heira
@@ -111,9 +138,7 @@ profile::mom::firewall_rules:
     dport: '8142'
   '010 PE Orchestrator 8143':
     dport: '8143'
-profile::mom::firewall_rule_defaults:
-  proto: 'tcp'
-  action: 'accept'
+profile::mom::firewall_rule_defaults: *firewall_defaults
 
 # Load Balancer
 profile::lb_services::haproxy::enable_firewall: *enable_firewall
