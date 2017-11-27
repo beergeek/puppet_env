@@ -46,6 +46,7 @@ mod "beergeek/iis", "0.1.9"
 mod 'beergeek/enable_noop','0.1.0'
 mod 'beergeek/disable_noop','0.1.0'
 mod 'beergeek/facecount','0.1.0'
+mod 'puppetlabs/resource'
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
