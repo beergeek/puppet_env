@@ -1,7 +1,7 @@
 class profile::dns (
-  Optional[Array[String]] $name_servers = undef,
-  Boolean $purge                        = false,
-  Boolean $noop_scope                   = false,
+  Optional[Array] $name_servers = undef,
+  Boolean $purge                = false,
+  Boolean $noop_scope           = false,
 ) {
 
   if $facts['brownfields'] and $noop_scope {
