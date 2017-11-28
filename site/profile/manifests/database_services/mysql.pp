@@ -24,7 +24,7 @@ class profile::database_services::mysql (
 
   $db_hash.each |String $database_name, Hash $database_hash| {
     mysql::db {  $database_name:
-      * => $database_hash;
+      * => $database_hash,;
       default:
         * => $db_defaults;
     }

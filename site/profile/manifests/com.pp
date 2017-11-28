@@ -21,7 +21,7 @@ class profile::com (
       firewall { $firewall_rule:
         * => $firewall_data,;
         default:
-          * => $firewall_defaults,
+          * => $firewall_defaults;
       }
     }
   }

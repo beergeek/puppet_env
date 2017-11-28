@@ -19,7 +19,7 @@ class profile::sudo (
 
   $sudo_hash.each |String $sudo_name,Hash $sudo_hash_value| {
     sudo::conf { $sudo_name:
-      * => $sudo_hash_value;
+      * => $sudo_hash_value,;
       default:
         * => $sudo_hash_defaults;
     }

@@ -14,7 +14,7 @@ class profile::repos (
   if $repo_hash and $repo_default_hash {
     $repo_hash.each |String $repo_name, Hash $repo_values_hash| {
       yumrepo { $repo_name:
-        * => $repo_values_hash;
+        * => $repo_values_hash,;
         default:
           * => $repo_default_hash;
       }

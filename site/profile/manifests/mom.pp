@@ -8,9 +8,9 @@ class profile::mom (
     if $firewall_rules {
       $firewall_rules.each |String $rule_name, Hash $rule_data| {
         firewall { $rule_name:
-          *   => $rule_data;
+          *   => $rule_data,;
           default:
-            * => $firewall_rule_defaults,
+            * => $firewall_rule_defaults;
         }
       }
     }
