@@ -3,7 +3,6 @@
 variables:
   - &enable_firewall true
   - &firewall_defaults
-      before: "Class['profile::fw::post']"
       require: "Class['profile::fw::pre']"
       proto: 'tcp'
       action: 'accept'
