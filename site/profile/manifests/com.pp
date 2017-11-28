@@ -1,7 +1,7 @@
 class profile::com (
-  Hash[Hash] $firewall_hash,
   Hash $firewall_defaults,
-  Boolean $enable_firewall = true,
+  Optional[Hash] $firewall_hash = undef,
+  Boolean $enable_firewall      = true,
 ) {
 
   if has_key($facts['networking']['interfaces'],'enp0s8') {
