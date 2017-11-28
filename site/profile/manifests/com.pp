@@ -17,7 +17,7 @@ class profile::com (
   }
 
   if $enable_firewall {
-    $firewall_hash.ech |String $firewall_rule, Hash $firewall_data|{
+    $firewall_hash.each |String $firewall_rule, Hash $firewall_data|{
       firewall { $firewall_rule:
         * => $firewall_data,;
         default:
