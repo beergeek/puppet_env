@@ -17,11 +17,6 @@ class profile::base (
   case $facts['kernel'] {
     'linux': {
 
-      Firewall {
-        before  => Class['profile::fw::post'],
-        require => Class['profile::fw::pre'],
-      }
-
       if $enable_firewall {
         include ::firewall
         include profile::fw::pre
