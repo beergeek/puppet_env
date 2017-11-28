@@ -4,6 +4,7 @@ variables:
   - &enable_firewall true
   - &firewall_defaults
       require: "Class['profile::fw::pre']"
+      before: "Class['profile::fw::post']"
       proto: 'tcp'
       action: 'accept'
   - &hiera_hierarchy
