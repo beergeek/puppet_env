@@ -1,6 +1,6 @@
 class role::mom_server {
 
-  include profile::base
+  require profile::base
   include profile::mom
 
 }
