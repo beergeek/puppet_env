@@ -69,20 +69,6 @@ class profile::base (
       # manage DNS stuff
       include profile::dns
 
-      if $mco_client_array {
-        $mco_client_array.each |String $cert_title, Hash $cert_data| {
-          file { $cert_title:
-            ensure  => file,
-            path    => "/etc/puppetlabs/mcollective/ssl/clients/${cert_title}-public.pem",
-            owner   => 'root',
-            group   => 'root',
-            mode    => '0440',
-            content => pick($cert_data['cert'],' '),
-            notify  => Service['mcollective'],
-          }
-        }
-      }
-
     }
     'windows': {
 

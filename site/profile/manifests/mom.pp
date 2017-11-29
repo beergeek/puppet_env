@@ -5,9 +5,6 @@ class profile::mom (
 ) {
 
   if $enable_firewall {
-    include ::firewall
-    include profile::fw::pre
-    include profile::fw::post
     if $firewall_rules {
       $firewall_rules.each |String $rule_name, Hash $rule_data| {
         firewall { $rule_name:
