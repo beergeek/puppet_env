@@ -3,6 +3,10 @@ class profile::monitor_server (
   Boolean $noop_scope      = false,
 ) {
 
+  include apache::mod::authn_core
+  include apache::mod::authn_file
+  include apache::mod::auth_basic
+  include apache::mod::authz_user
   if $facts['brownfields'] and $noop_scope {
     noop(true)
   } else {
