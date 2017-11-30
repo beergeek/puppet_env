@@ -14,6 +14,5 @@ Alias /nagios "/usr/share/nagios/html"
 <Directory "/usr/share/nagios/html">
    Options None
    AllowOverride None
-   Order allow,deny
-   Allow from all
+   Require all granted
 </Directory>
