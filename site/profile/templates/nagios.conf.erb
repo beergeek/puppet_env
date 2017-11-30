@@ -3,7 +3,7 @@ ScriptAlias /nagios/cgi-bin/ "/usr/lib64/nagios/cgi-bin/"
 <Directory "/usr/lib64/nagios/cgi-bin/">
    Options ExecCGI
    AllowOverride None
-   Require nagiosadmin
+   Require user nagiosadmin
    AuthName "Nagios Access"
    AuthType Basic
    AuthUserFile /etc/nagios/passwd
