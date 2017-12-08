@@ -155,6 +155,7 @@ profile::lb_services::haproxy::listeners:
     ports: '8140'
     options:
       mode: 'tcp'
+      balance: 'leastconn'
   orch00:
     collect_exported: true
     ipaddress: "%{::ipaddress_eth1}"
