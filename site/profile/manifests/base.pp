@@ -3,16 +3,8 @@ class profile::base (
   Hash $sysctl_defaults,
   String $wsus_server,
   String $wsus_server_port,
-  Boolean $noop_scope               = false,
-  Boolean $enable_firewall          = true,
-  Optional[Hash] $mco_client_array  = undef,
+  Boolean $enable_firewall = true,
 ) {
-
-  if $facts['brownfields'] and $noop_scope {
-    noop(true)
-  } else {
-    noop(false)
-  }
 
   case $facts['kernel'] {
     'linux': {

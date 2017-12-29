@@ -2,13 +2,11 @@ class profile::web_services::iis (
   Optional[Hash] $website_hash = undef,
   Boolean $lb                  = true,
   Boolean $export_host         = false,
-  Boolean $noop_scope          = false,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if ($facts['brownfields']) and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   require ::iis

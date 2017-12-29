@@ -3,13 +3,11 @@ class profile::sudo (
   Hash $sudo_hash_defaults,
   Boolean $sudo_purge,
   Boolean $sudo_replace_config,
-  Boolean $noop_scope = false,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if $facts['brownfields'] and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   class { '::sudo':

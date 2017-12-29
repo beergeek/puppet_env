@@ -4,13 +4,11 @@ class profile::time_locale (
   String $locale_rhel,
   String $locale_deb,
   Array[String] $lang_pack,
-  Boolean $noop_scope = false,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if ($facts['brownfields']) and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   if $os['family'] == 'redhat' {

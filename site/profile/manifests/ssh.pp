@@ -1,15 +1,13 @@
 class profile::ssh (
-  Boolean $enable_firewall  = true,
-  Boolean $noop_scope       = false,
   Array[String] $allowed_groups,
   String $banner_content,
   Hash $options_hash,
+  Boolean $enable_firewall  = true,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if $facts['brownfields'] and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   if $enable_firewall {

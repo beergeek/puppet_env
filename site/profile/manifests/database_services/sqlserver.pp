@@ -5,13 +5,11 @@ class profile::database_services::sqlserver (
   Hash $db_hash,
   String $sql_version = 'MSSQL14',
   String $dotnet_src  = "C:\\vagrant\\sxs\\",
-  Boolean $noop_scope = false,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if ($facts['brownfields']) and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   reboot { 'pre':

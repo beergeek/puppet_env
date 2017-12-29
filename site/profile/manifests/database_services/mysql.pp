@@ -2,13 +2,11 @@ class profile::database_services::mysql (
   Hash $db_hash,
   Hash $db_defaults,
   Boolean $enable_firewall = true,
-  Boolean $noop_scope      = false,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if ($facts['brownfields']) and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   class { '::mysql::server':

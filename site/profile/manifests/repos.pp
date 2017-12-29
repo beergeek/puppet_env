@@ -2,13 +2,11 @@ class profile::repos (
   Optional[Hash] $repo_hash          = undef,
   Optional[Hash] $repo_default_hash  = undef,
   Boolean $collect_repos             = true,
-  Boolean $noop_scope                = false,
+  Optional[Boolean] $noop_scope,
 ) {
 
-  if $facts['brownfields'] and $noop_scope {
+  if $noop_scope {
     noop(true)
-  } else {
-    noop(false)
   }
 
   if $repo_hash and $repo_default_hash {
