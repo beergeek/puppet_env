@@ -343,7 +343,7 @@ profile::web_services::iis::website_hash:
 # DATABASE_SERVICES
 profile::database_services::linux_db: 'mysql'
 profile::database_services::postgresql::postgresql_default_config:
-  manage_service: true
+  service_manage: true
   port: 5432
 profile::database_services::postgresql::postgresql_db_default_config:
   encoding: 'UTF8'

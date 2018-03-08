@@ -2,4 +2,8 @@
 
 profile::database_services::linux_db: 'postgresql'
 profile::database_services::postgresql::postgresql_config:
+  service_manage: true
 profile::database_services::postgresql::postgresql_db_config:
+  'testing':
+    'user': 'brett'
+    'password': 'md588ea03c1d4bc9e5668ee9196a09cf759'
