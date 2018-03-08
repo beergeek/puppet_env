@@ -341,6 +341,13 @@ profile::web_services::iis::website_hash:
       {protocol: 'HTTP',port: 80,hostname: 'rob.puppet.vm'}]
 
 # DATABASE_SERVICES
+profile::database_services::linux_db: 'mysql'
+profile::database_services::postgresql::postgresql_default_config:
+  manage_service: true
+  port: 5432
+profile::database_services::postgresql::postgresql_db_default_config:
+  encoding: 'UTF8'
+  locale: 'en_AU'
 profile::database_services::mysql::enable_firewall: *enable_firewall
 profile::database_services::mysql::db_hash:
   elmo: {}

@@ -1,0 +1,5 @@
+---
+
+profile::database_services::lniux_db: 'postgresql'
+profile::database_services::postgresql::postgresql_config:
+profile::database_services::postgresql::postgresql_db_config:
