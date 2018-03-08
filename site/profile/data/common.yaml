@@ -106,12 +106,15 @@ profile::com::firewall_hash:
   '100 allow pcp access':
     dport:
       - 8142
-  '100 allow mco access':
+  '100 allow console access':
     dport:
-      - 61613
-  '100 allow amq access':
+      - 4433
+  '100 allow CM access':
     dport:
-      - 61616
+      - 8170
+  '100 allow PCP client access':
+    dport:
+      - 8143
 
 # MOM
 profile::mom::manage_hiera: *manage_heira
