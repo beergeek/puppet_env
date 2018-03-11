@@ -43,7 +43,7 @@ mod "saz/sudo", :latest
 mod "saz/timezone", :latest
 mod "stahnma/epel", :latest
 mod "trlinkin/noop", :latest
-mod "beergeek/iis", :latest
+#mod "beergeek/iis", :latest
 mod 'beergeek/enable_noop', :latest
 mod 'beergeek/disable_noop', :latest
 mod 'beergeek/facecount', :latest
@@ -51,3 +51,6 @@ mod 'puppetlabs/resource', :latest
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
+mod 'iis',
+  :git => 'https://github.com/beergeek/iis',
+  :branch => 'master'
