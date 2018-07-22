@@ -7,7 +7,7 @@ class profile::mom (
   package { 'autosign':
     ensure   => present,
     provider => 'puppet_gem',
-    notify   => Exec['setup_autosign'],
+    before   => Exec['setup_autosign'],
   }
 
   exec { 'setup_autosign':
@@ -17,8 +17,9 @@ class profile::mom (
   }
 
   ini_setting {'policy-based autosigning':
+    ensure  => present,
     setting => 'autosign',
-    path    => "${confdir}/puppet.conf",
+    path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'master',
     value   => '/opt/puppetlabs/puppet/bin/autosign-validator',
     require => Exec['setup_autosign'],
