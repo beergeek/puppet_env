@@ -58,7 +58,7 @@ profile::sudo::sudo_hash:
     content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
   ec2-user:
     priority: 10
-    content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
+    content: 'ec2-user ALL=(ALL) NOPASSWD: ALL'
 profile::sudo::sudo_hash_defaults:
   priority: 50
 profile::sudo::sudo_purge: true
