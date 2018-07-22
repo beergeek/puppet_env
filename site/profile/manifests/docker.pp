@@ -1,5 +1,5 @@
 class profile::docker (
-  String $version => 'latest',
+  String $version = 'latest',
 ) {
 
   class { 'docker':
