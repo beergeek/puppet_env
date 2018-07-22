@@ -100,7 +100,7 @@ class profile::bamboo_server (
     manage_user         => $manage_bamboo_grp,
     source_location     => $source_location,
     version             => $bamboo_version,
-    require => Java::Oracle['jdk8'],
+    require             => Java::Oracle['jdk8'],
   }
 
   file { "${bamboo_data_dir}/bamboo.jks":

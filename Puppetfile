@@ -19,6 +19,7 @@ mod "puppetlabs/git", :latest
 mod "puppetlabs/haproxy", :latest
 mod "puppetlabs/iis", :latest
 mod "puppetlabs/inifile", :latest
+mod "puppetlabs/java", :latest
 mod "puppetlabs/mysql", :latest
 mod "puppetlabs/ntp", :latest
 mod "puppetlabs/pe_gem", :latest
@@ -51,3 +52,6 @@ mod 'puppetlabs/resource', :latest
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
+mod 'bamboo',
+  :git => 'https://github.com/beergeek/bamboo.git',
+  :branch => 'master'
