@@ -16,6 +16,14 @@ class profile::mom (
     creates => '/etc/autosign.conf',
   }
 
+  ini_setting {'policy-based autosigning':
+    setting => 'autosign',
+    path    => "${confdir}/puppet.conf",
+    section => 'master',
+    value   => '/opt/puppetlabs/puppet/bin/autosign-validator',
+    require => Exec['setup_autosign'],
+  }
+
   if $enable_firewall {
     if $firewall_rules {
       $firewall_rules.each |String $rule_name, Hash $rule_data| {
