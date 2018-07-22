@@ -35,13 +35,14 @@ profile::ssh::options_hash:
   Port: 22
   AcceptEnv: 'LANG LC_*'
   ChallengeResponseAuthentication: no
-  PermitRootLogin: yes
-  PrintMotd: no
+  PermitRootLogin: no
+  PrintMotd: yes
   Subsystem: 'sftp /usr/libexec/openssh/sftp-server'
   UsePAM: yes
   X11Forwarding: yes
   RSAAuthentication: yes
   PubkeyAuthentication: yes
+  PasswordAuthentication: no
   UseDNS: no
 
 # SUDO
