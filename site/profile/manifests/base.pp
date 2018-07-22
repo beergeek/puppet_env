@@ -1,13 +1,18 @@
 class profile::base (
-  Hash $sysctl_settings,
-  Hash $sysctl_defaults,
-  String $wsus_server,
-  String $wsus_server_port,
-  Boolean $enable_firewall = true,
+  Hash      $sysctl_settings,
+  Hash      $sysctl_defaults,
+  String    $wsus_server,
+  String    $wsus_server_port,
+  Boolean   $enable_firewall    = true,
 ) {
 
   case $facts['kernel'] {
     'linux': {
+
+      Firewall {
+        before  => Class['profile::fw::post'],
+        require => Class['profile::fw::pre'],
+      }
 
       if $enable_firewall {
         include ::firewall
@@ -19,18 +24,15 @@ class profile::base (
         }
       }
 
-      contain epel
+      include epel
 
-      # old way
-      # create_resources(sysctl,$sysctl_settings, $sysctl_defaults)
-      # new way
-      $sysctl_settings.each |String $sysctl_name, Hash $sysctl_hash| {
-        sysctl { $sysctl_name:
-          * => $sysctl_hash;
-          default:
-            * => $sysctl_defaults;
-        }
-      }
+      #$sysctl_settings.each |String $sysctl_name, Hash $sysctl_hash| {
+      #  sysctl { $sysctl_name:
+      #    * => $sysctl_hash;
+      #    default:
+      #      * => $sysctl_defaults;
+      #  }
+      #}
 
       ensure_packages(['ruby'])
       file { ['/etc/puppetlabs/facter','/etc/puppetlabs/facter/facts.d']:
@@ -41,7 +43,7 @@ class profile::base (
       }
 
       # repo management
-      include profile::repos
+      # include profile::repos
 
       # monitoring
       include profile::monitoring
@@ -64,8 +66,16 @@ class profile::base (
     }
     'windows': {
 
+      include profile::wsus_services
+      include archive
+
       include chocolatey
       Class['chocolatey'] -> Package<||>
+
+      reboot { 'dsc_reboot':
+        message => 'DSC is rebooting this machine',
+        when    => 'pending',
+      }
 
       reboot { 'after_dotnet':
         apply => 'immediately',
@@ -93,6 +103,12 @@ class profile::base (
       # monitoring
       include profile::monitoring
 
+      file { 'C:\Windows\System32\WindowsPowerShell\v1.0\Modules\PSWindowsUpdate':
+        ensure  => directory,
+        recurse => true,
+        source  => 'puppet:///binaries/PSWindowsUpdate',
+      }
+
       file { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         ensure => directory,
       }
@@ -100,18 +116,13 @@ class profile::base (
       acl { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         purge                      => false,
         permissions                => [
-          { identity => 'vagrant', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all' },
           { identity => 'Administrators', rights => ['full'], perm_type=> 'allow', child_types => 'all', affects => 'all'}
         ],
-        owner                      => 'vagrant',
+        owner                      => 'Administrators',
         group                      => 'Administrators',
         inherit_parent_permissions => true,
       }
 
-      # setup wsus client
-      class { 'wsus_client':
-        server_url => "${wsus_server}:${wsus_server_port}",
-      }
     }
   }
 

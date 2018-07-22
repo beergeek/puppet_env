@@ -1,16 +1,8 @@
-class profile::database_services (
-  Enum['mysql','postgresql'] $linux_db = 'mysql',
-) {
+class profile::database_services {
 
   case $facts['kernel'] {
     'linux': {
-      if $linux_db == 'mysql' {
-        include profile::database_services::mysql
-      } elsif $linux_db == 'postgresql' {
-        include profile::database_services::postgresql
-      } else {
-        fail("No database selected")
-      }
+      include profile::database_services::mysql
     }
     'windows': {
       include profile::database_services::sqlserver

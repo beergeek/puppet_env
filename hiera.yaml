@@ -1,0 +1,21 @@
+---
+
+version: 5
+defaults:
+  datadir: data
+  lookup_key: eyaml_lookup_key
+  options:
+    pkcs7_private_key: /etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem
+    pkcs7_public_key:  /etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem
+
+hierarchy:
+  - name: 'non-override'
+    path: 'no_overrides.yaml'
+
+  - name: 'Normal Data'
+    paths:
+      - "data_centre/%{trusted.extensions.pp_datacenter}.yaml"
+      - "node/%{trusted.certname}.yaml"
+      - "role/%{trusted.extensions.pp_role}.yaml"
+      - "common.yaml"
+

@@ -1,0 +1,18 @@
+---
+
+version: 5
+defaults:
+  datadir: ../data
+  data_hash: yaml_data
+
+hierarchy:
+  - name: 'non-override'
+    path: 'no_overrides.yaml'
+
+  - name: 'Normal Data'
+    paths:
+      - "data_centre/%{trusted.extensions.pp_datacenter}.yaml"
+      - "node/%{trusted.certname}.yaml"
+      - "role/%{trusted.extensions.pp_role}.yaml"
+      - "common.yaml"
+

@@ -3,12 +3,7 @@ class profile::lb_services::haproxy (
   Boolean $enable_firewall  = true,
   Optional[Hash] $frontends = undef,
   Optional[Hash] $backends  = undef,
-  Optional[Boolean] $noop_scope,
 ) {
-
-  if $noop_scope {
-    noop(true)
-  }
 
   Firewall {
     before  => Class['profile::fw::post'],
@@ -17,25 +12,11 @@ class profile::lb_services::haproxy (
 
   include ::haproxy
 
-  if has_key($facts['networking']['interfaces'],'enp0s8') {
-    $ip = $facts['networking']['interfaces']['enp0s8']['ip']
-  } elsif has_key($facts['networking']['interfaces'],'eth1') {
-    $ip = $facts['networking']['interfaces']['eth1']['ip']
-  } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
-    $ip = $facts['networking']['interfaces']['enp0s3']['ip']
-  } elsif has_key($facts['networking']['interfaces'],'eth0') {
-    $ip = $facts['networking']['interfaces']['eth0']['ip']
-  } else {
-    fail("Buggered if I know your IP Address")
-  }
-
   if $listeners {
     $listeners.each |String $listener,Hash $listener_values| {
       haproxy::listen { $listener:
-        collect_exported => $listener_values['collect_exported'],
-        ipaddress        => $ip,
-        ports            => $listener_values['ports'],
-        options          => $listener_values['options'],
+        ipaddress => $facts['networking']['ip'],
+        *         => $listener_values
       }
 
       if $enable_firewall {

@@ -1,16 +1,6 @@
 class profile::monitor_server (
   Boolean $enable_firewall = true,
-  Optional[Boolean] $noop_scope,
 ) {
-
-  if $noop_scope {
-    noop(true)
-  }
-
-  include apache::mod::authn_core
-  include apache::mod::authn_file
-  include apache::mod::auth_basic
-  include apache::mod::authz_user
 
   if $facts['os']['family'] != 'redhat' {
     fail("This class is only for EL family")

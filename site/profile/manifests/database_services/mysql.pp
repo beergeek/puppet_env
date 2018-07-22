@@ -1,28 +1,34 @@
 class profile::database_services::mysql (
   Hash $db_hash,
   Hash $db_defaults,
-  Boolean $enable_firewall = true,
-  Optional[Boolean] $noop_scope,
+  Boolean $enable_firewall                    = true,
+  Optional[Hash] $mysql_server_override_data  = {},
+  Optional[Hash] $mysql_client_override_data  = {},
+  Optional[Hash] $yumrepo_data                = {},
 ) {
 
-  if $noop_scope {
-    noop(true)
+  $yumrepo_data.each |String $repo_name, Hash $repo_data| {
+    yumrepo { $repo_name:
+      *      => $repo_data,
+      before => Class['::mysql::client','::mysql::server'],
+    }
+  }
+
+  class { '::mysql::client':
+    * => $mysql_client_override_data,
   }
 
   class { '::mysql::server':
-    override_options => {
-      'mysqld' => {
-        'bind-address' => '0.0.0.0',
-      }
-    }
+    * => $mysql_server_override_data,
   }
+
   class {'::mysql::bindings':
     php_enable => true,
   }
 
   $db_hash.each |String $database_name, Hash $database_hash| {
     mysql::db {  $database_name:
-      * => $database_hash,;
+      * => $database_hash;
       default:
         * => $db_defaults;
     }

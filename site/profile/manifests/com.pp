@@ -1,27 +1,21 @@
 class profile::com (
-  Hash $firewall_defaults,
-  Optional[Hash] $firewall_hash = undef,
-  Boolean $enable_firewall      = true,
+  Boolean              $enable_firewall       = true,
+  Optional[Hash]       $firewall_rules        = {},
+  Optional[String]     $hiera_eyaml_priv      = undef,
+  Optional[String]     $hiera_eyaml_pub       = undef,
+  Stdlib::Absolutepath $hiera_eyaml_priv_name = '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem',
+  Stdlib::Absolutepath $hiera_eyaml_pub_name  = '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem',
 ) {
 
-  if has_key($facts['networking']['interfaces'],'enp0s8') {
-    $ip = $facts['networking']['interfaces']['enp0s8']['ip']
-  } elsif has_key($facts['networking']['interfaces'],'eth1') {
-    $ip = $facts['networking']['interfaces']['eth1']['ip']
-  } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
-    $ip = $facts['networking']['interfaces']['enp0s3']['ip']
-  } elsif has_key($facts['networking']['interfaces'],'eth0') {
-    $ip = $facts['networking']['interfaces']['eth0']['ip']
-  } else {
-    fail("Buggered if I know your IP Address")
-  }
-
   if $enable_firewall {
-    $firewall_hash.each |String $firewall_rule, Hash $firewall_data|{
-      firewall { $firewall_rule:
-        * => $firewall_data,;
-        default:
-          * => $firewall_defaults;
+    if $firewall_rules {
+      $firewall_rules.each |String $rule_name, Hash $rule_data| {
+        firewall { $rule_name:
+          *   => $rule_data;
+          default:
+            proto  => 'tcp',
+            action => 'accept',
+        }
       }
     }
   }
@@ -30,16 +24,39 @@ class profile::com (
     @@haproxy::balancermember { "master00-${facts['fqdn']}":
       listening_service => 'puppet00',
       server_names      => $facts['fqdn'],
-      ipaddresses       => $ip,
+      ipaddresses       => $facts['networking']['ip'],
       ports             => '8140',
       options           => 'check',
     }
-    @@haproxy::balancermember { "mco00-${facts['fqdn']}":
-      listening_service => 'mco00',
+    @@haproxy::balancermember { "pcp00-${facts['fqdn']}":
+      listening_service => 'pcp00',
       server_names      => $facts['fqdn'],
-      ipaddresses       => $ip,
-      ports             => '61613',
+      ipaddresses       => $facts['networking']['ip'],
+      ports             => '8142',
       options           => 'check',
     }
   }
+
+  if $hiera_eyaml_priv and $hiera_eyaml_pub {
+    file { $hiera_eyaml_priv_name:
+      ensure  => file,
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      mode    => '0600',
+      content => $hiera_eyaml_priv,
+      notify  => Service['pe-puppetserver'],
+    }
+
+    file { $hiera_eyaml_pub_name:
+      ensure  => file,
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      mode    => '0600',
+      content => $hiera_eyaml_pub,
+      notify  => Service['pe-puppetserver'],
+    }
+  } elsif $hiera_eyaml_priv or $hiera_eyaml_pub {
+    fail('Hiera-eyaml requires both the private and public keys')
+  }
+
 }

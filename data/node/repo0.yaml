@@ -1,0 +1,40 @@
+---
+
+variables:
+  - &enable_firewall true
+
+# WEB_SERVICES
+profile::web_services::apache::enable_firewall: *enable_firewall
+profile::web_services::apache::website_hash:
+  'repo.puppet.vm':
+    docroot: 'repo'
+    create_host: true
+    manage_docroot: false
+    port: '80'
+  'custom.puppet.vm':
+    docroot: 'custom'
+    create_host: true
+    port: '80'
+profile::web_services::apache::website_defaults:
+  port: '80'
+  priority: '10'
+profile::web_services::lb: false
+profile::web_services::apache::export_host: true
+
+# REPO_SERVER
+profile::repo_server::repo_data:
+  'repo.puppet.vm':
+    baseurl: 'http://repo.puppet.vm'
+    descr: 'Demo env repo'
+    tag: 'custom_packages'
+  'custom.puppet.vm':
+    baseurl: 'http://custom.puppet.vm'
+    descr: 'Custom app code repo'
+    enabled: 0
+profile::repo_server::repo_defaults:
+  ensure: present
+  enabled: 1
+  gpgcheck: 0
+
+# REPOS
+profile::repos::collect_repos: false

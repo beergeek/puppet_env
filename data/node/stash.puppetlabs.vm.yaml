@@ -1,0 +1,45 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+
+profile::database_services::mysql::yumrepo_data:
+  'repo.mysql.com':
+    baseurl: "http://repo.mysql.com/yum/mysql-5.7-community/el/%{::operatingsystemmajrelease}/$basearch/"
+    descr: 'repo.mysql.com'
+    enabled: 1
+    gpgcheck: true
+    gpgkey: 'http://repo.mysql.com/RPM-GPG-KEY-mysql'
+
+profile::database_services::mysql::mysql_server_override_data:
+  package_name: 'mysql-community-server'
+  package_ensure: 'installed'
+  service_name: 'mysqld'
+  manage_config_file: true
+  override_options:
+    'mysqld':
+      'bind-address': '0.0.0.0'
+profile::database_services::mysql::mysql_client_override_data:
+  package_name: 'mysql-community-client'
+profile::database_services::mysql::db_hash:
+  stashdb:
+    ensure: present
+    user: stash
+    password: password123
+    charset: utf8
+    collate: utf8_bin
+    grant:
+      - ALL
+profile::bbs_server::enable_firewall: *enable_firewall
+profile::bbs_server::firewall_rules:
+  '010 BBS Port 7990':
+    dport: '7990'
+  '010 BBS SSL Port 8843':
+    dport: '8443'
+  '010 BBS SSH Port 7999':
+    dport: '7999'
+profile::bbs_server::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'
+profile::bbs_server::bbs_app_dir: '/var/atlassian/application-data/bitbucket/'

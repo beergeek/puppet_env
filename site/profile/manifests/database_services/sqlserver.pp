@@ -5,12 +5,7 @@ class profile::database_services::sqlserver (
   Hash $db_hash,
   String $sql_version = 'MSSQL14',
   String $dotnet_src  = "C:\\vagrant\\sxs\\",
-  Optional[Boolean] $noop_scope,
 ) {
-
-  if $noop_scope {
-    noop(true)
-  }
 
   reboot { 'pre':
     apply    => 'immediately',

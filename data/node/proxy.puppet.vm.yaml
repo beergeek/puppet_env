@@ -1,0 +1,64 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+profile::base::sysctl_settings:
+  'net.ipv4.ip_forward':
+    value: '1'
+profile::proxy::squid::extra_configs:
+  'bump settings':
+    order: '60'
+    config_entries:
+      'ssl_bump':
+        - 'server-first'
+        - 'all'
+      'sslcrtd_program':
+        - '/usr/lib64/squid/ssl_crtd'
+        - '-s'
+        - '/var/lib/ssl_db'
+        - '-M'
+        - '4MB'
+      'sslcrtd_children':
+        - '8'
+        - 'startup=1'
+        - 'idle=1'
+profile::proxy::squid::acls:
+  'localnet':
+    type: 'src'
+    entries:
+      - '192.168.1.0/24'
+  'Safe_ports':
+    type: 'port'
+    entries:
+      - '80'
+      - '1025-65535'
+profile::proxy::squid::http_accesses:
+  'Safe_ports':
+    action: 'allow'
+  '!Safe_ports':
+    action: 'deny'
+profile::proxy::squid::http_ports:
+  'http':
+    port: '3127'
+profile::proxy::squid::https_ports:
+  'https_intercept':
+    port: '3128'
+    options: 'intercept ssl-bump generate-host-certificates=on dynamic_cert_mem_cache_size=4MB cert=/etc/squid/ssl_cert/myca.pem key=/etc/squid/ssl_cert/myca.pem'
+profile::proxy::squid::enable_firewall: *enable_firewall
+profile::proxy::squid::firewall_rules:
+  '010 Puppet Port 8140':
+    dport: '8140'
+  '010 PCP Port 8142':
+    dport: '8142'
+  '010 Node Classifier Port 4433':
+    dport: '4433'
+  '010 PuppetDB Port 8081':
+    dport: '8081'
+  '010 Squid HTTP Port 3127':
+    dport: '3127'
+  '010 Squid HTTPS Port 3128':
+    dport: '3128'
+profile::proxy::squid::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'

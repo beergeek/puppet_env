@@ -1,0 +1,28 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+
+profile::database_services::mysql::mysql_server_override_data:
+  override_options:
+    'mysqld':
+      'bind-address': '0.0.0.0'
+      'innodb_log_file_size': '64MB'
+      'log-error': ~
+
+profile::bamboo_server::enable_firewall: *enable_firewall
+profile::bamboo_server::manage_db_settings: true
+profile::bamboo_server::db_type: 'mysql'
+profile::bamboo_server::bamboo_verison: '6.5.1'
+profile::bamboo_server::db_password: 'password123'
+profile::bamboo_server::enable_firewall: *enable_firewall
+profile::bamboo_server::firewall_rules:
+  '010 Bamboo Port 8085':
+    dport: '8085'
+  '010 Bamboo SSL Port 8443':
+    dport: '8443'
+profile::bamboo_server::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'
+profile::bamboo_server::bamboo_app_dir: '/var/atlassian/application-data/bamboo/'

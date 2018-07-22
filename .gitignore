@@ -14,3 +14,4 @@ vagrant
 vendor
 coverage
 Gemfile.lock
+.onceover

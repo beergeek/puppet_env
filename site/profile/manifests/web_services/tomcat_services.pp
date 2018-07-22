@@ -1,5 +1,5 @@
 class profile::web_services::tomcat_services (
-  Hash $tomcat_servers,
+  $tomcat_servers,
 ) {
 
   class { 'tomcat': }

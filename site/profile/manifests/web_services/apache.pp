@@ -1,15 +1,10 @@
 class profile::web_services::apache (
-  Hash $website_defaults,
-  Boolean $enable_firewall     = true,
-  Optional[Hash] $website_hash = undef,
-  Boolean $lb                  = true,
-  Boolean $export_host         = false,
-  Optional[Boolean] $noop_scope,
+  Hash            $website_defaults,
+  Boolean         $enable_firewall     = true,
+  Optional[Hash]  $website_hash        = undef,
+  Boolean         $lb                  = true,
+  Boolean         $export_host         = false,
 ) {
-
-  if $noop_scope {
-    noop(true)
-  }
 
   class { '::apache':
     default_mods => false,
@@ -33,28 +28,17 @@ class profile::web_services::apache (
       if $_bypass or ($search_results != 0) {
         $_docroot = "/var/www/${website['docroot']}"
 
-        if has_key($facts['networking']['interfaces'],'enp0s8') {
-          $ip = $facts['networking']['interfaces']['enp0s8']['ip']
-        } elsif has_key($facts['networking']['interfaces'],'eth1') {
-          $ip = $facts['networking']['interfaces']['eth1']['ip']
-        } elsif has_key($facts['networking']['interfaces'],'enp0s3') {
-          $ip = $facts['networking']['interfaces']['enp0s3']['ip']
-        } elsif has_key($facts['networking']['interfaces'],'eth0') {
-          $ip = $facts['networking']['interfaces']['eth0']['ip']
-        } else {
-          fail("Buggered if I know your IP Address")
-        }
         $website_port = $website[port]
 
         if $export_host {
           @@host { $site_name:
             ensure => present,
-            ip     => $ip,
+            ip     => $facts['networking']['ip'],
           }
         } else {
           host { $site_name:
             ensure => present,
-            ip     => $ip,
+            ip     => $facts['networking']['ip'],
           }
         }
         if $enable_firewall and !defined(Firewall["100 ${facts['fqdn']} HTTP ${website_port}"]) {
@@ -72,7 +56,7 @@ class profile::web_services::apache (
           use                 => 'generic-service',
           host_name           => $facts['fqdn'],
           service_description => "${facts['fqdn']}_http_${site_name}",
-          check_command       => "check_http!${site_name} -I ${ip} -p ${website_port} -u http://${site_name}",
+          check_command       => "check_http!${site_name} -I ${facts['networking']['ip']} -p ${website_port} -u http://${site_name}",
           target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
           notify              => Service['nagios'],
           require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
@@ -104,7 +88,7 @@ class profile::web_services::apache (
           @@haproxy::balancermember { "${site_name}-${facts['fqdn']}":
             listening_service => $site_name,
             server_names      => $facts['fqdn'],
-            ipaddresses       => $facts['ipaddress_eth1'],
+            ipaddresses       => $facts['networking']['ip'],
             ports             => $website[port],
             options           => 'check',
           }

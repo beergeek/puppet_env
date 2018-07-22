@@ -2,12 +2,8 @@ class profile::web_services::iis (
   Optional[Hash] $website_hash = undef,
   Boolean $lb                  = true,
   Boolean $export_host         = false,
-  Optional[Boolean] $noop_scope,
 ) {
 
-  if $noop_scope {
-    noop(true)
-  }
 
   require ::iis
 
@@ -28,12 +24,12 @@ class profile::web_services::iis (
         if $export_host {
           @@host { $site_name:
             ensure => present,
-            ip     => $facts['networking']['interfaces']['Ethernet 2']['ip'],
+            ip     => $facts['networking']['ip'],
           }
         } else {
           host { $site_name:
             ensure => present,
-            ip     => $facts['networking']['interfaces']['Ethernet 2']['ip'],
+            ip     => $facts['networking']['ip'],
           }
         }
 
@@ -61,7 +57,7 @@ class profile::web_services::iis (
             @@haproxy::balancermember { "${site_name}-${facts['fqdn']}":
               listening_service => $site_name,
               server_names      => $facts['fqdn'],
-              ipaddresses       => $facts['networking']['interfaces']['Ethernet 2']['ip'],
+              ipaddresses       => $facts['networking']['ip'],
               ports             => $binding['port'],
               options           => 'check',
             }
@@ -73,7 +69,7 @@ class profile::web_services::iis (
             use                 => 'generic-service',
             host_name           => $facts['fqdn'],
             service_description => "${facts['fqdn']}_http_${site_name}",
-            check_command       => "check_http!${site_name} -I ${networking['interfaces']['Ethernet 2']['ip']} -p ${binding['port']} -u http://${site_name}",
+            check_command       => "check_http!${site_name} -I ${facts['networking']['ip']} -p ${binding['port']} -u http://${site_name}",
             target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
             notify              => Service['nagios'],
             require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],

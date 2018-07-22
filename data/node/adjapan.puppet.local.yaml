@@ -1,0 +1,11 @@
+---
+
+profile::ad_services::domain_controller_hash:
+  domain_credential_user: 'puppet.local\Administrator'
+  domain_credential_passwd: 'M?4CtAMCrMKN'
+  safe_mode_passwd: 'M?4CtAMCrMKN'
+  domain_name: 'japan'
+  parent_domain_name: 'puppet.local'
+  parent_dns_addr: '192.168.0.69'
+profile::ad_services::dns_server_hash:
+  dns_server_name: 'adjapan.puppet.local'

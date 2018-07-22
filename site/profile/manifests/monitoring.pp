@@ -1,10 +1,12 @@
 class profile::monitoring (
-  Optional[Boolean] $noop_scope,
+  Boolean $noop_scope = false,
 ) {
 
-  if $noop_scope {
+  if $facts['brownfields'] and $noop_scope {
     noop(true)
-  } 
+  } else {
+    unless $::settings::noop { noop(false) }
+  }
 
   if $facts['kernel'] == 'Linux' {
     case $facts['os']['family'] {

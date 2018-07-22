@@ -1,14 +1,16 @@
 class profile::time_locale (
-  Array[String] $ntp_servers,
+  Array $ntp_servers,
   String $timezone,
   String $locale_rhel,
   String $locale_deb,
-  Array[String] $lang_pack,
-  Optional[Boolean] $noop_scope,
+  Array $lang_pack,
+  Boolean $noop_scope = false,
 ) {
 
-  if $noop_scope {
+  if ($facts['brownfields']) and $noop_scope {
     noop(true)
+  } else {
+    unless $::settings::noop { noop(false) }
   }
 
   if $os['family'] == 'redhat' {

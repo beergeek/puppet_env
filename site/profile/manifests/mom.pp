@@ -1,16 +1,28 @@
 class profile::mom (
   Hash $firewall_rule_defaults,
-  Optional[Hash] $firewall_rules  = {},
-  Boolean $enable_firewall        = true,
+  Optional[Hash] $firewall_rules = {},
+  Boolean $enable_firewall = true,
 ) {
+
+  package { 'autosign':
+    ensure   => present,
+    provider => 'puppet_gem',
+    notify   => Exec['setup_autpsign'],
+  }
+
+  exec { 'setup_autosign':
+    command => 'autosign config setup',
+    path    => '/opt/puppetlabs/puppet/bin',
+    create  => '/etc/autosign.conf',
+  }
 
   if $enable_firewall {
     if $firewall_rules {
       $firewall_rules.each |String $rule_name, Hash $rule_data| {
         firewall { $rule_name:
-          *   => $rule_data,;
+          *   => $rule_data;
           default:
-            * => $firewall_rule_defaults;
+            * => $firewall_rule_defaults,
         }
       }
     }

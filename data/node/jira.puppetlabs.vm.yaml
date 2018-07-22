@@ -1,0 +1,50 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+
+profile::database_services::mysql::yumrepo_data:
+  'repo.mysql.com':
+    baseurl: "http://repo.mysql.com/yum/mysql-5.7-community/el/%{::operatingsystemmajrelease}/$basearch/"
+    descr: 'repo.mysql.com'
+    enabled: 1
+    gpgcheck: true
+    gpgkey: 'http://repo.mysql.com/RPM-GPG-KEY-mysql'
+
+profile::database_services::mysql::mysql_server_override_data:
+  package_name: 'mysql-community-server'
+  package_ensure: 'installed'
+  service_name: 'mysqld'
+  manage_config_file: true
+  override_options:
+    'mysqld':
+      'bind-address': '0.0.0.0'
+profile::database_services::mysql::mysql_client_override_data:
+  package_name: 'mysql-community-client'
+profile::database_services::mysql::db_hash:
+  jiradb:
+    ensure: present
+    user: jira
+    password: password123
+    charset: utf8
+    collate: utf8_bin
+    grant:
+      - SELECT
+      - INSERT
+      - UPDATE
+      - DELETE
+      - CREATE
+      - DROP
+      - ALTER
+      - INDEX
+profile::jira_server::enable_firewall: *enable_firewall
+profile::jira_server::firewall_rules:
+  '010 Jira Port 8080':
+    dport: '8080'
+  '010 Jira SSL Port 8443':
+    dport: '8443'
+profile::jira_server::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'
+profile::jira_server::jira_app_dir: '/var/atlassian/application-data/jira'

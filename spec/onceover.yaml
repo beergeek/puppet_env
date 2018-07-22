@@ -1,6 +1,5 @@
 # Classes to be tested
 classes:
-  - role::amq_broker
   - role::com_server
   - role::db_server
   - role::load_balancer
@@ -31,6 +30,8 @@ test_matrix:
   - all_nodes:
       classes: 'all_classes'
       tests: 'spec'
+      static_classes:
+        - profile::base
 
 functions:
   puppetdb_query:
