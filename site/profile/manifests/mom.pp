@@ -13,7 +13,7 @@ class profile::mom (
   exec { 'setup_autosign':
     command => 'autosign config setup',
     path    => '/opt/puppetlabs/puppet/bin',
-    create  => '/etc/autosign.conf',
+    creates => '/etc/autosign.conf',
   }
 
   if $enable_firewall {
