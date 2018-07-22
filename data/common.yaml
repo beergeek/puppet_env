@@ -30,6 +30,7 @@ profile::ssh::allowed_groups:
   - 'vagrant'
   - 'centos'
   - 'ubuntu'
+  - 'ec2-user'
 profile::ssh::options_hash:
   Port: 22
   AcceptEnv: 'LANG LC_*'
