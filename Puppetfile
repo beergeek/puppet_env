@@ -1,8 +1,8 @@
 forge "http://forgeapi.puppetlabs.com"
 
 # Modules from the Puppet Forge
-mod "badgerious/windows_env"
 mod "basti1302/windows_path", :latest
+mod 'danieldreier-autosign', :latest
 mod "fiddyspence/sysctl", :latest
 mod "puppet/download_file", :latest
 mod "puppet/windowsfeature", :latest
@@ -17,6 +17,7 @@ mod "puppetlabs/firewall", :latest
 mod "puppetlabs/gcc", :latest
 mod "puppetlabs/git", :latest
 mod "puppetlabs/haproxy", :latest
+mod "puppetlabs/iis", :latest
 mod "puppetlabs/inifile", :latest
 mod "puppetlabs/mysql", :latest
 mod "puppetlabs/ntp", :latest
@@ -43,7 +44,6 @@ mod "saz/sudo", :latest
 mod "saz/timezone", :latest
 mod "stahnma/epel", :latest
 mod "trlinkin/noop", :latest
-#mod "beergeek/iis", :latest
 mod 'beergeek/enable_noop', :latest
 mod 'beergeek/disable_noop', :latest
 mod 'beergeek/facecount', :latest
@@ -51,6 +51,3 @@ mod 'puppetlabs/resource', :latest
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
-mod 'iis',
-  :git => 'https://github.com/beergeek/iis',
-  :branch => 'master'
