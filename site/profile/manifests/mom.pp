@@ -1,7 +1,7 @@
 class profile::mom (
-  Hash $firewall_rule_defaults,
-  Optional[Hash] $firewall_rules = {},
-  Boolean $enable_firewall = true,
+  Hash           $firewall_rule_defaults,
+  Optional[Hash] $firewall_rules          = {},
+  Boolean        $enable_firewall         = true,
 ) {
 
   package { 'autosign':
