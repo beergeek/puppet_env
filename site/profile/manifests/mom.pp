@@ -4,9 +4,7 @@ class profile::mom (
   Boolean        $enable_firewall         = true,
 ) {
 
-  package { 'autosign':
-    ensure   => present,
-    provider => 'puppet_gem',
+  class { 'autosign':
     before   => Exec['setup_autosign'],
   }
 
