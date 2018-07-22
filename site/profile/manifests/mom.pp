@@ -11,7 +11,7 @@ class profile::mom (
   exec { 'setup_autosign':
     command => 'autosign config setup',
     path    => '/opt/puppetlabs/puppet/bin',
-    creates => '/etc/autosign.conf',
+    creates => '/etc/puppetlabs/puppetserver/autosign.conf',
   }
 
   ini_setting {'policy-based autosigning':
