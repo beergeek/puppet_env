@@ -4,6 +4,7 @@ forge "http://forgeapi.puppetlabs.com"
 mod "basti1302/windows_path", :latest
 mod 'danieldreier-autosign', :latest
 mod "fiddyspence/sysctl", :latest
+mod "puppet/archive", :latest
 mod "puppet/download_file", :latest
 mod "puppet/windowsfeature", :latest
 mod "puppet/windows_firewall", :latest
