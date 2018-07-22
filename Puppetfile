@@ -21,6 +21,7 @@ mod "puppetlabs/haproxy", :latest
 mod "puppetlabs/iis", :latest
 mod "puppetlabs/inifile", :latest
 mod "puppetlabs/java", :latest
+mod "puppetlabs/java_ks", :latest
 mod "puppetlabs/mysql", :latest
 mod "puppetlabs/ntp", :latest
 mod "puppetlabs/pe_gem", :latest
