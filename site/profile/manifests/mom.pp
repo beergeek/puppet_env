@@ -7,7 +7,7 @@ class profile::mom (
   package { 'autosign':
     ensure   => present,
     provider => 'puppet_gem',
-    notify   => Exec['setup_autpsign'],
+    notify   => Exec['setup_autosign'],
   }
 
   exec { 'setup_autosign':
