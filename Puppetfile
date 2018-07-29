@@ -57,3 +57,6 @@ mod 'node_manager',
 mod 'bamboo',
   :git => 'https://github.com/beergeek/bamboo.git',
   :branch => 'master'
+mod 'terminate',
+  :git => 'https://github.com/beergeek/terminate.git',
+  :branch => 'master'
