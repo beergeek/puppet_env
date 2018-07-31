@@ -32,7 +32,7 @@ class profile::mom (
   pe_hocon_setting { 'file-sync.repos.dump.submodules-dir':
     path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.submodules-dir',
-    value   => '.',
+    value   => 'dump',
   }
 
   pe_hocon_setting { 'file-sync.repos.dump.staging-dir':
