@@ -35,33 +35,33 @@ class profile::bamboo_server (
   include profile::docker
 
   file { $bamboo_base_dirs:
-    ensure  => directory,
-    owner   => $bamboo_user,
-    group   => $bamboo_grp,
-    mode    => '0755',
+    ensure => directory,
+    owner  => $bamboo_user,
+    group  => $bamboo_grp,
+    mode   => '0755',
   }
 
   if $manage_db_settings {
     if $db_type == 'postgresql' {
       require profile::database_services::postgresql
 
-      postgresql::server::db { $bamboodb:
-        user      => $db_user,
-        password  => $db_password,
-        locale    => 'en_AU',
-        encoding  => 'UTF8',
-        grant     => ['ALL'],
+      postgresql::server::db { $db_name:
+        user     => $db_user,
+        password => $db_password,
+        locale   => 'en_AU',
+        encoding => 'UTF8',
+        grant    => ['ALL'],
       }
     } elsif $db_type == 'mysql' {
       require profile::database_services::mysql
 
       mysql::db { $db_name:
-        ensure    => present,
-        user      => $db_user,
-        password  => $db_password,
-        charset   => 'utf8',
-        collate   => 'utf8_bin',
-        grant     => ['ALL'],
+        ensure   => present,
+        user     => $db_user,
+        password => $db_password,
+        charset  => 'utf8',
+        collate  => 'utf8_bin',
+        grant    => ['ALL'],
       }
     }
   }
@@ -85,29 +85,29 @@ class profile::bamboo_server (
   }
 
   class { '::bamboo':
-    bamboo_data_dir     => $bamboo_data_dir,
-    bamboo_grp          => $bamboo_bamboo_grp,
-    bamboo_install_dir  => $bamboo_install_dir,
-    bamboo_user         => $bamboo_bamboo_user,
-    db_host             => $db_host,
-    db_name             => $db_name,
-    db_password         => $db_password,
-    db_port             => $db_port,
-    db_type             => $db_type,
-    db_user             => $db_user,
-    manage_db_settings  => $manage_db_settings,
-    manage_grp          => $manage_bamboo_grp,
-    manage_user         => $manage_bamboo_grp,
-    source_location     => $source_location,
-    version             => $bamboo_version,
-    require             => Java::Oracle['jdk8'],
+    bamboo_data_dir    => $bamboo_data_dir,
+    bamboo_grp         => $bamboo_bamboo_grp,
+    bamboo_install_dir => $bamboo_install_dir,
+    bamboo_user        => $bamboo_bamboo_user,
+    db_host            => $db_host,
+    db_name            => $db_name,
+    db_password        => $db_password,
+    db_port            => $db_port,
+    db_type            => $db_type,
+    db_user            => $db_user,
+    manage_db_settings => $manage_db_settings,
+    manage_grp         => $manage_bamboo_grp,
+    manage_user        => $manage_bamboo_grp,
+    source_location    => $source_location,
+    version            => $bamboo_version,
+    require            => Java::Oracle['jdk8'],
   }
 
   file { "${bamboo_data_dir}/bamboo.jks":
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
   }
 
   java_ks { 'bamboo_ks':

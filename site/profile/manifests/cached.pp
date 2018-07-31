@@ -11,7 +11,7 @@ class profile::cached (
   case $facts['kernel'] {
     'windows': { $path = 'C:\ProgramData\PuppetLabs\puppet\puppet.conf' }
     'linux': { $path = '/etc/puppetlabs/puppet/puppet.conf' }
-    default: { fail("You are not using an operating system!") }
+    default: { fail('You are not using an operating system!') }
   }
 
   pe_ini_setting { 'use_cached_catalog':

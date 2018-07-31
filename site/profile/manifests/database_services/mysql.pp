@@ -47,7 +47,7 @@ class profile::database_services::mysql (
     ensure              => present,
     use                 => 'generic-service',
     host_name           => $facts['fqdn'],
-    service_description => "MySQL",
+    service_description => 'MySQL',
     check_command       => 'check_tcp!3306',
     target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
     notify              => Service['nagios'],

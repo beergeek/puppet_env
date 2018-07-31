@@ -45,7 +45,7 @@ class profile::web_services::iis (
               action       => 'Allow',
               enabled      => 'yes',
               protocol     => 'TCP',
-              local_port   => "${binding['port']}",
+              local_port   => $binding['port'],
               remote_port  => 'any',
               display_name => 'HTTP - inbound',
               description  => 'Inbound rule for Interstroodle',

@@ -4,8 +4,42 @@ class profile::mom (
   Boolean        $enable_firewall         = true,
 ) {
 
+  Pe_hocon_setting {
+    ensure => present,
+    notify => Service["pe-puppetserver"],
+  }
+
+  include puppet_metrics_collector
+
   class { 'autosign':
     before   => Exec['setup_autosign'],
+  }
+
+  pe_hocon_setting { 'file-sync.repos.dump.live-dir':
+    path    => "${confdir}/conf.d/file-sync.conf",
+    setting => 'file-sync.repos.dump.live-dir',
+    value   => '/opt/dump',
+  }
+
+  pe_hocon_setting { 'file-sync.repos.dump.submodules-dir':
+    path    => "${confdir}/conf.d/file-sync.conf",
+    setting => 'file-sync.repos.dump.submodules-dir',
+    value   => '.',
+  }
+
+  pe_hocon_setting { 'file-sync.repos.dump.staging-dir':
+    path    => "${confdir}/conf.d/file-sync.conf",
+    setting => 'file-sync.repos.dump.staging-dir',
+    value   => '/etc/puppetlabs/code-staging',
+  }
+
+  cron { 'puppet_backup':
+    ensure  => present,
+    command => '/opt/puppetlabs/bin/puppet backup create --scope certs,config,puppetdb',
+    user    => 'root',
+    weekday => $backup_cron_weekday,
+    hour    => $backup_cron_hour,
+    minute  => $backup_cron_minute,
   }
 
   exec { 'setup_autosign':
@@ -39,7 +73,7 @@ class profile::mom (
     ensure              => present,
     use                 => 'generic-service',
     host_name           => $facts['fqdn'],
-    service_description => "Puppet Master",
+    service_description => 'Puppet Master',
     check_command       => 'check_http! -p 8140 -S -u /production/node/test',
     target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
     notify              => Service['nagios'],

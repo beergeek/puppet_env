@@ -11,7 +11,7 @@ class profile::amq (
   } elsif has_key($facts['networking']['interfaces'],'eth0') {
     $ip = $facts['networking']['interfaces']['eth0']['ip']
   } else {
-    fail("Buggered if I know your IP Address")
+    fail('Buggered if I know your IP Address')
   }
 
   if $enable_firewall {

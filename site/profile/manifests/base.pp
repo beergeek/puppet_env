@@ -88,9 +88,9 @@ class profile::base (
       }
 
       package { 'dotnet4.5.2':
-        ensure          => present,
-        provider        => 'chocolatey',
-        notify          => Reboot['after_dotnet'],
+        ensure   => present,
+        provider => 'chocolatey',
+        notify   => Reboot['after_dotnet'],
       }
 
       package { 'powershell':
@@ -106,7 +106,7 @@ class profile::base (
       file { 'C:\Windows\System32\WindowsPowerShell\v1.0\Modules\PSWindowsUpdate':
         ensure  => directory,
         recurse => true,
-        source  => 'puppet:///binaries/PSWindowsUpdate',
+        source  => 'puppet:///modules/binaries/PSWindowsUpdate',
       }
 
       file { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:

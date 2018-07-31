@@ -52,7 +52,7 @@ class profile::monitoring (
     ensure             => present,
     alias              => $facts['hostname'],
     address            => $facts['ipaddress_eth1'],
-    use                => "generic-host",
+    use                => 'generic-host',
     max_check_attempts => '4',
     check_command      => 'check-host-alive',
     target             => "/etc/nagios/conf.d/${facts['fqdn']}_host.cfg",

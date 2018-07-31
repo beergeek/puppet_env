@@ -9,9 +9,9 @@ class profile::dns (
   }
 
   @@host { $facts['fqdn']:
-    ensure        => present,
-    host_aliases  => [$facts['hostname']],
-    ip            => $facts['ipaddress'],
+    ensure       => present,
+    host_aliases => [$facts['hostname']],
+    ip           => $facts['ipaddress'],
   }
 
   host { 'localhost':

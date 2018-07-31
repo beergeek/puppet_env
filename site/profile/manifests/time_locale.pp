@@ -37,7 +37,7 @@ class profile::time_locale (
       require        => Package[$lang_pack],
     }
   } else {
-    fail("This is for Linux only")
+    fail('This is for Linux only')
   }
 
   # manage timezone

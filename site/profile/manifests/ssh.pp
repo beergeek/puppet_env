@@ -23,7 +23,7 @@ class profile::ssh (
     ensure              => present,
     use                 => 'generic-service',
     host_name           => $facts['fqdn'],
-    service_description => "SSH",
+    service_description => 'SSH',
     check_command       => 'check_ssh',
     target              => "/etc/nagios/conf.d/${facts['fqdn']}_service.cfg",
     notify              => Service['nagios'],

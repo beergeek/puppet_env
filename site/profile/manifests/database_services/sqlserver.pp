@@ -8,8 +8,8 @@ class profile::database_services::sqlserver (
 ) {
 
   reboot { 'pre':
-    apply    => 'immediately',
-    when => 'pending',
+    apply => 'immediately',
+    when  => 'pending',
   }
 
   reboot { 'right_now':
@@ -35,9 +35,9 @@ class profile::database_services::sqlserver (
   }
 
   sqlserver_features { 'Generic Features':
-    source    => $sql_source,
-    features  => ['ADV_SSMS', 'BC', 'Conn', 'SDK', 'SSMS'],
-    require   => Reboot['right_now'],
+    source   => $sql_source,
+    features => ['ADV_SSMS', 'BC', 'Conn', 'SDK', 'SSMS'],
+    require  => Reboot['right_now'],
   }
 
   sqlserver::config { 'MSSQLSERVER':
@@ -67,7 +67,7 @@ class profile::database_services::sqlserver (
     enabled      => 'yes',
     program      => 'C:\Program Files (x86)\Microsoft SQL Server\90\Shared\sqlbrowser.exe',
     display_name => 'MSSQL Browser',
-    description  => "MS SQL Server Browser Inbound Access",
+    description  => 'MS SQL Server Browser Inbound Access',
   }
 
   windows_firewall::exception { 'Sqlserver access':
@@ -77,6 +77,6 @@ class profile::database_services::sqlserver (
     enabled      => 'yes',
     program      => "C:\\Program Files\\Microsoft SQL Server\\${sql_version}.${db_instance}\\MSSQL\\Binn\\sqlservr.exe",
     display_name => 'MSSQL Access',
-    description  => "MS SQL Server Inbound Access",
+    description  => 'MS SQL Server Inbound Access',
   }
 }

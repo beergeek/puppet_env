@@ -44,7 +44,7 @@ class profile::web_services::apache (
         if $enable_firewall and !defined(Firewall["100 ${facts['fqdn']} HTTP ${website_port}"]) {
           # add firewall rules
           firewall { "100 ${facts['fqdn']} HTTP ${website_port}":
-            dport   => $website['port'],
+            dport  => $website['port'],
             proto  => tcp,
             action => accept,
           }

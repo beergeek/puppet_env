@@ -3,7 +3,7 @@ class profile::monitor_server (
 ) {
 
   if $facts['os']['family'] != 'redhat' {
-    fail("This class is only for EL family")
+    fail('This class is only for EL family')
   }
 
   package { ['nagios','nagios-plugins','nagios-plugins-all']:
