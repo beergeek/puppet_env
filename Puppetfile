@@ -60,3 +60,6 @@ mod 'bamboo',
 mod 'terminate',
   :git => 'https://github.com/beergeek/terminate.git',
   :branch => 'master'
+mod 'install_date',
+  :git => 'https://github.com/beergeek/install_date.git',
+  :branch => 'master'
