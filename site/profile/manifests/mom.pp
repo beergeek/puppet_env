@@ -24,19 +24,19 @@ class profile::mom (
   }
 
   pe_hocon_setting { 'file-sync.repos.dump.live-dir':
-    path    => "${confdir}/conf.d/file-sync.conf",
+    path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.live-dir',
     value   => '/opt/dump',
   }
 
   pe_hocon_setting { 'file-sync.repos.dump.submodules-dir':
-    path    => "${confdir}/conf.d/file-sync.conf",
+    path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.submodules-dir',
     value   => '.',
   }
 
   pe_hocon_setting { 'file-sync.repos.dump.staging-dir':
-    path    => "${confdir}/conf.d/file-sync.conf",
+    path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.staging-dir',
     value   => '/etc/puppetlabs/code-staging',
   }
