@@ -45,7 +45,13 @@ class profile::mom (
   pe_hocon_setting { 'file-sync.repos.dump.staging-dir':
     path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.staging-dir',
-    value   => '/etc/puppetlabs/code-staging',
+    value   => '/etc/puppetlabs/code-staging/dump',
+  }
+
+  pe_hocon_setting { 'file-sync.repos.dump.auto-commit':
+    path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
+    setting => 'file-sync.repos.dump.auto-commit',
+    value   => true,
   }
 
   cron { 'puppet_backup':
