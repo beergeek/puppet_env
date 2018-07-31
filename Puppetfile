@@ -27,7 +27,7 @@ mod "puppetlabs/ntp", :latest
 mod "puppetlabs/pe_gem", :latest
 mod "puppetlabs/postgresql", :latest
 mod "puppetlabs/powershell", :latest
-mod "puppetlabs/puppetserver_gem", :latest
+mod "puppetlabs/puppet_metrics_collector", :latest
 mod "puppetlabs/puppet_agent", :latest
 mod "puppetlabs/reboot", :latest
 mod "puppetlabs/registry", :latest
