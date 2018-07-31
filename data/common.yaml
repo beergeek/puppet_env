@@ -166,6 +166,16 @@ profile::com::hiera_eyaml_priv: >
 
 # MOM
 profile::mom::enable_firewall: *enable_firewall
+profile::mom::autosign_secret: >
+  ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAjEwNoWm0T4bQ1y/B2fC67V/3tbyTk5zyMsN8
+  rzKJt+Oo3AmOm5zq09oMUmg1Zmr6MuvjlvPoi305jdATo6vsJ02N8f6u9dhw
+  +AsQc8UpN9VGZqqHYiQqx8vDyPNpbXLK+0f95VuHlVS9F2KbNzP//WoNK3A5
+  4Vx/R1gmnLHILt6OAqewPTCn4o+MSH8LMQ8MPzU0+aaivS6hE3rBNnPH4xHW
+  jh+ZdC/tnU4CPPmLPtIJLW5MROSJF+2DmP/D28bb5BLhZKfTCnMgICGsDOG0
+  fhnYpx1MbbXDZZNYIhTLEdL9bxDKUJrLDJiX0eWMzC1f5fmzJXU7N+SMNbys
+  mFw7WzBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBC135sIJD1/Y76JEPwB
+  vMJPgCB/+WQdGL316RDJdLKzVtHuODhSJuHmqftpNdtLGSvDWg==]
 profile::mom::firewall_rules:
   '010 Puppet Port 8140':
     dport: '8140'

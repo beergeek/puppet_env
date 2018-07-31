@@ -1,7 +1,15 @@
 class profile::mom (
-  Hash           $firewall_rule_defaults,
-  Optional[Hash] $firewall_rules          = {},
-  Boolean        $enable_firewall         = true,
+  Hash                  $firewall_rule_defaults,
+  String                $autosign_secret,
+  Optional[Hash]        $firewall_rules          = {},
+  Optional[String]      $eyaml_priv_key          = undef,
+  Optional[String]      $eyaml_pub_key           = undef,
+  Profile::Cron_h       $backup_cron_hour        = 1,
+  Profile::Cron_min     $backup_cron_minute      = 0,
+  Profile::Cron_wd      $backup_cron_weekday     = '*',
+  String                $autosign_loglevel       = 'INFO',
+  String                $autosign_validity       = '7200',
+  Boolean               $enable_firewall         = true,
 ) {
 
   Pe_hocon_setting {
