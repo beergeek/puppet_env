@@ -23,6 +23,13 @@ class profile::mom (
     before   => Exec['setup_autosign'],
   }
 
+  file { ['/etc/puppetlabs/code-staging/dump','/opt/dump']:
+    ensure => directory,
+    owner  => 'pe-puppet',
+    group  => 'pe-puppet',
+    mode   => '0755',
+  }
+
   pe_hocon_setting { 'file-sync.repos.dump.live-dir':
     path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.live-dir',
