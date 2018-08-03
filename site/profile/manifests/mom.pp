@@ -10,6 +10,10 @@ class profile::mom (
   String                $autosign_loglevel       = 'INFO',
   String                $autosign_validity       = '7200',
   Boolean               $enable_firewall         = true,
+  Optional[String]      $hiera_eyaml_priv        = undef,
+  Optional[String]      $hiera_eyaml_pub         = undef,
+  Stdlib::Absolutepath  $hiera_eyaml_priv_name   = '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem',
+  Stdlib::Absolutepath  $hiera_eyaml_pub_name    = '/etc/puppetlabs/puppet/ssl/public_key.pkcs7.pem',
 ) {
 
   Pe_hocon_setting {
@@ -18,6 +22,16 @@ class profile::mom (
   }
 
   include puppet_metrics_collector
+
+  augeas { "fileserver.conf-dump":
+    changes   => [
+      "set /files/etc/puppetlabs/puppet/fileserver.conf/dump/path /opt/dump",
+      "set /files/etc/puppetlabs/puppet/fileserver.conf/dump/allow *",
+    ],
+    incl      => '/etc/puppetlabs/puppet/fileserver.conf',
+    load_path => '/opt/puppetlabs/puppet/share/augeas/lenses/dist',
+    lens      => 'PuppetFileserver.lns',
+  }
 
   class { 'autosign':
     before   => Exec['setup_autosign'],
@@ -101,4 +115,26 @@ class profile::mom (
     require             => File["/etc/nagios/conf.d/${facts['fqdn']}_service.cfg"],
   }
 
+
+  if $hiera_eyaml_priv and $hiera_eyaml_pub {
+    file { $hiera_eyaml_priv_name:
+      ensure  => file,
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      mode    => '0600',
+      content => $hiera_eyaml_priv,
+      notify  => Service['pe-puppetserver'],
+    }
+
+    file { $hiera_eyaml_pub_name:
+      ensure  => file,
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      mode    => '0600',
+      content => $hiera_eyaml_pub,
+      notify  => Service['pe-puppetserver'],
+    }
+  } elsif $hiera_eyaml_priv or $hiera_eyaml_pub {
+    fail('Hiera-eyaml requires both the private and public keys')
+  }
 }
