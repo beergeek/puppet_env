@@ -185,6 +185,8 @@ profile::mom::firewall_rules:
     dport: '8081'
   '010 Puppet Console 443':
     dport: '443'
+  '010 Puppet Postgresql 5432':
+    dport: '5432'
   '010 Puppet Classifier 4433':
     dport: '4433'
   '010 PE Orchestrator 8142':
