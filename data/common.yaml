@@ -498,4 +498,24 @@ profile::puppet_users::user_hash:
     manage_user: true
 
 profile::bamboo_server::db_type: 'mysql'
+profile::bamboo_server::db_password: >
+  ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAQ9eNIMTW/aAJTq99AUjXQrer122d+bneNJrN
+  aTiKU8NHz4udLPCdiatz0+E6zP5dJNwBB7V3mBMb/hqufT1IC2g30wOT/I+O
+  Fu+aQD0i0HaH7oP+8N0tu1XKiXjIpxSqO4UC9LHt40J11xktqdtch3lW7WwG
+  y55BeCknc8OlHSUiXyKbxZ9G+LUIr8vVuzfj/cwVLGC6ZMi30Ya8EnxiUDcW
+  F/cvGiWEvSd0gWTBwq6RFTmI3MjU+COEqfHAo1dP70p//W9nHswAyauFWvvM
+  jGCCIBfHR3QoZ5Qy+2gSRzNqv+y3v7b5GExlqwA7YqcHabR7xwCHug74mkK/
+  3PaNPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCl1zIHRlLu8zCHQdgq
+  ULi8gBDxGxfs6NFhbKtVP6H4ZZM4]
 profile::jira_server::db_type: 'mysql'
+profile::jira_server::db_password: >
+  ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAQ9eNIMTW/aAJTq99AUjXQrer122d+bneNJrN
+  aTiKU8NHz4udLPCdiatz0+E6zP5dJNwBB7V3mBMb/hqufT1IC2g30wOT/I+O
+  Fu+aQD0i0HaH7oP+8N0tu1XKiXjIpxSqO4UC9LHt40J11xktqdtch3lW7WwG
+  y55BeCknc8OlHSUiXyKbxZ9G+LUIr8vVuzfj/cwVLGC6ZMi30Ya8EnxiUDcW
+  F/cvGiWEvSd0gWTBwq6RFTmI3MjU+COEqfHAo1dP70p//W9nHswAyauFWvvM
+  jGCCIBfHR3QoZ5Qy+2gSRzNqv+y3v7b5GExlqwA7YqcHabR7xwCHug74mkK/
+  3PaNPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCl1zIHRlLu8zCHQdgq
+  ULi8gBDxGxfs6NFhbKtVP6H4ZZM4]
