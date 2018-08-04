@@ -1,7 +1,6 @@
 class profile::database_services::mysql (
-  Hash $db_hash,
-  Hash $db_defaults,
   Boolean $enable_firewall                    = true,
+  Optional[Hash] $db_hash                     = undef,
   Optional[Hash] $mysql_server_override_data  = {},
   Optional[Hash] $mysql_client_override_data  = {},
   Optional[Hash] $yumrepo_data                = {},
@@ -26,11 +25,13 @@ class profile::database_services::mysql (
     php_enable => true,
   }
 
-  $db_hash.each |String $database_name, Hash $database_hash| {
-    mysql::db {  $database_name:
-      * => $database_hash;
-      default:
-        * => $db_defaults;
+  if $db_hash and ! empty($db_hash) {
+    $db_hash.each |String $database_name, Hash $database_hash| {
+      mysql::db {  $database_name:
+        * => $database_hash,;
+        default:
+          ensure => present,;
+      }
     }
   }
 
