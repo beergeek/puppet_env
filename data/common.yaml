@@ -475,6 +475,8 @@ profile::database_services::mysql::mysql_server_override_options:
   override_options:
     mysqld:
       bind-address: '0.0.0.0'
+      default-storage-engine: 'INNODB'
+      max_allowed_packet: '2G'
 profile::database_services::mysql::db_hash:
   elmo: {}
   kermit: {}
