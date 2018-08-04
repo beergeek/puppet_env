@@ -56,6 +56,7 @@ class profile::jira_server (
         locale   => 'en_AU',
         encoding => 'UTF8',
         grant    => ['ALL'],
+        notify   => Class['jira'],
       }
     } elsif $db_type == 'mysql' {
       require profile::database_services::mysql
@@ -67,6 +68,7 @@ class profile::jira_server (
         charset  => 'utf8',
         collate  => 'utf8_bin',
         grant    => ['ALL'],
+        notify   => Class['jira'],
       }
     }
   }
@@ -88,7 +90,7 @@ class profile::jira_server (
     manage_user        => $manage_jira_grp,
     source_location    => $source_location,
     version            => $jira_version,
-    #require            => Java::Oracle['jdk8'],
+    require            => Java::Oracle['jdk8'],
   }
 
   if $enable_firewall {
