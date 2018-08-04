@@ -63,3 +63,6 @@ mod 'terminate',
 mod 'install_date',
   :git => 'https://github.com/beergeek/install_date.git',
   :branch => 'master'
+mod 'jira',
+  :git => 'https://github.com/beergeek/jira.git',
+  :branch => 'master'
