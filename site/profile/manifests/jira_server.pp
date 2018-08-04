@@ -64,6 +64,25 @@ class profile::jira_server (
     }
   }
 
+  class { 'jira':
+    jira_data_dir      => $jira_data_dir,
+    jira_grp           => $jira_jira_grp,
+    jira_install_dir   => $jira_install_dir,
+    jira_user          => $jira_jira_user,
+    db_host            => $db_host,
+    db_name            => $db_name,
+    db_password        => $db_password,
+    db_port            => $db_port,
+    db_type            => $db_type,
+    db_user            => $db_user,
+    manage_db_settings => $manage_db_settings,
+    manage_grp         => $manage_jira_grp,
+    manage_user        => $manage_jira_grp,
+    source_location    => $source_location,
+    version            => $jira_version,
+    require            => Java::Oracle['jdk8'],
+  }
+
   if $enable_firewall {
     if $firewall_rules {
       $firewall_rules.each |String $rule_name, Hash $rule_data| {
