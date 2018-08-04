@@ -82,6 +82,13 @@ class profile::jira_server (
     java_se => 'jdk',
   }
 
+  file { "${jira_data_dir}/jira.jks":
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
   java_ks { 'jira_ks':
     ensure       => latest,
     certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
