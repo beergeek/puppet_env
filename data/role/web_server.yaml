@@ -1,0 +1,56 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+  
+# WEB_SERVICES
+profile::web_services::apache::enable_firewall: *enable_firewall
+profile::web_services::apache::website_hash:
+  'elmo.puppet.vm':
+    docroot: 'elmo'
+    database_search: "elmo"
+    port: '80'
+  'kermit.puppet.vm':
+    docroot: 'kermit'
+    repo_source: 'git://github.com/beergeek/kermit.git'
+    repo_provider: git
+    database_search: "kermit"
+    port: '80'
+  'animal.puppet.vm':
+    docroot: 'animal'
+    repo_source: 'git://github.com/beergeek/animal.git'
+    repo_provider: git
+    port: '80'
+  'rob.puppet.vm':
+    docroot: 'rob'
+    repo_source: 'git://github.com/beergeek/rob.git'
+    database_search: "rob"
+    repo_provider: git
+    port: '80'
+profile::web_services::apache::website_defaults:
+  port: '80'
+  priority: '10'
+  docroot: '/var/www/${title}'
+  repo_provider: git
+profile::web_services::iis::enable_firewall: *enable_firewall
+profile::web_services::iis::base_docroot: "C:\\inetpub\\wwwroot"
+profile::web_services::iis::website_hash:
+  'elmo.puppet.vm':
+    website_path: 'C:\inetpub\elmo'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'elmo.puppet.vm'}]
+    database_search: "elmo"
+  'kermit.puppet.vm':
+    website_path: 'C:\inetpub\kermit'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'kermit.puppet.vm'}]
+    database_search: "kermit"
+  'animal.puppet.vm':
+    website_path: 'C:\inetpub\animal'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'animal.puppet.vm'}]
+  'rob.puppet.vm':
+    website_path: 'C:\inetpub\rob'
+    binding_hash: [
+      {protocol: 'HTTP',port: 80,hostname: 'rob.puppet.vm'}]
