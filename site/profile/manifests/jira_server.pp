@@ -80,7 +80,7 @@ class profile::jira_server (
     manage_user        => $manage_jira_grp,
     source_location    => $source_location,
     version            => $jira_version,
-    require            => Java::Oracle['jdk8'],
+    #require            => Java::Oracle['jdk8'],
   }
 
   if $enable_firewall {
