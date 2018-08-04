@@ -7,6 +7,8 @@ classes:
   - role::monitor_server
   - role::replica
   - role::web_server
+  - role::bamboo_server
+  - role::jira_server
 
 # Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
 # depending on weather you are running 'spec' or 'acceptance' tests

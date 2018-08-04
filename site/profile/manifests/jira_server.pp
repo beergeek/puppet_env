@@ -3,6 +3,7 @@ class profile::jira_server (
   Profile::Pathurl            $source_location        = 'https://product-downloads.atlassian.com/software/jira/downloads',
   Boolean                     $manage_jira_grp        = true,
   Boolean                     $manage_jira_user       = true,
+  Stdlib::Absolutepath        $java_home_default      = '/usr/java/jdk1.8.0_131/jre',
   Stdlib::Absolutepath        $jira_data_dir          = '/var/atlassian/application-data/jira',
   Stdlib::Absolutepath        $jira_install_dir       = '/opt/atlassian/jira',
   String                      $jira_grp               = 'jira',
@@ -30,6 +31,12 @@ class profile::jira_server (
 
   if $noop_scope {
     noop(true)
+  }
+
+  if $facts['java_default_home'] {
+    $_java_home = $facts['java_default_home']
+  } else {
+    $_java_home = $java_home_default
   }
 
   file { $jira_base_dirs:
@@ -65,6 +72,7 @@ class profile::jira_server (
   }
 
   class { 'jira':
+    java_home          => $_java_home,
     jira_data_dir      => $jira_data_dir,
     jira_grp           => $jira_jira_grp,
     jira_install_dir   => $jira_install_dir,
