@@ -497,5 +497,5 @@ profile::puppet_users::user_hash:
   brett:
     manage_user: true
 
-profile::bamboo::db_type: 'mysql'
-profile::jira::db_type: 'mysql'
+profile::bamboo_server::db_type: 'mysql'
+profile::jira_server::db_type: 'mysql'
