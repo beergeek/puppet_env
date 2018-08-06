@@ -125,6 +125,7 @@ class profile::jira_server (
     java_ks { 'jira_ks_cacert':
       ensure       => latest,
       certificate  => $cacert,
+      storetype    => 'jceks',
       target       => "${jira_app_dir}/jira.jks",
       password     => 'changeit',
       trustcacerts => true,
@@ -136,6 +137,7 @@ class profile::jira_server (
     java_ks { 'jira_ks_cert':
       ensure       => latest,
       certificate  => $cert,
+      storetype    => 'jceks',
       target       => "${jira_app_dir}/jira.jks",
       password     => 'changeit',
       trustcacerts => false,
