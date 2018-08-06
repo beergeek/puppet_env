@@ -149,16 +149,24 @@ class profile::jira_server (
 
   if $cert {
     file { "${jira_data_dir}/cert.pem":
-      ensure => file,
+      ensure  => file,
       content => $cert,
-      owner  => $jira_user,
-      group  => $jira_grp,
-      mode   => '0444',
+      owner   => $jira_user,
+      group   => $jira_grp,
+      mode    => '0444',
+    }
+    file { "${jira_data_dir}/key.pem":
+      ensure  => file,
+      content => $private_key,
+      owner   => $jira_user,
+      group   => $jira_grp,
+      mode    => '0444',
     }
 
     java_ks { 'jira_ks_cert':
       ensure       => present,
       certificate  => "${jira_data_dir}/cert.pem",
+      private_key  => "${jira_data_dir}/key.pem"
       storetype    => 'jceks',
       target       => "${jira_data_dir}/jira.jks",
       password     => 'changeit',
