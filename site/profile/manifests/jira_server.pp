@@ -165,12 +165,12 @@ class profile::jira_server (
 
     java_ks { 'jira_ks_cert':
       ensure       => present,
-      certificate  => "${jira_data_dir}/cert.pem",
-      private_key  => "${jira_data_dir}/key.pem",
+      certificate  => "${jira_data_dir}/key.pem",
+      #private_key  => "${jira_data_dir}/key.pem",
       storetype    => 'jceks',
       target       => "${jira_data_dir}/jira.jks",
       password     => 'changeit',
-      trustcacerts => false,
+      trustcacerts => true,
       require      => [Java::Oracle['jdk8'],File["${jira_data_dir}/jira.jks"]],
     }
   }
