@@ -137,7 +137,7 @@ class profile::jira_server (
     }
 
     java_ks { 'jira_ks_cacert':
-      ensure       => latest,
+      ensure       => present,
       certificate  => "${jira_data_dir}/cacert.pem",
       storetype    => 'jceks',
       target       => "${jira_data_dir}/jira.jks",
@@ -157,7 +157,7 @@ class profile::jira_server (
     }
 
     java_ks { 'jira_ks_cert':
-      ensure       => latest,
+      ensure       => present,
       certificate  => "${jira_data_dir}/cert.pem",
       storetype    => 'jceks',
       target       => "${jira_data_dir}/jira.jks",
