@@ -160,7 +160,7 @@ class profile::jira_server (
       content => $private_key,
       owner   => $jira_user,
       group   => $jira_grp,
-      mode    => '0444',
+      mode    => '0400',
     }
 
     java_ks { 'jira_ks_cert':
