@@ -1,6 +1,7 @@
 class profile::jira_server (
   # Jira
   Profile::Pathurl            $source_location        = 'https://product-downloads.atlassian.com/software/jira/downloads',
+  Boolean                     $https                  = true,
   Boolean                     $manage_jira_grp        = true,
   Boolean                     $manage_jira_user       = true,
   Optional[String[1]]         $caert                  = undef,
@@ -34,6 +35,10 @@ class profile::jira_server (
 
   if $noop_scope {
     noop(true)
+  }
+
+  if $https and ($cert == undef or $cacert == undef) {
+    fail('Need CA Cert and Cert for HTTPS')
   }
 
   if $facts['java_default_home'] {
@@ -82,6 +87,7 @@ class profile::jira_server (
     jira_grp           => $jira_jira_grp,
     jira_install_dir   => $jira_install_dir,
     jira_user          => $jira_jira_user,
+    https              => $https,
     db_host            => $db_host,
     db_name            => $db_name,
     db_password        => $db_password,
@@ -122,9 +128,17 @@ class profile::jira_server (
   }
 
   if $caert {
+    file { "${jira_data_dir}/cacert.pem":
+      ensure => file,
+      content => $cacert,
+      owner  => $jira_user,
+      group  => $jira_grp,
+      mode   => '0444',
+    }
+
     java_ks { 'jira_ks_cacert':
       ensure       => latest,
-      certificate  => $cacert,
+      certificate  => "${jira_data_dir}/cacert.pem",
       storetype    => 'jceks',
       target       => "${jira_app_dir}/jira.jks",
       password     => 'changeit',
@@ -134,9 +148,17 @@ class profile::jira_server (
   }
 
   if $cert {
+    file { "${jira_data_dir}/cert.pem":
+      ensure => file,
+      content => $cert,
+      owner  => $jira_user,
+      group  => $jira_grp,
+      mode   => '0444',
+    }
+
     java_ks { 'jira_ks_cert':
       ensure       => latest,
-      certificate  => $cert,
+      certificate  => "${jira_data_dir}/cert.pem",
       storetype    => 'jceks',
       target       => "${jira_app_dir}/jira.jks",
       password     => 'changeit',
