@@ -127,7 +127,7 @@ class profile::jira_server (
     mode   => '0755',
   }
 
-  if $caert {
+  if $cacert {
     file { "${jira_data_dir}/cacert.pem":
       ensure => file,
       content => $cacert,
