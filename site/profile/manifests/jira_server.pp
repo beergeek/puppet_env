@@ -3,6 +3,9 @@ class profile::jira_server (
   Profile::Pathurl            $source_location        = 'https://product-downloads.atlassian.com/software/jira/downloads',
   Boolean                     $manage_jira_grp        = true,
   Boolean                     $manage_jira_user       = true,
+  Optional[String[1]]         $caert                  = undef,
+  Optional[String[1]]         $cert                   = undef,
+  Optional[String[1]]         $private_key            = undef,
   Stdlib::Absolutepath        $java_home_default      = '/usr/java/jdk1.8.0_131/jre',
   Stdlib::Absolutepath        $jira_data_dir          = '/var/atlassian/application-data/jira',
   Stdlib::Absolutepath        $jira_install_dir       = '/opt/atlassian/jira',
@@ -118,13 +121,25 @@ class profile::jira_server (
     mode   => '0755',
   }
 
-  java_ks { 'jira_ks':
-    ensure       => latest,
-    certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    target       => "${jira_app_dir}/jira.jks",
-    password     => 'changeit',
-    trustcacerts => true,
-    require      => [Java::Oracle['jdk8'],File["${jira_data_dir}/jira.jks"]],
+  if $caert {
+    java_ks { 'jira_ks_cacert':
+      ensure       => latest,
+      certificate  => $cacert,
+      target       => "${jira_app_dir}/jira.jks",
+      password     => 'changeit',
+      trustcacerts => true,
+      require      => [Java::Oracle['jdk8'],File["${jira_data_dir}/jira.jks"]],
+    }
   }
 
+  if $cert {
+    java_ks { 'jira_ks_cert':
+      ensure       => latest,
+      certificate  => $cert,
+      target       => "${jira_app_dir}/jira.jks",
+      password     => 'changeit',
+      trustcacerts => false,
+      require      => [Java::Oracle['jdk8'],File["${jira_data_dir}/jira.jks"]],
+    }
+  }
 }
