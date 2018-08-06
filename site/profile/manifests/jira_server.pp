@@ -4,7 +4,7 @@ class profile::jira_server (
   Boolean                     $https                  = true,
   Boolean                     $manage_jira_grp        = true,
   Boolean                     $manage_jira_user       = true,
-  Optional[String[1]]         $caert                  = undef,
+  Optional[String[1]]         $cacert                 = undef,
   Optional[String[1]]         $cert                   = undef,
   Optional[String[1]]         $private_key            = undef,
   Stdlib::Absolutepath        $java_home_default      = '/usr/java/jdk1.8.0_131/jre',
