@@ -144,6 +144,7 @@ class profile::jira_server (
       password     => 'changeit',
       trustcacerts => true,
       require      => [Java::Oracle['jdk8'],File["${jira_data_dir}/jira.jks"]],
+      notify       => Class['jira'],
     }
   }
 
@@ -172,6 +173,7 @@ class profile::jira_server (
       password     => 'changeit',
       trustcacerts => true,
       require      => [Java::Oracle['jdk8'],File["${jira_data_dir}/jira.jks"]],
+      notify       => Class['jira'],
     }
   }
 }
