@@ -139,7 +139,7 @@ class profile::jira_server (
     java_ks { 'jira_ks_cacert':
       ensure       => present,
       certificate  => "${jira_data_dir}/cacert.pem",
-      storetype    => 'jceks',
+      #storetype    => 'jceks',
       target       => "${jira_data_dir}/jira.jks",
       password     => 'changeit',
       trustcacerts => true,
@@ -167,7 +167,7 @@ class profile::jira_server (
       ensure       => present,
       certificate  => "${jira_data_dir}/cert.pem",
       private_key  => "${jira_data_dir}/key.pem",
-      storetype    => 'jceks',
+      #storetype    => 'jceks',
       target       => "${jira_data_dir}/jira.jks",
       password     => 'changeit',
       trustcacerts => true,
