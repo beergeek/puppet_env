@@ -25,9 +25,9 @@ class profile::dns (
   $env_hosts = puppetdb_query( "resources[title, parameters] {type = \"Host\" and exported = true and environment = \"${server_facts['environment']}\"}")
 
   if $env_hosts and ! empty($env_hosts) {
-    $env_hosts.each |String $host_name, Hash $host_data| {
-      host { $host_name:
-        * => $host_data,
+    $env_hosts.each |Hash $host_data| {
+      host { $host_data['title']:
+        * => $host_data['parameters'],
       }
     }
   }
