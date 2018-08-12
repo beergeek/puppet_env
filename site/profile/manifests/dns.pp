@@ -8,7 +8,7 @@ class profile::dns (
     noop(true)
   }
 
-  host { $facts['fqdn']:
+  @@host { $facts['fqdn']:
     ensure       => present,
     host_aliases => [$facts['hostname']],
     ip           => $facts['ipaddress'],
