@@ -26,7 +26,9 @@ class profile::dns (
 
   if $env_hosts and ! empty($env_hosts) {
     $env_hosts.each |String $host_name, Hash $host_data| {
-      * => $host_data,
+      host { $host_name:
+        * => $host_data,
+      }
     }
   }
 
