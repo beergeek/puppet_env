@@ -79,7 +79,7 @@ class profile::com (
       owner   => 'pe-puppet',
       group   => 'pe-puppet',
       mode    => '0600',
-      content => $hiera_eyaml_priv,
+      content => Sensitive.new($hiera_eyaml_priv),
       notify  => Service['pe-puppetserver'],
     }
 
