@@ -1,8 +1,7 @@
 class profile::bbs_server (
-  Hash $firewall_rule_defaults,
-  String $bbs_app_dir,
-  Boolean $enable_firewall        = true,
-  Optional[Hash] $firewall_rules  = {},
+  String          $bbs_data_dir     = '/var/atlassian/bbs',
+  Boolean         $enable_firewall  = true,
+  Optional[Hash]  $firewall_rules  = {},
 ) {
 
   include profile::database_services
@@ -28,9 +27,24 @@ class profile::bbs_server (
   java_ks { 'bbs_ks':
     ensure       => latest,
     certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    target       => "${bbs_app_dir}/bbs.jks",
+    target       => "${bbs_data_dir}/bbs.jks",
     password     => 'changeit',
     trustcacerts => true,
   }
 
+  file { "${bbs_data_dir}/bbs.jks":
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
+  java_ks { 'bbs_ks':
+    ensure       => latest,
+    certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    target       => "${bamboo_data_dir}/bbs.jks",
+    password     => 'changeit',
+    trustcacerts => true,
+    require      => [Java::Oracle['jdk8'],File["${bamboo_data_dir}/bbs.jks"]],
+  }
 }
