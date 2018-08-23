@@ -24,14 +24,6 @@ class profile::bbs_server (
     java_se => 'jdk',
   }
 
-  java_ks { 'bbs_ks':
-    ensure       => latest,
-    certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    target       => "${bbs_data_dir}/bbs.jks",
-    password     => 'changeit',
-    trustcacerts => true,
-  }
-
   file { "${bbs_data_dir}/bbs.jks":
     ensure => file,
     owner  => 'root',
