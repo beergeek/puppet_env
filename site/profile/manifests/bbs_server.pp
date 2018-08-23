@@ -1,8 +1,25 @@
 class profile::bbs_server (
-  Stdlib::Absolutepath $bbs_data_dir    = '/var/atlassian/bbs',
-  Boolean              $enable_firewall = true,
-  Optional[Hash]       $firewall_rules  = {},
+  Stdlib::Absolutepath        $bbs_data_dir     = '/var/atlassian/application-data/bbs',
+  Array[Stdlib::Absolutepath] $bbs_base_dirs    = ['/opt/atlassian','/var/atlassian','/var/atlassian/application-data'],
+  String                      $bbs_user         = 'atlbitbucket',
+  String                      $bbs_grp          = 'atlbitbucket',
+  Boolean                     $enable_firewall  = true,
+  Optional[Hash]              $firewall_rules   = {},
+
+  # Noop
+  Boolean                     $noop_scope       = false,
 ) {
+
+  if $noop_scope {
+    noop(true)
+  }
+
+  file { $bbs_base_dirs:
+    ensure => directory,
+    owner  => $bbs_user,
+    group  => $bbs_grp,
+    mode   => '0755',
+  }
 
   include profile::database_services
 
