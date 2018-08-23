@@ -1,7 +1,7 @@
 class profile::bbs_server (
-  String          $bbs_data_dir     = '/var/atlassian/bbs',
-  Boolean         $enable_firewall  = true,
-  Optional[Hash]  $firewall_rules  = {},
+  Stdlib::Absolutepath $bbs_data_dir    = '/var/atlassian/bbs',
+  Boolean              $enable_firewall = true,
+  Optional[Hash]       $firewall_rules  = {},
 ) {
 
   include profile::database_services
@@ -37,6 +37,6 @@ class profile::bbs_server (
     target       => "${bamboo_data_dir}/bbs.jks",
     password     => 'changeit',
     trustcacerts => true,
-    require      => [Java::Oracle['jdk8'],File["${bamboo_data_dir}/bbs.jks"]],
+    require      => [Java::Oracle['jdk8'],File["${bbs_data_dir}/bbs.jks"]],
   }
 }
