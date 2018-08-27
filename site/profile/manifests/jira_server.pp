@@ -135,7 +135,6 @@ class profile::jira_server (
       group  => $jira_grp,
       mode   => '0444',
     }
-
     java_ks { 'jira_ks_cacert':
       ensure       => present,
       certificate  => "${jira_data_dir}/cacert.pem",
@@ -155,6 +154,7 @@ class profile::jira_server (
       group   => $jira_grp,
       mode    => '0444',
     }
+
     file { "${jira_data_dir}/key.pem":
       ensure  => file,
       content => $private_key,

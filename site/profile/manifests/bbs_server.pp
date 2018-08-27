@@ -1,10 +1,17 @@
 class profile::bbs_server (
-  Stdlib::Absolutepath        $bbs_data_dir     = '/var/atlassian/application-data/bbs',
-  Array[Stdlib::Absolutepath] $bbs_base_dirs    = ['/opt/atlassian','/var/atlassian','/var/atlassian/application-data'],
-  String                      $bbs_user         = 'atlbitbucket',
-  String                      $bbs_grp          = 'atlbitbucket',
-  Boolean                     $enable_firewall  = true,
-  Optional[Hash]              $firewall_rules   = {},
+  Boolean                     $https                  = true,
+  Boolean                     $manage_bbs_grp         = true,
+  Boolean                     $manage_bbs_user        = true,
+  Stdlib::Absolutepath        $bbs_data_dir           = '/var/atlassian/application-data/bbs',
+  Array[Stdlib::Absolutepath] $bbs_base_dirs          = ['/opt/atlassian','/var/atlassian','/var/atlassian/application-data'],
+  String                      $bbs_user               = 'atlbitbucket',
+  String                      $bbs_grp                = 'atlbitbucket',
+  Optional[String[1]]         $cacert                 = undef,
+  Optional[String[1]]         $cert                   = undef,
+  Optional[String[1]]         $private_key            = undef,
+  Stdlib::Absolutepath        $java_home_default      = '/usr/java/jdk1.8.0_131/jre',
+  Boolean                     $enable_firewall        = true,
+  Optional[Hash]              $firewall_rules         = {},
 
   # Noop
   Boolean                     $noop_scope       = false,
@@ -12,6 +19,16 @@ class profile::bbs_server (
 
   if $noop_scope {
     noop(true)
+  }
+
+  if $https and ($cert == undef or $cacert == undef) {
+    fail('Need CA Cert and Cert for HTTPS')
+  }
+
+  if $facts['java_default_home'] {
+    $_java_home = $facts['java_default_home']
+  } else {
+    $_java_home = $java_home_default
   }
 
   file { $bbs_base_dirs:
@@ -41,19 +58,51 @@ class profile::bbs_server (
     java_se => 'jdk',
   }
 
-  file { "${bbs_data_dir}/bbs.jks":
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+  if $cacert {
+    file { "${bbs_data_dir}/cacert.pem":
+      ensure => file,
+      content => $cacert,
+      owner  => $bbs_user,
+      group  => $bbs_grp,
+      mode   => '0444',
+    }
+
+    java_ks { 'bbs_ks_cacert':
+      ensure       => present,
+      certificate  => "${bbs_data_dir}/cacert.pem",
+      target       => "${bbs_data_dir}/bbs.jks",
+      password     => 'changeit',
+      trustcacerts => true,
+      require      => [Java::Oracle['jdk8'],File["${bbs_data_dir}/bbs.jks"]],
+      notify       => Class['bbs'],
+    }
   }
 
-  java_ks { 'bbs_ks':
-    ensure       => latest,
-    certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    target       => "${bamboo_data_dir}/bbs.jks",
-    password     => 'changeit',
-    trustcacerts => true,
-    require      => [Java::Oracle['jdk8'],File["${bbs_data_dir}/bbs.jks"]],
+  if $cert {
+    file { "${bbs_data_dir}/cert.pem":
+      ensure  => file,
+      content => $cert,
+      owner   => $bbs_user,
+      group   => $bbs_grp,
+      mode    => '0444',
+    }
+    file { "${bbs_data_dir}/key.pem":
+      ensure  => file,
+      content => $private_key,
+      owner   => $bbs_user,
+      group   => $bbs_grp,
+      mode    => '0400',
+    }
+
+    java_ks { 'bbs_ks_cert':
+      ensure       => present,
+      certificate  => "${bbs_data_dir}/cert.pem",
+      private_key  => "${bbs_data_dir}/key.pem",
+      target       => "${bbs_data_dir}/bbs.jks",
+      password     => 'changeit',
+      trustcacerts => true,
+      require      => [Java::Oracle['jdk8'],File["${bbs_data_dir}/bbs.jks"]],
+      notify       => Class['bbs'],
+    }
   }
 }

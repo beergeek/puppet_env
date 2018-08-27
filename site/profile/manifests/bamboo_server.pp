@@ -1,10 +1,14 @@
 class profile::bamboo_server (
   # Bamboo
   Profile::Pathurl            $source_location          = 'https://product-downloads.atlassian.com/software/bamboo/downloads',
+  Boolean                     $https                    = true,
   Boolean                     $manage_bamboo_grp        = true,
   Boolean                     $manage_bamboo_user       = true,
   Stdlib::Absolutepath        $bamboo_data_dir          = '/var/atlassian/application-data/bamboo',
   Stdlib::Absolutepath        $bamboo_install_dir       = '/opt/atlassian/bamboo',
+  Optional[String[1]]         $cacert                 = undef,
+  Optional[String[1]]         $cert                   = undef,
+  Optional[String[1]]         $private_key            = undef,
   String                      $bamboo_grp               = 'bamboo',
   String                      $bamboo_user              = 'bamboo',
   String                      $bamboo_version           = '6.6.1',
@@ -30,6 +34,16 @@ class profile::bamboo_server (
 
   if $noop_scope {
     noop(true)
+  }
+
+  if $https and ($cert == undef or $cacert == undef) {
+    fail('Need CA Cert and Cert for HTTPS')
+  }
+
+  if $facts['java_default_home'] {
+    $_java_home = $facts['java_default_home']
+  } else {
+    $_java_home = $java_home_default
   }
 
   include profile::docker
@@ -110,13 +124,52 @@ class profile::bamboo_server (
     mode   => '0755',
   }
 
-  java_ks { 'bamboo_ks':
-    ensure       => latest,
-    certificate  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    target       => "${bamboo_data_dir}/bamboo.jks",
-    password     => 'changeit',
-    trustcacerts => true,
-    require      => [Java::Oracle['jdk8'],File["${bamboo_data_dir}/bamboo.jks"]],
+  if $cacert {
+    file { "${bamboo_data_dir}/cacert.pem":
+      ensure => file,
+      content => $cacert,
+      owner  => $bamboo_user,
+      group  => $bamboo_grp,
+      mode   => '0444',
+    }
+    java_ks { 'bamboo_ks_cacert':
+      ensure       => present,
+      certificate  => "${bamboo_data_dir}/cacert.pem",
+      target       => "${bamboo_data_dir}/bamboo.jks",
+      password     => 'changeit',
+      trustcacerts => true,
+      require      => [Java::Oracle['jdk8'],File["${bamboo_data_dir}/bamboo.jks"]],
+      notify       => Class['bamboo'],
+    }
+  }
+
+  if $cert {
+    file { "${bamboo_data_dir}/cert.pem":
+      ensure  => file,
+      content => $cert,
+      owner   => $bamboo_user,
+      group   => $bamboo_grp,
+      mode    => '0444',
+    }
+
+    file { "${bamboo_data_dir}/key.pem":
+      ensure  => file,
+      content => $private_key,
+      owner   => $bamboo_user,
+      group   => $bamboo_grp,
+      mode    => '0400',
+    }
+
+    java_ks { 'bamboo_ks_cert':
+      ensure       => present,
+      certificate  => "${bamboo_data_dir}/cert.pem",
+      private_key  => "${bamboo_data_dir}/key.pem",
+      target       => "${bamboo_data_dir}/bamboo.jks",
+      password     => 'changeit',
+      trustcacerts => true,
+      require      => [Java::Oracle['jdk8'],File["${bamboo_data_dir}/bamboo.jks"]],
+      notify       => Class['bamboo'],
+    }
   }
 
 }
