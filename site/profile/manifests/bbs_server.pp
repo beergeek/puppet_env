@@ -58,6 +58,13 @@ class profile::bbs_server (
     java_se => 'jdk',
   }
 
+  file { "${bbs_data_dir}/bbs.jks":
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
   if $cacert {
     file { "${bbs_data_dir}/cacert.pem":
       ensure => file,
