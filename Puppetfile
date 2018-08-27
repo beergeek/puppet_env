@@ -66,3 +66,6 @@ mod 'install_date',
 mod 'jira',
   :git => 'https://github.com/beergeek/jira.git',
   :branch => 'master'
+mod 'bbs',
+  :git => 'https://github.com/beergeek/bbs.git',
+  :branch => 'master'
