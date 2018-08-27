@@ -52,6 +52,10 @@ class profile::bbs_server (
     }
   }
 
+  class { 'bbs':
+    
+  }
+
   java::oracle { 'jdk8' :
     ensure  => 'present',
     version => '8',
