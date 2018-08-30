@@ -85,7 +85,7 @@ class profile::bbs_server (
       password     => 'changeit',
       trustcacerts => true,
       require      => [Java::Oracle['jdk8'],File["${bbs_data_dir}/bbs.jks"]],
-      notify       => Class['bbs'],
+      #notify       => Class['bbs'],
     }
   }
 
