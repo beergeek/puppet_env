@@ -73,8 +73,8 @@ class profile::bbs_server (
     file { "${bbs_data_dir}/cacert.pem":
       ensure  => file,
       content => $cacert,
-      owner   => $bbs_user,
-      group   => $bbs_grp,
+      owner   => 'root',
+      group   => 'root',
       mode    => '0444',
     }
 
@@ -93,15 +93,15 @@ class profile::bbs_server (
     file { "${bbs_data_dir}/cert.pem":
       ensure  => file,
       content => $cert,
-      owner   => $bbs_user,
-      group   => $bbs_grp,
+      owner   => 'root',
+      group   => 'root',
       mode    => '0444',
     }
     file { "${bbs_data_dir}/key.pem":
       ensure  => file,
       content => $private_key,
-      owner   => $bbs_user,
-      group   => $bbs_grp,
+      owner   => 'root',
+      group   => 'root',
       mode    => '0400',
     }
 
