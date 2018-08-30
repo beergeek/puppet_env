@@ -2,7 +2,7 @@ class profile::bbs_server (
   Boolean                     $https                  = true,
   Boolean                     $manage_bbs_grp         = true,
   Boolean                     $manage_bbs_user        = true,
-  Stdlib::Absolutepath        $bbs_data_dir           = ['/var/atlassian','/application-data/stash'],
+  Array[Stdlib::Absolutepath] $bbs_data_dir           = ['/var/atlassian','/application-data/stash'],
   Array[Stdlib::Absolutepath] $bbs_base_dirs          = ['/opt/atlassian','/var/atlassian','/var/atlassian/application-data'],
   String                      $bbs_user               = 'atlbitbucket',
   String                      $bbs_grp                = 'atlbitbucket',
