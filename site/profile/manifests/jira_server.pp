@@ -84,9 +84,9 @@ class profile::jira_server (
   class { 'jira':
     java_home          => $_java_home,
     jira_data_dir      => $jira_data_dir,
-    jira_grp           => $jira_jira_grp,
+    jira_grp           => $jira_grp,
     jira_install_dir   => $jira_install_dir,
-    jira_user          => $jira_jira_user,
+    jira_user          => $jira_user,
     https              => $https,
     db_host            => $db_host,
     db_name            => $db_name,
@@ -129,11 +129,11 @@ class profile::jira_server (
 
   if $cacert {
     file { "${jira_data_dir}/cacert.pem":
-      ensure => file,
+      ensure  => file,
       content => $cacert,
-      owner  => $jira_user,
-      group  => $jira_grp,
-      mode   => '0444',
+      owner   => $jira_user,
+      group   => $jira_grp,
+      mode    => '0444',
     }
     java_ks { 'jira_ks_cacert':
       ensure       => present,

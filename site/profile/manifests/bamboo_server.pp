@@ -6,9 +6,10 @@ class profile::bamboo_server (
   Boolean                     $manage_bamboo_user       = true,
   Stdlib::Absolutepath        $bamboo_data_dir          = '/var/atlassian/application-data/bamboo',
   Stdlib::Absolutepath        $bamboo_install_dir       = '/opt/atlassian/bamboo',
-  Optional[String[1]]         $cacert                 = undef,
-  Optional[String[1]]         $cert                   = undef,
-  Optional[String[1]]         $private_key            = undef,
+  Stdlib::Absolutepath        $java_home_default        = '/usr/java/jdk1.8.0_131/jre',
+  Optional[String[1]]         $cacert                   = undef,
+  Optional[String[1]]         $cert                     = undef,
+  Optional[String[1]]         $private_key              = undef,
   String                      $bamboo_grp               = 'bamboo',
   String                      $bamboo_user              = 'bamboo',
   String                      $bamboo_version           = '6.6.1',
@@ -100,9 +101,9 @@ class profile::bamboo_server (
 
   class { '::bamboo':
     bamboo_data_dir    => $bamboo_data_dir,
-    bamboo_grp         => $bamboo_bamboo_grp,
+    bamboo_grp         => $bamboo_grp,
     bamboo_install_dir => $bamboo_install_dir,
-    bamboo_user        => $bamboo_bamboo_user,
+    bamboo_user        => $bamboo_user,
     db_host            => $db_host,
     db_name            => $db_name,
     db_password        => $db_password,
@@ -126,11 +127,11 @@ class profile::bamboo_server (
 
   if $cacert {
     file { "${bamboo_data_dir}/cacert.pem":
-      ensure => file,
+      ensure  => file,
       content => $cacert,
-      owner  => $bamboo_user,
-      group  => $bamboo_grp,
-      mode   => '0444',
+      owner   => $bamboo_user,
+      group   => $bamboo_grp,
+      mode    => '0444',
     }
     java_ks { 'bamboo_ks_cacert':
       ensure       => present,

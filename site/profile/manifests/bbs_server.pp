@@ -46,14 +46,14 @@ class profile::bbs_server (
         firewall { $rule_name:
           *   => $rule_data;
           default:
-            * => $firewall_rule_defaults,
+            ensure => present,
+            proto  => 'tcp',
         }
       }
     }
   }
 
   class { 'bbs':
-    
   }
 
   java::oracle { 'jdk8' :
@@ -71,11 +71,11 @@ class profile::bbs_server (
 
   if $cacert {
     file { "${bbs_data_dir}/cacert.pem":
-      ensure => file,
+      ensure  => file,
       content => $cacert,
-      owner  => $bbs_user,
-      group  => $bbs_grp,
-      mode   => '0444',
+      owner   => $bbs_user,
+      group   => $bbs_grp,
+      mode    => '0444',
     }
 
     java_ks { 'bbs_ks_cacert':
