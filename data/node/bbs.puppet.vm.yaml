@@ -1,5 +1,9 @@
 ---
 
+# Variables
+variables:
+  - &enable_firewall true
+  
 profile::bbs_server::private_key: >
   ENC[PKCS7,MIIOHQYJKoZIhvcNAQcDoIIODjCCDgoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEABTHXYjGZBXBY6Fsm1Yb105jnFQbg1Ruoflu1
