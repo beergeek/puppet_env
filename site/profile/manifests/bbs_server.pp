@@ -54,6 +54,24 @@ class profile::bbs_server (
   }
 
   class { 'bbs':
+    java_home          => $_java_home,
+    bbs_data_dir       => $bbs_data_dir,
+    bbs_grp            => $bbs_grp,
+    bbs_install_dir    => $bbs_install_dir,
+    bbs_user           => $bbs_user,
+    https              => $https,
+    db_host            => $db_host,
+    db_name            => $db_name,
+    db_password        => $db_password,
+    db_port            => $db_port,
+    db_type            => $db_type,
+    db_user            => $db_user,
+    manage_db_settings => $manage_db_settings,
+    manage_grp         => $manage_jira_grp,
+    manage_user        => $manage_jira_grp,
+    source_location    => $source_location,
+    version            => $jira_version,
+    require            => Java::Oracle['jdk8'],
   }
 
   java::oracle { 'jdk8' :
