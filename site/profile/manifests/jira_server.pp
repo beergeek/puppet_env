@@ -96,7 +96,7 @@ class profile::jira_server (
     db_user            => $db_user,
     manage_db_settings => $manage_db_settings,
     manage_grp         => $manage_jira_grp,
-    manage_user        => $manage_jira_grp,
+    manage_user        => $manage_jira_user,
     source_location    => $source_location,
     version            => $jira_version,
     require            => Java::Oracle['jdk8'],
