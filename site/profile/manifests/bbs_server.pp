@@ -48,6 +48,7 @@ class profile::bbs_server (
           default:
             ensure => present,
             proto  => 'tcp',
+            action => 'accept',
         }
       }
     }
