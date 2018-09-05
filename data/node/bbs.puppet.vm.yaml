@@ -189,3 +189,11 @@ profile::bbs_server::cert: |
   Iz/j8iVJnha8kPMwBnOYnvGTceapQZKmfeG1FWYLLeio6Cm8Bpax6wWWpQQeJBXY
   vNk4OlaoQLHuDMvvlHwxD4KrgQOZu3H/XcASrBdROBEVpg==
   -----END CERTIFICATE-----
+profile::bbs_server::enable_firewall: *enable_firewall
+profile::bbs_server::firewall_rules:
+  '010 BBS Port 7990':
+    dport: '7990'
+  '010 BBS SSL Port 8843':
+    dport: '8443'
+  '010 BBS SSH Port 7999':
+    dport: '7999'
