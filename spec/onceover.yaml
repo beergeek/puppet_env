@@ -9,6 +9,8 @@ classes:
   - role::web_server
   - role::bamboo_server
   - role::jira_server
+  - role::bbs_server
+  - role::pfa_server
 
 # Nodes to tests classes on, this refers to a 'factset' or 'nodeset'
 # depending on weather you are running 'spec' or 'acceptance' tests
