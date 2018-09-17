@@ -5,7 +5,7 @@ variables:
   - &enable_firewall true
 
 profile::database_services::mysql::enable_firewall: *enable_firewall
-profile::database_services::mysql::mysql_server_override_options:
+profile::database_services::mysql::mysql_server_override_data:
   override_options:
     mysqld:
       bind-address: '0.0.0.0'
