@@ -22,6 +22,7 @@ class profile::jira_server (
 
   # Database
   Boolean                     $manage_db_settings     = true,
+  Boolean                     $create_databases       = $manage_db_settings,
   Profile::Db_type            $db_type                = 'postgresql',
   Optional[Stdlib::Fqdn]      $db_host                = 'localhost',
   Optional[String]            $db_name                = 'jiradb',
@@ -54,7 +55,7 @@ class profile::jira_server (
     mode   => '0755',
   }
 
-  if $manage_db_settings {
+  if $create_databases {
     if $db_type == 'postgresql' {
       require profile::database_services::postgresql
 
