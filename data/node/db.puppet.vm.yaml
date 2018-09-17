@@ -26,12 +26,14 @@ profile::database_services::mysql::db_hash:
       3PaNPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCl1zIHRlLu8zCHQdgq
       ULi8gBDxGxfs6NFhbKtVP6H4ZZM4]
     charset: 'utf8'
+    host: 'jira.puppet.vm'
     collate: 'utf8_bin'
     grant:
       - 'ALL'
   pfa:
     ensure: present
     user: pfa
+    host: 'pfa.puppet.vm'
     password: >
       ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
       DQYJKoZIhvcNAQEBBQAEggEAQ9eNIMTW/aAJTq99AUjXQrer122d+bneNJrN
