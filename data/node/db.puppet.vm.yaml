@@ -36,14 +36,14 @@ profile::database_services::mysql::db_hash:
     host: 'pfa.puppet.vm'
     password: >
       ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
-      DQYJKoZIhvcNAQEBBQAEggEAQ9eNIMTW/aAJTq99AUjXQrer122d+bneNJrN
-      aTiKU8NHz4udLPCdiatz0+E6zP5dJNwBB7V3mBMb/hqufT1IC2g30wOT/I+O
-      Fu+aQD0i0HaH7oP+8N0tu1XKiXjIpxSqO4UC9LHt40J11xktqdtch3lW7WwG
-      y55BeCknc8OlHSUiXyKbxZ9G+LUIr8vVuzfj/cwVLGC6ZMi30Ya8EnxiUDcW
-      F/cvGiWEvSd0gWTBwq6RFTmI3MjU+COEqfHAo1dP70p//W9nHswAyauFWvvM
-      jGCCIBfHR3QoZ5Qy+2gSRzNqv+y3v7b5GExlqwA7YqcHabR7xwCHug74mkK/
-      3PaNPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCl1zIHRlLu8zCHQdgq
-      ULi8gBDxGxfs6NFhbKtVP6H4ZZM4]
+      DQYJKoZIhvcNAQEBBQAEggEAlO8CbnAjbArOzt346rIpR+tXw3F34R1MNhLa
+      HuXaQlQSSn/vDBg1TYkK1GhmaGHJP2vT5F3Vx0PiKhfgZHIkvTDOojgyRBjv
+      r0GoK5wo4M3yWpg8cSUPEkX0xbS12xYS3ocZINE2S5wbtqRCsQ+m9z9Ufy5E
+      kh1FxHgLg6MRfnAtCAjQp9a8R9NpQ74DU5kKacV7a+i6ChkemK3dx+hI7slS
+      hFlHboVXv0JP98wkPUnmw97YxjQ8nYAY+UvKnfR9Wcs9/tZPMLPcDYf5ZhWl
+      6krgxy/4DV6IWVlfInjXALjM82+HfrdrJT+/M/QbM/Nlg5xEQ7CSLRaU9ZeZ
+      gpcV5DA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPiv0Hlfmiy2U1gPWK
+      gg2LgBB1cmwEDaqEpPE2FNnBSlSn]
     charset: 'utf8'
     collate: 'utf8_bin'
     grant:
