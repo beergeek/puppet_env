@@ -12,19 +12,4 @@ profile::database_services::mysql::mysql_server_override_options:
       bind-address: '0.0.0.0'
       default-storage-engine: 'INNODB'
       max_allowed_packet: '2G'
-profile::database_services::mysql::db_hash:
-  elmo: {}
-  kermit: {}
-profile::database_services::sqlserver::sql_source: 'C:\\vagrant\\SQLServer\\'
-profile::database_services::sql_passwd: 'kndis%#11SS'
-profile::database_services::sql_version: 'MSSQL12'
-profile::database_services::sql_user: 'vagrant'
-profile::database_services::sqlserver::db_hash:
-  elmo:
-    password: 'jdfknvkjdfnk'
-  kermit:
-    password: 'jdfknvkjdfnk))##'
 
-profile::puppet_users::user_hash:
-  brett:
-    manage_user: true

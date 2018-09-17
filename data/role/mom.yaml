@@ -17,12 +17,6 @@ profile::mom::firewall_rules:
   '100 allow pcp client access':
     dport:
       - 8143
-  '100 allow mco access':
-    dport:
-      - 61613
-  '100 allow amq access':
-    dport:
-      - 61616
   '100 allow console access':
     dport:
       - 443
