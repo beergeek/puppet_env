@@ -14,7 +14,7 @@ profile::repos::repo_hash:
 profile::database_services::mysql::enable_firewall: *enable_firewall
 profile::database_services::mysql::mysql_server_override_data:
   package_name: 'mysql-community-server'
-  package_ensure: '5.7.23-1.el7'
+  package_ensure: 'installed'
   root_password: 'P@ssword123'
   manage_config_file: true
   service_name: 'mysqld'
