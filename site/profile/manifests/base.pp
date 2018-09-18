@@ -44,7 +44,7 @@ class profile::base (
       }
 
       # repo management
-      # include profile::repos
+      include profile::repos
 
       # monitoring
       include profile::monitoring
