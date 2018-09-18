@@ -27,7 +27,7 @@ class profile::database_services::mysql (
 
   if $db_hash and ! empty($db_hash) {
     $db_hash.each |String $database_name, Hash $database_hash| {
-      mysql::server::db {  $database_name:
+      mysql::db {  $database_name:
         * => $database_hash,;
         default:
           ensure => present,;
