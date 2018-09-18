@@ -13,7 +13,7 @@ profile::repos::repo_hash:
     gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql'
 profile::database_services::mysql::enable_firewall: *enable_firewall
 profile::database_services::mysql::mysql_server_override_data:
-  package-name: 'mysql-community-server'
+  package_name: 'mysql-community-server'
   package_ensure: '5.7.23-1.el7'
   override_options:
     mysqld:
