@@ -56,7 +56,7 @@ profile::database_services::mysql::db_hash:
       6krgxy/4DV6IWVlfInjXALjM82+HfrdrJT+/M/QbM/Nlg5xEQ7CSLRaU9ZeZ
       gpcV5DA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPiv0Hlfmiy2U1gPWK
       gg2LgBB1cmwEDaqEpPE2FNnBSlSn]
-    charset: 'utf8'
-    collate: 'utf8_bin'
+    charset: 'latin1'
+    collate: 'latin1_general_ci'
     grant:
       - 'ALL'
