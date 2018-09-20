@@ -1,4 +1,5 @@
 ---
 
-profile::pipelines::pipeline_type: 'pfa'
+profile::pipelines::pipeline_type:
+  - 'pfa'
   
