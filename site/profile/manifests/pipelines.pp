@@ -9,7 +9,7 @@ class profile::pipelines (
   Array[String]                    $pfc_ports              = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $cd4pe_ports            = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $artifactory_ports      = ['8081:8081'],
-  Optional[Array[String]]          $pfa_env_params         = ['USER=pfa',"MYSQL_PWD='P@ssword123'", "DB_ENTRYPOINT='mysql://192.168.0.23/pfa'"]
+  Optional[Array[String]]          $pfa_env_params         = ['USER=pfa',"MYSQL_PWD='P@ssword123'", "DB_ENTRYPOINT='mysql://192.168.0.23:3306/pfa'"]
 ) {
 
   include profile::docker
