@@ -41,7 +41,7 @@ class profile::pipelines (
       detach                    => true,
       ports                     => $pfa_ports,
       net                       => $docker_network_name,
-      remove_container_on_stop  => true,
+      remove_container_on_stop  => false,
       env                       => $pfa_env_params,
     }
   }
