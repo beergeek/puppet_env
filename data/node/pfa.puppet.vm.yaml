@@ -1,0 +1,5 @@
+---
+
+profile::pipelines::pipeline_type:
+  - 'pfa'
+profile::pipelines::run_artifactory: true
