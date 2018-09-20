@@ -7,7 +7,7 @@ class profile::pipelines (
   Array[String]                    $pfa_ports              = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $pfc_ports              = ['8081:8080','8001:8000','7001:7000'],
   Array[String]                    $cd4pe_ports            = ['8082:8080','8002:8000','7002:7000'],
-  Optional[Array[String]]          $pfa_extra_params       = ['-e USER=pfa',"-e MYSQL_PWD='P@ssword123'", "-e  DB_ENTRYPOINT='mysql://192.168.0.23/pfa'"]
+  Optional[Array[String]]          $pfa_env_params         = ['USER=pfa',"MYSQL_PWD='P@ssword123'", "DB_ENTRYPOINT='mysql://192.168.0.23/pfa'"]
 ) {
 
   include profile::docker
@@ -40,7 +40,7 @@ class profile::pipelines (
       ports                     => $pfa_ports,
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
-      extra_parameters          => $pfa_extra_params,
+      env                       => $pfa_env_params,
     }
   }
   if 'cd4pe' in $pipeline_type { 
