@@ -4,9 +4,9 @@ class profile::pipelines (
   String                           $docker_network_name    = 'pipelines',
   Stdlib::IP::Address::V4::CIDR    $docker_network_subnet  = '192.168.168.0/24',
   Stdlib::IP::Address::Nosubnet    $docker_network_gateway = '192.168.168.1',
-  Stdlib::Port::Unprivileged       $pfa_ports              = ['8080:8080','8000:8000','7000:7000'],
-  Stdlib::Port::Unprivileged       $pfc_ports              = ['8081:8080','8001:8000','7001:7000'],
-  Stdlib::Port::Unprivileged       $cd4pe_ports            = ['8082:8080','8002:8000','7002:7000'],
+  String                           $pfa_ports              = ['8080:8080','8000:8000','7000:7000'],
+  String                           $pfc_ports              = ['8081:8080','8001:8000','7001:7000'],
+  String                           $cd4pe_ports            = ['8082:8080','8002:8000','7002:7000'],
 ) {
 
   include profile::docker
