@@ -28,9 +28,8 @@ class profile::pipelines (
       image                     => 'puppet/pipelines-for-containers:latest',
       detach                    => true,
       ports                     => $pfc_ports,
-      memory_limit              => '2g',
       net                       => $docker_network_name,
-      remove_container_on_stop  => false,
+      remove_container_on_stop  => true,
     }
   }
   if 'pfa' in $pipeline_type {
@@ -41,9 +40,8 @@ class profile::pipelines (
       image                     => 'puppet/pipelines-for-applications:latest',
       detach                    => true,
       ports                     => $pfa_ports,
-      memory_limit              => '2g',
       net                       => $docker_network_name,
-      remove_container_on_stop  => false,
+      remove_container_on_stop  => true,
       env                       => $pfa_env_params,
     }
   }
@@ -55,9 +53,8 @@ class profile::pipelines (
       image                     => 'puppet/continuous-delivery-for-puppet-enterprise:latest',
       detach                    => true,
       ports                     => $cd4pe_ports,
-      memory_limit              => '2g',
       net                       => $docker_network_name,
-      remove_container_on_stop  => false,
+      remove_container_on_stop  => true,
     }
   }
   if $run_artifactory {
@@ -68,7 +65,6 @@ class profile::pipelines (
       image                     => 'docker.bintray.io/jfrog/artifactory-oss:5.8.3',
       detach                    => true,
       ports                     => $artifactory_ports,
-      memory_limit              => '2g',
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
     }
