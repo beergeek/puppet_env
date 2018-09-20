@@ -61,7 +61,7 @@ class profile::pipelines (
     docker::image { 'docker.bintray.io/jfrog/artifactory-oss':
       tag => '5.8.3',
     }
-    docker::run { 'cd4pe':
+    docker::run { 'artifactory':
       image                     => 'docker.bintray.io/jfrog/artifactory-oss:5.8.3',
       detach                    => true,
       ports                     => $artifactory_ports,
