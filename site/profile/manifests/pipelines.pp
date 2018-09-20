@@ -26,7 +26,7 @@ class profile::pipelines (
       detach                    => true,
       ports                     => $pfc_ports,
       net                       => $docker_network_name,
-      remove_container_on_stop  => true,
+      remove_container_on_stop  => false,
     }
   }
   if 'pfa' in $pipeline_type {
@@ -38,7 +38,7 @@ class profile::pipelines (
       detach                    => true,
       ports                     => $pfa_ports,
       net                       => $docker_network_name,
-      remove_container_on_stop  => true,
+      remove_container_on_stop  => false,
     }
   }
   if 'cd4pe' in $pipeline_type { 
@@ -50,7 +50,7 @@ class profile::pipelines (
       detach                    => true,
       ports                     => $cd4pe_ports,
       net                       => $docker_network_name,
-      remove_container_on_stop  => true,
+      remove_container_on_stop  => false,
     }
   }
 }
