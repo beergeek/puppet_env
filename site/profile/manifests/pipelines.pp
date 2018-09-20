@@ -48,7 +48,7 @@ class profile::pipelines (
       tag => 'latest',
     }
     docker::run { 'cd4pe':
-      image                     => 'puppet/pipelines-for-puppet-enterprise:latest',
+      image                     => 'puppet/continuous-delivery-for-puppet-enterprise:latest',
       detach                    => true,
       ports                     => $cd4pe_ports,
       net                       => $docker_network_name,
