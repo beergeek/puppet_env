@@ -6,8 +6,8 @@ class profile::pipelines (
   Stdlib::IP::Address::V4::CIDR    $docker_network_subnet  = '192.168.168.0/24',
   Stdlib::IP::Address::Nosubnet    $docker_network_gateway = '192.168.168.1',
   Array[String]                    $pfa_ports              = ['8080:8080','8000:8000','7000:7000'],
-  Array[String]                    $pfc_ports              = ['8081:8080','8001:8000','7001:7000'],
-  Array[String]                    $cd4pe_ports            = ['8082:8080','802:8000','7002:7000'],
+  Array[String]                    $pfc_ports              = ['8080:8080','8000:8000','7000:7000'],
+  Array[String]                    $cd4pe_ports            = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $artifactory_ports      = ['8081:8081'],
   Optional[Array[String]]          $pfa_env_params         = ['USER=pfa',"MYSQL_PWD='P@ssword123'", "DB_ENTRYPOINT='mysql://192.168.0.23/pfa'"]
 ) {
@@ -28,6 +28,7 @@ class profile::pipelines (
       image                     => 'puppet/pipelines-for-containers:latest',
       detach                    => true,
       ports                     => $pfc_ports,
+      memory_limit              => '2g',
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
     }
@@ -40,6 +41,7 @@ class profile::pipelines (
       image                     => 'puppet/pipelines-for-applications:latest',
       detach                    => true,
       ports                     => $pfa_ports,
+      memory_limit              => '2g',
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
       env                       => $pfa_env_params,
@@ -53,6 +55,7 @@ class profile::pipelines (
       image                     => 'puppet/continuous-delivery-for-puppet-enterprise:latest',
       detach                    => true,
       ports                     => $cd4pe_ports,
+      memory_limit              => '2g',
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
     }
@@ -65,6 +68,7 @@ class profile::pipelines (
       image                     => 'docker.bintray.io/jfrog/artifactory-oss:5.8.3',
       detach                    => true,
       ports                     => $artifactory_ports,
+      memory_limit              => '2g',
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
     }

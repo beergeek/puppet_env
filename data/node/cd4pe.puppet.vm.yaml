@@ -1,0 +1,5 @@
+---
+
+profile::pipelines::pipeline_type:
+  - 'cd4pe'
+profile::pipelines::run_artifactory: true
