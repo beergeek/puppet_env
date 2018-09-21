@@ -16,7 +16,7 @@ class profile::pipelines (
   include profile::docker
 
   if $facts['os']['family'] == 'RedHat' {
-    if $facts['os']['release']['major'] = '7' {
+    if $facts['os']['release']['major'] == '7' {
       $detach = undef
     } else {
       $detach = true
