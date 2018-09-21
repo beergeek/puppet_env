@@ -78,6 +78,7 @@ class profile::pipelines (
       detach                    => $detach,
       ports                     => $artifactory_ports,
       net                       => $docker_network_name,
+      volumes                   => ['data_s3:/var/opt/jfrog/artifactory'],
       remove_container_on_stop  => false,
     }
   }
