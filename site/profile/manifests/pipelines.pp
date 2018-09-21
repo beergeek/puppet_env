@@ -15,6 +15,16 @@ class profile::pipelines (
 
   include profile::docker
 
+  if $facts['os']['family'] == 'RedHat' {
+    if $facts['os']['release']['major'] = '7' {
+      $detach = undef
+    } else {
+      $detach = true
+    }
+  } else {
+    $detach = true
+  }
+
   docker_network { $docker_network_name:
     ensure  => present,
     subnet  => $docker_network_subnet,
@@ -27,7 +37,7 @@ class profile::pipelines (
     }
     docker::run { 'pfc':
       image                     => 'puppet/pipelines-for-containers:latest',
-      detach                    => true,
+      detach                    => $detach,
       ports                     => $pfc_ports,
       net                       => $docker_network_name,
       remove_container_on_stop  => true,
@@ -39,7 +49,7 @@ class profile::pipelines (
     }
     docker::run { 'pfa':
       image                     => 'puppet/pipelines-for-applications:latest',
-      detach                    => true,
+      detach                    => $detach,
       ports                     => $pfa_ports,
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
@@ -52,7 +62,7 @@ class profile::pipelines (
     }
     docker::run { 'cd4pe':
       image                     => 'puppet/continuous-delivery-for-puppet-enterprise:latest',
-      detach                    => true,
+      detach                    => $detach,
       ports                     => $cd4pe_ports,
       net                       => $docker_network_name,
       remove_container_on_stop  => true,
@@ -65,7 +75,7 @@ class profile::pipelines (
     }
     docker::run { 'artifactory':
       image                     => 'docker.bintray.io/jfrog/artifactory-oss:5.8.3',
-      detach                    => true,
+      detach                    => $detach,
       ports                     => $artifactory_ports,
       net                       => $docker_network_name,
       remove_container_on_stop  => false,
