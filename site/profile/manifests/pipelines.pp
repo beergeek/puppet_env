@@ -9,7 +9,8 @@ class profile::pipelines (
   Array[String]                    $pfc_ports              = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $cd4pe_ports            = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $artifactory_ports      = ['8081:8081'],
-  Optional[Array[String]]          $pfa_env_params         = ['USER=pfa',"MYSQL_PWD=P@ssword123", "DB_ENDPOINT=mysql://192.168.0.23:3306/pfa"]
+  Optional[Array[String]]          $pfa_env_params         = ['USER=pfa',"MYSQL_PWD=P@ssword123", "DB_ENDPOINT=mysql://192.168.0.23:3306/pfa"],
+  Optional[Array[String]]          $cd4pe_env_params       = ['DB_USER=cd4pe','DB_PASS=P@ssword123','DB_ENDPOINT=mysql://192.168.0.23:3306/cd4pe','PFI_SECRET_KEY=g4vmW6D43Qw5CNT+72rBDw==','DUMP_URI=dump://localhost:7000'],
 ) {
 
   include profile::docker
@@ -55,6 +56,7 @@ class profile::pipelines (
       ports                     => $cd4pe_ports,
       net                       => $docker_network_name,
       remove_container_on_stop  => true,
+      env                       => $cd4pe_env_params,
     }
   }
   if $run_artifactory {
