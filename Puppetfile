@@ -69,3 +69,4 @@ mod 'jira',
 mod 'bbs',
   :git => 'https://github.com/beergeek/bbs.git',
   :branch => 'master'
+mod 'albatrossflavour-os_patching', '0.5.0'
