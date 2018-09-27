@@ -218,3 +218,4 @@ profile::bbs_server::db_password: >
   jGCCIBfHR3QoZ5Qy+2gSRzNqv+y3v7b5GExlqwA7YqcHabR7xwCHug74mkK/
   3PaNPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCl1zIHRlLu8zCHQdgq
   ULi8gBDxGxfs6NFhbKtVP6H4ZZM4]
+  profile::bbs_server::key_alias: 'bbs_ks_cert'
