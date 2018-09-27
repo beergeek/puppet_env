@@ -9,9 +9,20 @@ class profile::bbs_server (
   Optional[String[1]]         $cacert                 = undef,
   Optional[String[1]]         $cert                   = undef,
   Optional[String[1]]         $private_key            = undef,
+  Optional[String[1]]         $bbs_version            = undef,
   Stdlib::Absolutepath        $java_home_default      = '/usr/java/jdk1.8.0_131/jre',
   Boolean                     $enable_firewall        = true,
   Optional[Hash]              $firewall_rules         = {},
+
+  # Database
+  Boolean                     $manage_db_settings     = true,
+  Boolean                     $create_databases       = $manage_db_settings,
+  Profile::Db_type            $db_type                = 'postgresql',
+  Optional[Stdlib::Fqdn]      $db_host                = 'localhost',
+  Optional[String]            $db_name                = 'bbsdb',
+  Optional[String]            $db_password            = undef,
+  Optional[String]            $db_port                = undef,
+  Optional[String]            $db_user                = 'bbs',
 
   # Noop
   Boolean                     $noop_scope       = false,
@@ -38,8 +49,6 @@ class profile::bbs_server (
     mode   => '0755',
   }
 
-  include profile::database_services
-
   if $enable_firewall {
     if $firewall_rules {
       $firewall_rules.each |String $rule_name, Hash $rule_data| {
@@ -50,6 +59,33 @@ class profile::bbs_server (
             proto  => 'tcp',
             action => 'accept',
         }
+      }
+    }
+  }
+
+  if $create_databases {
+    if $db_type == 'postgresql' {
+      require profile::database_services::postgresql
+
+      postgresql::server::db { $db_name:
+        user     => $db_user,
+        password => $db_password,
+        locale   => 'en_AU',
+        encoding => 'UTF8',
+        grant    => ['ALL'],
+        notify   => Class['bbs'],
+      }
+    } elsif $db_type == 'mysql' {
+      require profile::database_services::mysql
+
+      mysql::db { $db_name:
+        ensure   => present,
+        user     => $db_user,
+        password => $db_password,
+        charset  => 'utf8',
+        collate  => 'utf8_bin',
+        grant    => ['ALL'],
+        notify   => Class['bbs'],
       }
     }
   }
@@ -71,7 +107,7 @@ class profile::bbs_server (
     manage_grp         => $manage_bbs_grp,
     manage_user        => $manage_bbs_user,
     source_location    => $source_location,
-    version            => $jira_version,
+    version            => $bbs_version,
     require            => Java::Oracle['jdk8'],
   }
 
