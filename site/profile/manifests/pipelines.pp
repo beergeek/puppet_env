@@ -5,7 +5,7 @@ class profile::pipelines (
   String                           $docker_network_name    = 'pipelines',
   Stdlib::IP::Address::V4::CIDR    $docker_network_subnet  = '192.168.168.0/24',
   Stdlib::IP::Address::Nosubnet    $docker_network_gateway = '192.168.168.1',
-  Stdlib::IP::Address::Nosubnet    $master_ip              = '192.168.1.10',
+  Stdlib::IP::Address::Nosubnet    $master_ip              = '192.168.0.10',
   Stdlib::Host                     $master_fqdn            = 'master.puppet.vm',
   Array[String]                    $pfa_ports              = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $pfc_ports              = ['8080:8080','8000:8000','7000:7000'],
