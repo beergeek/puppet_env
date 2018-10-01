@@ -5,6 +5,8 @@ class profile::pipelines (
   String                           $docker_network_name    = 'pipelines',
   Stdlib::IP::Address::V4::CIDR    $docker_network_subnet  = '192.168.168.0/24',
   Stdlib::IP::Address::Nosubnet    $docker_network_gateway = '192.168.168.1',
+  Stdlib::IP::Address::Nosubnet    $docker_network_gateway = '192.168.168.1',
+  Stdlib::IP::Address::Nosubnet    $master_ip              = '192.168.168.10',
   Array[String]                    $pfa_ports              = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $pfc_ports              = ['8080:8080','8000:8000','7000:7000'],
   Array[String]                    $cd4pe_ports            = ['8080:8080','8000:8000','7000:7000'],
@@ -36,11 +38,12 @@ class profile::pipelines (
       tag => 'latest',
     }
     docker::run { 'pfc':
-      image                     => 'puppet/pipelines-for-containers:latest',
-      detach                    => $detach,
-      ports                     => $pfc_ports,
-      net                       => $docker_network_name,
-      remove_container_on_stop  => true,
+      image                    => 'puppet/pipelines-for-containers:latest',
+      detach                   => $detach,
+      ports                    => $pfc_ports,
+      net                      => $docker_network_name,
+      extra_parameters         => [ "--add-host ${master_fqdn}:${master_ip}" ],
+      remove_container_on_stop => true,
     }
   }
   if 'pfa' in $pipeline_type {
@@ -48,12 +51,13 @@ class profile::pipelines (
       tag => 'latest',
     }
     docker::run { 'pfa':
-      image                     => 'puppet/pipelines-for-applications:latest',
-      detach                    => $detach,
-      ports                     => $pfa_ports,
-      net                       => $docker_network_name,
-      remove_container_on_stop  => false,
-      env                       => $pfa_env_params,
+      image                    => 'puppet/pipelines-for-applications:latest',
+      detach                   => $detach,
+      ports                    => $pfa_ports,
+      net                      => $docker_network_name,
+      extra_parameters         => [ "--add-host ${master_fqdn}:${master_ip}" ],
+      remove_container_on_stop => false,
+      env                      => $pfa_env_params,
     }
   }
   if 'cd4pe' in $pipeline_type { 
@@ -61,12 +65,13 @@ class profile::pipelines (
       tag => 'latest',
     }
     docker::run { 'cd4pe':
-      image                     => 'puppet/continuous-delivery-for-puppet-enterprise:latest',
-      detach                    => $detach,
-      ports                     => $cd4pe_ports,
-      net                       => $docker_network_name,
-      remove_container_on_stop  => true,
-      env                       => $cd4pe_env_params,
+      image                    => 'puppet/continuous-delivery-for-puppet-enterprise:latest',
+      detach                   => $detach,
+      ports                    => $cd4pe_ports,
+      net                      => $docker_network_name,
+      remove_container_on_stop => true,
+      extra_parameters         => [ "--add-host ${master_fqdn}:${master_ip}" ],
+      env                      => $cd4pe_env_params,
     }
   }
   if $run_artifactory {

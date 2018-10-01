@@ -2,16 +2,14 @@ source "https://rubygems.org"
 
 group :test do
   gem "rake"
-  gem "puppet", ENV['PUPPET_VERSION'] || '~> 4.10.1'
+  gem "puppet", ENV['PUPPET_VERSION'] || '~> 5.5.3'
   gem "rspec"
   gem "rspec-puppet"
+  gem "puppet-lint"
+  gem "r10k"
   gem "puppetlabs_spec_helper"
-  gem 'onceover', '>= 3.3.2'
-#  gem 'onceover', git: 'https://github.com/beergeek/onceover.git', branch: 'improve_plugin_support'
-  gem 'onceover-gatekeeper', git: 'https://github.com/dylanratcliffe/onceover-gatekeeper.git'
-#  gem 'onceover-gatekeeper', git: 'https://github.com/beergeek/onceover-gatekeeper.git', branch: 'fix_for_new_rspec'
-  #gem "onceover", :git =>  'https://github.com/beergeek/onceover.git', :branch => 'shared_examples'
-  gem "xmlrpc"
+  gem 'onceover', '>= 3.8.0'
+  #gem 'onceover-gatekeeper', git: 'https://github.com/dylanratcliffe/onceover-gatekeeper.git'
 end
 
 group :pre do
