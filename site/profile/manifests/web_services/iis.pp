@@ -46,7 +46,7 @@ class profile::web_services::iis (
             windows_firewall::exception { "HTTP - ${binding['port']}":
               ensure       => present,
               direction    => 'in',
-              action       => 'Allow',
+              action       => 'allow',
               enabled      => 'yes',
               protocol     => 'TCP',
               local_port   => $binding['port'],
