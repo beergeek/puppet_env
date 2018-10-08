@@ -16,7 +16,7 @@ class profile::web_services::iis (
     require => Iis_feature['Web-WebServer'],
   }
 
-  if $website_hash {
+  if $website_hash and !empty($website_hash) {
     $website_hash.each |String $site_name, Hash $website| {
       if $website['database_search'] {
         $search_results = puppetdb_query("resources[count()] {type = \"Sqlserver::Database\" and title = \"${website['database_search']}\"}")[0]['count']
