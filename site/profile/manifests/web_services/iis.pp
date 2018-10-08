@@ -41,7 +41,7 @@ class profile::web_services::iis (
           * => delete($website,'database_search'),
         }
 
-        $website['binding_hash'].each |Hash $binding| {
+        $website['bindings'].each |Hash $binding| {
           if !defined(Windows_firewall::Exception["HTTP - ${binding['port']}"]) {
             windows_firewall::exception { "HTTP - ${binding['port']}":
               ensure       => present,
