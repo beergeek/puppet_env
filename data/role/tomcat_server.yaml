@@ -1,11 +1,11 @@
 ---
 
-profile::tomcat_services::tomcat_install:
+profile::tomcat_services::tomcat_installs:
   '/opt/tomcat0':
     source_url: 'https://www.apache.org/dist/tomcat/tomcat-9/v9.0.x/bin/apache-tomcat-9.0.x.tar.gz'
   '/opt/tomcat1':
     source_url: 'http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.x/bin/apache-tomcat-7.0.x.tar.gz'
-profile::tomcat_services::tomcat_intances:
+profile::tomcat_services::tomcat_instances:
   tomcat9-test0:
     catalina_home: '/opt/tomcat9'
     catalina_base: '/opt/tomcat9/zero'
