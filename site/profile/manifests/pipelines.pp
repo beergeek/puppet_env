@@ -17,6 +17,7 @@ class profile::pipelines (
 
   include profile::docker
 
+  # detach is default in RHEL7, so double detach makes the container fail
   if $facts['os']['family'] == 'RedHat' {
     if $facts['os']['release']['major'] == '7' {
       $detach = undef
@@ -60,7 +61,7 @@ class profile::pipelines (
       env                      => $pfa_env_params,
     }
   }
-  if 'cd4pe' in $pipeline_type { 
+  if 'cd4pe' in $pipeline_type {
     docker::image { 'puppet/continuous-delivery-for-puppet-enterprise':
       tag => 'latest',
     }

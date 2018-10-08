@@ -119,7 +119,7 @@ profile::bbs_server::cacert: |
   rGeQ+iQOKm08w47EJfNqlv+lYz+JXBOWjvwIxTDfxSwGa9/zgzfC7gVswd6J5F1n
   P2HFISsIsna8YafGxyavB4nZZrVRTXfCqT2SmBRnrzZgdJnQxoU42dxN
   -----END CERTIFICATE-----
-profile::jira_server::cert: |
+profile::bbs_server::cert: |
   -----BEGIN CERTIFICATE-----
   MIIGTzCCBDegAwIBAgICEAAwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UEBhMCQVUx
   DDAKBgNVBAgMA05TVzEMMAoGA1UEBwwDU1lEMQ8wDQYDVQQKDAZQdXBwZXQxCzAJ
