@@ -47,7 +47,7 @@ class profile::web_services::iis (
               ensure       => present,
               direction    => 'in',
               action       => 'allow',
-              enabled      => 'yes',
+              enabled      => true,
               protocol     => 'TCP',
               local_port   => $binding['port'],
               remote_port  => 'any',
