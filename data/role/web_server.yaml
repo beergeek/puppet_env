@@ -34,23 +34,22 @@ profile::web_services::apache::website_defaults:
   docroot: '/var/www/${title}'
   repo_provider: git
 profile::web_services::iis::enable_firewall: *enable_firewall
-profile::web_services::iis::base_docroot: "C:\\inetpub\\wwwroot"
 profile::web_services::iis::website_hash:
   'elmo.puppet.vm':
-    website_path: 'C:\inetpub\elmo'
-    binding_hash: [
+    physicalpath: 'C:\inetpub\elmo'
+    bindings: [
       {protocol: 'HTTP',port: 80,hostname: 'elmo.puppet.vm'}]
     database_search: "elmo"
   'kermit.puppet.vm':
-    website_path: 'C:\inetpub\kermit'
-    binding_hash: [
+    physicalpath: 'C:\inetpub\kermit'
+    bindings: [
       {protocol: 'HTTP',port: 80,hostname: 'kermit.puppet.vm'}]
     database_search: "kermit"
   'animal.puppet.vm':
-    website_path: 'C:\inetpub\animal'
-    binding_hash: [
+    physicalpath: 'C:\inetpub\animal'
+    bindings: [
       {protocol: 'HTTP',port: 80,hostname: 'animal.puppet.vm'}]
   'rob.puppet.vm':
-    website_path: 'C:\inetpub\rob'
-    binding_hash: [
+    physicalpath: 'C:\inetpub\rob'
+    bindings: [
       {protocol: 'HTTP',port: 80,hostname: 'rob.puppet.vm'}]
