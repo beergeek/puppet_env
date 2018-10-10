@@ -424,7 +424,7 @@ profile::web_services::apache::website_defaults:
 
 profile::base::cacerts:
   atlassian_stack.pem:
-      -----BEGIN CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
     MIIFljCCA36gAwIBAgIJAPgjt937aEaGMA0GCSqGSIb3DQEBCwUAMFgxCzAJBgNV
     BAYTAkFVMQwwCgYDVQQIDANOU1cxDDAKBgNVBAcMA1NZRDEPMA0GA1UECgwGUHVw
     cGV0MQswCQYDVQQLDAJDUzEPMA0GA1UEAwwGUHVwcGV0MB4XDTE4MDgwNjA1MjU1

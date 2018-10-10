@@ -1,10 +1,10 @@
 ---
 
 profile::tomcat_services::tomcat_installs:
-  '/opt/tomcat0':
-    source_url: 'https://www.apache.org/dist/tomcat/tomcat-9/v9.0.x/bin/apache-tomcat-9.0.x.tar.gz'
-  '/opt/tomcat1':
-    source_url: 'http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.x/bin/apache-tomcat-7.0.x.tar.gz'
+  '/opt/tomcat9':
+    source_url: 'http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.12/bin/apache-tomcat-9.0.12.tar.gz'
+  '/opt/tomcat7':
+    source_url: 'http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.91/bin/apache-tomcat-7.0.91.tar.gz'
 profile::tomcat_services::tomcat_instances:
   tomcat9-test0:
     catalina_home: '/opt/tomcat9'
@@ -19,21 +19,21 @@ profile::tomcat_services::tomcat_instances:
     catalina_home: '/opt/tomcat7'
     catalina_base: '/opt/tomcat7/one'
 profile::tomcat_services::tomcat_servers:
-  'tomcat9-test2':
-    catalina_base: '/opt/tomcat9/two'
+  'tomcat9-test1':
+    catalina_base: '/opt/tomcat9/one'
     port: ’8006’
-  'tomcat1-test2':
-    catalina_base: '/opt/tomcat7/two'
+  'tomcat7-test1':
+    catalina_base: '/opt/tomcat7/one'
     port: ’8015’
 profile::tomcat_services::tomcat_connectors:
-  'tomcat9-test2-http':
-    catalina_base: '/opt/tomcat9/two'
+  'tomcat9-test1-http':
+    catalina_base: '/opt/tomcat9/one'
     port: '8081'
     protocol: 'HTTP/1.1'
     additional_attributes:
       'redirectPort': '8443'
-  'tomcat7-test2-http':
-    catalina_base: '/opt/tomcat7/two'
+  'tomcat7-test1-http':
+    catalina_base: '/opt/tomcat7/one'
     port: '8080'
     protocol: 'HTTP/1.1'
     additional_attributes:
