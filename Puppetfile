@@ -12,6 +12,7 @@ mod "puppetlabs/acl", :latest
 mod "puppetlabs/apache", :latest
 mod "puppetlabs/chocolatey", :latest
 mod "puppetlabs/concat", :latest
+mod 'puppetlabs-cd4pe', :latest
 mod "puppetlabs/docker", :latest
 mod "puppetlabs/dsc", :latest
 mod "puppetlabs/firewall", :latest
