@@ -80,5 +80,5 @@ mod 'os_updates',
   :branch => 'master'
 
 mod 'mongodb',
-  :git => https://github.com/beergeek/mongodb.git',
+  :git => 'https://github.com/beergeek/mongodb.git',
   :branch => 'master'
