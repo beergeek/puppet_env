@@ -53,6 +53,9 @@ mod 'beergeek/enable_noop', :latest
 mod 'beergeek/disable_noop', :latest
 mod 'beergeek/facecount', :latest
 mod 'puppetlabs/resource', :latest
+mod 'herculesteam/augeasproviders_core', :latest
+mod 'herculesteam/augeasproviders_shellvar', :latest
+mod 'herculesteam/augeasproviders_sysctl', :latest
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
@@ -74,4 +77,8 @@ mod 'bbs',
 mod 'albatrossflavour-os_patching', '0.5.0'
 mod 'os_updates',
   :git => 'https://github.com/beergeek/os_updates.git',
+  :branch => 'master'
+
+mod 'mongodb',
+  :git => https://github.com/beergeek/mongodb.git',
   :branch => 'master'
