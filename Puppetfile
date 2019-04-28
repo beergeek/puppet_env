@@ -56,6 +56,7 @@ mod 'puppetlabs/resource', :latest
 mod 'herculesteam/augeasproviders_core', :latest
 mod 'herculesteam/augeasproviders_shellvar', :latest
 mod 'herculesteam/augeasproviders_sysctl', :latest
+mod 'puppet/selinux', :latest
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
