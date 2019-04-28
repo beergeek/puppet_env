@@ -16,6 +16,7 @@ class profile::database_services::mongodb (
 
   require mongodb::repos
   require mongodb::os
+  require mongodb::user
 
   class { 'mongodb::install':
     base_path    => $base_path,
