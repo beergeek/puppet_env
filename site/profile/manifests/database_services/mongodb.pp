@@ -27,7 +27,7 @@ class profile::database_services::mongodb (
   $mongod_instance.each |String $instance_name, Hash $instance_data| {
     mongodb::config { $instance_name:
       *      => $instance_data,
-      before => Mongodb::Server[$instance_name],
+      before => Mongodb::Service[$instance_name],
     }
 
     if $enable_firewall {
