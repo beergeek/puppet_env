@@ -1,0 +1,13 @@
+---
+
+profile::ad_services::domain_controller_hash:
+  domain_credential_user: 'Administrator'
+  domain_credential_passwd: 'M?4CtAMCrMKN'
+  safe_mode_passwd: 'M?4CtAMCrMKN'
+  domain_name: 'puppet.local'
+profile::ad_services::dns_server_hash:
+  dns_server_name: 'ad.puppet.local'
+profile::ad_services::dns_forwardzones:
+  'puppet.local':
+    domain_credential_user: 'Administrator'
+    domain_credential_passwd: 'M?4CtAMCrMKN'
