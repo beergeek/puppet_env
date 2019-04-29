@@ -14,7 +14,7 @@ profile::database_services::mongodb::mongod_instance:
 
 profile::ops_manager::ops_manager_ssl: false
 profile::ops_manager::gen_key_file_content: 'O5jXGG0M7SmoXUJObZ/zSsqtis41JTDU'
-profile::ops_manager::appsdb_uri: 'mongodb://mongod0.mondb.local:27017'
+profile::ops_manager::appsdb_uri: 'mongodb://mongod0.mongodb.local:27017'
 profile::ops_manager::email_hostname: '192.168.0.55'
 profile::ops_manager::admin_email_addr: 'admin@mongodb.local'
 profile::ops_manager::from_email_addr: 'om@mongodb.local'
