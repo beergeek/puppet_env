@@ -9,15 +9,13 @@ class profile::ops_manager (
   String[1]     $reply_email_addr,
 ) {
 
-notify { $admin_email_addr: }
-
-  #class { 'mongodb::ops_manager':
-  #  ops_manager_ssl       => $ops_manager_ssl,
-  #  gen_key_file_content  => $gen_key_file_content,
-  #  appsdb_uri            => $appsdb_uri,
-  #  admin_email_addr      => $admin_email_addr,
-  #  email_hostname        => $email_hostname,
-  #  from_email_addr       => $from_email_addr,
-  #  reply_email_addr      => $reply_email_addr,
-  #}
+  class { 'mongodb::ops_manager':
+    ops_manager_ssl       => $ops_manager_ssl,
+    gen_key_file_content  => $gen_key_file_content,
+    appsdb_uri            => $appsdb_uri,
+    admin_email_addr      => $admin_email_addr,
+    email_hostname        => $email_hostname,
+    from_email_addr       => $from_email_addr,
+    reply_email_addr      => $reply_email_addr,
+  }
 }
