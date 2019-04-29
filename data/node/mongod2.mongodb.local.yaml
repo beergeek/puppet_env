@@ -13,3 +13,5 @@ profile::database_services::mongodb::mongod_instance:
     member_auth: 'none'
     ssl_mode   : 'none'
     wiredtiger_cache_gb: '4'
+    keyfile: '/data/pki/appdb_keyfile'
+    member_auth: 'keyfile'
