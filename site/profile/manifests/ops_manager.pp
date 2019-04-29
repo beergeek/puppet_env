@@ -2,7 +2,7 @@
 class profile::ops_manager (
   Boolean       $enable_firewall    = true,
   String        $port               = '8080',
-  Stdlib::Host  $central_url        = "http://$facts['networking']['fqdn']:8080",
+  String        $central_url        = "http://$facts['networking']['fqdn']:8080",
   Boolean       $ops_manager_ssl,
   String[1]     $gen_key_file_content,
   String[1]     $appsdb_uri,
