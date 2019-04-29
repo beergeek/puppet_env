@@ -6,7 +6,8 @@ profile::database_services::mongodb::mongod_instance:
     member_auth: 'none'
     ssl_mode   : 'none'
     wiredtiger_cache_gb: '4'
-    keyfile_content: '/data/pki/appdb_keyfile'
+    keyfile: '/data/pki/appdb_keyfile'
+    member_auth: 'keyfile'
   'oplogdb':
     port       : '27018'
     member_auth: 'none'
