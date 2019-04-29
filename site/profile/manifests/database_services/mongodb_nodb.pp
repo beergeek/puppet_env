@@ -1,14 +1,22 @@
 #
 class profile::database_services::mongodb_nodb (
-  Boolean                $enable_firewall = true,
-  Array[String[1]]       $firewall_ports  = ['27017'],
-  Stdlib::Absolutepath   $base_data_path  = '/data',
-  Stdlib::Absolutepath   $db_data_path    = '/data/db',
-  Stdlib::Absolutepath   $db_log_path     = '/data/logs',
-  String                 $mms_group_id,
-  Sensitive[String[1]]   $mms_api_key,
-  String                 $ops_manager_fqdn,
-  Enum['http','https']   $url_svc_type    = 'http', 
+  Boolean                        $enable_firewall = true,
+  Array[String[1]]               $firewall_ports  = ['27017'],
+  Stdlib::Absolutepath           $base_data_path  = '/data',
+  Stdlib::Absolutepath           $db_data_path    = '/data/db',
+  Stdlib::Absolutepath           $db_log_path     = '/data/logs',
+  String                         $mms_group_id,
+  Sensitive[String[1]]           $mms_api_key,
+  String                         $ops_manager_fqdn,
+  Enum['http','https']           $url_svc_type    = 'http',
+  Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
+  Optional[Sensitive[String[1]]] $pem_file_content,
+  Optional[String[1]]            $ca_cert_pem_content,
+  Optional[Stdlib::Absolutepath] $pki_dir,
+  Optional[Stdlib::Absolutepath] $ca_file_path,
+  Optional[Stdlib::Absolutepath] $pem_file_path,
+  Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
+  String[1]                      $svc_user,
 ) {
   require mongodb::os
   require mongodb::user
@@ -64,6 +72,17 @@ class profile::database_services::mongodb_nodb (
     ops_manager_fqdn => $ops_manager_fqdn,
     url_svc_type     => $url_svc_type,
     require          => Class['mongodb::automation_agent::install']
+  }
+  class { mongodb::supporting:
+    cluster_auth_pem_content => $cluster_auth_pem_content,
+    pem_file_content         => $pem_file_content,
+    ca_cert_pem_content      => $ca_cert_pem_content,
+    pki_dir                  => $pki_dir,
+    ca_file_path             => $ca_file_path,
+    pem_file_path            => $pem_file_path,
+    cluster_auth_file_path   => $cluster_auth_file_path,
+    svc_user                 => $svc_user,
+    before                   => Class['mongodb::automation_agent::service'],
   }
   class { mongodb::automation_agent::service:
     subscribe => Class['mongodb::automation_agent::config'],

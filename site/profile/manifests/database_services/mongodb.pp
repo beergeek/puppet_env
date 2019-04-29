@@ -12,6 +12,14 @@ class profile::database_services::mongodb (
       ssl_mode    => 'none',
     },
   },
+  Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
+  Optional[Sensitive[String[1]]] $pem_file_content,
+  Optional[String[1]]            $ca_cert_pem_content,
+  Optional[Stdlib::Absolutepath] $pki_dir,
+  Optional[Stdlib::Absolutepath] $ca_file_path,
+  Optional[Stdlib::Absolutepath] $pem_file_path,
+  Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
+  String[1]                      $svc_user,
 ) {
 
   require mongodb::repos
@@ -23,6 +31,18 @@ class profile::database_services::mongodb (
     db_base_path => $db_base_path,
     log_path     => $log_path,
     pki_path     => $pki_path,
+  }
+
+  class { mongodb::supporting:
+    cluster_auth_pem_content => $cluster_auth_pem_content,
+    pem_file_content         => $pem_file_content,
+    ca_cert_pem_content      => $ca_cert_pem_content,
+    pki_dir                  => $pki_dir,
+    ca_file_path             => $ca_file_path,
+    pem_file_path            => $pem_file_path,
+    cluster_auth_file_path   => $cluster_auth_file_path,
+    svc_user                 => $svc_user,
+    before                   => Mongodb::Service[$instance_name],
   }
 
   $mongod_instance.each |String $instance_name, Hash $instance_data| {
