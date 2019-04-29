@@ -1,5 +1,7 @@
 #
 class profile::ops_manager (
+  Boolean       $enable_firewall    = true,
+  String        $port               = '8080',
   Boolean       $ops_manager_ssl,
   String[1]     $gen_key_file_content,
   String[1]     $appsdb_uri,
@@ -8,6 +10,14 @@ class profile::ops_manager (
   String[1]     $from_email_addr,
   String[1]     $reply_email_addr,
 ) {
+  if $enable_firewall {
+    # firewall rules
+    firewall { "101 allow mongodb ops manager access":
+      dport  => [$port],
+      proto  => tcp,
+      action => accept,
+    }
+  }
 
   class { 'mongodb::ops_manager':
     ops_manager_ssl       => $ops_manager_ssl,
