@@ -29,11 +29,11 @@ profile::ad_services::domain_controller_hash:
     yUUpu4pTOd0hVMqKxg5BOZ8BvOZ0x9uoUC2hlqvziQ46+2mQk3doRAhTDMWJ
     e/qYcDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAdYwzZEbMyzC+yVAlt
     2BcbgBDl4ktzIsk+lNNmiSD7SJor]
-  domain_name: 'puppet.local'
+  domain_name: 'mongodb.local'
 profile::ad_services::dns_server_hash:
-  dns_server_name: 'ad.puppet.local'
+  dns_server_name: 'ad.mongodb.local'
 profile::ad_services::dns_forwardzones:
-  'puppet.local':
+  'mongodb.local':
     domain_credential_user: 'Administrator'
     domain_credential_passwd: >
       ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
