@@ -9,7 +9,7 @@ class profile::ops_manager (
   String[1]     $reply_email_addr,
 ) {
 
-  mongodb::ops_manager {
+  class { 'mongodb::ops_manager':
     ops_manager_ssl       => $ops_manager_ssl,
     gen_key_file_content  => $gen_key_file_content,
     appsdb_uri            => $appsdb_uri,
