@@ -2,6 +2,7 @@
 class profile::ops_manager (
   Boolean       $enable_firewall    = true,
   String        $port               = '8080',
+  Stdlib::Host  $central_url        = "http://$facts['networking']['fqdn']:8080",
   Boolean       $ops_manager_ssl,
   String[1]     $gen_key_file_content,
   String[1]     $appsdb_uri,
@@ -27,5 +28,6 @@ class profile::ops_manager (
     email_hostname        => $email_hostname,
     from_email_addr       => $from_email_addr,
     reply_email_addr      => $reply_email_addr,
+    central_url           => $central_url,
   }
 }
