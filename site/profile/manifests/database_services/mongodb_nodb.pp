@@ -7,7 +7,7 @@ class profile::database_services::mongodb_nodb (
   Stdlib::Absolutepath   $db_log_path     = '/data/logs',
   String                 $mms_group_id,
   Sensitive[String[1]]   $mms_api_key,
-  Stdlib::Fqdn           $ops_manager_fqdn,
+  String                 $ops_manager_fqdn,
   Enum['http','https']   $url_svc_type    = 'http', 
 ) {
   require mongodb::os
