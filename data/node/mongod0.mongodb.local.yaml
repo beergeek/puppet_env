@@ -1,6 +1,6 @@
 ---
 
-profile::mongodb::mongod_instance:
+profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : '27017'
     member_auth: 'none'
