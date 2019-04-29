@@ -7,14 +7,14 @@ profile::database_services::mongodb::mongod_instance:
     ssl_mode   : 'none'
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/appdb_keyfile'
-    member_auth: 'keyfile'
+    member_auth: 'keyFile'
   'oplogdb':
     port       : '27018'
     member_auth: 'none'
     ssl_mode   : 'none'
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/appdb_keyfile'
-    member_auth: 'keyfile'
+    member_auth: 'keyFile'
 
 profile::ops_manager::ops_manager_ssl: false
 profile::ops_manager::gen_key_file_content: 'O5jXGG0M7SmoXUJObZ/zSsqtis41JTDU'
