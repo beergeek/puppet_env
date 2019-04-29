@@ -14,7 +14,7 @@ profile::database_services::mongodb::mongod_instance:
 
 profile::ops_manager::ops_manager_ssl: false
 profile::ops_manager::gen_key_file_content: 'O5jXGG0M7SmoXUJObZ/zSsqtis41JTDU'
-profile::ops_manager::appsdb_uri: 'mongodb://mongod0.mongodb.local:27017'
+profile::ops_manager::appsdb_uri: 'mongodb://9458d1165d9ddaefa17b5dabf1230782-a8d734ead9420722:9458d1165d9ddaefa17b5dabf1230782-54aa89546704864e7746688e6e5ac414@mongod0.mongodb.local:27017'
 profile::ops_manager::email_hostname: '192.168.0.55'
 profile::ops_manager::admin_email_addr: 'admin@mongodb.local'
 profile::ops_manager::from_email_addr: 'om@mongodb.local'
