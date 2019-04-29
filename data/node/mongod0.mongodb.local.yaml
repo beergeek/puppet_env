@@ -1,2 +1,11 @@
 ---
 
+profile::mongodb::mongod_instance:
+    'appdb':
+      port       : '27017',
+      member_auth: 'none',
+      ssl_mode   : 'none',
+    'oplogdb':
+      port       : '27018',
+      member_auth: 'none',
+      ssl_mode   : 'none',
