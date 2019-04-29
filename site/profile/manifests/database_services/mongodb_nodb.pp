@@ -1,10 +1,14 @@
 #
 class profile::database_services::mongodb_nodb (
-  Boolean              $enable_firewall = true,
-  Array[String[1]]     $firewall_ports  = ['27017'],
-  Stdlib::Absolutepath $base_data_path  = '/data',
-  Stdlib::Absolutepath $db_data_path    = '/data/db',
-  Stdlib::Absolutepath $db_log_path     = '/data/logs',
+  Boolean                $enable_firewall = true,
+  Array[String[1]]       $firewall_ports  = ['27017'],
+  Stdlib::Absolutepath   $base_data_path  = '/data',
+  Stdlib::Absolutepath   $db_data_path    = '/data/db',
+  Stdlib::Absolutepath   $db_log_path     = '/data/logs',
+  String                 $mms_group_id,
+  Sensitive[String[1]]   $mms_api_key,
+  Stdlib::Fqdn           $ops_manager_fqdn,
+  Enum['http','https']   $url_svc_type    = 'http', 
 ) {
   require mongodb::os
   require mongodb::user
@@ -50,11 +54,18 @@ class profile::database_services::mongodb_nodb (
     refreshonly => true,
   }
 
-  include mongodb::automation_agent::install
-  include mongodb::automation_agent::config
-  include mongodb::automation_agent::service
-
-  Class['mongodb::automation_agent::install'] ->
-  Class['mongodb::automation_agent::config'] ->
-  Class['mongodb::automation_agent::service']
+  class { mongodb::automation_agent::install:
+    ops_manager_fqdn => $ops_manager_fqdn,
+    url_svc_type     => $url_svc_type,
+  }
+  class { mongodb::automation_agent::config:
+    mms_group_id     => $mms_group_id,
+    mms_api_key      => $mms_api_key,
+    ops_manager_fqdn => $ops_manager_fqdn,
+    url_svc_type     => $url_svc_type,
+    require          => Class['mongodb::automation_agent::install']
+  }
+  class { mongodb::automation_agent::service:
+    subscribe => Class['mongodb::automation_agent::config'],
+  }
 }

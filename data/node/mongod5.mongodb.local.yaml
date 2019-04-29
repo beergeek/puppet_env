@@ -1,0 +1,6 @@
+---
+
+profile::database_services::mongodb_nodb::mms_group_id: '5cc6e04580740438a576b309'
+profile::database_services::mongodb_nodb::mms_api_key: '5cc6e90380740438a576bb2310d8a13f987625522fb921fa7cc4e86d'
+profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local'
+profile::database_services::mongodb_nodb::url_svc_type: 'http'
