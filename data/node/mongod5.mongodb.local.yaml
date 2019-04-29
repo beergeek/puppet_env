@@ -1,4 +1,7 @@
 ---
+lookup_options:
+  profile::database_services::mongodb_nodb::mms_api_key:
+    convert_to: 'Sensitive'
 
 profile::database_services::mongodb_nodb::mms_group_id: '5cc6e04580740438a576b309'
 profile::database_services::mongodb_nodb::mms_api_key: '5cc6e90380740438a576bb2310d8a13f987625522fb921fa7cc4e86d'

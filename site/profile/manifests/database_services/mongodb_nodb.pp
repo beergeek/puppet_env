@@ -60,7 +60,7 @@ class profile::database_services::mongodb_nodb (
   }
   class { mongodb::automation_agent::config:
     mms_group_id     => $mms_group_id,
-    mms_api_key      => Sensitive($mms_api_key),
+    mms_api_key      => $mms_api_key,
     ops_manager_fqdn => $ops_manager_fqdn,
     url_svc_type     => $url_svc_type,
     require          => Class['mongodb::automation_agent::install']
