@@ -32,7 +32,7 @@ class profile::database_services::mongodb_nodb (
     }
   }
 
-  file { [$base_data_path, $db_data_path, $db_log_path]:
+  file { [$base_data_path, $db_data_path, $db_log_path, $pki_dir]:
     ensure => directory,
     owner  => 'mongod',
     group  => 'mongod',
