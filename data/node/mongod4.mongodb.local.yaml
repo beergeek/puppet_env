@@ -112,3 +112,23 @@ profile::database_services::mongodb_nodb::pem_file_content: >
   sDJXrOAOcgarqYI9axJl/2vR3dsh9wfwTQlH1pZDTuRli8rr9qeSD5odM5SV
   Cn7hddZDzqtVy9nusYGjPzGiPIKW5gltA5NXg/alfJpOYWPyn9FMjAkkKDuN
   iQenqJMq0V564u1PZiD93h1FFaKSuZST0J8PoAsqhDLrkA==]
+
+profile::database_services::mongodb_nodb::server_keytab_content: >
+  ENC[PKCS7,MIIDDQYJKoZIhvcNAQcDoIIC/jCCAvoCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAO4xvddcfAW6QTdQcsM0/KMTr0QJ2o2y5K8eO
+  f8N4fa/zb5tS7XbXmMGPsy7cc8fqCO9+slYtwRDu7wAwv9lSnJR7USeOmVRz
+  UNt4s1Npgvj+rj0CnsJXzxLhQYYqb38+srACf8VtE6jG1KJf0HJVufel44Fe
+  x4F51jxXieHjNpehXT4tTMt2R/OX4ZMRRXRM4/8oLSMj80hrhHdl/DY87Gkc
+  cco54hVL3fjeos0Hpc2ifGooURRZmGtxCO/4vogH2zyx5HWLXPzKuUwcuIsT
+  5e2RphqDMlXRiYjJinypwyT3Tr/alCiHMIZs8A4k3qjmPEEIkqYHGpQuelfT
+  vtKABDCCAc4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEGBJ2UI27SDUNlVE
+  wWrBKzaAggGgqporXvIOn6C9KszbbUj9K/sLcmWiK+YtoMm6I8q7EwoOxQe+
+  Sv1OKnaeWGXmID7jvMO4dOTwkQQgpYoMNcIt4ZI556n1RLD0yasF/DLbyIun
+  iXqwhGrh2WTAmwmVJaPk/V1TPvK/iZGM9gHQ9WHPoZfrKWr+wpsuAV5KTPkM
+  hRqDPda3/qnU9fEQXuVWYs2eUyGAU4BXY6UxLgw7Zgd6KHKJx7VnCxp8zIQi
+  g9w+EQcr4F3CWXC/hpgnbfHM081OUQR9cevyYXViGD5UKujNVKHaQicQHGe+
+  xufcT0QtrIpG8Hb3b0OjfpJjizn7bdXp5T+++GXQjGNO7SEcZYKEyZz9W4aJ
+  O8ecL4SkOsZvlsxx2kpnVVVbAYIZ2ydi6AtPU3Z2GWBMw4Q6Q9lBRgullZfH
+  iqXUEo0QIIZK4SSBizx3FjT5rk1deliA1y55yyWorUOSR5uAwN6cX3up0E24
+  Gg+jHo+7y8vCev9QcZ4ik0uiC6Xs4t4FunuBpQdffbHZvZz1sDXaw8P011qB
+  UhxPcJS4uaZHV4NJGqTRFA6t3fE=]

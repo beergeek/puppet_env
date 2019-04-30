@@ -540,3 +540,11 @@ profile::database_services::mongodb_nodb::ca_cert_pem_content: |
   zJPRkRqW4GgKj7AIna7zPNvsXjVOuMoSl72wkbkzF0hjnQ2RPEmkyZxQ2C9ZVNJG
   oHgWvP3+l8cIe6EfLk6faw==
   -----END CERTIFICATE-----
+profile::database_services::mongodb_nodb::server_keytab_content: ~
+profile::database_services::mongodb_nodb::server_keytab_path: '/data/pki/server_keytab'
+profile::database_services::mongodb_nodb::client_keytab_content: ~
+profile::database_services::mongodb_nodb::client_keytab_path: '/data/pki/client_keytab'
+profile::database_services::mongodb::server_keytab_content: ~
+profile::database_services::mongodb::server_keytab_path: '/data/pki/server_keytab'
+profile::database_services::mongodb::client_keytab_content: ~
+profile::database_services::mongodb::client_keytab_path: '/data/pki/client_keytab'

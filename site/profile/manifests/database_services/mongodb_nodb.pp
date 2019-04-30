@@ -16,6 +16,10 @@ class profile::database_services::mongodb_nodb (
   Optional[Stdlib::Absolutepath] $ca_file_path,
   Optional[Stdlib::Absolutepath] $pem_file_path,
   Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
+  Optional[Sensitive[String[1]]] $server_keytab_content,
+  Optional[Stdlib::Absolutepath] $server_keytab_path,
+  Optional[Sensitive[String[1]]] $client_keytab_content,
+  Optional[Stdlib::Absolutepath] $client_keytab_path,
   String[1]                      $svc_user,
 ) {
   require mongodb::os
@@ -82,6 +86,10 @@ class profile::database_services::mongodb_nodb (
     pem_file_path            => $pem_file_path,
     cluster_auth_file_path   => $cluster_auth_file_path,
     svc_user                 => $svc_user,
+    server_keytab_content    => $server_keytab_content,
+    server_keytab_path       => $server_keytab_path,
+    client_keytab_content    => $client_keytab_content,
+    client_keytab_path       => $client_keytab_path,
     before                   => Class['mongodb::automation_agent::service'],
   }
   class { mongodb::automation_agent::service:
