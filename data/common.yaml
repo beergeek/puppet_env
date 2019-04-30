@@ -460,7 +460,7 @@ profile::base::cacerts:
 
 profile::database_services::mongodb::cluster_auth_pem_content: ~
 profile::database_services::mongodb::pem_file_path: "/data/pki/%{networking.fqdn}.pem"
-profile::database_services::mongodb::ca_cert_pem_content:
+profile::database_services::mongodb::ca_cert_pem_content: |
   -----BEGIN CERTIFICATE-----
   MIIF2DCCA8CgAwIBAgIJAMDoE1lZmEATMA0GCSqGSIb3DQEBCwUAMHkxCzAJBgNV
   BAYTAkFVMREwDwYDVQQIDAhWaWN0b3JpYTESMBAGA1UEBwwJTWVsYm91cm5lMRAw
@@ -505,7 +505,7 @@ profile::database_services::mongodb_nodb::cluster_auth_file_path: ~
 profile::database_services::mongodb_nodb::svc_user: 'mongod'
 profile::database_services::mongodb_nodb::cluster_auth_pem_content: ~
 profile::database_services::mongodb_nodb::pem_file_path: "/data/pki/%{networking.fqdn}.pem"
-profile::database_services::mongodb_nodb::ca_cert_pem_content:
+profile::database_services::mongodb_nodb::ca_cert_pem_content: |
   -----BEGIN CERTIFICATE-----
   MIIF2DCCA8CgAwIBAgIJAMDoE1lZmEATMA0GCSqGSIb3DQEBCwUAMHkxCzAJBgNV
   BAYTAkFVMREwDwYDVQQIDAhWaWN0b3JpYTESMBAGA1UEBwwJTWVsYm91cm5lMRAw
