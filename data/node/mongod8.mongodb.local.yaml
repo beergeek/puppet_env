@@ -117,20 +117,20 @@ profile::database_services::mongodb_nodb::pem_file_content: >
 
 profile::database_services::mongodb_nodb::server_keytab_content: >
   ENC[PKCS7,MIIDDQYJKoZIhvcNAQcDoIIC/jCCAvoCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEAGnCGu5khGNVUdVvSysvaQu1C/URRdqVSmXJ8
-  XS5FCFJz23nVkhSIRSyZNgSUVVnHkOyVHzXQy8vt+P/ts/1unc+kRM3dQnFr
-  IIqhuVCbDXHTbxlYm80nMhXzcbRm+xxtGDC0B+j4cY3ug9q77ZF3myhpZrN0
-  k9TzrtLkJfF//EKvQvIAUEZihzhv6DY97eLbe00fTstHwIxsTXHsN3YbZtf6
-  YX6WBUni5RsiOLPy2du64r2NxI13UvnJp0eMyXxQK/PathyStRvzcQWHLvr4
-  Bdtd15vniuwN7f1w/5Z2MPklAwsT6HSmThPUCg2nb3A1zb5x06o63xDhcBqb
-  uOi35zCCAc4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEF9Y3YgnvXMs9/BB
-  BV4ll+6AggGgeAHgHFIAW8I0Ks48CudQZ2zZtyo0xCiGqEHuSak/ttlLEjQW
-  28jkWad8uezjPsrg/Aron0hDUCLXsaTBvBmIlk8I5OOgeDmWESMzbKsHL3Rk
-  iMPsMY/9fo5NyD7P5lwygVLfokF+IloXTfomO4a3QiJ9nhRAIUH6TY/9AePA
-  d3gfiptskne5VKapGHEvE/e0xC3fgzlwamDkTI43QO9ucstMuXJVprQdIo54
-  78Aop5vAICZ/PxSaw9kFU/N2AdFPUEyPnXv1wZapsrnU7068Oc7KOj7ZU+Ax
-  Fo/m2njkJFxcl5miMmKkbnewdH3sK3Ky6X/aP6YP0ygqF+Z1M/XRAg3qeL4U
-  fmbDDS1jpQLefXu/iDK3N21jq4Ane1hxe5pYKuny3cAlGDqTX81oJK03y9az
-  mdu3yKPRiexW1bUtAoAfVwDPD+6XyyxNbB14IlvSXIsDYhjcqYTs1mm57Zhb
-  /ahS+aidZKCLgoL4w2CebrVkbkoY4uugBLKkmEpE3FIR5KovIP0m6ElyzhrP
-  ylzavl8/8ZTBi+dJQeRP8iM65fs=]
+  DQYJKoZIhvcNAQEBBQAEggEAXBW2cXDt6axGrkUcFXkvzCWG5+/hF15IZZM1
+  JTuoG5k4DTASOqGyV6jRvL39c99BPWQT8QIt7ecC5l9kgFaqlwWGvSmkezWS
+  QPcFIxCPMvWIevfGgWGeaU5KBVYj3cjaxexRQwMTS9cb4jQlWDAWU113grpy
+  ofluSg8traN8TKLNU2zIeeAztL/u7Seh+zaKrkeLeIUwIwfycTMpbqReTOXA
+  s9+5hgN5YfU9I3Pw+aAmXiffMK4lxWYfYlYK2sZY6+4M0ONGrj4b+8V0LeLW
+  ri+biHWboIMuRSn7fn6coo4LsjRCsTW/Z+uZ33rrxh1XN8YFgAla5JoRg4KQ
+  xFM8VDCCAc4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEKzQowP9Fn+/kdQc
+  WDAviMCAggGgDeA4MXXUWFtU0QDLPGDQKc2hgwnKGeJjwaJNBcls3kNSrtaP
+  3sASAbeEIOtigb7viyzZ8YMEOjnkwo8HuosJeNaeBuqW7wmSrHENbSeXT5E9
+  dVu8Tyr45bOgqH/IQEGL7YpmTXpCVkUndmwz87jwqGN7pl9fN69l2F1F/UXf
+  MpBlDegfyniE5QdMMylHX4RCHImULAEfHfK6wuhfL7Fl5jqwhs8TeKdSK2Wz
+  tI/CIYjdthcciSe0+b1QtvIj8jb74yTqwSfZRRBndjS9zZKEPb1LhcmnWQVz
+  z3SILfE6hMnO1jq3IYnWEekiKinMb8tzKuK2qrKsGk4Uo/EbC3SL8GVHrWzm
+  T0TeHfW7uuvM8zXswwf+lji5XonC5lvrZd1YAwOg8+M9vNeWxVRFxZmkVD19
+  uXulSa8nLnVNuBzFUDUeGaMcvvOLX0seCrRFiwCR+BthU1oVQ7sBrk9gtcJg
+  Oxi9nit4Qj6oDV7lfctsCfhkigYNUdhbtnnPsfGNPjejG4lv+q9OoOR3G/0E
+  YzcSurzaq3M7FJitxAKwZMUqiyQ=]
