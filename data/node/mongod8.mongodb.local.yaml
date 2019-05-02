@@ -7,7 +7,7 @@ lookup_options:
   profile::database_services::mongodb_nodb::server_keytab_content:
     convert_to: 'Sensitive'
 
-profile::database_services::mongodb_nodb::mms_group_id: '5cc6e04580740438a576b309'
+profile::database_services::mongodb_nodb::mms_group_id: '5cc8cf4280740407cfe2012e'
 profile::database_services::mongodb_nodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAezqlSXx5qlxG+vH2PyBC1NfF4OWXzHdTR8PF
