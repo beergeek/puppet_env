@@ -8,10 +8,18 @@ class profile::dns (
     noop(true)
   }
 
-  @@host { $facts['fqdn']:
+  @@host { $facts['networking']['fqdn']:
     ensure       => present,
     host_aliases => [$facts['hostname']],
     ip           => $facts['ipaddress'],
+  }
+
+  @@dsc_xdnsrecord { $facts['networking']['fqdn']:
+    ensure     => present,
+    dsc_zone   => $facts['networking']['domain'],
+    dsc_type   => 'ARecord',
+    dsc_name   => $facts['networking']['hostname'],
+    dsc_target => $facts['networkin']['ip'],
   }
 
   host { 'localhost':
