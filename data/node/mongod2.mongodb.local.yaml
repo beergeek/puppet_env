@@ -7,8 +7,8 @@ lookup_options:
     convert_to: 'Sensitive'
 
 
-profile::database_services::mongodb_nodb::mms_group_id: '5ccb966f80740407c9e788c1'
-profile::database_services::mongodb_nodb::mms_api_key: >
+profile::database_services::mongodb::mms_group_id: '5ccb966f80740407c9e788c1'
+profile::database_services::mongodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEACfQ1RBEe4FRednGRenN2hyMm/Uok9SIhwm7c
   BEgb+UZau33GmgOYhbQ5WI3rU21oHMcMS75LvEaAFzo7bPr54SdKoPP05+aT
@@ -19,6 +19,8 @@ profile::database_services::mongodb_nodb::mms_api_key: >
   JvxMmzBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDNs+Ejpvq2DOEf8kuT
   RlHLgECwjw67USFiDqRdN5D05V0vpnfG6yWmmqzZ7nEeml9oydiZdkhVeJDs
   Bu6xUoRtaXXscD+7wBbShwxgOa2uIM/l]
+profile::database_services::mongodb::ops_manager_fqdn: 'mongod0.mongodb.local:8080'
+profile::database_services::mongodb::url_svc_type: 'http'
 profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : '27017'
