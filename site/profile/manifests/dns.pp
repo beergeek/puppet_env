@@ -19,7 +19,7 @@ class profile::dns (
     dsc_zone   => $facts['networking']['domain'],
     dsc_type   => 'ARecord',
     dsc_name   => $facts['networking']['hostname'],
-    dsc_target => $facts['networkin']['ip'],
+    dsc_target => $facts['networking']['ip'],
   }
 
   host { 'localhost':
