@@ -3,7 +3,24 @@
 lookup_options:
   profile::database_services::mongodb::pem_file_content:
     convert_to: 'Sensitive'
+  profile::database_services::mongodb::mms_api_key:
+    convert_to: 'Sensitive'
 
+
+profile::database_services::mongodb_nodb::mms_group_id: '5ccb966f80740407c9e788c1'
+profile::database_services::mongodb_nodb::mms_api_key: >
+  ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEACfQ1RBEe4FRednGRenN2hyMm/Uok9SIhwm7c
+  BEgb+UZau33GmgOYhbQ5WI3rU21oHMcMS75LvEaAFzo7bPr54SdKoPP05+aT
+  n4xih8bPN64h4AGuhQPnZuE5UPqsNcVBgkJaYs+TVJMWt0IHhqjgt925wGLw
+  Uwdoo5wrir7qeJ7AH3UOk2ZI2e9a154ucEI+Ww7xAxaW7xW/rsLFZaFKNHzB
+  8vabhsfHLydjVQ9Qz4srztQnddQkwG7Smk6li3WgsIT3MWkMr/jjRv/m6pCB
+  thALHYTC0p4KzKyf6lai/qa4epIM5yRKgFRZ6S1YAXleceCmHkNG/GXgAkvY
+  JvxMmzBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDNs+Ejpvq2DOEf8kuT
+  RlHLgECwjw67USFiDqRdN5D05V0vpnfG6yWmmqzZ7nEeml9oydiZdkhVeJDs
+  Bu6xUoRtaXXscD+7wBbShwxgOa2uIM/l]
+profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local:8080'
+profile::database_services::mongodb_nodb::url_svc_type: 'http'
 profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : '27017'
@@ -120,3 +137,4 @@ profile::ops_manager::email_hostname: '192.168.0.55'
 profile::ops_manager::admin_email_addr: 'admin@mongodb.local'
 profile::ops_manager::from_email_addr: 'om@mongodb.local'
 profile::ops_manager::reply_email_addr: 'om@mongodb.local'
+

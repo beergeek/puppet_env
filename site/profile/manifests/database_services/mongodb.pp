@@ -24,6 +24,12 @@ class profile::database_services::mongodb (
   Optional[Stdlib::Absolutepath] $server_keytab_path,
   Optional[Sensitive[String[1]]] $client_keytab_content,
   Optional[Stdlib::Absolutepath] $client_keytab_path,
+
+  # automation agent
+  Boolean                        $install_aa,
+  String[1]                      $mms_group_id,
+  Sensitive[String[1]]           $mms_api_key,
+  String[1]                      $ops_manager_fqdn,
 ) {
 
   require mongodb::repos
@@ -74,6 +80,23 @@ class profile::database_services::mongodb (
     }
 
     mongodb::service { $instance_name:
+    }
+  }
+
+  if $install_aa {
+    class { mongodb::automation_agent::install:
+      ops_manager_fqdn => $ops_manager_fqdn,
+      url_svc_type     => $url_svc_type,
+    }
+    class { mongodb::automation_agent::config:
+      mms_group_id     => $mms_group_id,
+      mms_api_key      => $mms_api_key,
+      ops_manager_fqdn => $ops_manager_fqdn,
+      url_svc_type     => $url_svc_type,
+      require          => Class['mongodb::automation_agent::install']
+    }
+    class { mongodb::automation_agent::service:
+      subscribe => Class['mongodb::automation_agent::config'],
     }
   }
 
