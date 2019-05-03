@@ -30,6 +30,8 @@ class profile::database_services::mongodb (
   String[1]                      $mms_group_id,
   Sensitive[String[1]]           $mms_api_key,
   String[1]                      $ops_manager_fqdn,
+  Enum['http','https']           $url_svc_type    = 'http',
+
 ) {
 
   require mongodb::repos
