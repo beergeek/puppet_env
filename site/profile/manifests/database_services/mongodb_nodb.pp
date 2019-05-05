@@ -1,4 +1,5 @@
 #
+# Remember '/etc/krb5.conf'!
 class profile::database_services::mongodb_nodb (
   Boolean                        $enable_firewall = true,
   Array[String[1]]               $firewall_ports  = ['27017'],

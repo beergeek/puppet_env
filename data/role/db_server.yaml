@@ -13,3 +13,44 @@ profile::database_services::mysql::mysql_server_override_options:
       default-storage-engine: 'INNODB'
       max_allowed_packet: '2G'
 
+profile::base::sysctl_settings:
+  kernel.threads-max:
+    value: '64000'
+  kernel.msgmnb:
+    value : '65536'
+  kernel.msgmax:
+    value : '65536'
+  kernel.pid_max:
+    value: '64000'
+  kernel.shmmax:
+    value : '2588483584'
+  kernel.shmall:
+    value : '2097152'
+  fs.file-max:
+    value : '98000'
+  net.ipv4.tcp_keepalive_time:
+    value : '300'
+  net.ipv4.tcp_keepalive_intvl:
+    value : '30'
+  net.ipv4.tcp_keepalive_probes:
+    value : '5'
+  net.ipv4.tcp_fin_timeout:
+    value : '30'
+  kernel.shmmni:
+    value : '4096'
+  fs.aio-max-nr:
+    value : '1048576'
+  kernel.sem:
+    value : '250 32000 100 128'
+  net.ipv4.ip_local_port_range:
+    value : '9000 65500'
+  net.core.rmem_default:
+    value : '262144'
+  net.core.rmem_max:
+    value : '4194304'
+  net.core.wmem_default:
+    value : '262144'
+  net.core.wmem_max:
+    value : '1048576'
+  vm.max_map_count:
+    value: '128000'

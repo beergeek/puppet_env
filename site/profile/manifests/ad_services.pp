@@ -3,7 +3,6 @@ class profile::ad_services (
   Hash    $domain_controller_hash,
   Hash    $dns_server_hash,
   Boolean $collect_hosts          = true,
-  #Hash $dns_forwardzones = {},
 ) {
 
   class { 'active_directory::domain_controller':
@@ -14,6 +13,7 @@ class profile::ad_services (
     * => $dns_server_hash,
   }
 
+  # Collection DNS entries from Non-Windows nodes and instantiate
   if $collect_hosts {
     Dsc_xdnsrecord <<| |>>
   }

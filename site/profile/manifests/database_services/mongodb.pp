@@ -1,4 +1,5 @@
 #
+# Remember '/etc/krb5.conf'!
 class profile::database_services::mongodb (
   Boolean                        $enable_firewall   = true,
   Optional[Stdlib::Absolutepath] $base_path         = undef,
@@ -78,6 +79,17 @@ class profile::database_services::mongodb (
         dport  => [$_port],
         proto  => tcp,
         action => accept,
+      }
+    }
+
+    if $instance_data['spn'] {
+      if $instance_data['svc_account'] {
+        @@dsc_xadserviceprincipalname { $instance_data['spn']:
+          ensure      => present,
+          dsc_account => $instance_data['svc_account'],
+        }
+      } else {
+        fail('A service account is required to create a SPN')
       }
     }
 
