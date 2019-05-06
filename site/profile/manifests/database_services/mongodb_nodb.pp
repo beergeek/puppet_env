@@ -67,6 +67,10 @@ class profile::database_services::mongodb_nodb (
     refreshonly => true,
   }
 
+  if $server_keytab_path {
+    require profile::kerberos
+  }
+
   class { mongodb::automation_agent::install:
     ops_manager_fqdn => $ops_manager_fqdn,
     url_svc_type     => $url_svc_type,
