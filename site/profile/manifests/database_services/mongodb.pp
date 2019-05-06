@@ -59,13 +59,13 @@ class profile::database_services::mongodb (
     server_keytab_path       => $server_keytab_path,
     client_keytab_content    => $client_keytab_content,
     client_keytab_path       => $client_keytab_path,
-    before                   => Mongodb::Service[$instance_name],
   }
 
   $mongod_instance.each |String $instance_name, Hash $instance_data| {
     mongodb::config { $instance_name:
-      *      => $instance_data,
-      before => Mongodb::Service[$instance_name],
+      *       => $instance_data,
+      before  => Mongodb::Service[$instance_name],
+      require => Class['mongodb::install'],
     }
 
     if $enable_firewall {
@@ -94,6 +94,7 @@ class profile::database_services::mongodb (
     }
 
     mongodb::service { $instance_name:
+      require => Class['mongodb::supporting'],
     }
   }
 
