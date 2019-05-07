@@ -57,8 +57,6 @@ class profile::database_services::mongodb (
     svc_user                 => $svc_user,
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
-    client_keytab_content    => $client_keytab_content,
-    client_keytab_path       => $client_keytab_path,
   }
 
   $mongod_instance.each |String $instance_name, Hash $instance_data| {
