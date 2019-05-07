@@ -553,3 +553,7 @@ profile::database_services::mongodb::install_aa: true
 profile::kerberos::kdc_server: 'ad.mongodb.local'
 profile::kerberos::admin_server: 'ad.mongodb.local'
 profile::kerberos::default_realm: 'mongodb.local'
+
+
+profile::mongodb_bic::enable_firewall: *enable_firewall
+profile::mongodb_bic::firewall_port: '3307'
