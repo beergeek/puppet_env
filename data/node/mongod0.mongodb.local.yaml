@@ -36,7 +36,7 @@ profile::database_services::mongodb::mongod_instance:
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/appdb_keyfile'
     member_auth: 'keyFile'
-    db_data_path: '/data/db/backups/oplogdb'
+    db_data_path: '/data/db/backup/oplogdb'
 profile::database_services::mongodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEASmZHDX3CHF7lOGnJapOWx4MPuUupZraOrH0D
