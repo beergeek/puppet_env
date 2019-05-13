@@ -99,11 +99,14 @@ class profile::database_services::mongodb (
   }
 
   if $install_aa {
-    class { mongodb::automation_agent:
+    class { 'mongodb::automation_agent':
       ops_manager_fqdn => $ops_manager_fqdn,
       url_svc_type     => $url_svc_type,
       mms_group_id     => $mms_group_id,
       mms_api_key      => $mms_api_key,
+      enable_ssl       => $enable_ssl,
+      ca_file_path     => $ca_file_path,
+      pem_file_path    => $pem_file_path,
     }
   }
 
