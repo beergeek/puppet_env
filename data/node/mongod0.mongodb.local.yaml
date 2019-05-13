@@ -9,7 +9,7 @@ lookup_options:
     convert_to: 'Sensitive'
 
 
-profile::database_services::mongodb::mms_group_id: '5ccb966f80740407c9e788c1'
+profile::database_services::mongodb::mms_group_id: '5cd8d938dcfe412bc8858072'
 profile::database_services::mongodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAEpFxM0riOkr3QS82C5zYGZ8l5gbH6Lf9USle
