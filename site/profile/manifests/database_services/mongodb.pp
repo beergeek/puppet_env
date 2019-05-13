@@ -99,19 +99,11 @@ class profile::database_services::mongodb (
   }
 
   if $install_aa {
-    class { mongodb::automation_agent::install:
+    class { mongodb::automation_agent:
       ops_manager_fqdn => $ops_manager_fqdn,
       url_svc_type     => $url_svc_type,
-    }
-    class { mongodb::automation_agent::config:
       mms_group_id     => $mms_group_id,
       mms_api_key      => $mms_api_key,
-      ops_manager_fqdn => $ops_manager_fqdn,
-      url_svc_type     => $url_svc_type,
-      require          => Class['mongodb::automation_agent::install']
-    }
-    class { mongodb::automation_agent::service:
-      subscribe => Class['mongodb::automation_agent::config'],
     }
   }
 
