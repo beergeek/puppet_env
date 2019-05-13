@@ -548,7 +548,6 @@ profile::database_services::mongodb::server_keytab_content: ~
 profile::database_services::mongodb::server_keytab_path: '/data/pki/server_keytab'
 profile::database_services::mongodb::client_keytab_content: ~
 profile::database_services::mongodb::client_keytab_path: '/data/pki/client_keytab'
-profile::database_services::mongodb::install_aa: true
 
 profile::kerberos::kdc_server: 'ad.mongodb.local'
 profile::kerberos::admin_server: 'ad.mongodb.local'
