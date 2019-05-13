@@ -21,6 +21,17 @@ profile::database_services::mongodb::mms_api_key: >
   Bu6xUoRtaXXscD+7wBbShwxgOa2uIM/l]
 profile::database_services::mongodb::ops_manager_fqdn: 'mongod0.mongodb.local:8080'
 profile::database_services::mongodb::url_svc_type: 'http'
+profile::database_services::mongodb::keyfile_content: >
+  ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAXdEohMHn0s+DblA7K02OIrieOYxAXlkPjhHJ
+  pcv3SSr+sdVCzrJ8kcR9G69FLMWUIRo8jLrakb5fWHf0YFjcmUG2tHGmcAgF
+  X6Ni0Pt7KtP0uxlOK7tLSKCSwI+UHsQ/PoiBHX7L6KBXkctKHCeo15wkN+ec
+  METEuzzXNXAJ+rYdIKHfVUurmNhn3YBIaf+JhqR9x+1UT7iazsz9GQN9dQCD
+  Kizxa7p2tRdTJhUU6uFuL2EmFiie1YFlOPHoWcZ4aryt6eMOGXeqxdTlrNFY
+  2Am/5c8zn6dOvPPFdOtQ7hjrDnWz6rDa/kN4I3YhH9ct6rd76LR6OSYAMRc3
+  1roO4jBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCW7qbTYHhiLrTmFJw9
+  /bvGgDBLaL0GVssY/xd2jYXrm7ph1Xthnqdp5ebAtw5QjgRvi9IqbRaPhMt5
+  H2nXqpMlRmc=]
 profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : '27017'

@@ -15,6 +15,7 @@ class profile::database_services::mongodb (
   },
   Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
   Optional[Sensitive[String[1]]] $pem_file_content,
+  Optional[Sensitive[String[1]]] $keyfile_content,
   Optional[String[1]]            $ca_cert_pem_content,
   Optional[Stdlib::Absolutepath] $pki_dir,
   Optional[Stdlib::Absolutepath] $ca_file_path,
@@ -46,17 +47,18 @@ class profile::database_services::mongodb (
     pki_path     => $pki_path,
   }
 
-  class { mongodb::supporting:
-    cluster_auth_pem_content => $cluster_auth_pem_content,
-    pem_file_content         => $pem_file_content,
+  class { 'mongodb::supporting':
     ca_cert_pem_content      => $ca_cert_pem_content,
-    pki_dir                  => $pki_dir,
     ca_file_path             => $ca_file_path,
-    pem_file_path            => $pem_file_path,
     cluster_auth_file_path   => $cluster_auth_file_path,
-    svc_user                 => $svc_user,
+    cluster_auth_pem_content => $cluster_auth_pem_content,
+    keyfile_content          => $keyfile_content,
+    pem_file_content         => $pem_file_content,
+    pem_file_path            => $pem_file_path,
+    pki_dir                  => $pki_dir,
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
+    svc_user                 => $svc_user,
   }
 
   $mongod_instance.each |String $instance_name, Hash $instance_data| {
