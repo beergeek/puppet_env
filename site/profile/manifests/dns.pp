@@ -1,5 +1,6 @@
 class profile::dns (
   Optional[Array] $name_servers = [],
+  Boolean $collect_hosts        = false,
   Boolean $purge                = false,
   Boolean $noop_scope           = false,
 ) {
@@ -29,7 +30,9 @@ class profile::dns (
   }
 
   # let's try something else
-  Host <<| |>>
+  if $collect_hosts {
+    Host <<| |>>
+  }
   #$env_hosts = puppetdb_query( "resources[title, parameters] {type = \"Host\" and exported = true and environment = \"${server_facts['environment']}\" and !(certname = \"${trusted['certname']}\")}")
 #
   #if $env_hosts and ! empty($env_hosts) {
