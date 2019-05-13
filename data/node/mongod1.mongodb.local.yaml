@@ -5,6 +5,8 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::database_services::mongodb::mms_api_key:
     convert_to: 'Sensitive'
+  profile::database_services::mongodb::keyfile_content:
+    convert_to: 'Sensitive'
 
 
 profile::database_services::mongodb::mms_group_id: '5ccb966f80740407c9e788c1'
