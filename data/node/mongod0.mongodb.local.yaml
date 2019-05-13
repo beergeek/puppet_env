@@ -12,15 +12,15 @@ lookup_options:
 profile::database_services::mongodb::mms_group_id: '5ccb966f80740407c9e788c1'
 profile::database_services::mongodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEACfQ1RBEe4FRednGRenN2hyMm/Uok9SIhwm7c
-  BEgb+UZau33GmgOYhbQ5WI3rU21oHMcMS75LvEaAFzo7bPr54SdKoPP05+aT
-  n4xih8bPN64h4AGuhQPnZuE5UPqsNcVBgkJaYs+TVJMWt0IHhqjgt925wGLw
-  Uwdoo5wrir7qeJ7AH3UOk2ZI2e9a154ucEI+Ww7xAxaW7xW/rsLFZaFKNHzB
-  8vabhsfHLydjVQ9Qz4srztQnddQkwG7Smk6li3WgsIT3MWkMr/jjRv/m6pCB
-  thALHYTC0p4KzKyf6lai/qa4epIM5yRKgFRZ6S1YAXleceCmHkNG/GXgAkvY
-  JvxMmzBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDNs+Ejpvq2DOEf8kuT
-  RlHLgECwjw67USFiDqRdN5D05V0vpnfG6yWmmqzZ7nEeml9oydiZdkhVeJDs
-  Bu6xUoRtaXXscD+7wBbShwxgOa2uIM/l]
+  DQYJKoZIhvcNAQEBBQAEggEAEpFxM0riOkr3QS82C5zYGZ8l5gbH6Lf9USle
+  mgIRuN3axyyUgBhXyYZ3QusHbGAYl8Wsh5cMYCRgbkHIpzE/H/1duh7oMUSc
+  mJT2eklHRmKYaIPhLShdUcIeY/+FnoCPLpG2b5/Hsna7iVC8vMew+Qj0bzK+
+  Tf/fYa/qHIDqwcQFB6V2P+SCfy/YwX6iAj3d69fYaVElTQzNHTmG3xPioHUP
+  nOXyiNsvh5tyRWy08WAEkEgVunv4arRWhizWuhIhXnorSC+oMJqRs6Tywzm+
+  f8dO8ggXHLFvNUUpg1QhrwL+vy7BzDNVru5GXRORSHt5PxFBZnsWgdNBXn+X
+  9hmZ9zBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCoYPqqnaMKOT8a20nw
+  bNnYgECPJuYFYj8MUdHEKBZKAYsUQUypCXwH/9lCufVFwCajfGbX30hMk3jt
+  7q1NsFwBmR4JB1rSTe9VXbcK/L6/pt7U]
 profile::database_services::mongodb::ops_manager_fqdn: 'mongod0.mongodb.local:8080'
 profile::database_services::mongodb::url_svc_type: 'http'
 profile::database_services::mongodb::keyfile_content: >
