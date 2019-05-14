@@ -5,18 +5,6 @@ lookup_options:
   profile::database_services::mongodb_nodb::server_keytab_content:
     convert_to: 'Sensitive'
 
-profile::database_services::mongodb_nodb::mms_group_id: '5cc6e04580740438a576b309'
-profile::database_services::mongodb_nodb::mms_api_key: >
-  ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEApYzK/DWRmobeck6xFXP2I43+f+IB6o2958iL
-  CoD5RNqb1QwNdWG7YtVHJFyA79prT/tmi7hD1IYVRiqOpNi6kVd1OnsPY+in
-  fmogum/0R6VYMvhtFqEzL+PeZlpynyjo7ru5BvmrHOv4IMtArXNlVybnTlQX
-  JO6vz2nJzCmrnJfldn+Vb5RkoQQm5d9bmn4I/aRgqKK/DL8lB+Lu3a8+N/Mu
-  pr+nN1qX9up/1kShImWYlpSu7xHlbNyoxkJvtckpZsGChUHKQXVB+jShEs4R
-  tZEeJuGmNu46+vMnquYcdjJRs0H9KSQ1dQ2VcviMZ7IPq3Pcx7i10ezJbx1K
-  0v6XhjBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAjSkdkTg9CBc/3hB5w
-  EAZ2gEBfx9rhJkuWHIzuAHKE6mCoXrXjSnFy2uuNNgzSbcU45M5P8aLGXyrG
-  S8eMpDht1P46khYOmKOx25Fm/hQg+0xS]
 profile::database_services::mongodb_nodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAVfgoJ9WMR/05857KtCXFq0yEdQ/t0EdWKrU7
