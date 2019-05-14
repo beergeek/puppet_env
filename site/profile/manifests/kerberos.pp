@@ -1,8 +1,8 @@
 #
 class profile::kerberos (
   String[1]     $default_realm,
-  Stdlib::Fqdn: $kdc_server,
-  Stdlib::Fqdn: $admin_server,
+  Stdlib::Fqdn  $kdc_server,
+  Stdlib::Fqdn  $admin_server,
 ) {
 
   file { '/etc/krb5.conf':
