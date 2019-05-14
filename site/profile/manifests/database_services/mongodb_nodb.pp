@@ -24,6 +24,7 @@ class profile::database_services::mongodb_nodb (
   Optional[Stdlib::Absolutepath] $aa_pem_file_path,
   Optional[Sensitive[String[1]]] $aa_pem_file_content,
   Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
+  Optional[Sensitive[String[1]]] $keyfile_content,
 ) {
   require mongodb::os
   require mongodb::user
@@ -87,16 +88,17 @@ class profile::database_services::mongodb_nodb (
   }
 
   class { 'mongodb::supporting':
-    cluster_auth_pem_content => $cluster_auth_pem_content,
-    pem_file_content         => $pem_file_content,
     ca_cert_pem_content      => $ca_cert_pem_content,
-    pki_dir                  => $pki_dir,
     ca_file_path             => $ca_file_path,
-    pem_file_path            => $pem_file_path,
     cluster_auth_file_path   => $cluster_auth_file_path,
-    svc_user                 => $svc_user,
+    cluster_auth_pem_content => $cluster_auth_pem_content,
+    keyfile_content          => $keyfile_content,
+    pem_file_content         => $pem_file_content,
+    pem_file_path            => $pem_file_path,
+    pki_dir                  => $pki_dir,
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
+    svc_user                 => $svc_user,
     before                   => Class['mongodb::automation_agent'],
   }
 }
