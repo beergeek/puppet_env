@@ -240,6 +240,7 @@ profile::database_services::mongodb::pem_file_content: >
   rCjcyh5u251Du4RYwnDMycu254KtafZ3Fm8kbZ//5qfOZQ==]
 
 profile::ops_manager::ops_manager_ssl: true
+profile::ops_manager::port: '8443'
 profile::ops_manager::central_url: "https://%{facts.networking.fqdn}:8443"
 profile::ops_manager::manage_ca: false
 profile::ops_manager::manage_pem: true
