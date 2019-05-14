@@ -482,7 +482,7 @@ profile::database_services::mongodb::ca_file_path: '/data/pki/ca.cert'
 profile::database_services::mongodb::cluster_auth_file_path: ~
 profile::database_services::mongodb::svc_user: 'mongod'
 profile::database_services::mongodb_nodb::pki_dir: '/data/pki'
-profile::database_services::mongodb_nodb::ca_file_path: '/etc/mongodb-mms/ca.cert'
+profile::database_services::mongodb_nodb::ca_file_path: '/etc/pki/ca.cert'
 profile::database_services::mongodb_nodb::cluster_auth_file_path: ~
 profile::database_services::mongodb_nodb::svc_user: 'mongod'
 profile::database_services::mongodb_nodb::cluster_auth_pem_content: ~
@@ -527,7 +527,7 @@ profile::database_services::mongodb_nodb::server_keytab_path: '/data/pki/server_
 profile::database_services::mongodb_nodb::client_keytab_content: ~
 profile::database_services::mongodb_nodb::client_keytab_path: '/data/pki/client_keytab'
 profile::database_services::mongodb_nodb::aa_ca_file_path: '/etc/mongodb-mms/ca.cert'
-profile::database_services::mongodb_nodb::aa_pem_file_path: "/etc/mongodb-mms/aa.pem"
+profile::database_services::mongodb_nodb::aa_pem_file_path: '/etc/mongodb-mms/aa.pem'
 profile::database_services::mongodb::server_keytab_content: ~
 profile::database_services::mongodb::server_keytab_path: '/data/pki/server_keytab'
 profile::database_services::mongodb::client_keytab_content: ~
