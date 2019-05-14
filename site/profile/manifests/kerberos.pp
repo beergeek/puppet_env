@@ -11,7 +11,7 @@ class profile::kerberos (
     group  => 'root',
     mode   => '0644',
     content => epp('profile/krb5.conf.epp', {
-      default_realm => $defailt_realm,
+      default_realm => $default_realm,
       kdc_server    => $kdc_server,
       admin_server  => $admin_server,
     }),
