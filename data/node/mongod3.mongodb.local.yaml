@@ -1,7 +1,5 @@
 ---
 lookup_options:
-  profile::database_services::mongodb_nodb::mms_api_key:
-    convert_to: 'Sensitive'
   profile::database_services::mongodb_nodb::pem_file_content:
     convert_to: 'Sensitive'
   profile::database_services::mongodb_nodb::server_keytab_content:
@@ -19,8 +17,6 @@ profile::database_services::mongodb_nodb::mms_api_key: >
   0v6XhjBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAjSkdkTg9CBc/3hB5w
   EAZ2gEBfx9rhJkuWHIzuAHKE6mCoXrXjSnFy2uuNNgzSbcU45M5P8aLGXyrG
   S8eMpDht1P46khYOmKOx25Fm/hQg+0xS]
-profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local:8080'
-profile::database_services::mongodb_nodb::url_svc_type: 'http'
 profile::database_services::mongodb_nodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAVfgoJ9WMR/05857KtCXFq0yEdQ/t0EdWKrU7

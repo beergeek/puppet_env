@@ -10,6 +10,8 @@ lookup_options:
     convert_to: 'Sensitive'
 
 
+profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local:8443'
+profile::database_services::mongodb_nodb::url_svc_type: 'https'
 profile::database_services::mongodb::mms_group_id: '5cda0e4fd65ea93bac9984c7'
 profile::database_services::mongodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
