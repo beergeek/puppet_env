@@ -1,0 +1,3 @@
+---
+
+profile::database_services::mongodb::enable_ssl: true

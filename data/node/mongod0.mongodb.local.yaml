@@ -12,7 +12,6 @@ lookup_options:
   profile::database_services::mongodb::aa_pem_file_content:
     convert_to: 'Sensitive'
 
-profile::database_services::mongodb::enable_ssl: true
 profile::database_services::mongodb::mms_group_id: '5cd8d938dcfe412bc8858072'
 profile::database_services::mongodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
@@ -118,8 +117,6 @@ profile::database_services::mongodb::aa_pem_file_content: >
   5/RPbiJL86R4VxgY4S2lXxXXpe0AytqQwdpHOhIuv7h8hFoqWMCFkMb1+SWK
   Ump+qsKQmIiPesi9YiyLptmxruzS+kkhVkjcV+mLAQrnIJMlozc0LqSLt8Bj
   rCjcyh5u251Du4RYwnDMycu254KtafZ3Fm8kbZ//5qfOZQ==]
-profile::database_services::mongodb::ops_manager_fqdn: 'mongod0.mongodb.local:8443'
-profile::database_services::mongodb::url_svc_type: 'https'
 profile::database_services::mongodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAXdEohMHn0s+DblA7K02OIrieOYxAXlkPjhHJ

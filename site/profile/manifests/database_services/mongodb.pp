@@ -108,8 +108,8 @@ class profile::database_services::mongodb (
       mms_group_id        => $mms_group_id,
       mms_api_key         => $mms_api_key,
       enable_ssl          => $enable_ssl,
-      ca_file_path        => $ca_file_path,
-      pem_file_path       => $pem_file_path,
+      ca_file_path        => $aa_ca_file_path,
+      pem_file_path       => $aa_pem_file_path,
       pem_file_content    => $aa_pem_file_content,
       ca_file_content     => $aa_ca_cert_content,
     }
