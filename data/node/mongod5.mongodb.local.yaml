@@ -4,6 +4,20 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::database_services::mongodb_nodb::server_keytab_content:
     convert_to: 'Sensitive'
+  profile::database_services::mongodb_nodb::keyfile_content:
+    convert_to: 'Sensitive'
+
+profile::database_services::mongodb_nodb::keyfile_content: >
+  ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAXdEohMHn0s+DblA7K02OIrieOYxAXlkPjhHJ
+  pcv3SSr+sdVCzrJ8kcR9G69FLMWUIRo8jLrakb5fWHf0YFjcmUG2tHGmcAgF
+  X6Ni0Pt7KtP0uxlOK7tLSKCSwI+UHsQ/PoiBHX7L6KBXkctKHCeo15wkN+ec
+  METEuzzXNXAJ+rYdIKHfVUurmNhn3YBIaf+JhqR9x+1UT7iazsz9GQN9dQCD
+  Kizxa7p2tRdTJhUU6uFuL2EmFiie1YFlOPHoWcZ4aryt6eMOGXeqxdTlrNFY
+  2Am/5c8zn6dOvPPFdOtQ7hjrDnWz6rDa/kN4I3YhH9ct6rd76LR6OSYAMRc3
+  1roO4jBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCW7qbTYHhiLrTmFJw9
+  /bvGgDBLaL0GVssY/xd2jYXrm7ph1Xthnqdp5ebAtw5QjgRvi9IqbRaPhMt5
+  H2nXqpMlRmc=]
 
 profile::database_services::mongodb_nodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
