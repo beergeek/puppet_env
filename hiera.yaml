@@ -17,5 +17,6 @@ hierarchy:
       - "node/%{trusted.certname}.yaml"
       - "role/%{trusted.extensions.pp_role}.yaml"
       - "data_centre/%{trusted.extensions.pp_datacenter}.yaml"
+      - "environment/%{trusted.extensions.pp_environment}.yaml"
       - "common.yaml"
 
