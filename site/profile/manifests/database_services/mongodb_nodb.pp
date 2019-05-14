@@ -22,6 +22,10 @@ class profile::database_services::mongodb_nodb (
   Optional[Sensitive[String[1]]] $client_keytab_content,
   Optional[Stdlib::Absolutepath] $client_keytab_path,
   String[1]                      $svc_user,
+  Optional[Stdlib::Absolutepath] $aa_ca_file_path,
+  Optional[Stdlib::Absolutepath] $aa_pem_file_path,
+  Optional[Sensitive[String[1]]] $aa_pem_file_content,
+  Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
 ) {
   require mongodb::os
   require mongodb::user
@@ -71,18 +75,20 @@ class profile::database_services::mongodb_nodb (
     require profile::kerberos
   }
 
-  class { mongodb::automation_agent::install:
+
+  class { 'mongodb::automation_agent':
     ops_manager_fqdn => $ops_manager_fqdn,
     url_svc_type     => $url_svc_type,
-  }
-  class { mongodb::automation_agent::config:
     mms_group_id     => $mms_group_id,
     mms_api_key      => $mms_api_key,
-    ops_manager_fqdn => $ops_manager_fqdn,
-    url_svc_type     => $url_svc_type,
-    require          => Class['mongodb::automation_agent::install']
+    enable_ssl       => $enable_ssl,
+    ca_file_path     => $aa_ca_file_path,
+    pem_file_path    => $aa_pem_file_path,
+    pem_file_content => $aa_pem_file_content,
+    ca_file_content  => $aa_ca_cert_content,
   }
-  class { mongodb::supporting:
+
+  class { 'mongodb::supporting':
     cluster_auth_pem_content => $cluster_auth_pem_content,
     pem_file_content         => $pem_file_content,
     ca_cert_pem_content      => $ca_cert_pem_content,
@@ -95,9 +101,6 @@ class profile::database_services::mongodb_nodb (
     server_keytab_path       => $server_keytab_path,
     client_keytab_content    => $client_keytab_content,
     client_keytab_path       => $client_keytab_path,
-    before                   => Class['mongodb::automation_agent::service'],
-  }
-  class { mongodb::automation_agent::service:
-    subscribe => Class['mongodb::automation_agent::config'],
+    before                   => Class['mongodb::automation_agent'],
   }
 }
