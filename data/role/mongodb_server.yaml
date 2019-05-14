@@ -1,3 +1,5 @@
 ---
 
 profile::database_services::mongodb::enable_ssl: true
+profile::database_services::mongodb::ops_manager_fqdn: 'mongod0.mongodb.local:8443'
+profile::database_services::mongodb::url_svc_type: 'https'
