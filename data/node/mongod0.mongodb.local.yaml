@@ -133,15 +133,15 @@ profile::database_services::mongodb::keyfile_content: >
 profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : '27017'
-    member_auth: 'none'
-    ssl_mode   : 'prefer'
+    member_auth: 'x509'
+    ssl_mode   : 'preferSSL'
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/mongodb_keyfile'
     member_auth: 'keyFile'
   'oplogdb':
     port       : '27018'
-    member_auth: 'prefer'
-    ssl_mode   : 'none'
+    member_auth: 'x509'
+    ssl_mode   : 'preferSSL'
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/mongodb_keyfile'
     member_auth: 'keyFile'
