@@ -32,8 +32,11 @@ class profile::database_services::mongodb (
   String[1]                      $mms_group_id,
   Sensitive[String[1]]           $mms_api_key,
   String[1]                      $ops_manager_fqdn,
-  Enum['http','https']           $url_svc_type    = 'http',
-
+  Enum['http','https']           $url_svc_type,
+  Optional[Stdlib::Absolutepath] $aa_ca_file_path,
+  Optional[Stdlib::Absolutepath] $aa_pem_file_path,
+  Optional[Sensitive[String[1]]] $aa_pem_file_content,
+  Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
 ) {
 
   require mongodb::repos

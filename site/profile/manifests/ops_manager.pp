@@ -1,15 +1,21 @@
 #
 class profile::ops_manager (
-  Boolean       $enable_firewall    = true,
-  String        $port               = '8080',
-  String        $central_url        = "http://${facts['networking']['fqdn']}:8080",
-  Boolean       $ops_manager_ssl,
-  String[1]     $gen_key_file_content,
-  String[1]     $appsdb_uri,
-  String[1]     $admin_email_addr,
-  Stdlib::Host  $email_hostname,
-  String[1]     $from_email_addr,
-  String[1]     $reply_email_addr,
+  Boolean                        $enable_firewall    = true,
+  String                         $port               = '8080',
+  String                         $central_url        = "https://${facts['networking']['fqdn']}:8080",
+  Boolean                        $manage_ca,
+  Boolean                        $manage_pem,
+  Boolean                        $ops_manager_ssl,
+  Optional[Stdlib::Absolutepath] $ca_cert_path,
+  Optional[Stdlib::Absolutepath] $pem_file_path,
+  Optional[String[1]]            $ca_cert_content,
+  Sensitive[Optional[String[1]]] $pem_file_content,
+  Stdlib::Host                   $email_hostname,
+  String[1]                      $admin_email_addr,
+  String[1]                      $appsdb_uri,
+  String[1]                      $from_email_addr,
+  String[1]                      $gen_key_file_content,
+  String[1]                      $reply_email_addr,
 ) {
   if $enable_firewall {
     # firewall rules
@@ -21,13 +27,17 @@ class profile::ops_manager (
   }
 
   class { 'mongodb::ops_manager':
-    ops_manager_ssl       => $ops_manager_ssl,
-    gen_key_file_content  => $gen_key_file_content,
-    appsdb_uri            => $appsdb_uri,
     admin_email_addr      => $admin_email_addr,
+    appsdb_uri            => $appsdb_uri,
+    ca_cert_content       => $ca_cert_content,
+    central_url           => $central_url,
     email_hostname        => $email_hostname,
     from_email_addr       => $from_email_addr,
+    gen_key_file_content  => $gen_key_file_content,
+    manage_ca             => $manage_ca,
+    manage_pem            => $manage_pem,
+    ops_manager_ssl       => $ops_manager_ssl,
+    pem_file_content      => $pem_file_content,
     reply_email_addr      => $reply_email_addr,
-    central_url           => $central_url,
   }
 }
