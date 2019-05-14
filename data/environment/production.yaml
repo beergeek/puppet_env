@@ -4,6 +4,10 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::database_services::mongodb::mms_api_key:
     convert_to: 'Sensitive'
+  profile::database_services::mongodb_nodb::aa_pem_file_content:
+    convert_to: 'Sensitive'
+  profile::database_services::mongodb_nodb::mms_api_key:
+    convert_to: 'Sensitive'
 
 
 profile::database_services::mongodb::mms_group_id: '5cda0e4fd65ea93bac9984c7'
