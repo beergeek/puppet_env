@@ -12,6 +12,18 @@ lookup_options:
 
 profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local:8443'
 profile::database_services::mongodb_nodb::url_svc_type: 'https'
+profile::database_services::mongodb_nodb::mms_group_id: '5cda0e4fd65ea93bac9984c7'
+profile::database_services::mongodb_nodb::mms_api_key: >
+  ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAVSNlTqY+aR9dNyzoDcIUPbBXv8T1mt9X9TlW
+  pfWYPTSwdXHaMX9zx5CmN+Jr1EKd2cpi/0cSLQXQ66ue69A9M9pCjcTD5sKm
+  uVUEjWSiUEUJQCCBmpkuCOnlkqqK6kK4CzLS4SXGThESossyEsdtLvgDJoaX
+  C84P98avDMgxGi8KClMEscAgz/YNigWcuua/GEXRo2yfWOEdFbCKIipmMm5O
+  PTjP0SsmWxEljXnBtDPRaa4ar5Hphgw2J/DeLwqf4jX4FWW4zLnyKiHld6JR
+  KMg4CtqGc6b0upcZg3d+fisMiywMLgbO2HHpXCcmeBl4mYKUV6Zl8/4kCyxs
+  6tLGzDBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBC61YmQAamht6RYNXG6
+  hQRIgEAPaw9ezt0MpVc+uc+uCLOjvWhXyXVlmj5rYB4QUyiSmr+JSua6aWK8
+  zGEQKq9iYM9O6b7c+JQS4xvn9lA3o++9]
 profile::database_services::mongodb::mms_group_id: '5cda0e4fd65ea93bac9984c7'
 profile::database_services::mongodb::mms_api_key: >
   ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
