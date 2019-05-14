@@ -134,6 +134,7 @@ profile::database_services::mongodb::mongod_instance:
     port       : '27017'
     member_auth: 'x509'
     ssl_mode   : 'preferSSL'
+    pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/mongodb_keyfile'
     member_auth: 'keyFile'
@@ -141,6 +142,7 @@ profile::database_services::mongodb::mongod_instance:
     port       : '27018'
     member_auth: 'x509'
     ssl_mode   : 'preferSSL'
+    pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
     keyfile: '/data/pki/mongodb_keyfile'
     member_auth: 'keyFile'
