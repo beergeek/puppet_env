@@ -19,8 +19,6 @@ class profile::database_services::mongodb_nodb (
   Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
   Optional[Sensitive[String[1]]] $server_keytab_content,
   Optional[Stdlib::Absolutepath] $server_keytab_path,
-  Optional[Sensitive[String[1]]] $client_keytab_content,
-  Optional[Stdlib::Absolutepath] $client_keytab_path,
   String[1]                      $svc_user,
   Optional[Stdlib::Absolutepath] $aa_ca_file_path,
   Optional[Stdlib::Absolutepath] $aa_pem_file_path,
@@ -99,8 +97,6 @@ class profile::database_services::mongodb_nodb (
     svc_user                 => $svc_user,
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
-    client_keytab_content    => $client_keytab_content,
-    client_keytab_path       => $client_keytab_path,
     before                   => Class['mongodb::automation_agent'],
   }
 }
