@@ -111,7 +111,7 @@ class profile::database_services::mongodb (
       ca_file_path        => $ca_file_path,
       pem_file_path       => $pem_file_path,
       pem_file_content    => $aa_pem_file_content,
-      ca_cert_content     => $aa_ca_cert_content,
+      ca_file_content     => $aa_ca_cert_content,
     }
   }
 
