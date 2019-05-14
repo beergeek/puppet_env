@@ -3,24 +3,9 @@
 lookup_options:
   profile::database_services::mongodb::pem_file_content:
     convert_to: 'Sensitive'
-  profile::database_services::mongodb::mms_api_key:
-    convert_to: 'Sensitive'
   profile::database_services::mongodb::keyfile_content:
     convert_to: 'Sensitive'
 
-
-profile::database_services::mongodb::mms_group_id: '5cd8d938dcfe412bc8858072'
-profile::database_services::mongodb::mms_api_key: >
-  ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEAEpFxM0riOkr3QS82C5zYGZ8l5gbH6Lf9USle
-  mgIRuN3axyyUgBhXyYZ3QusHbGAYl8Wsh5cMYCRgbkHIpzE/H/1duh7oMUSc
-  mJT2eklHRmKYaIPhLShdUcIeY/+FnoCPLpG2b5/Hsna7iVC8vMew+Qj0bzK+
-  Tf/fYa/qHIDqwcQFB6V2P+SCfy/YwX6iAj3d69fYaVElTQzNHTmG3xPioHUP
-  nOXyiNsvh5tyRWy08WAEkEgVunv4arRWhizWuhIhXnorSC+oMJqRs6Tywzm+
-  f8dO8ggXHLFvNUUpg1QhrwL+vy7BzDNVru5GXRORSHt5PxFBZnsWgdNBXn+X
-  9hmZ9zBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCoYPqqnaMKOT8a20nw
-  bNnYgECPJuYFYj8MUdHEKBZKAYsUQUypCXwH/9lCufVFwCajfGbX30hMk3jt
-  7q1NsFwBmR4JB1rSTe9VXbcK/L6/pt7U]
 profile::database_services::mongodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAXdEohMHn0s+DblA7K02OIrieOYxAXlkPjhHJ
