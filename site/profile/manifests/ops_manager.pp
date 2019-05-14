@@ -30,6 +30,7 @@ class profile::ops_manager (
     admin_email_addr      => $admin_email_addr,
     appsdb_uri            => $appsdb_uri,
     ca_cert_content       => $ca_cert_content,
+    ca_cert_path          => $ca_cert_path,
     central_url           => $central_url,
     email_hostname        => $email_hostname,
     from_email_addr       => $from_email_addr,
@@ -38,6 +39,7 @@ class profile::ops_manager (
     manage_pem            => $manage_pem,
     ops_manager_ssl       => $ops_manager_ssl,
     pem_file_content      => $pem_file_content,
+    pem_file_path         => $pem_file_path,
     reply_email_addr      => $reply_email_addr,
   }
 }
