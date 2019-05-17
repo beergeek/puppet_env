@@ -2,10 +2,9 @@
 # Remember '/etc/krb5.conf'!
 class profile::database_services::mongodb (
   Boolean                        $enable_firewall   = true,
-  Optional[Stdlib::Absolutepath] $base_path         = undef,
-  Optional[Stdlib::Absolutepath] $db_base_path      = undef,
-  Optional[Stdlib::Absolutepath] $log_path          = undef,
-  Optional[Stdlib::Absolutepath] $pki_path          = undef,
+  Stdlib::Absolutepath           $base_data_path    = '/data',
+  Stdlib::Absolutepath           $db_data_path      = '/data/db',
+  Stdlib::Absolutepath           $db_log_path       = '/data/logs',
   Hash                           $mongod_instance   = {
     'appdb' => {
       port        => '27017',
@@ -44,17 +43,16 @@ class profile::database_services::mongodb (
   require mongodb::user
 
   class { 'mongodb::install':
-    base_path    => $base_path,
-    db_base_path => $db_base_path,
-    log_path     => $log_path,
-    pki_path     => $pki_path,
   }
 
   class { 'mongodb::supporting':
+    base_data_path           => $base_data_path,
     ca_cert_pem_content      => $ca_cert_pem_content,
     ca_file_path             => $ca_file_path,
     cluster_auth_file_path   => $cluster_auth_file_path,
     cluster_auth_pem_content => $cluster_auth_pem_content,
+    db_data_path             => $db_data_path,
+    db_log_path              => $db_log_path,
     keyfile_content          => $keyfile_content,
     pem_file_content         => $pem_file_content,
     pem_file_path            => $pem_file_path,
