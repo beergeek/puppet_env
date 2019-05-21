@@ -46,10 +46,13 @@ class profile::database_services::mongodb_nodb (
   }
 
   class { 'mongodb::supporting':
+    base_path                => $base_path,
     ca_cert_pem_content      => $ca_cert_pem_content,
     ca_file_path             => $ca_file_path,
     cluster_auth_file_path   => $cluster_auth_file_path,
     cluster_auth_pem_content => $cluster_auth_pem_content,
+    db_base_path             => $db_base_path,
+    log_path                 => $log_path,
     keyfile_content          => $keyfile_content,
     pem_file_content         => $pem_file_content,
     pem_file_path            => $pem_file_path,
@@ -57,22 +60,17 @@ class profile::database_services::mongodb_nodb (
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
     svc_user                 => $svc_user,
-    before                   => Class['mongodb::automation_agent'],
   }
 
   class { 'mongodb::automation_agent':
-    base_path        => $base_path,
-    pki_path         => $pki_path,
-    log_path         => $log_path,
-    db_base_path     => $db_base_path,
-    ops_manager_fqdn => $ops_manager_fqdn,
-    url_svc_type     => $url_svc_type,
-    mms_group_id     => $mms_group_id,
-    mms_api_key      => $mms_api_key,
-    enable_ssl       => $enable_ssl,
-    ca_file_path     => $aa_ca_file_path,
-    pem_file_path    => $aa_pem_file_path,
-    pem_file_content => $aa_pem_file_content,
-    ca_file_content  => $aa_ca_cert_content,
+    ops_manager_fqdn    => $ops_manager_fqdn,
+    url_svc_type        => $url_svc_type,
+    mms_group_id        => $mms_group_id,
+    mms_api_key         => $mms_api_key,
+    enable_ssl          => $enable_ssl,
+    ca_file_path        => $aa_ca_file_path,
+    pem_file_path       => $aa_pem_file_path,
+    pem_file_content    => $aa_pem_file_content,
+    ca_file_content     => $aa_ca_cert_content,
   }
 }
