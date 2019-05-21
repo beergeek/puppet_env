@@ -1,12 +1,12 @@
 ---
 
-profile::mongodb::base_path: '/data'
-profile::mongodb::db_base_path: '/data/db'
-profile::mongodb::pki_path: '/data/pki'
-profile::mongodb::log_path: '/data/logs'
+profile::database_services::mongodb::base_path: '/data'
+profile::database_services::mongodb::db_base_path: '/data/db'
+profile::database_services::mongodb::pki_path: '/data/pki'
+profile::database_services::mongodb::log_path: '/data/logs'
 
 
-profile::mongodb_nodb::base_path: '/data'
-profile::mongodb_nodb::db_base_path: '/data/db'
-profile::mongodb_nodb::pki_path: '/data/pki'
-profile::mongodb_nodb::log_path: '/data/logs'
+profile::database_services::mongodb_nodb::base_path: '/data'
+profile::database_services::mongodb_nodb::db_base_path: '/data/db'
+profile::database_services::mongodb_nodb::pki_path: '/data/pki'
+profile::database_services::mongodb_nodb::log_path: '/data/logs'
