@@ -53,7 +53,7 @@ class profile::database_services::mongodb_nodb (
     keyfile_content          => $keyfile_content,
     pem_file_content         => $pem_file_content,
     pem_file_path            => $pem_file_path,
-    pki_pat                  => $pki_path,
+    pki_path                 => $pki_path,
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
     svc_user                 => $svc_user,
