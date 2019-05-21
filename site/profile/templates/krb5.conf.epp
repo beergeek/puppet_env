@@ -16,7 +16,7 @@ includedir /etc/krb5.conf.d/
  default_ccache_name = KEYRING:persistent:%{uid}
 
 [realms]
-  <%=  upcase($default_realm) %> {
+  <%=  upcase($default_realm) %> = {
     kdc = <%= $kdc_server %>
     admin_server = <%= $admin_server %>
   }
