@@ -33,8 +33,8 @@ profile::database_services::mongodb_nodb::mms_api_key: >
   +8oxBTBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBLErwUm3yoFN1FYrk8
   v7SugEDPvLJ9BR51/7E/OInZU9WNqH0PYT1CqhM17UpCbQxjR2XQh2UwxysS
   VR2BIEOQfREuXERqwZG7Pkr5oHU33tfR]
-profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local:8080'
-profile::database_services::mongodb_nodb::url_svc_type: 'http'
+profile::database_services::mongodb_nodb::ops_manager_fqdn: 'mongod0.mongodb.local:8443'
+profile::database_services::mongodb_nodb::url_svc_type: 'https'
 profile::database_services::mongodb_nodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAMONXXkprdSVYwnSV6ivBM7QpZnXSLi/8yCth
