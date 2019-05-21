@@ -482,7 +482,7 @@ profile::database_services::mongodb::ca_file_path: '/data/pki/ca.cert'
 profile::database_services::mongodb::cluster_auth_file_path: ~
 profile::database_services::mongodb::svc_user: 'mongod'
 profile::database_services::mongodb_nodb::pki_dir: '/data/pki'
-profile::database_services::mongodb_nodb::ca_file_path: '/etc/pki/ca.cert'
+profile::database_services::mongodb_nodb::ca_file_path: '/data/pki/ca.cert'
 profile::database_services::mongodb_nodb::cluster_auth_file_path: ~
 profile::database_services::mongodb_nodb::svc_user: 'mongod'
 profile::database_services::mongodb_nodb::cluster_auth_pem_content: ~
