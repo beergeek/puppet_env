@@ -18,5 +18,6 @@ hierarchy:
       - "role/%{trusted.extensions.pp_role}.yaml"
       - "data_centre/%{trusted.extensions.pp_datacenter}.yaml"
       - "environment/%{trusted.extensions.pp_environment}.yaml"
+      - "os/%{facts.os.family}.yaml"
       - "common.yaml"
 

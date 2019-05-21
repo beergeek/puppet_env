@@ -1,10 +1,23 @@
 #
 # Remember '/etc/krb5.conf'!
 class profile::database_services::mongodb (
-  Boolean                        $enable_firewall   = true,
+  Optional[Sensitive[String[1]]] $client_keytab_content,
+  Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
+  Optional[Sensitive[String[1]]] $keyfile_content,
+  Optional[Sensitive[String[1]]] $pem_file_content,
+  Optional[Sensitive[String[1]]] $server_keytab_content,
+  Optional[Stdlib::Absolutepath] $ca_file_path,
+  Optional[Stdlib::Absolutepath] $client_keytab_path,
+  Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
+  Optional[Stdlib::Absolutepath] $pem_file_path,
+  Optional[Stdlib::Absolutepath] $pki_path,
+  Optional[Stdlib::Absolutepath] $server_keytab_path,
+  Optional[String[1]]            $ca_cert_pem_content,
   Stdlib::Absolutepath           $base_path,
   Stdlib::Absolutepath           $db_base_path,
   Stdlib::Absolutepath           $log_path,
+  String[1]                      $svc_user,
+  Boolean                        $enable_firewall   = true,
   Hash                           $mongod_instance   = {
     'appdb' => {
       port        => '27017',
@@ -12,19 +25,7 @@ class profile::database_services::mongodb (
       ssl_mode    => 'none',
     },
   },
-  Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
-  Optional[Sensitive[String[1]]] $pem_file_content,
-  Optional[Sensitive[String[1]]] $keyfile_content,
-  Optional[String[1]]            $ca_cert_pem_content,
-  Optional[Stdlib::Absolutepath] $pki_path,
-  Optional[Stdlib::Absolutepath] $ca_file_path,
-  Optional[Stdlib::Absolutepath] $pem_file_path,
-  Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
-  String[1]                      $svc_user,
-  Optional[Sensitive[String[1]]] $server_keytab_content,
-  Optional[Stdlib::Absolutepath] $server_keytab_path,
-  Optional[Sensitive[String[1]]] $client_keytab_content,
-  Optional[Stdlib::Absolutepath] $client_keytab_path,
+
 
   # automation agent
   Boolean                        $install_aa,
