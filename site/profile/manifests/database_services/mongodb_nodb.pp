@@ -3,6 +3,7 @@
 class profile::database_services::mongodb_nodb (
   Array[String[1]]               $firewall_ports,
   Boolean                        $enable_firewall,
+  Boolean                        $enable_ssl,
   Enum['http','https']           $url_svc_type,
   Optional[Sensitive[String[1]]] $aa_pem_file_content,
   Optional[Sensitive[String[1]]] $cluster_auth_pem_content,

@@ -29,6 +29,7 @@ class profile::database_services::mongodb (
 
   # automation agent
   Boolean                        $install_aa,
+  Boolean                        $enable_ssl,
   String[1]                      $mms_group_id,
   Sensitive[String[1]]           $mms_api_key,
   String[1]                      $ops_manager_fqdn,
