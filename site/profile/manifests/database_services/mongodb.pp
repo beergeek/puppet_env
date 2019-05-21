@@ -2,9 +2,9 @@
 # Remember '/etc/krb5.conf'!
 class profile::database_services::mongodb (
   Boolean                        $enable_firewall   = true,
-  Stdlib::Absolutepath           $base_data_path    = '/data',
-  Stdlib::Absolutepath           $db_data_path      = '/data/db',
-  Stdlib::Absolutepath           $db_log_path       = '/data/logs',
+  Stdlib::Absolutepath           $base_path,
+  Stdlib::Absolutepath           $db_base_path,
+  Stdlib::Absolutepath           $log_path,
   Hash                           $mongod_instance   = {
     'appdb' => {
       port        => '27017',
@@ -16,7 +16,7 @@ class profile::database_services::mongodb (
   Optional[Sensitive[String[1]]] $pem_file_content,
   Optional[Sensitive[String[1]]] $keyfile_content,
   Optional[String[1]]            $ca_cert_pem_content,
-  Optional[Stdlib::Absolutepath] $pki_dir,
+  Optional[Stdlib::Absolutepath] $pki_path,
   Optional[Stdlib::Absolutepath] $ca_file_path,
   Optional[Stdlib::Absolutepath] $pem_file_path,
   Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
@@ -46,17 +46,17 @@ class profile::database_services::mongodb (
   }
 
   class { 'mongodb::supporting':
-    base_data_path           => $base_data_path,
+    base_path                => $base_path,
     ca_cert_pem_content      => $ca_cert_pem_content,
     ca_file_path             => $ca_file_path,
     cluster_auth_file_path   => $cluster_auth_file_path,
     cluster_auth_pem_content => $cluster_auth_pem_content,
-    db_data_path             => $db_data_path,
-    db_log_path              => $db_log_path,
+    db_base_path             => $db_base_path,
+    log_path                 => $log_path,
     keyfile_content          => $keyfile_content,
     pem_file_content         => $pem_file_content,
     pem_file_path            => $pem_file_path,
-    pki_dir                  => $pki_dir,
+    pki_path                 => $pki_path,
     server_keytab_content    => $server_keytab_content,
     server_keytab_path       => $server_keytab_path,
     svc_user                 => $svc_user,
