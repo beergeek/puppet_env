@@ -21,6 +21,6 @@ includedir /etc/krb5.conf.d/
     admin_server = <%= $admin_server %>
   }
 
-[default_realm]
+[domain_realm]
   .<%= downcase($default_realm) %> = <%=  upcase($default_realm) %>
   <%= downcase($default_realm) %> = <%=  upcase($default_realm) %>
