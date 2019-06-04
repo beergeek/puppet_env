@@ -28,7 +28,6 @@ class profile::database_services::mongodb_nodb (
   Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
 ) {
   require mongodb::os
-  require mongodb::user
 
   if $enable_firewall {
     $firewall_ports.each |String $_port| {

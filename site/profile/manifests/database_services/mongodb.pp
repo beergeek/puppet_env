@@ -42,9 +42,9 @@ class profile::database_services::mongodb (
 
   require mongodb::repos
   require mongodb::os
-  require mongodb::user
 
   class { 'mongodb::install':
+    require => Class['mongodb::supporting'],
   }
 
   class { 'mongodb::supporting':
