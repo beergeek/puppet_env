@@ -38,6 +38,11 @@ class profile::database_services::mongodb (
       Optional[log_path]            => Optional[Stdlib::Absolutepath],
       Optional[pid_file]            => Optional[Stdlib::Absolutepath],
       Optional[pki_path]            => Optional[Stdlib::Absolutepath],
+      Optional[member_auth]         => Optional[Enum['x509', 'keyFile', 'none']],
+      Optional[ssl_mode]            => Optional[Enum['requireSSL','preferSSL','none']],
+      Optional[pem_file]            => Optional[Stdlib::Absolutepath],
+      Optional[cluster_pem_file]    => Optional[Stdlib::Absolutepath],
+      Optional[ca_file]             => Optional[Stdlib::Absolutepath],
     }]
   ]  $mongod_instance,
 
