@@ -18,13 +18,28 @@ class profile::database_services::mongodb (
   Stdlib::Absolutepath           $log_path,
   String[1]                      $svc_user,
   Boolean                        $enable_firewall   = true,
-  Hash                           $mongod_instance   = {
-    'appdb' => {
-      port        => '27017',
-      member_auth => 'none',
-      ssl_mode    => 'none',
-    },
-  },
+  Hash[
+    String[1],
+    Struct[{
+      Optional[enable_kerberos]     => Boolean,
+      Optional[keyfile]             => Optional[Stdlib::Absolutepath],
+      Optional[keytab_file_path]    => Optional[Stdlib::Absolutepath],
+      Optional[wiredtiger_cache_gb] => Optional[String[1]],
+      Optional[repsetname]          => Optional[String[1]],
+      Optional[svc_user]            => Optional[String[1]],
+      Optional[conf_file]           => Optional[Stdlib::Absolutepath],
+      Optional[bindip]              => Optional[String[1]],
+      Optional[port]                => Optional[String[1]],
+      Optional[log_filename]        => Optional[String[1]],
+      Optional[auth_list]           => Optional[String[1]],
+      Optional[base_path]           => Optional[Stdlib::Absolutepath],
+      Optional[db_base_path]        => Optional[Stdlib::Absolutepath],
+      Optional[db_data_path]        => Optional[Stdlib::Absolutepath],
+      Optional[log_path]            => Optional[Stdlib::Absolutepath],
+      Optional[pid_file]            => Optional[Stdlib::Absolutepath],
+      Optional[pki_path]            => Optional[Stdlib::Absolutepath],
+    }]
+  ]  $mongod_instance,
 
 
   # automation agent
