@@ -141,6 +141,9 @@ profile::ops_manager::from_email_addr: 'om@mongodb.local'
 profile::ops_manager::reply_email_addr: 'om@mongodb.local'
 profile::ops_manager::ca_cert_path: /etc/mongodb-mms/ca.cert
 profile::ops_manager::pem_file_path: /etc/mongodb-mms/om.pem
+profile::ops_manager::installer_autodownload_ent: true
+profile::ops_manager::installer_autodownload: true
+profile::ops_manager::installer_source: 'mongodb'
 profile::ops_manager::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEASmZHDX3CHF7lOGnJapOWx4MPuUupZraOrH0D
