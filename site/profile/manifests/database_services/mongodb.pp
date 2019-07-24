@@ -21,7 +21,9 @@ class profile::database_services::mongodb (
   Hash[
     String[1],
     Struct[{
+      Optional[keytab_file_path]    => Boolean,
       Optional[enable_kerberos]     => Boolean,
+      Optional[kerberos_trace_path] => Optional[Stdlib::Absolutepath],
       Optional[keyfile]             => Optional[Stdlib::Absolutepath],
       Optional[keytab_file_path]    => Optional[Stdlib::Absolutepath],
       Optional[wiredtiger_cache_gb] => String[1],
