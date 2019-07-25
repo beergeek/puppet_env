@@ -19,6 +19,8 @@ profile::database_services::mongodb::keyfile_content: >
   1roO4jBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCW7qbTYHhiLrTmFJw9
   /bvGgDBLaL0GVssY/xd2jYXrm7ph1Xthnqdp5ebAtw5QjgRvi9IqbRaPhMt5
   H2nXqpMlRmc=]
+profile::database_services::mongodb::manage_kerberos: false
+profile::database_services::mongodb::manage_ldap: false
 profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : '27017'

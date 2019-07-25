@@ -4,6 +4,8 @@ class profile::database_services::mongodb_nodb (
   Array[String[1]]               $firewall_ports,
   Boolean                        $enable_firewall,
   Boolean                        $enable_ssl,
+  Boolean                        $manage_ldap,
+  Boolean                        $manage_kerberos,
   Enum['http','https']           $url_svc_type,
   Optional[Sensitive[String[1]]] $aa_pem_file_content,
   Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
@@ -41,8 +43,12 @@ class profile::database_services::mongodb_nodb (
   }
 
 
-  if $server_keytab_path {
+  if $manage_kerberos {
     require profile::kerberos
+  }
+
+  if $manage_ldaps {
+    require profile::ldap
   }
 
   class { 'mongodb::supporting':

@@ -1,5 +1,5 @@
 #
-# Remember '/etc/krb5.conf'!
+# Remember '/etc/krb5.conf' and '/etc/openldap/ldap.conf'!
 class profile::database_services::mongodb (
   Optional[Sensitive[String[1]]] $client_keytab_content,
   Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
@@ -23,6 +23,14 @@ class profile::database_services::mongodb (
     Struct[{
       Optional[keytab_file_path]    => Boolean,
       Optional[enable_kerberos]     => Boolean,
+      Optional[enable_ldap_authn]   => Boolean,
+      Optional[enable_ldap_authz]   => Boolean,
+      Optional[ldap_authz_query]    => String[1],
+      Optional[ldap_bind_password]  => Sensitive[String[1]],
+      Optional[ldap_bind_username]  => String[1],
+      Optional[ldap_servers]        => String[1],
+      Optional[ldap_user_mapping]   => String[1],
+      Optional[ldap_security]       => Enum['none','tls'],
       Optional[kerberos_trace_path] => Optional[Stdlib::Absolutepath],
       Optional[keyfile]             => Optional[Stdlib::Absolutepath],
       Optional[keytab_file_path]    => Optional[Stdlib::Absolutepath],
@@ -86,6 +94,19 @@ class profile::database_services::mongodb (
   }
 
   $mongod_instance.each |String $instance_name, Hash $instance_data| {
+
+    if $instance_data['enable_kerberos'] {
+      require profile::kerberos
+    }
+
+    if $instance_data['enable_ldap_authn'] {
+      require profile::ldap
+    }
+
+    if $instance_data['enable_ldap_authz'] {
+      require profile::ldap
+    }
+
     mongodb::config { $instance_name:
       *       => $instance_data,
       before  => Mongodb::Service[$instance_name],

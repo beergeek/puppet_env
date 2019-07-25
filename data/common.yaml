@@ -441,7 +441,6 @@ profile::base::cacerts:
 
 
 profile::database_services::mongodb::cluster_auth_pem_content: ~
-profile::database_services::mongodb::pem_file_path: "/data/pki/%{networking.fqdn}.pem"
 profile::database_services::mongodb::ca_cert_pem_content: |
   -----BEGIN CERTIFICATE-----
   MIIF3DCCA8SgAwIBAgIJANKaedw0sZYjMA0GCSqGSIb3DQEBCwUAMHsxCzAJBgNV
@@ -477,16 +476,11 @@ profile::database_services::mongodb::ca_cert_pem_content: |
   zJPRkRqW4GgKj7AIna7zPNvsXjVOuMoSl72wkbkzF0hjnQ2RPEmkyZxQ2C9ZVNJG
   oHgWvP3+l8cIe6EfLk6faw==
   -----END CERTIFICATE-----
-profile::database_services::mongodb::pki_dir: '/data/pki'
-profile::database_services::mongodb::ca_file_path: '/data/pki/ca.cert'
 profile::database_services::mongodb::cluster_auth_file_path: ~
 profile::database_services::mongodb::svc_user: 'mongod'
-profile::database_services::mongodb_nodb::pki_dir: '/data/pki'
-profile::database_services::mongodb_nodb::ca_file_path: '/data/pki/ca.cert'
 profile::database_services::mongodb_nodb::cluster_auth_file_path: ~
 profile::database_services::mongodb_nodb::svc_user: 'mongod'
 profile::database_services::mongodb_nodb::cluster_auth_pem_content: ~
-profile::database_services::mongodb_nodb::pem_file_path: "/data/pki/%{networking.fqdn}.pem"
 profile::database_services::mongodb_nodb::ca_cert_pem_content: |
   -----BEGIN CERTIFICATE-----
   MIIF3DCCA8SgAwIBAgIJANKaedw0sZYjMA0GCSqGSIb3DQEBCwUAMHsxCzAJBgNV
@@ -523,17 +517,9 @@ profile::database_services::mongodb_nodb::ca_cert_pem_content: |
   oHgWvP3+l8cIe6EfLk6faw==
   -----END CERTIFICATE-----
 profile::database_services::mongodb_nodb::server_keytab_content: ~
-profile::database_services::mongodb_nodb::server_keytab_path: '/data/pki/server_keytab'
 profile::database_services::mongodb_nodb::client_keytab_content: ~
-profile::database_services::mongodb_nodb::client_keytab_path: '/data/pki/client_keytab'
-profile::database_services::mongodb_nodb::aa_ca_file_path: '/etc/mongodb-mms/ca.cert'
-profile::database_services::mongodb_nodb::aa_pem_file_path: '/etc/mongodb-mms/aa.pem'
 profile::database_services::mongodb::server_keytab_content: ~
-profile::database_services::mongodb::server_keytab_path: '/data/pki/server_keytab'
 profile::database_services::mongodb::client_keytab_content: ~
-profile::database_services::mongodb::client_keytab_path: '/data/pki/client_keytab'
-profile::database_services::mongodb::aa_ca_file_path: '/etc/mongodb-mms/ca.cert'
-profile::database_services::mongodb::aa_pem_file_path: "/etc/mongodb-mms/aa.pem"
 profile::database_services::mongodb::ca_file_content: |
   -----BEGIN CERTIFICATE-----
   MIIF3DCCA8SgAwIBAgIJANKaedw0sZYjMA0GCSqGSIb3DQEBCwUAMHsxCzAJBgNV
