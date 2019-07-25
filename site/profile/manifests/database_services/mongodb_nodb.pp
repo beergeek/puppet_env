@@ -47,7 +47,7 @@ class profile::database_services::mongodb_nodb (
     require profile::kerberos
   }
 
-  if $manage_ldaps {
+  if $manage_ldap {
     require profile::ldap
   }
 
