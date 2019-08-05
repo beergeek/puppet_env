@@ -83,3 +83,7 @@ mod 'os_updates',
 mod 'mongodb',
   :git => 'https://github.com/beergeek/mongodb.git',
   :branch => 'master'
+
+mod 'mongodb_audit_tools',
+  :git => 'https://github.com/beergeek/mongodb_audit_tools.git',
+  :branch => 'master'
