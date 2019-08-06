@@ -1,8 +1,8 @@
 #
 class profile::ops_manager (
-  Boolean                          $enable_firewall    = true,
-  String                           $port               = '8080',
-  String                           $central_url        = "https://${facts['networking']['fqdn']}:8443",
+  Boolean                          $enable_firewall,
+  String                           $port,
+  String                           $central_url,
   Boolean                          $manage_ca,
   Boolean                          $manage_pem,
   Boolean                          $ops_manager_ssl,

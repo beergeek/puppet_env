@@ -7,6 +7,8 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::ops_manager::pem_file_content:
     convert_to: 'Sensitive'
+  profile::ops_manager::gen_key_file_content:
+    convert_to: 'Sensitive'
 
 profile::database_services::mongodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
@@ -135,7 +137,17 @@ profile::ops_manager::port: '8443'
 profile::ops_manager::central_url: "https://%{facts.networking.fqdn}:8443"
 profile::ops_manager::manage_ca: false
 profile::ops_manager::manage_pem: true
-profile::ops_manager::gen_key_file_content: 'O5jXGG0M7SmoXUJObZ/zSsqtis41JTDU'
+profile::ops_manager::gen_key_file_content: >
+  ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAbjIIJZtN40KX14TMDLXf6WTKrKKxdpkTV/Cr
+  boCgn5PmIqkHryV8vvfOqhDYtKbKPe9wiT1UEGhN7RKv3YoBgSXHfS5m9Lxm
+  nHfEtBr4MMyQ0L5Df+5XHWAbCen4Xf0cjTNQ1/VsnM178YFaK7JZF8vjVqJ4
+  +L+9A9/2StpFvgic3/q7ECfV0k1OPJIMXNbxVf6azPyaWvi8wcYzE3qN/p9y
+  dtqjTvcDoeRo4Yhln1s6G1BHcXapSmOIjL4nyjtWSB6dqo5kmzqFJDfLMJq8
+  VkkC9KN32sghHpuwGDB94chNRQybDgjDhba0nzCQQ1AW8KIO+yszNsTNHkTH
+  e4u+xjBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAVZDdQxfFVq2RKkZSg
+  KHmygDBWPZkhQpDYVjY9fzYIXXEkr9DyyX+tYKFnQCpQWSCcjmObAnOvs4WX
+  JNQX+tgCKcQ=]
 profile::ops_manager::appsdb_uri: 'mongodb://9458d1165d9ddaefa17b5dabf1230782-a8d734ead9420722:9458d1165d9ddaefa17b5dabf1230782-54aa89546704864e7746688e6e5ac414@mongod0.mongodb.local:27017,mongod1.mongodb.local:27017,mongod2.mongodb.local:27017/?replicaSet=appdb'
 profile::ops_manager::email_hostname: "%{facts.networking.ip}"
 profile::ops_manager::admin_email_addr: 'admin@mongodb.local'
