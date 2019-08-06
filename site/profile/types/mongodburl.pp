@@ -1,1 +1,1 @@
-type Mongodb_audit_tools::MongoDBURL = Pattern[/(?:^mongodb(\+srv)?:\/\/)/]
+type Profile::MongoDBURL = Pattern[/(?:^mongodb(\+srv)?:\/\/)/]
