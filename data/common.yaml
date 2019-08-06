@@ -565,6 +565,7 @@ profile::mongodb_bic::enable_firewall: *enable_firewall
 profile::mongodb_bic::firewall_port: '3307'
 
 profile::ops_manager::enable_firewall: *enable_firewall
+profile::ops_manager::mms_source: ~
 profile::ops_manager::ca_cert_content: |
   -----BEGIN CERTIFICATE-----
   MIIF3DCCA8SgAwIBAgIJANKaedw0sZYjMA0GCSqGSIb3DQEBCwUAMHsxCzAJBgNV
