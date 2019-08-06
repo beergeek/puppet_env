@@ -143,10 +143,12 @@ class profile::database_services::mongodb_nodb (
     ca_file_content  => $aa_ca_cert_content,
   }
 
-  $log_processor_hash.each |String $log_processor_name, Hash $log_processor_data| {
-    mongodb_audit_tools::log_processor { $log_processor_name:
-      *       => $log_processor_data,
-      require => Class['mongodb::supporting'],
+  if $log_processor_hash {
+    $log_processor_hash.each |String $log_processor_name, Hash $log_processor_data| {
+      mongodb_audit_tools::log_processor { $log_processor_name:
+        *       => $log_processor_data,
+        require => Class['mongodb::supporting'],
+      }
     }
   }
 
