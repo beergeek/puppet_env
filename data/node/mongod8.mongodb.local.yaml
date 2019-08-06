@@ -9,6 +9,9 @@ lookup_options:
   profile::database_services::mongodb_nodb::keyfile_content:
     convert_to: 'Sensitive'
 
+profile::database_services::mongodb_nodb::log_processor_hash: ~
+profile::database_services::mongodb_nodb::ops_manager_config_watcher: ~
+profile::database_services::mongodb_nodb::ops_manager_event_watcher: ~
 profile::database_services::mongodb_nodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAXdEohMHn0s+DblA7K02OIrieOYxAXlkPjhHJ
