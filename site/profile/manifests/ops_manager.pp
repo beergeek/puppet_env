@@ -2,7 +2,7 @@
 class profile::ops_manager (
   Boolean                          $enable_firewall    = true,
   String                           $port               = '8080',
-  String                           $central_url        = "https://${facts['networking']['fqdn']}:8080",
+  String                           $central_url        = "https://${facts['networking']['fqdn']}:8443",
   Boolean                          $manage_ca,
   Boolean                          $manage_pem,
   Boolean                          $ops_manager_ssl,
@@ -11,13 +11,14 @@ class profile::ops_manager (
   Enum['mongodb','hybrid','local'] $installer_source,
   Optional[Stdlib::Absolutepath]   $ca_cert_path,
   Optional[Stdlib::Absolutepath]   $pem_file_path,
+  Optional[Stdlib::Filesource]     $mms_source,
   Optional[String[1]]              $ca_cert_content,
-  Sensitive[Optional[String[1]]]   $pem_file_content,
+  Optional[Sensitive[String[1]]]   $pem_file_content,
   Stdlib::Host                     $email_hostname,
   String[1]                        $admin_email_addr,
   String[1]                        $appsdb_uri,
   String[1]                        $from_email_addr,
-  String[1]                        $gen_key_file_content,
+  Sensitive[String[1]]             $gen_key_file_content,
   String[1]                        $reply_email_addr,
 ) {
   if $enable_firewall {
