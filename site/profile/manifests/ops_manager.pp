@@ -18,7 +18,7 @@ class profile::ops_manager (
   String[1]                        $admin_email_addr,
   String[1]                        $appsdb_uri,
   String[1]                        $from_email_addr,
-  Sensitive[String[1]]             $gen_key_file_content,
+  Stdlib::Base64                   $gen_key_file_content,
   String[1]                        $reply_email_addr,
 ) {
   if $enable_firewall {
