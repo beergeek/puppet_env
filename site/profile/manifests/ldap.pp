@@ -9,7 +9,7 @@ class profile::ldap(
     group   => 'root',
     mode    => '0644',
     content => epp('profile/ldap.conf.epp', {
-      tls_cacert => $cacert_file_path,
+      cacert_file_path => $cacert_file_path,
     }),
   }
 
