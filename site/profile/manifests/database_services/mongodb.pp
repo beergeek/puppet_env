@@ -32,7 +32,7 @@ class profile::database_services::mongodb (
       Optional[ldap_user_mapping]   => String[1],
       Optional[ldap_security]       => Enum['none','tls'],
       Optional[kerberos_trace_path] => Optional[Stdlib::Absolutepath],
-      Optional[keyfile]             => Optional[Stdlib::Absolutepath],
+      Optional[keyfile_path]        => Optional[Stdlib::Absolutepath],
       Optional[keytab_file_path]    => Optional[Stdlib::Absolutepath],
       Optional[wiredtiger_cache_gb] => String[1],
       Optional[repsetname]          => String[1],

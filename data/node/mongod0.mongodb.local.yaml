@@ -28,14 +28,14 @@ profile::database_services::mongodb::mongod_instance:
     ssl_mode   : 'preferSSL'
     pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
-    keyfile: '/data/pki/mongodb_keyfile'
+    keyfile_path: '/data/pki/mongodb_keyfile'
   'oplogdb':
     port       : '27018'
     member_auth: 'x509'
     ssl_mode   : 'preferSSL'
     pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
-    keyfile: '/data/pki/mongodb_keyfile'
+    keyfile_path: '/data/pki/mongodb_keyfile'
 profile::database_services::mongodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEASmZHDX3CHF7lOGnJapOWx4MPuUupZraOrH0D
