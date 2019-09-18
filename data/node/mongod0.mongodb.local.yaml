@@ -5,6 +5,8 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::database_services::mongodb::keyfile_content:
     convert_to: 'Sensitive'
+  profile::database_services::mongodb::server_keytab_content:
+    convert_to: 'Sensitive'
   profile::ops_manager::pem_file_content:
     convert_to: 'Sensitive'
   profile::database_services::mongodb::ldap_bind_password:
