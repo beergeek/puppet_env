@@ -18,6 +18,7 @@ class profile::database_services::mongodb (
   Stdlib::Absolutepath           $log_path,
   String[1]                      $svc_user,
   Boolean                        $enable_firewall   = true,
+  Optional[Sensitive[String[1]]] $ldap_bind_password,
   Hash[
     String[1],
     Struct[{
@@ -26,7 +27,6 @@ class profile::database_services::mongodb (
       Optional[enable_ldap_authn]   => Boolean,
       Optional[enable_ldap_authz]   => Boolean,
       Optional[ldap_authz_query]    => String[1],
-      Optional[ldap_bind_password]  => Sensitive[String[1]],
       Optional[ldap_bind_username]  => String[1],
       Optional[ldap_servers]        => String[1],
       Optional[ldap_user_mapping]   => String[1],
@@ -108,9 +108,10 @@ class profile::database_services::mongodb (
     }
 
     mongodb::config { $instance_name:
-      *       => $instance_data,
-      before  => Mongodb::Service[$instance_name],
-      require => Class['mongodb::install'],
+      *                  => $instance_data,
+      ldap_bind_password => $ldap_bind_password,
+      before             => Mongodb::Service[$instance_name],
+      require            => Class['mongodb::install'],
     }
 
     if $enable_firewall {

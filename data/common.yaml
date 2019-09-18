@@ -518,6 +518,7 @@ profile::database_services::mongodb_nodb::ca_cert_pem_content: |
   -----END CERTIFICATE-----
 profile::database_services::mongodb_nodb::server_keytab_content: ~
 profile::database_services::mongodb_nodb::client_keytab_content: ~
+profile::database_services::mongodb::ldap_bind_password: ~
 profile::database_services::mongodb::server_keytab_content: ~
 profile::database_services::mongodb::client_keytab_content: ~
 profile::database_services::mongodb::ca_file_content: |
