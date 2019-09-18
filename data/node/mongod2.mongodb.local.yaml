@@ -43,6 +43,7 @@ profile::database_services::mongodb::mongod_instance:
     ldap_security: 'tls'
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
+    enable_kerberos: true
   'oplogdb':
     port       : '27018'
     member_auth: 'x509'
@@ -55,6 +56,7 @@ profile::database_services::mongodb::mongod_instance:
     ldap_security: 'tls'
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
+    enable_kerberos: true
 profile::database_services::mongodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAAesb0W8nszyPz4cE2B4WkAs2MtImmnHIqfx6
