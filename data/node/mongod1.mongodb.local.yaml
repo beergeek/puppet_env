@@ -50,6 +50,7 @@ profile::database_services::mongodb::mongod_instance:
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
     enable_kerberos: true
+    keytab_file_path: '/data/pki/server_keytab'
   'oplogdb':
     port       : '27018'
     member_auth: 'x509'
@@ -63,6 +64,7 @@ profile::database_services::mongodb::mongod_instance:
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
     enable_kerberos: true
+    keytab_file_path: '/data/pki/server_keytab'
 profile::database_services::mongodb::server_keytab_content: >
   ENC[PKCS7,MIIDDQYJKoZIhvcNAQcDoIIC/jCCAvoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAON+ZR+RUoeYi8S4nXiLvYYGGfMHYwOES+Q8j
