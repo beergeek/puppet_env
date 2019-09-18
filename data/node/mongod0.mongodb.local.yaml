@@ -29,6 +29,13 @@ profile::database_services::mongodb::mongod_instance:
     pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
+    ldap_bind_username: 'MONGODB\ldap-bind-user'
+    ldap_bind_password: 'n!WjBiQ2VJULpQd'
+    ldap_servers: 'ad.mongodb.local'
+    ldap_security: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
+    ldap_user_mapping: 'tls'
+    ldap_authz_query: '{USER}?memberOf?base'
+    enable_ldap_authz: true
   'oplogdb':
     port       : '27018'
     member_auth: 'x509'
@@ -36,6 +43,13 @@ profile::database_services::mongodb::mongod_instance:
     pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
+    ldap_bind_username: 'MONGODB\ldap-bind-user'
+    ldap_bind_password: 'n!WjBiQ2VJULpQd'
+    ldap_servers: 'ad.mongodb.local'
+    ldap_security: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
+    ldap_user_mapping: 'tls'
+    ldap_authz_query: '{USER}?memberOf?base'
+    enable_ldap_authz: true
 profile::database_services::mongodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEASmZHDX3CHF7lOGnJapOWx4MPuUupZraOrH0D
