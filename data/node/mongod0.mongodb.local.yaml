@@ -7,6 +7,8 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::ops_manager::pem_file_content:
     convert_to: 'Sensitive'
+  '^profile::database_services::mongodb::mongod_instance::.*::ldap_bind_password$':
+    convert_to: 'Sensitive'
 
 profile::database_services::mongodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
@@ -30,7 +32,16 @@ profile::database_services::mongodb::mongod_instance:
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
     ldap_bind_username: 'MONGODB\ldap-bind-user'
-    ldap_bind_password: 'n!WjBiQ2VJULpQd'
+    ldap_bind_password: >
+      ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAMQzCX9wnYCOLQy1GdG6G0hf6k7NryjzzjOc6
+      47Bd7Bq2C/n6Z5Q/x4E3/XKqslBVopsBCGWBRH24e4U4ych/KtXbXL6gPDAy
+      wzKvhqC1p5VFIuRAvZARAXEb2mEBVs2C5FTjUmHZqvqI0y6i0vVpYIh4aETR
+      8f/YplFdl1meWQaSdYAyjmzFYzp7S+9oG61HoCT9DjQhJhMeD8duv09/FRQx
+      ede6e2VbEmdxZremPUhg+Nqq4F7vBdsU9El0S6sQbtNhj94+xSdDfFWcul7Q
+      lSi8Z2VHRgvUtxuaeie7W4QXpPvw989dDn3FlgJz7I7iD8AHJZ+NXbGGltdB
+      wGutpDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBB4BDwOKivBaQmo6uiK
+      iP9jgBAzc2QRtdtjT5j1L4jZ8p71]
     ldap_servers: 'ad.mongodb.local'
     ldap_security: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
     ldap_user_mapping: 'tls'
@@ -44,7 +55,16 @@ profile::database_services::mongodb::mongod_instance:
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
     ldap_bind_username: 'MONGODB\ldap-bind-user'
-    ldap_bind_password: 'n!WjBiQ2VJULpQd'
+    ldap_bind_password: >
+      ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAMQzCX9wnYCOLQy1GdG6G0hf6k7NryjzzjOc6
+      47Bd7Bq2C/n6Z5Q/x4E3/XKqslBVopsBCGWBRH24e4U4ych/KtXbXL6gPDAy
+      wzKvhqC1p5VFIuRAvZARAXEb2mEBVs2C5FTjUmHZqvqI0y6i0vVpYIh4aETR
+      8f/YplFdl1meWQaSdYAyjmzFYzp7S+9oG61HoCT9DjQhJhMeD8duv09/FRQx
+      ede6e2VbEmdxZremPUhg+Nqq4F7vBdsU9El0S6sQbtNhj94+xSdDfFWcul7Q
+      lSi8Z2VHRgvUtxuaeie7W4QXpPvw989dDn3FlgJz7I7iD8AHJZ+NXbGGltdB
+      wGutpDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBB4BDwOKivBaQmo6uiK
+      iP9jgBAzc2QRtdtjT5j1L4jZ8p71]
     ldap_servers: 'ad.mongodb.local'
     ldap_security: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
     ldap_user_mapping: 'tls'
