@@ -10,6 +10,10 @@ lookup_options:
     convert_to: 'Sensitive'
 
 profile::database_services::mongodb_nodb::log_processor_hash: ~
+profile::database_services::mongodb_nodb::firewall_ports:
+  - '27017'
+  - '27018'
+  - '8000'
 profile::database_services::mongodb_nodb::ops_manager_config_watcher: ~
 profile::database_services::mongodb_nodb::ops_manager_event_watcher: ~
 profile::database_services::mongodb_nodb::keyfile_content: >
