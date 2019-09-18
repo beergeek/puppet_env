@@ -43,8 +43,8 @@ profile::database_services::mongodb::mongod_instance:
       wGutpDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBB4BDwOKivBaQmo6uiK
       iP9jgBAzc2QRtdtjT5j1L4jZ8p71]
     ldap_servers: 'ad.mongodb.local'
-    ldap_security: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
-    ldap_user_mapping: 'tls'
+    ldap_user_mapping: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
+    ldap_security: 'tls'
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
   'oplogdb':
@@ -66,8 +66,8 @@ profile::database_services::mongodb::mongod_instance:
       wGutpDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBB4BDwOKivBaQmo6uiK
       iP9jgBAzc2QRtdtjT5j1L4jZ8p71]
     ldap_servers: 'ad.mongodb.local'
-    ldap_security: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
-    ldap_user_mapping: 'tls'
+    ldap_user_mapping: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
+    ldap_security: 'tls'
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
 profile::database_services::mongodb::pem_file_content: >
