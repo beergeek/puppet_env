@@ -59,6 +59,25 @@ profile::database_services::mongodb::mongod_instance:
     ldap_authz_query: '{USER}?memberOf?base'
     enable_ldap_authz: true
     enable_kerberos: true
+profile::database_services::mongodb::server_keytab_content: >
+  ENC[PKCS7,MIIDDQYJKoZIhvcNAQcDoIIC/jCCAvoCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAON+ZR+RUoeYi8S4nXiLvYYGGfMHYwOES+Q8j
+  IWYZHJaKF1eaXnWpGADopOs5vC5QTca8m6eMbqDftiiMPp8YAcRSKZ8VDkys
+  I7xftzU9G+P58HPKVCsYxVADjfRRS4Bt6yL8sntIBDfShA6qS6XGRd8C0nsX
+  6XqBF+sMlYY2FJAEf9lcFRjrkCdUQTP9y6S1TS2yXHa0Kq4yx+ulMrlIy4LI
+  GaoZGqgq3weoC08FeFYstfXt6Dt6uLLarDJRj9DeHmkVeTOzSn2yhNi4MXOc
+  JzkPzJobPl9evHhZ0njWOy1/2TDvKO+nNrSO1D367lEZ3wGIxtPzJ7bWIj2l
+  fX5vazCCAc4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEDvfXVYnMbfbhzRZ
+  8Oi9J6qAggGgWWy8xBVZMokPR9pW+/4XHG6R6u5Rf6FtKsKTbDoU3IpLAppY
+  XRZrPl+7/MajqkxenRvhtVdhQxW0LtbSwfyvuVt+lJSVA0NjkXktCR6zxdcZ
+  Of8w1rVxSS2Yc6OIquQaoG4tP9l7Yv4+HZZmAiusRjIP0I+ZIFZpMEk5oZMO
+  jH4pafo//8uvIf9T4IFPYd95me33PrVwaq/b4h4Sti61JQQhVDjCoh5i3HRa
+  8pkITM/2pdBqayLEqCBUMJNFV4HeNmNCOdneAQdAAqyaX15MefRN7WKIZlCD
+  obvUU1QxkvbzHVillja3jYCoVMPxc12Bpuc9eVaUxWtavt3Ll9b0QKlbqYsd
+  +cUZs44/qXcKXMn5KE4eBLKgZydOT5rP+bC/bqUWz8IeFKoTx6CoofpyyBoR
+  r8W3ucn9Qr/aI5rnG+7nzf0dGVe4KUrRT2XGKDL+NmI4uTXvL8e68/g8sBIX
+  20eCUbgxShjbui5FGo9ShYZVlkEmb8I0SC2vnsx49g+bAtXBUnw6I+xNBzvn
+  idA6K3kzTMxWLekGVMOxq9ajN2A=]
 profile::database_services::mongodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAgixQKKboItUU5/nEhHpGoFq6+Bj7QYTXnpLK
