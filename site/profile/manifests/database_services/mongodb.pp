@@ -18,6 +18,8 @@ class profile::database_services::mongodb (
   Stdlib::Absolutepath           $log_path,
   String[1]                      $svc_user,
   Boolean                        $enable_firewall   = true,
+  Boolean                        $manage_kerberos   = true,
+  Boolean                        $manage_ldap       = true,
   Optional[Sensitive[String[1]]] $ldap_bind_password,
   Hash[
     String[1],
@@ -71,6 +73,14 @@ class profile::database_services::mongodb (
 
   require mongodb::repos
   require mongodb::os
+
+  if $manage_kerberos {
+    require profile::kerberos
+  }
+
+  if $manage_ldap {
+    require profile::ldap
+  }
 
   class { 'mongodb::install':
     require => Class['mongodb::supporting'],
