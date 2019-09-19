@@ -59,6 +59,7 @@ profile::database_services::mongodb::mongod_instance:
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
     ldap_servers: 'ad.mongodb.local'
+    ldap_bind_username: 'MONGODB\ldap-bind-user'
     ldap_user_mapping: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
     ldap_security: 'tls'
     ldap_authz_query: '{USER}?memberOf?base'

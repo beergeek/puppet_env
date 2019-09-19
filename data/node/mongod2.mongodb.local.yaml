@@ -58,6 +58,7 @@ profile::database_services::mongodb::mongod_instance:
     pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
+    ldap_bind_username: 'MONGODB\ldap-bind-user'
     ldap_servers: 'ad.mongodb.local'
     ldap_user_mapping: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
     ldap_security: 'tls'
