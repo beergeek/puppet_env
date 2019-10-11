@@ -5,7 +5,6 @@ class profile::database_services::mongodb (
   Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
   Optional[Sensitive[String[1]]] $keyfile_content,
   Optional[Sensitive[String[1]]] $pem_file_content,
-  Optional[Sensitive[String[1]]] $server_keytab_content,
   Optional[Stdlib::Absolutepath] $ca_file_path,
   Optional[Stdlib::Absolutepath] $client_keytab_path,
   Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
@@ -69,6 +68,7 @@ class profile::database_services::mongodb (
   Optional[Stdlib::Absolutepath] $aa_pem_file_path,
   Optional[Sensitive[String[1]]] $aa_pem_file_content,
   Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
+  Optional[Sensitive[String[1]]] $server_keytab_content,
 ) {
 
   #require mongodb::repos
