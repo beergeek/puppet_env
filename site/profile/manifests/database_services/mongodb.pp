@@ -71,16 +71,16 @@ class profile::database_services::mongodb (
   Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
 ) {
 
-  require mongodb::repos
-  require mongodb::os
-
-  if $manage_kerberos {
-    require profile::kerberos
-  }
-
-  if $manage_ldap {
-    require profile::ldap
-  }
+  #require mongodb::repos
+  #require mongodb::os
+#
+  #if $manage_kerberos {
+  #  require profile::kerberos
+  #}
+#
+  #if $manage_ldap {
+  #  require profile::ldap
+  #}
 
   #class { 'mongodb::install':
   #  require => Class['mongodb::supporting'],
