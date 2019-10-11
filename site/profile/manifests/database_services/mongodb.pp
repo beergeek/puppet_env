@@ -68,7 +68,7 @@ class profile::database_services::mongodb (
   Optional[Stdlib::Absolutepath] $aa_pem_file_path,
   Optional[Sensitive[String[1]]] $aa_pem_file_content,
   Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
-  Optional[Sensitive[String[1]]] $server_keytab_content,
+  #Optional[Sensitive[String[1]]] $server_keytab_content,
 ) {
 
   #require mongodb::repos
