@@ -71,7 +71,7 @@ class profile::database_services::mongodb (
   #Optional[Sensitive[String[1]]] $server_keytab_content,
 ) {
 
-  $server_keytab_content = ''
+  $server_keytab_content = undef
 
   require mongodb::repos
   require mongodb::os
