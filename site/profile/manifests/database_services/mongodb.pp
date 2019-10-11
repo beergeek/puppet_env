@@ -1,11 +1,11 @@
 #
 # Remember '/etc/krb5.conf' and '/etc/openldap/ldap.conf'!
 class profile::database_services::mongodb (
-  #Optional[Sensitive[String[1]]] $client_keytab_content,
-  #Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
-  #Optional[Sensitive[String[1]]] $keyfile_content,
-  #Optional[Sensitive[String[1]]] $pem_file_content,
-  #Optional[Sensitive[String[1]]] $server_keytab_content,
+  Optional[Sensitive[String[1]]] $client_keytab_content,
+  Optional[Sensitive[String[1]]] $cluster_auth_pem_content,
+  Optional[Sensitive[String[1]]] $keyfile_content,
+  Optional[Sensitive[String[1]]] $pem_file_content,
+  Optional[Sensitive[String[1]]] $server_keytab_content,
   #Optional[Stdlib::Absolutepath] $ca_file_path,
   #Optional[Stdlib::Absolutepath] $client_keytab_path,
   #Optional[Stdlib::Absolutepath] $cluster_auth_file_path,
