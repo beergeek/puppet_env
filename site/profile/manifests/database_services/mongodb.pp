@@ -20,7 +20,7 @@ class profile::database_services::mongodb (
   Boolean                        $enable_firewall   = true,
   Boolean                        $manage_kerberos   = true,
   Boolean                        $manage_ldap       = true,
-  #Optional[Sensitive[String[1]]] $ldap_bind_password,
+  Optional[Sensitive[String[1]]] $ldap_bind_password,
   #Hash[
   #  String[1],
   #  Struct[{
