@@ -28,69 +28,36 @@ class profile::database_services::mongodb_nodb (
   String[1]                      $ops_manager_fqdn,
   String[1]                      $svc_user,
   Optional[String[1]]            $aa_ca_cert_content    = $ca_cert_pem_content,
+  Optional[Struct[{
+    log_processor_dir       => Stdlib::Absolutepath,
+    Optional[script_owner]  => String[1],
+    Optional[script_group]  => String[1],
+    Optional[script_mode]   => String[1],
+  }]] $log_processor_install_hash,
   Optional[Hash[
     String[1],
     Struct[{
-      audit_db_connection_string           => Profile::MongoDBURL,
+      audit_db_connection_string           => String[1],
       log_processor_dir                    => Stdlib::Absolutepath,
+      Optional[config_file_path]           => Stdlib::Absolutepath,
+      Optional[log_file_path]              => Stdlib::Absolutepath,
       Optional[enable_audit_db_ssl]        => Boolean,
       Optional[enable_debugging]           => Boolean,
       Optional[enable_kerberos_debugging]  => Boolean,
-      Optional[elevated_ops_events]        => Optional[Array[String[1]]],
-      Optional[elevated_app_events]        => Optional[Array[String[1]]],
-      Optional[kerberos_file_path]         => Optional[Stdlib::Absolutepath],
-      Optional[kerberos_trace_path]        => Optional[Stdlib::Absolutepath],
-      Optional[audit_db_ssl_pem_file_path] => Optional[Stdlib::Absolutepath],
-      Optional[audit_db_ssl_ca_file_path]  => Optional[Stdlib::Absolutepath],
-      Optional[audit_log]                  => Optional[Stdlib::Absolutepath],
+      Optional[elevated_ops_events]        => Array[String[1]],
+      Optional[elevated_app_events]        => Array[String[1]],
+      Optional[elevated_config_events]     => Array[String[1]],
+      Optional[kerberos_keytab_path]       => Stdlib::Absolutepath,
+      Optional[kerberos_trace_path]        => Stdlib::Absolutepath,
+      Optional[audit_db_ssl_pem_file_path] => Stdlib::Absolutepath,
+      Optional[audit_db_ssl_ca_file_path]  => Stdlib::Absolutepath,
+      Optional[audit_log]                  => Stdlib::Absolutepath,
+      Optional[python_path]                => Stdlib::Absolutepath,
       Optional[script_owner]               => String[1],
       Optional[script_group]               => String[1],
-      Optional[script_mode]                => String[1],
-      Optional[audit_db_timeout]           => Integer[1],
+      Optional[audit_db_timeout]           => Integer,
     }]
-  ]]                              $log_processor_hash,
-  Optional[Struct[{
-    audit_db_connection_string            => Profile::MongoDBURL,
-    om_db_connection_string               => Profile::MongoDBURL,
-    event_watcher_dir                     => Stdlib::Absolutepath,
-    Optional[enable_audit_db_ssl]         => Boolean,
-    Optional[enable_om_db_ssl]            => Boolean,
-    Optional[enable_debugging]            => Boolean,
-    Optional[enable_kerberos_debugging]   => Boolean,
-    Optional[kerberos_file_path]          => Optional[Stdlib::Absolutepath],
-    Optional[kerberos_trace_path]         => Optional[Stdlib::Absolutepath],
-    Optional[audit_db_ssl_pem_file_path]  => Optional[Stdlib::Absolutepath],
-    Optional[audit_db_ssl_ca_file_path]   => Optional[Stdlib::Absolutepath],
-    Optional[om_db_ssl_pem_file_path]     => Optional[Stdlib::Absolutepath],
-    Optional[om_db_ssl_ca_file_path]      => Optional[Stdlib::Absolutepath],
-    Optional[script_owner]                => String[1],
-    Optional[script_group]                => String[1],
-    Optional[script_mode]                 => String[1],
-    Optional[audit_db_timeout]            => Integer[1],
-    Optional[om_db_timeout]               => Integer[1],
-    Optional[change_stream_pipeline]      => String[1],
-  }]]                             $ops_manager_event_watcher,
-  Optional[Struct[{
-    audit_db_connection_string            => Profile::MongoDBURL,
-    om_db_connection_string               => Profile::MongoDBURL,
-    event_watcher_dir                     => Stdlib::Absolutepath,
-    Optional[enable_audit_db_ssl]         => Boolean,
-    Optional[enable_om_db_ssl]            => Boolean,
-    Optional[enable_debugging]            => Boolean,
-    Optional[enable_kerberos_debugging]   => Boolean,
-    Optional[kerberos_file_path]          => Optional[Stdlib::Absolutepath],
-    Optional[kerberos_trace_path]         => Optional[Stdlib::Absolutepath],
-    Optional[audit_db_ssl_pem_file_path]  => Optional[Stdlib::Absolutepath],
-    Optional[audit_db_ssl_ca_file_path]   => Optional[Stdlib::Absolutepath],
-    Optional[om_db_ssl_pem_file_path]     => Optional[Stdlib::Absolutepath],
-    Optional[om_db_ssl_ca_file_path]      => Optional[Stdlib::Absolutepath],
-    Optional[script_owner]                => String[1],
-    Optional[script_group]                => String[1],
-    Optional[script_mode]                 => String[1],
-    Optional[audit_db_timeout]            => Integer[1],
-    Optional[om_db_timeout]               => Integer[1],
-    Optional[change_stream_pipeline]      => String[1],
-  }]]                             $ops_manager_config_watcher,
+  ]] $log_processor_config_hash,
 ) {
   require mongodb::os
 
@@ -143,26 +110,16 @@ class profile::database_services::mongodb_nodb (
     ca_file_content  => $aa_ca_cert_content,
   }
 
-  if $log_processor_hash {
-    $log_processor_hash.each |String $log_processor_name, Hash $log_processor_data| {
+  if $log_processor_config_hash {
+    class { 'mongodb_audit_tools::log_processor::install':
+      * => $log_processor_install_hash,
+    }
+
+    $log_processor_config_hash.each |String $log_processor_name, Hash $log_processor_data| {
       mongodb_audit_tools::log_processor { $log_processor_name:
         *       => $log_processor_data,
         require => Class['mongodb::supporting'],
       }
-    }
-  }
-
-  if $ops_manager_config_watcher {
-    class { 'mongodb_audit_tools::ops_manager_config_watcher':
-      *       => $ops_manager_config_watcher,
-      require => Class['mongodb::supporting'],
-    }
-  }
-
-  if $ops_manager_event_watcher {
-    class { 'mongodb_audit_tools::ops_manager_event_watcher':
-      *       => $ops_manager_event_watcher,
-      require => Class['mongodb::supporting'],
     }
   }
 }

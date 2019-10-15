@@ -87,7 +87,3 @@ mod 'mongodb',
 mod 'mongodb_audit_tools',
   :git => 'https://github.com/beergeek/mongodb_audit_tools.git',
   :branch => 'master'
-
-mod 'tester_breaker',
-  :git => 'https://github.com/beergeek/tester_breaker.git',
-  :branch => 'master'

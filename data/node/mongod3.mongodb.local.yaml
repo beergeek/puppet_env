@@ -1,4 +1,15 @@
 ---
+
+# Variables
+variables:
+  - &audit_db_connection_string 'mongodb://auditWriter%%40MONGODB.LOCAL@mongod6.mongodb.local:27017/?replicaSet=repl0&authSource=$external&authMechanism=GSSAPI'
+  - &log_processor_dir '/data/scripts'
+  - &enable_debugging true 
+  - &enable_audit_db_ssl true
+  - &kerberos_keytab_path '/data/pki/server_keytab'
+  - &audit_db_ssl_pem_file_path '/data/pki/mongod3.mongodb.local.pem'
+  - &audit_db_ssl_ca_file_path '/data/pki/ca.cert'
+
 lookup_options:
   profile::database_services::mongodb_nodb::pem_file_content:
     convert_to: 'Sensitive'
@@ -13,7 +24,46 @@ profile::database_services::mongodb_nodb::firewall_ports:
   - '27018'
   - '27019'
   - '27020'
-profile::database_services::mongodb_nodb::ops_manager_config_watcher: ~
+
+profile::database_services::mongodb_nodb::log_processor_install_hash:
+  log_processor_dir: *log_processor_dir
+profile::database_services::mongodb_nodb::log_processor_config_hash:
+  'db0':
+    audit_db_connection_string: *audit_db_connection_string
+    log_processor_dir: *log_processor_dir
+    enable_audit_db_ssl: *enable_audit_db_ssl
+    enable_debugging: *enable_debugging
+    kerberos_keytab_path: *kerberos_keytab_path
+    audit_db_ssl_pem_file_path: *audit_db_ssl_pem_file_path
+    audit_db_ssl_ca_file_path: *audit_db_ssl_ca_file_path
+    audit_log: '/data/logs/audit.log'
+  'db1':
+    audit_db_connection_string: *audit_db_connection_string
+    log_processor_dir: *log_processor_dir
+    enable_audit_db_ssl: *enable_audit_db_ssl
+    enable_debugging: *enable_debugging
+    kerberos_keytab_path: *kerberos_keytab_path
+    audit_db_ssl_pem_file_path: *audit_db_ssl_pem_file_path
+    audit_db_ssl_ca_file_path: *audit_db_ssl_ca_file_path
+    audit_log: '/data/db1/audit.log'
+  'db2':
+    audit_db_connection_string: *audit_db_connection_string
+    log_processor_dir: *log_processor_dir
+    enable_audit_db_ssl: *enable_audit_db_ssl
+    enable_debugging: *enable_debugging
+    kerberos_keytab_path: *kerberos_keytab_path
+    audit_db_ssl_pem_file_path: *audit_db_ssl_pem_file_path
+    audit_db_ssl_ca_file_path: *audit_db_ssl_ca_file_path
+    audit_log: '/data/db2/audit.log'
+  'db3':
+    audit_db_connection_string: *audit_db_connection_string
+    log_processor_dir: *log_processor_dir
+    enable_audit_db_ssl: *enable_audit_db_ssl
+    enable_debugging: *enable_debugging
+    kerberos_keytab_path: *kerberos_keytab_path
+    audit_db_ssl_pem_file_path: *audit_db_ssl_pem_file_path
+    audit_db_ssl_ca_file_path: *audit_db_ssl_ca_file_path
+    audit_log: '/data/db3/audit.log'
 profile::database_services::mongodb_nodb::ops_manager_event_watcher: ~
 profile::database_services::mongodb_nodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
