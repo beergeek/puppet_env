@@ -20,7 +20,7 @@ class profile::database_services::mongodb_nodb (
   Optional[Stdlib::Absolutepath] $pki_path,
   Optional[Stdlib::Absolutepath] $server_keytab_path,
   Optional[String[1]]            $ca_cert_pem_content,
-  Sensitive[String[1]]           $mms_api_key,
+  Optional[Sensitive[String[1]]] $mms_api_key,
   Stdlib::Absolutepath           $base_path,
   Stdlib::Absolutepath           $db_base_path,
   Stdlib::Absolutepath           $log_path,
@@ -98,16 +98,18 @@ class profile::database_services::mongodb_nodb (
     svc_user                 => $svc_user,
   }
 
-  class { 'mongodb::automation_agent':
-    ops_manager_fqdn => $ops_manager_fqdn,
-    url_svc_type     => $url_svc_type,
-    mms_group_id     => $mms_group_id,
-    mms_api_key      => $mms_api_key,
-    enable_ssl       => $enable_ssl,
-    ca_file_path     => $aa_ca_file_path,
-    pem_file_path    => $aa_pem_file_path,
-    pem_file_content => $aa_pem_file_content,
-    ca_file_content  => $aa_ca_cert_content,
+  if $mms_api_key {
+    class { 'mongodb::automation_agent':
+      ops_manager_fqdn => $ops_manager_fqdn,
+      url_svc_type     => $url_svc_type,
+      mms_group_id     => $mms_group_id,
+      mms_api_key      => $mms_api_key,
+      enable_ssl       => $enable_ssl,
+      ca_file_path     => $aa_ca_file_path,
+      pem_file_path    => $aa_pem_file_path,
+      pem_file_content => $aa_pem_file_content,
+      ca_file_content  => $aa_ca_cert_content,
+    }
   }
 
   if $log_processor_config_hash {

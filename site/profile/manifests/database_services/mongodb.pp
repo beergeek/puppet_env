@@ -59,10 +59,9 @@ class profile::database_services::mongodb (
   ]  $mongod_instance,
 
   # automation agent
-  Boolean                        $install_aa,
   Boolean                        $enable_ssl,
   String[1]                      $mms_group_id,
-  Sensitive[String[1]]           $mms_api_key,
+  Optional[Sensitive[String[1]]] $mms_api_key,
   String[1]                      $ops_manager_fqdn,
   Enum['http','https']           $url_svc_type,
   Optional[Stdlib::Absolutepath] $aa_ca_file_path,
@@ -155,7 +154,7 @@ class profile::database_services::mongodb (
     }
   }
 
-  if $install_aa {
+  if $mms_api_key {
     class { 'mongodb::automation_agent':
       ops_manager_fqdn => $ops_manager_fqdn,
       url_svc_type     => $url_svc_type,
