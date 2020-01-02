@@ -57,7 +57,7 @@ class profile::database_services::mongodb (
       Optional[ca_file]              => Stdlib::Absolutepath,
       Optional[enable_ear]           => Boolean,
       Optional[ear_kmip_server]      => Stdlib::Host,
-      Optional[ear_key_file]         => Optional[Stdlib::Absolutepath],
+      Optional[ear_keyfile]          => Optional[Stdlib::Absolutepath],
       Optional[ear_kmip_port]        => Optional[Stdlib::Port],
       Optional[ear_kmip_ca_cert]     => Optional[Stdlib::Absolutepath],
       Optional[ear_kmip_client_cert] => Optional[Stdlib::Absolutepath],
