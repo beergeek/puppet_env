@@ -41,7 +41,7 @@ class profile::database_services::mongodb (
       Optional[svc_user]             => String[1],
       Optional[conf_file]            => Stdlib::Absolutepath,
       Optional[bindip]               => String[1],
-      Optional[port]                 => String[1],
+      Optional[port]                 => Stdlib::Port,
       Optional[log_filename]         => String[1],
       Optional[auth_list]            => String[1],
       Optional[base_path]            => Stdlib::Absolutepath,
