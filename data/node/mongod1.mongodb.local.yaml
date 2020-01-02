@@ -52,7 +52,7 @@ profile::database_services::mongodb::mongod_instance:
     enable_kerberos: true
     keytab_file_path: '/data/pki/server_keytab'
     enable_ear: true
-    ear_key_file: '/data/pki/mongodb_keyfile'
+    ear_keyfile: '/data/pki/mongodb_keyfile'
   'oplogdb':
     port       : 27018
     member_auth: 'x509'
@@ -69,7 +69,7 @@ profile::database_services::mongodb::mongod_instance:
     enable_kerberos: true
     keytab_file_path: '/data/pki/server_keytab'
     enable_ear: true
-    ear_key_file: '/data/pki/mongodb_keyfile'
+    ear_keyfile: '/data/pki/mongodb_keyfile'
 profile::database_services::mongodb::server_keytab_content: >
   ENC[PKCS7,MIIDDQYJKoZIhvcNAQcDoIIC/jCCAvoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAhseIcFVEKAdNn1lZCL/O+0oEehlKaV6s/tVN
