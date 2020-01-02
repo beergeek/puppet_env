@@ -64,7 +64,7 @@ profile::database_services::mongodb_nodb::log_processor_config_hash:
     audit_db_ssl_pem_file_path: *audit_db_ssl_pem_file_path
     audit_db_ssl_ca_file_path: *audit_db_ssl_ca_file_path
     audit_log: '/data/db3/audit.log'
-profile::database_services::mongodb_nodb::ops_manager_event_watcher: ~
+
 profile::database_services::mongodb_nodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAXdEohMHn0s+DblA7K02OIrieOYxAXlkPjhHJ
