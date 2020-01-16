@@ -11,6 +11,8 @@ lookup_options:
     convert_to: 'Sensitive'
   profile::database_services::mongodb::ldap_bind_password:
     convert_to: 'Sensitive'
+  profile::ops_manager::ldap_bind_password:
+    convert_to: 'Sensitive'
 
 profile::database_services::mongodb::keyfile_content: >
   ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
@@ -203,6 +205,25 @@ profile::ops_manager::pem_file_path: /etc/mongodb-mms/om.pem
 profile::ops_manager::installer_autodownload_ent: true
 profile::ops_manager::installer_autodownload: true
 profile::ops_manager::installer_source: 'hybrid'
+profile::ops_manager::auth_type: 'com.xgen.svc.mms.svc.user.UserSvcLdap'
+profile::ops_manager::ldap_bind_dn_host: 'CN\=ldap-bind-user,CN\=Users,DC\=mongodb,DC\=local'
+profile::ops_manager::ldap_bind_password: >
+  ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAXoaMI7rjaJYTVG0W9iAPf2uqDc5QI/Y4cuy7
+  FkAVPRb5DBRu/bvJwaTFNUrPtMKE7cKjtsWxKnZyPXq6sbcZ6Rs985T6EYzv
+  RwZMLQM4IC2QgOJPl0afhBEZWxuU6FWjmy93X62eQmtlzdhk9bCB+18WSO04
+  fKhrf2FJMcxv7lEoEOq4rnmbv27RwauiNyk/R2OO2LL4VoUzzCK53/dR1QCy
+  xUG6DVotuUqUCfdszmhgJbyufj/32UJjwxh4txV16jQRkj5D2QovFjC6eKq1
+  SYNgqUnrxbg76EsOhbft6NxIjT+buBsonZSl18scWnfNFi7jw/iJ9qjdYjkm
+  lm+JqDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDXAk8LzZHjyXeQ/rpD
+  AfEmgBAWNeMuecYNJ4yeOVaSqEfE]
+profile::ops_manager::ldap_global_owner: 'CN\=Mongo Admins,CN\=Users,DC\=mongodb,DC\=local'
+profile::ops_manager::ldap_url_host: 'ldaps:\\ad.mongodb.local'
+profile::ops_manager::ldap_bind_url_port: 636
+profile::ops_manager::ldap_user_group: 'memberOf'
+profile::ops_manager::ldap_user_search_attribute: 'sAMAccountName'
+profile::ops_manager::auth_ssl_ca_file: '/etc/mongodb-mms/ca.cert'
+profile::ops_manager::auth_ssl_pem_key_file: '/etc/mongodb-mms/om.pem'
 profile::ops_manager::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEASmZHDX3CHF7lOGnJapOWx4MPuUupZraOrH0D
