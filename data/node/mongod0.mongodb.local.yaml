@@ -224,6 +224,7 @@ profile::ops_manager::ldap_user_group: 'memberOf'
 profile::ops_manager::ldap_user_search_attribute: 'sAMAccountName'
 profile::ops_manager::auth_ssl_ca_file: '/etc/mongodb-mms/ca.cert'
 profile::ops_manager::auth_ssl_pem_key_file: '/etc/mongodb-mms/om.pem'
+profile::ops_manager::ldap_user_base_dn: 'CN\=Users,DC\=mongodb,DC\=local'
 profile::ops_manager::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEASmZHDX3CHF7lOGnJapOWx4MPuUupZraOrH0D

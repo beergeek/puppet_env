@@ -33,6 +33,7 @@ class profile::ops_manager (
   Optional[String[1]]                          $ldap_user_search_attribute,
   Optional[Stdlib::Absolutepath]               $auth_ssl_ca_file,
   Optional[Stdlib::Absolutepath]               $auth_ssl_pem_key_file,
+  Optional[String[1]]                          $ldap_user_base_dn,
 ) {
   if $enable_firewall {
     # firewall rules
@@ -70,6 +71,7 @@ class profile::ops_manager (
     ldap_url_host              => $ldap_url_host,
     ldap_user_group            => $ldap_user_group,
     ldap_user_search_attribute => $ldap_user_search_attribute,
+    ldap_user_base_dn          => $ldap_user_base_dn,
     auth_ssl_ca_file           => $auth_ssl_ca_file,
     auth_ssl_pem_key_file      => $auth_ssl_pem_key_file,
   }
