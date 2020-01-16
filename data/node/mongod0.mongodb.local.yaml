@@ -218,7 +218,7 @@ profile::ops_manager::ldap_bind_password: >
   lm+JqDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDXAk8LzZHjyXeQ/rpD
   AfEmgBAWNeMuecYNJ4yeOVaSqEfE]
 profile::ops_manager::ldap_global_owner: 'CN\=Mongo Admins,CN\=Users,DC\=mongodb,DC\=local'
-profile::ops_manager::ldap_url_host: ldaps:\\ad.mongodb.local
+profile::ops_manager::ldap_url_host: ldaps://ad.mongodb.local
 profile::ops_manager::ldap_url_port: 636
 profile::ops_manager::ldap_user_group: 'memberOf'
 profile::ops_manager::ldap_user_search_attribute: 'sAMAccountName'
