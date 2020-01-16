@@ -27,14 +27,14 @@ profile::database_services::mongodb::manage_kerberos: false
 profile::database_services::mongodb::manage_ldap: false
 profile::database_services::mongodb::ldap_bind_password: >
   ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEAk6837W68qoN206dHY4x5Uyrj6A361ekI0v9S
-  uOBrU6x0uwQ+SjvGJQxHqtFJIV4ShIdQdTq8UViuDnwpsSfjiWcuRNfD6YWy
-  9LUjO87o+RHEW60hVuxnDS8NysXiWI0fv0H7YXmR0yUmlij8actNMK8DtE5R
-  pS88fOYEQ3VL/aS8zSnPpU6fFQgCy+iWc23w3CEoE/bdM+nlzFsGycGl7NuA
-  AVo36Ppt5kEwWn/F8HmjbkSRV7oBryG3679i+IA5Wvt49Xy/MAF97Y5SoX50
-  /FtQV7zn4Z6K61q/L7Q2sgT8FER6SA0t94PNOMDKWl7apk9wy5RgJ/+nm7qn
-  mT4ScDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBJYUAS9vyRQhHbRtlD
-  VZlmgBBcfGP4aTV8xSFcSfoHo2U8]
+  DQYJKoZIhvcNAQEBBQAEggEAXoaMI7rjaJYTVG0W9iAPf2uqDc5QI/Y4cuy7
+  FkAVPRb5DBRu/bvJwaTFNUrPtMKE7cKjtsWxKnZyPXq6sbcZ6Rs985T6EYzv
+  RwZMLQM4IC2QgOJPl0afhBEZWxuU6FWjmy93X62eQmtlzdhk9bCB+18WSO04
+  fKhrf2FJMcxv7lEoEOq4rnmbv27RwauiNyk/R2OO2LL4VoUzzCK53/dR1QCy
+  xUG6DVotuUqUCfdszmhgJbyufj/32UJjwxh4txV16jQRkj5D2QovFjC6eKq1
+  SYNgqUnrxbg76EsOhbft6NxIjT+buBsonZSl18scWnfNFi7jw/iJ9qjdYjkm
+  lm+JqDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDXAk8LzZHjyXeQ/rpD
+  AfEmgBAWNeMuecYNJ4yeOVaSqEfE]
 profile::database_services::mongodb::mongod_instance:
   'appdb':
     port       : 27017
