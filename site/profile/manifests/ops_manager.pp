@@ -24,7 +24,7 @@ class profile::ops_manager (
   Enum['com.xgen.svc.mms.svc.user.UserSvcDb',
       'com.xgen.svc.mms.svc.user.UserSvcLdap',
       'com.xgen.svc.mms.svc.user.UserSvcSaml'] $auth_type,
-  Optional[Stdlib::Host]                       $ldap_bind_dn,
+  Optional[String]                             $ldap_bind_dn,
   Optional[Stdlib::Port]                       $ldap_url_port,
   Optional[Sensitive[String[1]]]               $ldap_bind_password,
   Optional[String[1]]                          $ldap_global_owner,
