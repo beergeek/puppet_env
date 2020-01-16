@@ -26,7 +26,7 @@ class profile::ops_manager (
       'com.xgen.svc.mms.svc.user.UserSvcSaml'] $auth_type,
   Optional[Stdlib::Host]                       $ldap_bind_dn,
   Optional[Stdlib::Port]                       $ldap_url_port,
-  Optional[String[1]]                          $ldap_bind_password,
+  Optional[Sensitive[String[1]]]               $ldap_bind_password,
   Optional[String[1]]                          $ldap_global_owner,
   Optional[Mongodb::LDAPUrl]                   $ldap_url_host,
   Optional[String[1]]                          $ldap_user_group,
