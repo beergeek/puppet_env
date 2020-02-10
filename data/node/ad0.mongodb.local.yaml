@@ -10,38 +10,59 @@ lookup_options:
 profile::ad_services::domain_controller_hash:
   domain_credential_user: 'Administrator'
   domain_credential_passwd: >
-    ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
-    DQYJKoZIhvcNAQEBBQAEggEAH9gijbfZ2d+z+ZRbzBBQdtNPpAioHNIerLzn
-    GR69Y8/uNFqEWBPB6p9iUS/fkcT4eqWwkpV9oA0FicepS7Wdt9Pc6tD3y0y6
-    0MYgI+ShpGnIcG1gLQKq2TLh+LzX0Yrop+t2H4nV3hWgNBC0x4XleZcHF/q1
-    no3gbEQils8aOFtPneJNqUwjrIs065HFXtYD2mECvquq3khYzWqbtl1Gq4cB
-    9nHpL8jqhSR86iAyvXi5je35eR35USe0wAx9FWZKd1kxM8b9vqb5+69a0+GV
-    yUUpu4pTOd0hVMqKxg5BOZ8BvOZ0x9uoUC2hlqvziQ46+2mQk3doRAhTDMWJ
-    e/qYcDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAdYwzZEbMyzC+yVAlt
-    2BcbgBDl4ktzIsk+lNNmiSD7SJor]
+    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAaEt9bOiUtb3qRm9N6Jom84ap7pSg1kAvhbr6
+    RtJ9CVtb5KlJkWEnGGRNkD3irVm3YIK7HBhXPycRdabQyJs73E+qnQh32RLZ
+    ByERnSjhN6vEIg2xlEZsh96bji0q7dmbHlZqvt7GCT8GMVG98pDZwDNX0vGd
+    NbhhIk3E7DAalhHH5jGrc6xeTj835kcvQadDN1qD0B1oERetdYaDeR3HGjbx
+    Kb79W0YxmZ0oavkPTcLppZtOP/ARZavjjbf1JFymFnb7P3wtCu1L0d3GUsiU
+    F0QeSClc5DsvNBUewAyrJ1nnqRIiOlykHLIlsazU5c4Zn/ZnENsNMy46Xki4
+    lnb05jBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAoCuNZ/Dd4kG6wdKUb
+    cmZzgCCsJ4gi2hEQXP9YvZQ+98WLthMLofo9AT1yLMg7SehLuw==]
   safe_mode_passwd: >
-    ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
-    DQYJKoZIhvcNAQEBBQAEggEAH9gijbfZ2d+z+ZRbzBBQdtNPpAioHNIerLzn
-    GR69Y8/uNFqEWBPB6p9iUS/fkcT4eqWwkpV9oA0FicepS7Wdt9Pc6tD3y0y6
-    0MYgI+ShpGnIcG1gLQKq2TLh+LzX0Yrop+t2H4nV3hWgNBC0x4XleZcHF/q1
-    no3gbEQils8aOFtPneJNqUwjrIs065HFXtYD2mECvquq3khYzWqbtl1Gq4cB
-    9nHpL8jqhSR86iAyvXi5je35eR35USe0wAx9FWZKd1kxM8b9vqb5+69a0+GV
-    yUUpu4pTOd0hVMqKxg5BOZ8BvOZ0x9uoUC2hlqvziQ46+2mQk3doRAhTDMWJ
-    e/qYcDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAdYwzZEbMyzC+yVAlt
-    2BcbgBDl4ktzIsk+lNNmiSD7SJor]
+    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAaEt9bOiUtb3qRm9N6Jom84ap7pSg1kAvhbr6
+    RtJ9CVtb5KlJkWEnGGRNkD3irVm3YIK7HBhXPycRdabQyJs73E+qnQh32RLZ
+    ByERnSjhN6vEIg2xlEZsh96bji0q7dmbHlZqvt7GCT8GMVG98pDZwDNX0vGd
+    NbhhIk3E7DAalhHH5jGrc6xeTj835kcvQadDN1qD0B1oERetdYaDeR3HGjbx
+    Kb79W0YxmZ0oavkPTcLppZtOP/ARZavjjbf1JFymFnb7P3wtCu1L0d3GUsiU
+    F0QeSClc5DsvNBUewAyrJ1nnqRIiOlykHLIlsazU5c4Zn/ZnENsNMy46Xki4
+    lnb05jBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAoCuNZ/Dd4kG6wdKUb
+    cmZzgCCsJ4gi2hEQXP9YvZQ+98WLthMLofo9AT1yLMg7SehLuw==]
   domain_name: 'mongodb.local'
 profile::ad_services::dns_server_hash:
-  dns_server_name: 'ad.mongodb.local'
+  dns_server_name: 'ad0.mongodb.local'
 profile::ad_services::dns_forwardzones:
   'mongodb.local':
     domain_credential_user: 'Administrator'
     domain_credential_passwd: >
+      ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAaEt9bOiUtb3qRm9N6Jom84ap7pSg1kAvhbr6
+      RtJ9CVtb5KlJkWEnGGRNkD3irVm3YIK7HBhXPycRdabQyJs73E+qnQh32RLZ
+      ByERnSjhN6vEIg2xlEZsh96bji0q7dmbHlZqvt7GCT8GMVG98pDZwDNX0vGd
+      NbhhIk3E7DAalhHH5jGrc6xeTj835kcvQadDN1qD0B1oERetdYaDeR3HGjbx
+      Kb79W0YxmZ0oavkPTcLppZtOP/ARZavjjbf1JFymFnb7P3wtCu1L0d3GUsiU
+      F0QeSClc5DsvNBUewAyrJ1nnqRIiOlykHLIlsazU5c4Zn/ZnENsNMy46Xki4
+      lnb05jBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAoCuNZ/Dd4kG6wdKUb
+      cmZzgCCsJ4gi2hEQXP9YvZQ+98WLthMLofo9AT1yLMg7SehLuw==]
+
+profile::ad_services::users:
+  ldap-bind-user:
+    password: >
       ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
-      DQYJKoZIhvcNAQEBBQAEggEAH9gijbfZ2d+z+ZRbzBBQdtNPpAioHNIerLzn
-      GR69Y8/uNFqEWBPB6p9iUS/fkcT4eqWwkpV9oA0FicepS7Wdt9Pc6tD3y0y6
-      0MYgI+ShpGnIcG1gLQKq2TLh+LzX0Yrop+t2H4nV3hWgNBC0x4XleZcHF/q1
-      no3gbEQils8aOFtPneJNqUwjrIs065HFXtYD2mECvquq3khYzWqbtl1Gq4cB
-      9nHpL8jqhSR86iAyvXi5je35eR35USe0wAx9FWZKd1kxM8b9vqb5+69a0+GV
-      yUUpu4pTOd0hVMqKxg5BOZ8BvOZ0x9uoUC2hlqvziQ46+2mQk3doRAhTDMWJ
-      e/qYcDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAdYwzZEbMyzC+yVAlt
-      2BcbgBDl4ktzIsk+lNNmiSD7SJor]
+      DQYJKoZIhvcNAQEBBQAEggEApYSmxI5giwv6WPH3Q10l8RppgsJCiMx69q9Z
+      iTw6lu10DUjEMcGuWuSk/rE+mfEclfbFpVo2TkKkzugcUt4g1MutUfg+C6CD
+      yygKCf2BRyvrWjt6JPKTLilJPPmqnz19ZwXBFbYdbhFy/3a9mS4vqqSWxOsL
+      w+MexSdNvIH0b4DV8m3Xh3dwCA5j1KbtnxHFHRnnsRfYZJVJdBse2Cp5LhtP
+      v3hRkWl0woR2CI8BPyyvGyGwWPFMaWuQTLhEhFfFQNQBeSW2mWoBG/wwHoHk
+      Xfc/EasCwpSZAMambBkEcHzeZhxpDnFK6qtjyr5soVA1H2hw9XrgH+jmfMXx
+      f16HzTA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAMt3ZISjjIksoVOtPN
+      MqwSgBApeu90VtWUOj4yxxwK4ClL]
+    passwordneverexpires: true
+    cannotchangepassword: true
+
+profile::ad_services::user_defaults:
+  ensure: present
+  enabled: true
+  passwordneverexpires: false
+  cannotchangepassword: false
