@@ -603,3 +603,4 @@ profile::ops_manager::ca_cert_content: |
   oHgWvP3+l8cIe6EfLk6faw==
   -----END CERTIFICATE-----
 
+profile::wsus_services::server_url: 'https://ad0.mongodb.local:8530'
