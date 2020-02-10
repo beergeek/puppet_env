@@ -345,7 +345,7 @@ profile::lb_services::haproxy::backends:
 
 # BASE
 profile::base::enable_firewall: *enable_firewall
-profile::base::wsus_server: 'http://wsus_server.local'
+profile::base::wsus_server: 'http://ad0.mognodb.local'
 profile::base::wsus_server_port: '8530'
 
 # TIME_LOCALE
