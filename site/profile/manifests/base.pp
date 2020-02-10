@@ -104,11 +104,11 @@ class profile::base (
       # monitoring
       include profile::monitoring
 
-      file { 'C:\Windows\System32\WindowsPowerShell\v1.0\Modules\PSWindowsUpdate':
-        ensure  => directory,
-        recurse => true,
-        source  => 'puppet:///dump/PSWindowsUpdate',
-      }
+      #file { 'C:\Windows\System32\WindowsPowerShell\v1.0\Modules\PSWindowsUpdate':
+      #  ensure  => directory,
+      #  recurse => true,
+      #  source  => 'puppet:///dump/PSWindowsUpdate',
+      #}
 
       file { ['C:/ProgramData/PuppetLabs/facter','C:/ProgramData/PuppetLabs/facter/facts.d']:
         ensure => directory,
