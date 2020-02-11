@@ -44,7 +44,7 @@ class profile::ad_services (
         dsc_domain               => $domain_controller_hash['domain_name'],
         dsc_password             => {
           'user'     => $username,
-          'password' => $user_data['password']
+          'password' => Sensitive.new($user_data['password'])
         },
         dsc_enabled              => $user_data['enabled'],
         dsc_passwordneverexpires => $user_data['passwordneverexpires'],
