@@ -3,22 +3,22 @@ class profile::ad_services (
   Hash    $domain_controller_hash,
   Hash    $dns_server_hash,
   Boolean $collect_hosts             = true,
-  Optional[Hash[
-    String[1],
-    Struct[{
-      password                       => Sensitive.new(String[1]),
-      Optional[ensure]               => Enum['absent','present'],
-      Optional[enabled]              => Boolean,
-      Optional[passwordneverexpires] => Boolean,
-      Optional[cannotchangepassword] => Boolean,
-    }]
-  ]]      $users                     = undef,
-  Struct[{
-    ensure                           => Enum['absent','present'],
-    enabled                          => Boolean,
-    passwordneverexpires             => Boolean,
-    cannotchangepassword             => Boolean,
-  }]      $user_defaults,
+  #Optional[Hash[
+  #  String[1],
+  #  Struct[{
+  #    password                       => Sensitive.new(String[1]),
+  #    Optional[ensure]               => Enum['absent','present'],
+  #    Optional[enabled]              => Boolean,
+  #    Optional[passwordneverexpires] => Boolean,
+  #    Optional[cannotchangepassword] => Boolean,
+  #  }]
+  #]]      $users                     = undef,
+  #Struct[{
+  #  ensure                           => Enum['absent','present'],
+  #  enabled                          => Boolean,
+  #  passwordneverexpires             => Boolean,
+  #  cannotchangepassword             => Boolean,
+  #}]      $user_defaults,
 ) {
 
   class { 'active_directory::domain_controller':
