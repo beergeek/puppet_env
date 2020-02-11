@@ -46,7 +46,7 @@ profile::database_services::mongodb::mongod_instance:
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
     ldap_bind_username: 'MONGODB\ldap-bind-user'
-    ldap_servers: 'ad.mongodb.local'
+    ldap_servers: 'ad0.mongodb.local'
     ldap_user_mapping: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
     ldap_security: 'tls'
     ldap_authz_query: '{USER}?memberOf?base'
@@ -62,7 +62,7 @@ profile::database_services::mongodb::mongod_instance:
     pem_file: "/data/pki/%{facts.networking.fqdn}.pem"
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
-    ldap_servers: 'ad.mongodb.local'
+    ldap_servers: 'ad0.mongodb.local'
     ldap_bind_username: 'MONGODB\ldap-bind-user'
     ldap_user_mapping: '[{ match: "(.+)@MONGODB.LOCAL", substitution: "cn={0},cn=Users,dc=mongodb,dc=local"}]'
     ldap_security: 'tls'
@@ -218,7 +218,7 @@ profile::ops_manager::ldap_bind_password: >
   lm+JqDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDXAk8LzZHjyXeQ/rpD
   AfEmgBAWNeMuecYNJ4yeOVaSqEfE]
 profile::ops_manager::ldap_global_owner: 'CN\=Mongo Admins,CN\=Users,DC\=mongodb,DC\=local'
-profile::ops_manager::ldap_url_host: ldaps://ad.mongodb.local
+profile::ops_manager::ldap_url_host: ldaps://ad0.mongodb.local
 profile::ops_manager::ldap_url_port: 636
 profile::ops_manager::ldap_user_group: 'memberOf'
 profile::ops_manager::ldap_user_search_attribute: 'sAMAccountName'
