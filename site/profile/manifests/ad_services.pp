@@ -6,7 +6,7 @@ class profile::ad_services (
   Optional[Hash[
     String[1],
     Struct[{
-      password                       => Sensitive.new(String[1]),
+      password                       => String[1],
       Optional[ensure]               => Enum['absent','present'],
       Optional[enabled]              => Boolean,
       Optional[passwordneverexpires] => Boolean,
