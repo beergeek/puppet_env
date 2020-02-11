@@ -88,3 +88,7 @@ mod 'mongodb',
 mod 'mongodb_audit_tools',
   :git => 'https://github.com/beergeek/mongodb_audit_tools.git',
   :branch => 'master'
+
+mod 'active_directory',
+  :git => 'https://github.com/beergeek/active_directory.git',
+  :branch => 'master'
