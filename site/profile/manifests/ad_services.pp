@@ -42,7 +42,7 @@ class profile::ad_services (
       dsc_xaduser { $username:
         dsc_ensure               => $user_data['ensure'],
         dsc_username             => $username,
-        dsc_domain               => $domain_controller_hash['domain_name'],
+        dsc_domainname           => $domain_controller_hash['domain_name'],
         dsc_password             => {
           'user'     => $username,
           'password' => Sensitive.new($user_data['password'])
