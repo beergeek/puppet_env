@@ -23,8 +23,9 @@ class profile::ad_services (
 
   class { 'active_directory::domain_controller':
     domain_credential_passwd => Sensitive.new($domain_credential_passwd),
-    safe_mode_passwd         => Sensitive.new($safe_mode_passwd),
-    *                        => $domain_controller_hash,
+    safe_mode_passwd         => Sensitive.new($safe_mode_passwd),;
+    default:
+      *                      => $domain_controller_hash,
   }
 
   class { 'active_directory::dns_server':
