@@ -195,7 +195,7 @@ profile::ops_manager::central_url: "https://%{facts.networking.fqdn}:8443"
 profile::ops_manager::manage_ca: false
 profile::ops_manager::manage_pem: true
 profile::ops_manager::gen_key_file_content: 'O5jXGG0M7SmoXUJObZ/zSsqtis41JTDU'
-profile::ops_manager::appsdb_uri: 'mongodb://50acfdfeede7a935d87946b61f0458670d9513a4fc30b023ce312033c0ae9b02-187b8e4dcb5de170bb5ef386c9ecb6da-d0e1556aa0ed1022f9ada11c39ec9ea7:50acfdfeede7a935d87946b61f0458670d9513a4fc30b023ce312033c0ae9b02-15477ae9b89c98a5fdd3e7e114940743-646c575a56bf9df01218b01fc857cf6547ae65a61c97f2af686cb127bd8da77a@mongod0.mongodb.local:27017,mongod1.mongodb.local:27017,mongod2.mongodb.local:27017/?replicaSet=appdb'
+profile::ops_manager::appsdb_uri: 'mongodb://9458d1165d9ddaefa17b5dabf1230782-a8d734ead9420722:9458d1165d9ddaefa17b5dabf1230782-d9ae9b665390901ee14509449d5d05d5@mongod0.mongodb.local:27017,mongod1.mongodb.local:27017,mongod2.mongodb.local:27017/?replicaSet=appdb'
 profile::ops_manager::email_hostname: "127.0.0.1"
 profile::ops_manager::admin_email_addr: 'admin@mongodb.local'
 profile::ops_manager::from_email_addr: 'om@mongodb.local'
