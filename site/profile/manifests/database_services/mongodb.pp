@@ -18,6 +18,7 @@ class profile::database_services::mongodb (
   Stdlib::Absolutepath           $log_path,
   String[1]                      $svc_user,
   Boolean                        $enable_firewall   = true,
+  Boolean                        $manage_aa         = true,
   Boolean                        $manage_kerberos   = true,
   Boolean                        $manage_ldap       = true,
   Optional[Sensitive[String[1]]] $ldap_bind_password,
@@ -161,7 +162,7 @@ class profile::database_services::mongodb (
     }
   }
 
-  if $mms_api_key {
+  if $manage_aa and $mms_api_key {
     class { 'mongodb::automation_agent':
       ops_manager_fqdn => $ops_manager_fqdn,
       url_svc_type     => $url_svc_type,
