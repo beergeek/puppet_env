@@ -1,0 +1,10 @@
+---
+
+profile::database_services::mongodb_nodb::firewall_ports:
+  - '27017'
+profile::database_services::mongodb_nodb::enable_firewall: true
+profile::database_services::mongodb_nodb::url_svc_type: 'https'
+profile::database_services::mongodb_nodb::enable_ssl: true
+profile::database_services::mongodb_nodb::manage_kerberos: true
+profile::database_services::mongodb_nodb::manage_ldap: true
+profile::database_services::mongodb_nodb::cacert_file_path: '/data/pki/ca.cert'
