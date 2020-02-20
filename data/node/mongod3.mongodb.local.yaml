@@ -7,7 +7,7 @@ variables:
   - &enable_debugging true 
   - &enable_audit_db_ssl true
   - &kerberos_keytab_path '/data/pki/server_keytab'
-  - &audit_db_ssl_pem_file_path '/data/pki/mongod3.mongodb.local.pem'
+  - &audit_db_ssl_pem_file_path '/data/pki/server.pem'
   - &audit_db_ssl_ca_file_path '/data/pki/ca.cert'
 
 lookup_options:
