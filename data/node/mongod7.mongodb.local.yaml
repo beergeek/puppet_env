@@ -136,7 +136,6 @@ profile::database_services::mongodb_nodb::pem_file_content: >
 
 profile::database_services::mongodb_nodb::server_keytab_content: >
   ENC[PKCS7,MIIDnQYJKoZIhvcNAQcDoIIDjjCCA4oCAQAxggEhMIIBHQIBADAFMAACAQEw
-  ENC[PKCS7,MIIDnQYJKoZIhvcNAQcDoIIDjjCCA4oCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEATac/py+9sqW78w6/EzjMW9nT0awPOOQ2DYej
   GrB7b9io+z6uB1wQC0dAgTyc51Y3qkTIOBESVVLgrecrxT84V8gffQQyeOqU
   VYUL/MlTl+eyZfZdEf9vatnwzbTi6CjNQn5t+TFf1wEfF6NIb7NFnfe2HU0z
