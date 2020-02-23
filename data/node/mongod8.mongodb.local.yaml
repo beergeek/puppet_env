@@ -10,6 +10,7 @@ lookup_options:
     convert_to: 'Sensitive'
 
 profile::database_services::mongodb_nodb::log_processor_hash: ~
+profile::database_services::mongodb_nodb::log_processor_install_hash: ~
 profile::database_services::mongodb_nodb::log_processor_config_hash: ~
 profile::database_services::mongodb_nodb::ops_manager_config_watcher: ~
 profile::database_services::mongodb_nodb::ops_manager_event_watcher: ~
