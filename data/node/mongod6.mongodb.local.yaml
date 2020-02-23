@@ -7,7 +7,7 @@ variables:
   - &kerberos_keytab_path '/data/pki/server_keytab'
   - &audit_db_ssl_pem_file_path '/data/pki/server.pem'
   - &audit_db_ssl_ca_file_path '/data/pki/ca.cert'
-  
+
 lookup_options:
   profile::database_services::mongodb_nodb::mms_api_key:
     convert_to: 'Sensitive'
@@ -18,6 +18,7 @@ lookup_options:
   profile::database_services::mongodb_nodb::keyfile_content:
     convert_to: 'Sensitive'
 
+profile::database_services::mongodb_nodb::server_keytab_content: ~
 profile::database_services::mongodb_nodb::log_processor_install_hash: ~
 profile::database_services::mongodb_nodb::log_processor_config_hash: ~
 profile::database_services::mongodb_nodb::log_processor_hash: ~
