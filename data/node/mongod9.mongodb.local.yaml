@@ -18,7 +18,6 @@ lookup_options:
   profile::database_services::mongodb_nodb::keyfile_content:
     convert_to: 'Sensitive'
 
-profile::database_services::mongodb_nodb::server_keytab_content: ~
 profile::database_services::mongodb_nodb::log_processor_hash: ~
 profile::database_services::mongodb_nodb::log_processor_install_hash: ~
 profile::database_services::mongodb_nodb::log_processor_config_hash: ~
@@ -148,3 +147,26 @@ profile::database_services::mongodb_nodb::pem_file_content: >
   GmbJpeaoKYqnWTtXOzTTukapfHh2FfHl0P22j2vvKolLz70tMCnvQY6OiC5H
   M9ofTPdu0p4yG3bPGhXcU9a4BEpA4bxJ3VQVL+QmayejyyG0XHsyDKMtALQa
   xoo6tACdC8iihq5QNcxvFlEGleH5wcHreZI06SJFbtpK1w==]
+
+profile::database_services::mongodb_nodb::server_keytab_content: >
+  ENC[PKCS7,MIIDnQYJKoZIhvcNAQcDoIIDjjCCA4oCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAgbDQbpA6NUHvm8oSKhyTPugGowDkRFuY9gP3
+  EMt5Iu5fjkJuVJB/x449/F9b0JkkzAS9fmgcQbIkf4PaVNcg2yZNmIAlR8hA
+  0PCzTyvQi8wTu+0YAhhFXX3WWqUVQFuhtVYMkt/J7vkmgFSZs6ylfjwjZPzd
+  IQKJHaUxceDCslXywc+wtiG1Oa12Ar4XYXmUWozxtZISc3EzpR98NO594zWR
+  mNbLEMZlUJvAl/gh1SnU5u2OBeod/JqG/8ijLBnvHIDU5nzmnF3tZCoTTGsD
+  IOqjwoyqSdd1o9uvM9kYzsn6kmcOEMRUrRYS+9kvgatIULynhJtUvSf/G3L0
+  807ZYDCCAl4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEHYH+RaMrYp5Iulz
+  2fd9GCqAggIwhzlmlp09HBD5l+GnbY4LWT7mUowRc4gZHtkeVfNHCEXEnnbU
+  8Gb62C9iXe3dKKvx8XnYGJ6IV7TkyTu7RZ1MLiUCASS6O7CiRWXQv5RErfjb
+  WZnRs/IqKvPvJ5Qura1LDEJNgGc4JIU1lrAZpEh28iW6xWN4VYsHNU0lR0F7
+  ZgZovxWqi7Mh4l59DCtmA9+iQAFY4d9JDLNu7T//Fed/a8hDZLAzf3Hp1pmU
+  S9JyEq5KL9McE5PDPTKyhzQ25EqYARAZXkC5wVBMhsrynZJfTSEx/W9mgVV/
+  rPmJujA2rpX8H8XgkjUmY49/EnfC29TgSier1y8aATNulPDJ5tVsW4zXbi99
+  0hUp8d/UMJTH0yhvw8BrTN8BKEE3kwoxSE1X4AYYXTj2k/uo4K345Y6nCFBP
+  HG1T/wovLiw/ye8ZfmxKZI1YT8Vrgemr+TpXfVu0g9Y8uUY3Daec7Xa6NrgS
+  6Qv/zkkdc9WxF46OoLs9mEg/SwltrQ78MtlU6JKsGlD+xnOXoQ65lPWEdr3c
+  148PP6Ub05HQjFzfV71OidX7Y2EugdHp6Ll7qfdTRIXtngIGlZ1dtUBUoX77
+  zWCunfyZC6+LEd6c4fxxT9Xktsxo6UODHXX0cFkN0ikHPH8I6muyyuwpbLnA
+  yBlO1fK95GTSSv+pGh6m330IWTxGoDGcRyLwEdXMU16+0O3zdUDbuca9PC/5
+  A9w+ElQUaBLSaOPs0ZsaY+lm9u3dunUoHXfNmtE=]
