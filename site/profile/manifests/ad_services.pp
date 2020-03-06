@@ -37,6 +37,7 @@ class profile::ad_services (
     Dsc_xdnsrecord <<| |>>
   }
 
+# TODO: mongod, mongosql, and brett users
   if $users {
     $users.each |String $username, Hash $user_data| {
       dsc_xaduser { $username:
