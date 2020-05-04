@@ -40,7 +40,7 @@ profile::database_services::mongodb::mongod_instance:
     port       : 27017
     member_auth: 'x509'
     ssl_mode   : 'preferSSL'
-    pem_file: "/data/pki/%server.pem"
+    pem_file: "/data/pki/%erver.pem"
     wiredtiger_cache_gb: '4'
     keyfile_path: '/data/pki/mongodb_keyfile'
     ldap_bind_username: 'MONGODB\ldap-bind-user'
