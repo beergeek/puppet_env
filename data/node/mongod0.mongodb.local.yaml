@@ -74,26 +74,26 @@ profile::database_services::mongodb::mongod_instance:
     ear_keyfile: '/data/pki/mongodb_keyfile'
 profile::database_services::mongodb::server_keytab_content: >
   ENC[PKCS7,MIIDnQYJKoZIhvcNAQcDoIIDjjCCA4oCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEAKYXOFPDW7caMouSrn6fXnNsIliunvJvt6aar
-  DNoIVvOkhkXfpv0S4+O6Bd3KeAWhOaUgBYUbBHkwH2v2G9WPRquczeCnq8kb
-  hZmWMs/RCNH6FDxhZXKNGi4SgzPtKfkX0hq5OsXHU07TqebS8HA8bc4ul14o
-  1YTegs2fFk/gf8tfRWlzHHmaPzIpGau55BZ7ynYTRcGnxv4XzeaSIw9mqNOy
-  cMmlZzW55cUbwXTox3u77K27W5eOODEjifHcZYiTo8eOQUamtcd6WpNO+z10
-  oR9zBrhvvi0BiaziBg/NrbZMe4DQRmKrhB9eR+8W6Zw544evXV6nxcYbUIv/
-  isrLtzCCAl4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEKta4rezUTOgZ7ku
-  85Gt78mAggIwYi7fGueSMIYIzT3t5hzFaPkNNZYhojGQRoNSjlr9+K3od/WU
-  F5Nma3x6CilrOHA1q4v6NxC0syDjjIe/cXAUOCcx0Jy5Xe3KC1SEXmvRaaCY
-  97gUmBu6CwjcWXH9C+Ki6JMgF6tWEiKVOsSh8G/rRf8sps7gDejtEFLuQlDz
-  eWiIiTC+IlLPDpOq4b7OrSGQVjmCVlh4RyMiLvi+cL8CUIXzFtcGd9TZU1sq
-  y9TKbYvhKmOelP6eGY+SFHFFRpD92RYnO+D0m1qzvecUOAUjvLJznUxkRJIv
-  9NiZ/p1kVId3OS+88L7Dd+jOs+b+LJViYMY/gGpElLtVwZQKTrMklPbsEeAB
-  u8hHK9doHBDjur1IlQtAl7G9Pys2S0Vc6W1eE2WFr80zFYUmDEzRz/cZeYna
-  atU9Ne6h8zI5f4EfgyYmS/7ZgohWtWhgf/gqeQpzaZUAfwzNcmAPT1YCdK3/
-  PMVIk3bO0Y2TY0nEO0FdrTGX7uBqaUmRPNU3galp60ZyYb6YHK7K57+qST/6
-  sWVgRaBRsbuKZnHx9HOyQyhBAOih774OgYY6zAJCh0/mw6J0is/lhMnAwe4A
-  GVYDnoPaElZ+IPkcYoLulBrvnP+SgBNqahWi/3WjXW8u+XuP+rEG2IO/cz6/
-  WPZx304gpavOo19N6hT7NizhpVmZA45+rb3z7fjSgdfGZ66qbA1Etr9cHP6l
-  wsVK4UdwXvgTX9qViy7ErdihB+pfDuFMtHeo5WQ=]
+  DQYJKoZIhvcNAQEBBQAEggEAf/x1hHdIEV4nM8dztG3/C6zG5NNkL8sRKixB
+  NQOPTp3IMA1XdxRj5xy9YKy4Gv73EtYyrdeqZbPD+4uoNHEisIHc4hLFMQsA
+  qZpZMCl92koTkOU3MJJUMkyemqVoxm1B6dA98osm9xp/Oa6EraDp3/zdo/p0
+  S5vp6a1BzvhqxAtvOESwO2MxlcIbNg86nx8sM7nWtl2ExAHSPLqd1nUn1LN/
+  L0ee6O2NlZSgG3YlGBC/gUTvyzuRK5/WbOUwq+p00HHJFEGleXKkg6jrLv7D
+  QlPjxYG2QSdcsNjxMloSnN77JZdCBsUB5VU3H8rohqvWdoe/ax0dHA2FmYHE
+  MpaYLDCCAl4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEKhrWMzGi0lGPwty
+  X9bsX5WAggIwa0Y3tbCXriIk5GlYzcas7qggokkcM5rU4qebzEPjx/TfJtCJ
+  UW/1yknGdwqehj0bWFrkMqZqWJelQ6yi/trfIIgFYvDMV92hUN7ryRG6ozJ0
+  CbOgzARA6ilJtqBMqYFw1G9TyANAYw2N4vQKSUpIvrootiFFMKcoAGFtBD+R
+  rY+yA0RUe4CpfIBQbVeuYKyxeLv2hjQaByyLEjHc8cXuKcNMbs05Sk7P0UJ5
+  575v9pU0sgDtdkDQsYM+R9jdfMeq4OzVW4qZ7ao+Sfvaf7ckt1X71LzUbUKl
+  +vDDaKnJ0jhceRwKK+aZt+X2AW2LYS9utPGGyFZHhLzjs6OLfHVGXJ62S+tp
+  PXJy3xHgZ1PwJkrxajPhIOZ3Qs3HO3yPwiK36mS2Pm2LPSK2JixiaEMwfGu2
+  G1PnCmmmsgSmLDXr77TxQ3XAZNrN1cY44h3zPOl2Vad7gKBf9OnRGCZb5F9z
+  cFQvYJGwXTAw+t67+OFAeMruq9GTKmQwcKldjg5e/HNSjiYmllkGwVPidiIX
+  mR6+zJvkh5PcvkQKHONVamSXcb0bG3rXGnrip1q0XKT7x8X5aYxqcpYCDDVx
+  8YcnkHNvYCyldmrCvY1tjEgPLClElYixDcRSGBWEdZ+TUxmkUu4m5Naxaqcu
+  6MHUAFtqBSO8HPYtMEDllqnlMbu4yYw630v0J/e2eSrtCqNoGb7bzVmjf/94
+  kEYLAPUZqQnrfSlayNlzAoa+etTewAUotbIR1ug=]
 profile::database_services::mongodb::pem_file_content: >
   ENC[PKCS7,MIIQHQYJKoZIhvcNAQcDoIIQDjCCEAoCAQAxggEhMIIBHQIBADAFMAACAQEw
   DQYJKoZIhvcNAQEBBQAEggEAM8iCIfIfIgu/OkFpjzGOwz1blMX6tbSCBpR2
