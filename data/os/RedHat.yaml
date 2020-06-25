@@ -10,7 +10,7 @@ profile::database_services::mongodb::pem_file_path: "/data/pki/server.pem"
 profile::database_services::mongodb::server_keytab_path: '/data/pki/server_keytab'
 profile::database_services::mongodb::client_keytab_path: '/data/pki/client_keytab'
 profile::database_services::mongodb::aa_ca_file_path: '/etc/mongodb-mms/ca.cert'
-profile::database_services::mongodb::aa_pem_file_path: "/etc/mongodb-mms/aa.pem"
+profile::database_services::mongodb::aa_pem_file_path: "/data/pki/server.pem"
 
 
 profile::database_services::mongodb_nodb::base_path: '/data'
@@ -23,6 +23,6 @@ profile::database_services::mongodb_nodb::pem_file_path: "/data/pki/server.pem"
 profile::database_services::mongodb_nodb::server_keytab_path: '/data/pki/server_keytab'
 profile::database_services::mongodb_nodb::client_keytab_path: '/data/pki/client_keytab'
 profile::database_services::mongodb_nodb::aa_ca_file_path: '/etc/mongodb-mms/ca.cert'
-profile::database_services::mongodb_nodb::aa_pem_file_path: '/etc/mongodb-mms/aa.pem'
+profile::database_services::mongodb_nodb::aa_pem_file_path: "/data/pki/server.pem"
 
 profile::ldap::cacert_file_path: '/data/pki/ca.cert'
