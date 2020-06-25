@@ -1,11 +1,11 @@
 ---
 lookup_options:
-  profile::database_services::mongodb::aa_pem_file_content:
-    convert_to: 'Sensitive'
+#  profile::database_services::mongodb::aa_pem_file_content:
+#    convert_to: 'Sensitive'
   profile::database_services::mongodb::mms_api_key:
     convert_to: 'Sensitive'
-  profile::database_services::mongodb_nodb::aa_pem_file_content:
-    convert_to: 'Sensitive'
+#  profile::database_services::mongodb_nodb::aa_pem_file_content:
+#    convert_to: 'Sensitive'
   profile::database_services::mongodb_nodb::mms_api_key:
     convert_to: 'Sensitive'
 
