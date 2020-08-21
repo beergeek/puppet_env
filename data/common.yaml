@@ -33,7 +33,7 @@ profile::dns::purge: false
 
 # SSH
 profile::ssh::enable_firewall: *enable_firewall
-profile::ssh::banner_content: "This system is the property of Puppet. Unauthorised access is not permitted"
+profile::ssh::banner_content: "This system is the property of MongoDB. Unauthorised access is not permitted"
 profile::ssh::allowed_groups:
   - 'root'
   - 'vagrant'
